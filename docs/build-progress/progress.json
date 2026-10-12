@@ -96,10 +96,10 @@
    "updated": "2026-10-12T08:35:38.462Z"
   },
   "tpl-town": {
-   "status": "building",
+   "status": "done",
    "round": 1,
-   "note": "All 21 towns verbatim in data; editorial town template w/ landmark photos",
-   "updated": "2026-10-12T08:35:57.838Z"
+   "note": "Town template built: custom hero+postcard, intro, safety w/ founder, crest call box+form, 7-col town index, editorial Top Sites; all 21 render",
+   "updated": "2026-10-12T08:43:00.633Z"
   },
   "page-about-colonial-electric": {
    "status": "building",
@@ -108,10 +108,10 @@
    "updated": "2026-10-12T08:36:06.614Z"
   },
   "page-services": {
-   "status": "building",
+   "status": "done",
    "round": 1,
-   "note": "Services index: editorial hero, numbered service catalogue with real photos, guarantee + CTA",
-   "updated": "2026-10-12T08:36:16.280Z"
+   "note": "Services page built in src/pages/services.mjs; routing request filed",
+   "updated": "2026-10-12T08:42:41.355Z"
   },
   "page-service-area": {
    "status": "building",
@@ -136,9 +136,62 @@
    "round": 1,
    "note": "Financing page: photo hero, verbatim brief §7 text, how-it-works steps, CTA + shared blocks",
    "updated": "2026-10-12T08:42:00.641Z"
+  },
+  "page-leave-us-a-review": {
+   "status": "building",
+   "round": 1,
+   "note": "Build review page: photo hero, platform cards (Google/Yelp/Facebook etc. from live page), verbatim copy, brand styling",
+   "updated": "2026-10-12T08:42:35.914Z"
+  },
+  "page-calendar": {
+   "status": "building",
+   "round": 1,
+   "note": "Build calendar page: verbatim scraped content, branded hero + booking panel, responsive",
+   "updated": "2026-10-12T08:43:02.019Z"
+  },
+  "page-terms": {
+   "status": "building",
+   "round": 1,
+   "note": "Legal pages: editorial two-column terms/privacy with sticky TOC, verbatim text, branded 404",
+   "updated": "2026-10-12T08:43:21.789Z"
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T08:43:21.789Z",
+   "piece": "page-terms",
+   "status": "building",
+   "round": 1,
+   "note": "Legal pages: editorial two-column terms/privacy with sticky TOC, verbatim text, branded 404"
+  },
+  {
+   "t": "2026-10-12T08:43:02.019Z",
+   "piece": "page-calendar",
+   "status": "building",
+   "round": 1,
+   "note": "Build calendar page: verbatim scraped content, branded hero + booking panel, responsive"
+  },
+  {
+   "t": "2026-10-12T08:43:00.633Z",
+   "piece": "tpl-town",
+   "status": "done",
+   "round": 1,
+   "note": "Town template built: custom hero+postcard, intro, safety w/ founder, crest call box+form, 7-col town index, editorial Top Sites; all 21 render"
+  },
+  {
+   "t": "2026-10-12T08:42:41.355Z",
+   "piece": "page-services",
+   "status": "done",
+   "round": 1,
+   "note": "Services page built in src/pages/services.mjs; routing request filed"
+  },
+  {
+   "t": "2026-10-12T08:42:35.914Z",
+   "piece": "page-leave-us-a-review",
+   "status": "building",
+   "round": 1,
+   "note": "Build review page: photo hero, platform cards (Google/Yelp/Facebook etc. from live page), verbatim copy, brand styling"
+  },
   {
    "t": "2026-10-12T08:42:00.641Z",
    "piece": "page-we-offer-financing",
@@ -384,5 +437,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T08:42:00.641Z"
+ "updated": "2026-10-12T08:43:21.789Z"
 }

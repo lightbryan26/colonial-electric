@@ -73,13 +73,14 @@ function ledger(ctx) {
   ];
   return `<section class="cu-ledger" aria-label="Contact details">
   <div class="container">
+    <div class="cu-ledger__head"><p class="cu-index"><span class="cu-index__n">02</span><span>Contact Details</span></p><p class="cu-ledger__lic">${icon('shield', { size: 16 })}${esc(site.license)}</p></div>
     <ul class="cu-ledger__list" role="list">
-      ${items.map((it, i) => `<li class="cu-card" style="--i:${i}">
+      ${items.map((it, i) => `<li class="cu-card" style="--i:${i}"><div class="cu-card__in">
         <div class="cu-card__top"><span class="cu-card__ic" aria-hidden="true">${icon(it.ic, { size: 22 })}</span><span class="cu-card__n" aria-hidden="true">${pad(i + 1)}</span></div>
         <h2 class="cu-card__h">${esc(it.h)}</h2>
         ${it.body}
         ${it.act}
-      </li>`).join('\n      ')}
+      </div></li>`).join('\n      ')}
     </ul>
   </div>
 </section>`;
@@ -105,7 +106,7 @@ function findUs(ctx) {
   return `<section class="cu-find on-dark stars-bg" aria-labelledby="cu-find-h">
   <div class="container cu-find__grid">
     <div class="cu-find__head">
-      <p class="cu-index"><span class="cu-index__n">02</span><span>Service Area</span></p>
+      <p class="cu-index"><span class="cu-index__n">03</span><span>Service Area</span></p>
       <h2 class="cu-find__h" id="cu-find-h">Serving Weymouth <span>&amp; the South Shore</span></h2>
       <div class="cu-find__addr">
         <span class="cu-find__pin" aria-hidden="true">${icon('pin', { size: 22 })}</span>

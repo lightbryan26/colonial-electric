@@ -15,15 +15,15 @@ const HQ = 'weymouth-ma'; // site.address.city — Colonial is based in Weymouth
 
 // Approximate town-centre coordinates [lat, lon] and label side (r | l | t | b).
 const geo = {
-  'hanover-ma': [42.113, -70.812, 'r'], 'milton-ma': [42.250, -71.066, 't'], 'norwell-ma': [42.161, -70.794, 'r'],
-  'randolph-ma': [42.162, -71.041, 'l'], 'scituate-ma': [42.196, -70.726, 'r'], 'whitman-ma': [42.082, -70.936, 'l'],
+  'hanover-ma': [42.113, -70.812, 'r'], 'milton-ma': [42.250, -71.066, 'l'], 'norwell-ma': [42.161, -70.794, 'r'],
+  'randolph-ma': [42.162, -71.041, 't'], 'scituate-ma': [42.196, -70.726, 'r'], 'whitman-ma': [42.082, -70.936, 'l'],
   'pembroke-ma': [42.062, -70.804, 'r'], 'weymouth-ma': [42.221, -70.940, 'b'], 'abington-ma': [42.105, -70.945, 'l'],
   'braintree-ma': [42.222, -71.000, 'l'], 'hingham-ma': [42.242, -70.890, 't'], 'quincy-ma': [42.253, -71.002, 't'],
   'rockland-ma': [42.131, -70.916, 'r'], 'hull-ma': [42.302, -70.908, 'r'], 'plymouth-ma': [41.958, -70.668, 'l'],
   'holbrook-ma': [42.155, -71.009, 'b'], 'marshfield-ma': [42.092, -70.706, 'r'], 'hanson-ma': [42.075, -70.880, 'b'],
   'canton-ma': [42.158, -71.145, 'b'], 'carver-ma': [41.883, -70.763, 'r'], 'cohasset-ma': [42.242, -70.804, 'r'],
 };
-const W = 640, H = 700, P = 64;
+const W = 720, H = 700, P = 64;
 const lats = Object.values(geo).map(g => g[0]), lons = Object.values(geo).map(g => g[1]);
 const [minLat, maxLat, minLon, maxLon] = [Math.min(...lats), Math.max(...lats), Math.min(...lons), Math.max(...lons)];
 const k = Math.min((H - 2 * P) / (maxLat - minLat), (W - 2 * P) / ((maxLon - minLon) * Math.cos(42.1 * Math.PI / 180)));
@@ -71,7 +71,7 @@ function hero(ctx) {
     <div class="sa-hero__copy">
       <nav class="crumbs" aria-label="Breadcrumb"><ol role="list"><li><a href="${ctx.r('')}">Home</a></li><li><span aria-current="page">Service Area</span></li></ol></nav>
       <p class="eyebrow sa-hero__eyebrow">Service Area</p>
-      <h1 class="sa-hero__h1" id="sa-h1"><span class="sa-hero__brand">Colonial Electric <span class="sa-hero__dash">—</span></span> <span class="sa-hero__big">Your One-stop Solution</span> <span class="sa-hero__red">For All Things Electrical!</span></h1>
+      <h1 class="sa-hero__h1" id="sa-h1"><span class="sa-hero__brand">Colonial Electric <span class="sa-hero__dash">—</span></span> <span class="sa-hero__big">Your <span class="nw">One-stop</span> Solution</span> <span class="sa-hero__red">For All Things Electrical!</span></h1>
       <p class="sa-hero__lead">Don’t let electrical issues disrupt your life. We provide fast, reliable electrical services to keep your home or business running smoothly. From troubleshooting electrical problems to installing new fixtures, we’re your one-stop shop for all your electrical needs.</p>
       <p class="btn-row sa-hero__ctas"><a class="btn btn--red btn--lg" href="${site.tel}">${icon('phone', { size: 18 })}<span>${site.phone}</span></a><a class="btn btn--ghost btn--lg" href="#sa-towns">Find Your Town</a></p>
       <p class="sa-hero__lic label-wide">${icon('shield', { size: 16 })}<span>${site.license}</span></p>
@@ -101,7 +101,7 @@ function townGrid(ctx) {
           <span class="sa-card__n" aria-hidden="true">${pad(i + 1)}</span>
           ${icon('arrow-up-right', { size: 18, cls: 'sa-card__go' })}
           <span class="sa-card__body">
-            <span class="sa-card__name">${esc(t.name)}<span class="sa-card__ma"> MA</span></span>
+            <span class="sa-card__name">${esc(t.name)}</span>
             <span class="sa-card__site">${esc(s.name)}</span>
           </span>
         </a>
@@ -123,8 +123,7 @@ function townGrid(ctx) {
 const script = `<script>(function(){var m=document.querySelector('[data-sa-map]');if(!m)return;var f=m.querySelector('.sa-map__peek'),im=f.querySelector('img'),k=f.querySelector('.sa-map__peek-k'),n=f.querySelector('.sa-map__peek-n'),h;
 function show(a){var c=document.querySelector('.sa-card__link[data-town="'+a.getAttribute('data-town')+'"]');if(!c)return;clearTimeout(h);im.src=c.getAttribute('data-img');k.textContent=a.textContent.trim()+', MA';n.textContent=c.getAttribute('data-site');var r=m.getBoundingClientRect(),d=a.querySelector('.sa-map__dot').getBoundingClientRect(),x=d.left-r.left+d.width/2,y=d.top-r.top;f.style.setProperty('--x',x+'px');f.style.setProperty('--y',y+'px');f.classList.toggle('is-left',x>r.width*.55);f.hidden=false;requestAnimationFrame(function(){f.classList.add('is-on')});m.classList.add('is-peek');m.querySelectorAll('.sa-map__town').forEach(function(t){t.classList.toggle('is-active',t===a)})}
 function hide(){f.classList.remove('is-on');m.classList.remove('is-peek');m.querySelectorAll('.is-active').forEach(function(t){t.classList.remove('is-active')});h=setTimeout(function(){f.hidden=true},250)}
-m.querySelectorAll('.sa-map__town').forEach(function(a){a.addEventListener('mouseenter',function(){show(a)});a.addEventListener('mouseleave',hide)});
-var g=document.querySelector('.sa-grid');if(g&&'IntersectionObserver' in window){var o=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){g.classList.add('is-in');o.disconnect()}})},{rootMargin:'0px 0px -15% 0px'});g.classList.add('is-armed');o.observe(g)}})();</script>`;
+m.querySelectorAll('.sa-map__town').forEach(function(a){a.addEventListener('mouseenter',function(){show(a)});a.addEventListener('mouseleave',hide)});})();</script>`;
 
 export function render(ctx) {
   ctx.jsonld = ctx.jsonld || [];

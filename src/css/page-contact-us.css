@@ -1,0 +1,221 @@
+/* =====================================================================
+   /contact-us/ — Contact Us page (owner: page-contact-us)
+   Every selector is .cu-* scoped (or .cu-form to tune the shared form here).
+   ===================================================================== */
+
+/* ---------- Shared: section index (01 — label) ---------- */
+.cu-index { display: flex; align-items: center; gap: .9rem; font: 700 var(--fs-eyebrow)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+.cu-index__n { color: var(--red); font-variant-numeric: tabular-nums; }
+.cu-index__n::after { content: ""; display: inline-block; vertical-align: middle; width: 2.5rem; height: 1px; margin-left: .9rem; background: currentColor; opacity: .6; }
+.on-dark .cu-index { color: var(--on-dark-3); }
+.on-dark .cu-index__n { color: var(--red-flag); }
+
+/* ---------- 1. Hero ---------- */
+.cu-hero { background: var(--navy-ink); padding-top: clamp(2.25rem, 1.25rem + 3vw, 4.5rem); overflow: clip; }
+.cu-hero__grid { display: grid; gap: clamp(2.5rem, 1.5rem + 3vw, 4rem); align-items: end; }
+.cu-hero__copy { padding-bottom: clamp(.5rem, -1rem + 4vw, 4.5rem); min-width: 0; }
+.cu-hero__eyebrow { margin-top: clamp(1.75rem, 1rem + 2.5vw, 3.25rem); }
+
+.cu-hero__h1 {
+  margin-top: clamp(.75rem, .5rem + 1vw, 1.25rem);
+  font: 900 clamp(4.5rem, .9rem + 15.5vw, 12.5rem)/.8 var(--f-display);
+  text-transform: uppercase; letter-spacing: -.015em; color: var(--white);
+}
+.cu-hero__w { display: inline-block; }
+.cu-hero__w--2 { color: var(--red-flag); position: relative; }
+
+/* Direct line */
+.cu-dial { margin-top: clamp(2rem, 1.25rem + 2.5vw, 3.5rem); padding-top: clamp(1.5rem, 1rem + 1.5vw, 2.25rem); border-top: 1px solid var(--line-dark-strong); max-width: 40rem; }
+.cu-dial__k { display: inline-flex; align-items: center; gap: .55rem; font: 700 var(--fs-eyebrow)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; color: var(--on-dark-2); }
+.cu-dial__k .icon { color: var(--red-flag); }
+.cu-dial__num {
+  display: inline-flex; align-items: center; gap: clamp(.75rem, .5rem + 1vw, 1.25rem); margin-top: 1rem;
+  color: var(--white); text-decoration: none;
+}
+.cu-dial__ic {
+  position: relative; flex: none; display: grid; place-items: center;
+  width: clamp(3.25rem, 2.6rem + 2vw, 4.25rem); aspect-ratio: 1; background: var(--red); clip-path: var(--crest);
+  transition: background-color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+}
+.cu-dial__digits {
+  font: 700 clamp(1.75rem, .95rem + 3.6vw, 3.6rem)/1 var(--f-wide); font-stretch: 125%; letter-spacing: -.005em;
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 2px no-repeat; padding-bottom: .12em;
+  transition: background-size .5s var(--ease-out);
+}
+.cu-dial__area { color: var(--on-dark-2); }
+.cu-dial__dash { color: var(--red-flag); }
+.cu-dial__num:hover .cu-dial__digits, .cu-dial__num:focus-visible .cu-dial__digits { background-size: 100% 2px; }
+.cu-dial__num:hover .cu-dial__ic { background: var(--red-flag); transform: rotate(-8deg); }
+.cu-dial__num:focus-visible { outline-offset: 6px; }
+.cu-dial__alt { display: flex; flex-wrap: wrap; gap: .5rem 1.75rem; margin-top: clamp(1.25rem, 1rem + 1vw, 1.75rem); }
+.cu-link {
+  display: inline-flex; align-items: center; gap: .55rem; min-height: 2.75rem;
+  font: 700 var(--fs-xs)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--white); text-decoration: none; border-bottom: 1px solid var(--line-dark-strong);
+  transition: border-color var(--dur) var(--ease-out), color var(--dur) var(--ease-out);
+}
+.cu-link .icon { color: var(--red-flag); transition: transform var(--dur) var(--ease-out); }
+.cu-link:hover { border-color: var(--red-flag); }
+.cu-link:hover .icon-arrow-right { transform: translateX(3px); }
+
+/* Founder portrait */
+.cu-hero__media { position: relative; margin: 0; justify-self: center; width: min(100%, 30rem); }
+.cu-hero__frame { position: relative; }
+.cu-hero__frame::before { /* offset red pinstripe keyline behind the photo */
+  content: ""; position: absolute; inset: 0; transform: translate(clamp(10px, 1.2vw, 18px), clamp(-18px, -1.2vw, -10px));
+  background: repeating-linear-gradient(135deg, var(--red) 0 2px, transparent 2px 9px);
+  clip-path: var(--crest-lg); opacity: .9;
+}
+.cu-hero__frame picture { position: relative; display: block; clip-path: var(--crest-lg); background: var(--navy-3); }
+.cu-hero__frame img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 18%; }
+.cu-tag {
+  position: absolute; left: clamp(-1.25rem, -2vw, -.5rem); bottom: clamp(1.25rem, 1rem + 1vw, 2rem);
+  display: grid; gap: .3rem; padding: .9rem 1.25rem 1rem 1.1rem;
+  background: var(--white); color: var(--navy); clip-path: var(--crest); box-shadow: var(--shadow);
+  border-left: 4px solid var(--red);
+}
+.cu-tag__role { font: 700 .625rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; color: var(--red); }
+.cu-tag__name { font: 900 1.6rem/.95 var(--f-display); text-transform: uppercase; }
+.cu-tag__lic { font: 700 .625rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+
+.cu-hero .sweep { margin-top: clamp(-1px, 0px, 0px); }
+
+@media (min-width: 960px) {
+  .cu-hero__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+  .cu-hero__media { justify-self: end; margin-bottom: calc(-1 * clamp(28px, 4vw, 56px) * .5); z-index: 1; }
+  .cu-hero__frame img { aspect-ratio: 4 / 5.1; }
+}
+@media (max-width: 959.98px) {
+  .cu-hero__media { width: min(100%, 26rem); margin-bottom: 1.5rem; }
+  .cu-tag { left: .75rem; }
+}
+
+/* Load choreography */
+@media (prefers-reduced-motion: no-preference) {
+  .cu-hero__w { animation: cu-rise .9s var(--ease-out) both; }
+  .cu-hero__w--2 { animation-delay: .12s; }
+  .cu-hero__eyebrow, .cu-hero .crumbs { animation: cu-fade .7s var(--ease-out) both; }
+  .cu-dial { animation: cu-fade .8s .3s var(--ease-out) both; }
+  .cu-hero__frame picture { animation: cu-wipe 1.1s .15s var(--ease-out) both; }
+  .cu-hero__frame picture img { animation: cu-zoom 1.6s .15s var(--ease-out) both; }
+  .cu-hero__frame::before { animation: cu-fade 1s .6s var(--ease-out) both; }
+  .cu-tag { animation: cu-fade .7s .8s var(--ease-out) both; }
+  .cu-dial__ic::after { /* single soft ring, repeats slowly */
+    content: ""; position: absolute; inset: 0; clip-path: var(--crest); box-shadow: inset 0 0 0 2px var(--red-flag);
+    animation: cu-ring 2.8s 1.4s var(--ease-out) infinite;
+  }
+}
+@keyframes cu-rise { from { opacity: 0; transform: translateY(.35em); } to { opacity: 1; transform: none; } }
+@keyframes cu-fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes cu-wipe { from { clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%); } to { clip-path: var(--crest-lg); } }
+@keyframes cu-zoom { from { transform: scale(1.12); } to { transform: scale(1); } }
+@keyframes cu-ring { 0% { transform: scale(1); opacity: .9; } 70%, 100% { transform: scale(1.55); opacity: 0; } }
+
+/* ---------- 2. Intro ---------- */
+.cu-intro { padding-block: var(--section); background: var(--white); }
+.cu-intro__grid { display: grid; gap: clamp(2rem, 1rem + 3vw, 4rem); }
+.cu-intro__h {
+  margin-top: clamp(1.25rem, 1rem + 1vw, 2rem);
+  font: 900 clamp(2.75rem, 1.4rem + 5.2vw, 5.75rem)/.88 var(--f-display); text-transform: uppercase; letter-spacing: -.01em; color: var(--navy);
+  text-wrap: balance;
+}
+.cu-intro__h2 { display: block; color: var(--red); }
+.cu-intro__body { display: grid; gap: 1.5rem; align-content: start; }
+.cu-intro__lead { font: 500 clamp(1.1875rem, 1.05rem + .5vw, 1.5rem)/1.5 var(--f-body); color: var(--navy); text-wrap: pretty; }
+.cu-intro__p { font-size: var(--fs-body); line-height: 1.7; color: var(--ink-2); padding-left: 1.25rem; border-left: 3px solid var(--red); text-wrap: pretty; max-width: 60ch; }
+@media (min-width: 960px) {
+  .cu-intro__grid { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); column-gap: clamp(3rem, 1rem + 5vw, 7rem); }
+  .cu-intro__body { padding-top: 3.25rem; }
+}
+
+/* ---------- 3. Info ledger ---------- */
+.cu-ledger { background: var(--paper); padding-block: clamp(3.5rem, 2.25rem + 4vw, 6rem); border-top: 1px solid var(--line); }
+.cu-ledger__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 2rem; margin-bottom: clamp(1.5rem, 1rem + 1.5vw, 2.5rem); }
+.cu-ledger__lic { display: inline-flex; align-items: center; gap: .5rem; font: 700 var(--fs-eyebrow)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .12em; text-transform: uppercase; color: var(--navy); }
+.cu-ledger__lic .icon { color: var(--red); }
+.cu-ledger__list { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(.75rem, .5rem + .8vw, 1.25rem); grid-template-columns: 1fr; }
+@media (min-width: 640px) { .cu-ledger__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .cu-ledger__list { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+.cu-card {
+  position: relative; display: flex; flex-direction: column; min-width: 0;
+  padding: 1px; background: var(--line-strong); color: var(--navy); clip-path: var(--crest-lg);
+  transition: transform var(--dur) var(--ease-out), background-color var(--dur) var(--ease-out);
+}
+.cu-card::after { /* red rule that draws across on hover */
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: var(--red);
+  transform: scaleX(0); transform-origin: left; transition: transform .5s var(--ease-out);
+}
+.cu-card:hover::after, .cu-card:focus-within::after { transform: scaleX(1); }
+.cu-card__in {
+  --cut-lg: 21.6px; flex: 1; display: flex; flex-direction: column; padding: clamp(1.5rem, 1.2rem + 1vw, 2.1rem);
+  background: var(--white); clip-path: var(--crest-lg);
+}
+.cu-card__top { display: flex; align-items: center; justify-content: space-between; }
+.cu-card__ic { display: grid; place-items: center; width: 3rem; height: 3rem; background: var(--navy); color: var(--white); clip-path: var(--crest); }
+.cu-card__n { font: 700 .6875rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .12em; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.cu-card__h { margin-top: clamp(1.5rem, 1rem + 1.5vw, 2.5rem); font: 800 clamp(1.5rem, 1.3rem + .6vw, 1.875rem)/1 var(--f-display); text-transform: uppercase; letter-spacing: .005em; }
+.cu-card__v { margin-top: .75rem; font: 500 1.0625rem/1.55 var(--f-body); font-style: normal; color: var(--ink-2); overflow-wrap: anywhere; }
+.cu-card__v--email { color: var(--navy); }
+.cu-card__v--tel a, .cu-card__v--hours { font: 700 1.25rem/1.3 var(--f-wide); font-stretch: 125%; letter-spacing: .01em; color: var(--navy); text-decoration: none; }
+.cu-card__v--tel a:hover { color: var(--red); }
+.cu-card__act {
+  display: inline-flex; align-items: center; gap: .5rem; margin-top: auto; padding-top: 1.5rem;
+  font: 700 .6875rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--red); text-decoration: none; min-height: 2.75rem; align-self: flex-start;
+}
+.cu-card__v + .cu-card__act { margin-top: auto; }
+.cu-card__act .icon { transition: transform var(--dur) var(--ease-out); }
+.cu-card__act:hover .icon-arrow-right { transform: translateX(3px); }
+.cu-card__act:hover .icon-arrow-up-right { transform: translate(2px, -2px); }
+.cu-card__act:hover { color: var(--red-deep); }
+
+/* Phone = the primary card: inverted to navy */
+.cu-card:nth-child(3) { background: var(--navy); color: var(--white); }
+.cu-card:nth-child(3) .cu-card__in { background: var(--navy); }
+.cu-card:nth-child(3) .cu-card__ic { background: var(--red); }
+.cu-card:nth-child(3) .cu-card__n { color: var(--on-dark-3); }
+.cu-card:nth-child(3) .cu-card__v--tel a { color: var(--white); }
+.cu-card:nth-child(3) .cu-card__v--tel a:hover { color: var(--white); text-decoration: underline; text-underline-offset: 4px; }
+.cu-card:nth-child(3) .cu-card__act { color: var(--white); }
+.cu-card:nth-child(3)::after { background: var(--red-flag); }
+
+@media (min-width: 640px) and (prefers-reduced-motion: no-preference) {
+  .cu-card:hover { transform: translateY(-4px); }
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .cu-card { animation: cu-card-in linear both; animation-timeline: view(); animation-range: entry calc(var(--i, 0) * 6%) entry calc(60% + var(--i, 0) * 8%); }
+  }
+}
+@keyframes cu-card-in { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+
+/* ---------- 4. Shared form, page tuning ---------- */
+.cu-form { scroll-margin-top: calc(var(--header-h) + 1rem); }
+
+/* ---------- 5. Find us / service area ---------- */
+.cu-find { background: var(--navy-ink); padding-block: var(--section); }
+.cu-find__grid { display: grid; gap: clamp(2.5rem, 1.5rem + 3vw, 4rem); }
+.cu-find__h {
+  margin-top: clamp(1.25rem, 1rem + 1vw, 2rem);
+  font: 900 clamp(2.75rem, 1.4rem + 5vw, 5.5rem)/.88 var(--f-display); text-transform: uppercase; letter-spacing: -.01em; color: var(--white); text-wrap: balance;
+}
+.cu-find__h span { display: block; color: var(--red-flag); }
+.cu-find__addr { display: flex; gap: 1rem; align-items: flex-start; margin-top: clamp(1.75rem, 1.25rem + 1.5vw, 2.5rem); padding-top: 1.5rem; border-top: 1px solid var(--line-dark-strong); }
+.cu-find__pin { flex: none; display: grid; place-items: center; width: 3rem; height: 3rem; background: var(--navy-3); color: var(--red-flag); clip-path: var(--crest); }
+.cu-find__addr address { font: 500 1.125rem/1.55 var(--f-body); font-style: normal; color: var(--on-dark-2); }
+.cu-find .btn-row { margin-top: clamp(1.75rem, 1.25rem + 1.5vw, 2.5rem); }
+.cu-find__towns { min-width: 0; align-self: end; }
+.cu-find .cu-tl { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 1.25rem; }
+.cu-find .cu-tl .tl__name { font-size: clamp(1.125rem, 1rem + .5vw, 1.4rem); font-weight: 800; }
+@media (min-width: 640px) { .cu-find .cu-tl { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 2rem; } }
+.cu-find__all {
+  display: inline-flex; align-items: center; gap: .55rem; margin-top: 1.75rem; min-height: 2.75rem;
+  color: var(--white); text-decoration: none; border-bottom: 1px solid var(--red-flag);
+}
+.cu-find__all .icon { color: var(--red-flag); transition: transform var(--dur) var(--ease-out); }
+.cu-find__all:hover .icon { transform: translateX(4px); }
+@media (min-width: 960px) {
+  .cu-find__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(3rem, 1rem + 5vw, 7rem); align-items: end; }
+}
