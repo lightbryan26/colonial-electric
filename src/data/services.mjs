@@ -7,6 +7,10 @@
 //  - ev-charger: truncated block-B opening fragment kept verbatim (supports the "Recommended By Top Brands" eyebrow)
 //  - permanent-outdoor-lighting: "Colonial Electrics" → "Colonial Electric"; feature-grid fixes per brief §5
 // Body blocks: string = paragraph · {list:[{term,text} | string]} = list.
+// heroPoints: 3-4 short phrases shown on the hero service panel (src/pages/service.mjs). Each one is a VERBATIM
+//   substring of that service's own copy (a list term, block copy or FAQ list term); the template throws if one is not.
+//   Optional per-service hero photo fields (used only once photos/services/<slug>.jpg is processed):
+//   heroAlt (alt text override) · heroFocus (CSS object-position for the crop, e.g. "50% 40%").
 // Owner: tpl-service (src/pages/service.mjs renders these).
 export const services = [
   {
@@ -16,6 +20,7 @@ export const services = [
     h1: "Permanent Outdoor Lighting",
     heroLine: "Advanced LED Lighting Control for Outdoor Spaces",
     icon: "sparkle",
+    heroPoints: ["Cloud Control", "Timer & Schedules", "Custom Animations", "True Warm White"],
     outdoor: true
   },
   {
@@ -25,6 +30,7 @@ export const services = [
     h1: "Electrical Outlets",
     heroLine: "Residential & Commercial Electrical Outlet Installation & Repair in Weymouth",
     icon: "outlet",
+    heroPoints: ["Assessment", "Recommendations", "Professional installation", "Testing and inspection"],
     a: {
       h2: "Importance of Professional Electrical Outlet Installation & Repair",
       body: [
@@ -133,6 +139,7 @@ export const services = [
     h1: "Electrical Panel Upgrade",
     heroLine: "Residential & Commercial Electrical Panel Upgrade in Weymouth",
     icon: "panel",
+    heroPoints: ["Initial Consultation", "Customized Solution", "Professional Installation", "Testing and Inspection"],
     a: {
       h2: "Is It Worth Upgrading Electrical Panel?",
       body: [
@@ -254,6 +261,7 @@ export const services = [
     h1: "Surge Protection",
     heroLine: "Residential & Commercial Surge Protection in Weymouth",
     icon: "surge",
+    heroPoints: ["whole-house surge protectors", "point-of-use surge protection", "multi-layered defense strategy"],
     a: {
       h2: "What is Surge Protection & How Does It Work?",
       body: [
@@ -310,6 +318,7 @@ export const services = [
     h1: "Ceiling Fan Installation",
     heroLine: "Residential & Commercial Ceiling Fan Installation in Weymouth",
     icon: "fan",
+    heroPoints: ["detailed evaluation of your space", "wiring layouts and mounting positions", "efficiency and accuracy"],
     a: {
       h2: "Dangers of DIY Ceiling Fan Installation",
       body: [
@@ -384,6 +393,7 @@ export const services = [
     h1: "EV Charger Installation",
     heroLine: "Residential & Commercial EV Charger Installation in Weymouth",
     icon: "ev",
+    heroPoints: ["Recommended By Top Brands", "charge your vehicle overnight", "connecting it to your electrical panel"],
     a: {
       h2: "EV Chargers – And Why You Should Install One",
       body: [
@@ -436,6 +446,7 @@ export const services = [
     h1: "Whole House Wiring/Rewiring",
     heroLine: "Whole House Wiring/Rewiring in Weymouth",
     icon: "wiring",
+    heroPoints: ["removal and replacement of all existing wiring", "structured cabling", "comprehensive electrical inspections"],
     a: {
       h2: "The Need For Whole House Wiring/Rewiring",
       body: [
@@ -507,6 +518,7 @@ export const services = [
     h1: "Electrical Inspection",
     heroLine: "Residential & Commercial Electrical Inspection in Weymouth",
     icon: "inspect",
+    heroPoints: ["Prevention of Electrical Hazards", "Compliance with Regulations", "Protection of Personnel and Property", "Maintaining Reliability"],
     a: {
       h2: "What Is an Electrical Home Inspection?",
       body: [
@@ -580,6 +592,7 @@ export const services = [
     h1: "Recessed Lighting",
     heroLine: "Residential & Commercial Recessed Lighting in Weymouth",
     icon: "recessed",
+    heroPoints: ["Space-Saving Design", "Versatility", "Enhanced Ambiance", "Energy Efficiency"],
     a: {
       h2: "What Is Recessed Lighting & Why Should I Have One?",
       body: [
@@ -680,6 +693,7 @@ export const services = [
     h1: "Remodels",
     heroLine: "Residential & Commercial Remodels in Weymouth",
     icon: "remodel",
+    heroPoints: ["Rewiring", "Adding Outlets and Fixtures", "Upgrading Electrical Panels", "Safety Inspections and Code Compliance"],
     a: {
       h2: "Electrical Remodels & What It Involves",
       body: [
@@ -785,6 +799,7 @@ export const services = [
     h1: "Lighting Additions",
     heroLine: "Residential & Commercial Lighting Additions in Weymouth",
     icon: "bulb",
+    heroPoints: ["Ambient Lighting", "Task Lighting", "Accent Lighting", "Decorative Lighting"],
     a: null,
     b: {
       h2: "Colonial Electric – Illuminating Spaces & Elevating Experiences",
@@ -888,6 +903,7 @@ export const services = [
     h1: "Whole Home Battery Back Up",
     heroLine: "Residential & Commercial Whole Home Battery Back Up in Weymouth",
     icon: "battery",
+    heroPoints: ["seamless installation", "meticulous maintenance", "swift fixes"],
     a: {
       h2: "Whole Home Battery VS Generators",
       body: [
@@ -944,6 +960,7 @@ export const services = [
     h1: "Generators",
     heroLine: "Residential & Commercial Generator Services in Weymouth",
     icon: "generator",
+    heroPoints: ["Generator Installations", "Generator Repairs", "Generator Maintenance"],
     a: {
       h2: "Why Hiring a Professional For Generators Is a Must",
       body: [

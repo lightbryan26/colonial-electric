@@ -43,6 +43,47 @@ function body(blocks, opts) {
   return out;
 }
 
+/* ---------- hero media: the service's own photo, else the branded service panel ----------
+   The hero shows the actual service, never the founder portrait. A real job photo dropped in photos/services/<slug>.jpg
+   and processed by src/scripts/service-photos.mjs lands in images.json as 'services/<slug>' and fills the crest frame.
+   Until then the frame holds the service panel: the service glyph in the badge's crest, the service name, and short
+   verbatim points from that service's own copy (heroPoints in src/data/services.mjs), signed with the real logo badge. */
+const HERO_SIZES = '(min-width: 960px) 30rem, 92vw';
+const heroPhotoKey = s => (images['services/' + s.slug] ? 'services/' + s.slug : null);
+
+function heroPoints(s) {
+  const pts = s.heroPoints ?? [];
+  const { heroPoints: _omit, ...rest } = s;
+  const own = JSON.stringify(s.outdoor ? [rest, outdoor] : [rest, serviceCards.find(c => c.href === s.slug + '/')]);
+  for (const p of pts) if (!own.includes(p)) throw new Error(`/${s.slug}/: hero point "${p}" is not verbatim in this service's own copy`);
+  return pts;
+}
+
+function heroMedia(ctx, s) {
+  const key = heroPhotoKey(s);
+  if (key) {
+    return `<figure class="svp-hero__media svp-hero__media--photo">
+      <div class="svp-hero__frame">${picture(ctx, key, { alt: s.heroAlt || `${s.h1} by Colonial Electric`, sizes: HERO_SIZES, priority: true, imgCls: 'svp-hero__img', style: s.heroFocus ? `object-position: ${s.heroFocus}` : '' })}</div>
+      <figcaption class="svp-hero__cap"><span class="svp-hero__cap-ic" aria-hidden="true">${icon(s.icon, { size: 22 })}</span><span><span class="svp-hero__cap-n">${esc(s.h1)}</span><span class="svp-hero__cap-r">${esc(site.license)}</span></span></figcaption>
+    </figure>`;
+  }
+  const pts = heroPoints(s);
+  return `<div class="svp-hero__media svp-hero__media--panel">
+      <div class="svp-hero__frame">
+        <div class="svp-panel">
+          <div class="svp-panel__id">
+            <span class="svp-panel__crest" aria-hidden="true"><span class="svp-panel__crest-in">${icon(s.icon, { size: 96 })}</span></span>
+            <p class="svp-panel__name">${esc(s.h1).replace(/\//g, '/<wbr>')}</p>
+          </div>
+          ${pts.length ? `<ul class="svp-panel__pts" role="list">${pts.map(p => `<li>${icon('bolt', { size: 18 })}<span>${esc(p)}</span></li>`).join('')}</ul>` : ''}
+          <div class="svp-panel__foot">
+            <picture class="svp-panel__badge"><source type="image/webp" srcset="${ctx.asset('img/logo-badge-250.webp')}"><img src="${ctx.asset('img/logo-badge-250.png')}" width="250" height="150" alt="Colonial Electric" decoding="async"></picture>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
 /* ---------- hero ---------- */
 function hero(ctx, s, idx, { lead = '' } = {}) {
   const crumbs = [{ label: 'Home', href: '' }, { label: 'Services', href: 'services/' }, { label: s.h1 }];
@@ -65,10 +106,7 @@ function hero(ctx, s, idx, { lead = '' } = {}) {
         <li>${icon('pin', { size: 18 })}<span>Weymouth &amp; the South Shore</span></li>
       </ul>
     </div>
-    <figure class="svp-hero__media">
-      <div class="svp-hero__frame">${picture(ctx, 'scott-portrait', { alt: 'Scott Hays, founder of Colonial Electric, in a Colonial Electric polo', sizes: '(min-width: 960px) 30rem, 92vw', priority: true, imgCls: 'svp-hero__img' })}</div>
-      <figcaption class="svp-hero__cap"><span class="svp-hero__cap-n">${esc(site.founder)}</span><span class="svp-hero__cap-r">Founder, Colonial Electric</span></figcaption>
-    </figure>
+    ${heroMedia(ctx, s)}
   </div>
   <div class="sweep" aria-hidden="true"></div>
 </section>`;
@@ -189,7 +227,7 @@ const quoteTowns = ctx => `<section class="svp-qt" aria-labelledby="svp-qt-h">
   <div class="container svp-qt__grid">
     <figure class="svp-qt__quote">
       <blockquote><p>${quote.map((q, i) => `<span class="svp-qt__l svp-qt__l--${i + 1}">${esc(i === 0 ? '“' + q : i === quote.length - 1 ? q + '”' : q)}</span>`).join(' ')}</p></blockquote>
-      <figcaption class="svp-qt__by"><span class="flag-rule" aria-hidden="true"></span><span>Colonial Electric</span></figcaption>
+      <figcaption class="svp-qt__by">Colonial Electric</figcaption>
     </figure>
     <div class="svp-qt__towns">
       <h2 class="svp-qt__h" id="svp-qt-h"><span class="label-wide">${icon('pin', { size: 16 })}Service Area</span></h2>
@@ -261,6 +299,7 @@ export function render(ctx) {
   const s = ctx.page.service;
   const idx = services.findIndex(x => x.slug === s.slug);
   ctx.jsonld = [{ '@context': 'https://schema.org', '@type': 'Service', name: s.h1, serviceType: s.h1, provider: { '@id': site.origin + '/#business' }, areaServed: towns.map(t => ({ '@type': 'City', name: `${t.name}, MA` })) }];
+  if (heroPhotoKey(s)) { ctx.preloadImage = heroPhotoKey(s); ctx.preloadSizes = HERO_SIZES; }
 
   if (s.outdoor) {
     return [
