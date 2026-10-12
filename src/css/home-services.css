@@ -1,7 +1,8 @@
 /* =====================================================================
    Home §4.4 — Services (#s-services). Owner: home-services.
-   Split head (slab H2 / proof + phone-first CTAs) → 12 cards led by brand plates (src/css/block-plate.css;
-   no stock photos, brief §8) → feature crest with a typographic index of the four lighting services.
+   Split head (slab H2 / proof + phone-first CTAs) → 12 cards: real Colonial job photos where one truthfully shows the
+   service, navy typographic tiles where none does (no stock, brief §8) → feature crest with a typographic index of
+   the four lighting services.
    ===================================================================== */
 .hsvc {
   position: relative;
@@ -48,7 +49,11 @@
   .hsvc__head { grid-template-columns: 1.2fr 1fr; gap: clamp(2.5rem, 1rem + 4vw, 6rem); align-items: end; }
 }
 
-/* ---------- Card grid ---------- */
+/* ---------- Card grid ----------
+   Two card kinds share one anatomy (16:10 media zone over a body), so titles line up across every row:
+   .hsvc__card--photo  a real Colonial job photo (src/data/card-photos.mjs) over a white body;
+   .hsvc__card--type   no truthful photo exists: the whole card is a navy typographic tile (outlined index numeral,
+                       keyline service glyph, star-field texture). The two alternate through the grid. */
 .hsvc__grid {
   display: grid; gap: clamp(.875rem, .6rem + .8vw, 1.5rem);
   grid-template-columns: minmax(0, 1fr);
@@ -70,28 +75,25 @@
   position: relative; display: block; overflow: hidden;
   aspect-ratio: 16 / 10; background: var(--navy);
 }
-/* a real job photo mapped into the plate slot (src/data/service-photos.mjs) gets the house grade + hover zoom */
-.hsvc__media .plate__img {
-  object-fit: cover;
-  /* one consistent grade across mixed sources: slightly cooled, settled contrast */
-  filter: saturate(.86) contrast(1.04) brightness(.97);
+.hsvc__media picture { display: block; width: 100%; height: 100%; }
+.hsvc__img {
+  display: block; width: 100%; height: 100%;
+  object-fit: cover; object-position: var(--pos, 50% 50%);
+  /* one consistent grade across phone-shot job photos: slightly cooled, settled contrast */
+  filter: saturate(.9) contrast(1.04) brightness(.98);
   transition: transform .9s var(--ease-out), filter .6s var(--ease-out);
 }
 /* navy grade at the foot of the photo so the seam into the white body feels intentional */
-.hsvc__media::after {
+.hsvc__card--photo .hsvc__media::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(180deg, rgba(8, 16, 32, 0) 55%, rgba(8, 16, 32, .38) 100%);
+  background: linear-gradient(180deg, rgba(8, 16, 32, 0) 58%, rgba(8, 16, 32, .34) 100%);
   transition: opacity .6s var(--ease-out);
 }
-.hsvc__media::before { /* red seam line, grows on hover */
+.hsvc__media::before { /* red seam along the media foot: drawn only on hover/focus */
   content: ""; position: absolute; z-index: 2; left: 0; bottom: 0; height: 3px; width: 100%;
-  background: var(--red); transform: scaleX(.18); transform-origin: left;
+  background: var(--red); transform: scaleX(0); transform-origin: left;
   transition: transform .6s var(--ease-out);
 }
-.hsvc__media--plate::after { display: none; } /* the grade is for photos; the plate is already a brand ground */
-.hsvc__media--plate + .hsvc__body .hsvc__t { margin-top: 0; }
-.hsvc__card:hover .plate__ghost, .hsvc__card:focus-visible .plate__ghost { transform: scale(1.08) rotate(-4deg); }
-.hsvc__card:hover .plate__chip, .hsvc__card:focus-visible .plate__chip { transform: translateY(-3px); }
 .hsvc__num {
   position: absolute; z-index: 2; top: .75rem; left: .75rem;
   display: inline-grid; place-items: center; min-width: 2.25rem; height: 1.6rem; padding-inline: .55rem;
@@ -99,6 +101,40 @@
   color: var(--navy); background: rgba(255, 255, 255, .94);
   border-radius: 999px;
   box-shadow: 0 2px 8px rgba(8, 16, 32, .18);
+}
+
+/* Typographic tile (no truthful photo for this service) */
+.hsvc__card--type {
+  color: var(--white);
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='52' viewBox='0 0 120 104'%3E%3Cg fill='%23ffffff' fill-opacity='.05'%3E%3Cpath d='M20 10l2.9 6 6.6.9-4.8 4.6 1.2 6.5L20 25l-5.9 3 1.2-6.5-4.8-4.6 6.6-.9z'/%3E%3Cpath d='M80 62l2.9 6 6.6.9-4.8 4.6 1.2 6.5L80 77l-5.9 3 1.2-6.5-4.8-4.6 6.6-.9z'/%3E%3C/g%3E%3C/svg%3E") 0 0 / 60px 52px,
+    var(--navy);
+  box-shadow: 0 0 0 1px var(--navy), var(--shadow-sm);
+}
+.hsvc__media--type {
+  background: transparent; isolation: isolate;
+  border-bottom: 1px solid var(--line-dark);
+}
+.hsvc__ghost { /* the service glyph, oversized as a keyline watermark bleeding off the right edge */
+  position: absolute; z-index: -1; top: 50%; right: -16%; width: 74%; aspect-ratio: 1;
+  translate: 0 -50%; color: rgba(255, 255, 255, .075); pointer-events: none;
+  transition: transform 1.1s var(--ease-out);
+}
+.hsvc__ghost .icon { width: 100%; height: 100%; stroke-width: .5; }
+.hsvc__ghost .icon[fill="currentColor"] { fill: none; stroke: currentColor; stroke-width: .35; }
+.hsvc__glyph {
+  position: absolute; top: 1.1rem; right: 1.1rem;
+  display: grid; place-items: center; width: 3rem; height: 3rem;
+  color: var(--white); background: var(--navy-3);
+  box-shadow: inset 0 0 0 1px var(--line-dark-strong);
+  clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
+  transition: background-color .45s var(--ease-out);
+}
+.hsvc__big { /* outlined index numeral: the tile's display type */
+  position: absolute; left: 1.05rem; bottom: .7rem;
+  font: 900 clamp(4.75rem, 3.6rem + 3vw, 6.75rem)/.78 var(--f-display); letter-spacing: -.01em;
+  color: transparent; -webkit-text-stroke: 1.5px rgba(255, 255, 255, .5);
+  transition: -webkit-text-stroke-color .45s var(--ease-out), transform .6s var(--ease-out);
 }
 
 .hsvc__body {
@@ -126,42 +162,60 @@
   text-wrap: balance;
   transition: color .35s var(--ease-out);
 }
+.hsvc__card--type .hsvc__t { color: var(--white); }
+.hsvc__nw { white-space: nowrap; }
 .hsvc__arr {
   flex: none; display: inline-grid; color: var(--red);
   opacity: .0; transform: translateX(-6px);
   transition: opacity .35s var(--ease-out), transform .45s var(--ease-out);
 }
+.hsvc__card--type .hsvc__arr { color: var(--red-on-dark); }
 .hsvc__p {
   grid-column: 1 / -1; grid-row: 3;
   margin-top: .5rem;
   font-size: var(--fs-desc); line-height: 1.6; color: #4A5568;
   text-wrap: pretty;
 }
+.hsvc__card--type .hsvc__p { color: var(--on-dark-2); }
 
 /* Interaction */
 .hsvc__card:hover, .hsvc__card:focus-visible {
   box-shadow: 0 0 0 1px var(--line-strong), var(--shadow);
   transform: translateY(-3px);
 }
-.hsvc__card:hover .plate__img, .hsvc__card:focus-visible .plate__img { transform: scale(1.06); filter: saturate(1) contrast(1.04) brightness(1); }
+.hsvc__card--type:hover, .hsvc__card--type:focus-visible { box-shadow: 0 0 0 1px var(--navy), var(--shadow); }
+.hsvc__card:hover .hsvc__img, .hsvc__card:focus-visible .hsvc__img { transform: scale(1.06); filter: saturate(1) contrast(1.04) brightness(1); }
 .hsvc__card:hover .hsvc__media::before, .hsvc__card:focus-visible .hsvc__media::before { transform: scaleX(1); }
 .hsvc__card:hover .hsvc__media::after, .hsvc__card:focus-visible .hsvc__media::after { opacity: .5; }
 .hsvc__card:hover .hsvc__ic, .hsvc__card:focus-visible .hsvc__ic { background: var(--red); }
-.hsvc__card:hover .hsvc__t, .hsvc__card:focus-visible .hsvc__t { color: var(--red-deep); }
+.hsvc__card--photo:hover .hsvc__t, .hsvc__card--photo:focus-visible .hsvc__t { color: var(--red-deep); }
 .hsvc__card:hover .hsvc__arr, .hsvc__card:focus-visible .hsvc__arr { opacity: 1; transform: none; }
+.hsvc__card:hover .hsvc__glyph, .hsvc__card:focus-visible .hsvc__glyph { background: var(--red); }
+.hsvc__card:hover .hsvc__big, .hsvc__card:focus-visible .hsvc__big { -webkit-text-stroke-color: var(--red-on-dark); transform: translateY(-3px); }
+.hsvc__card:hover .hsvc__ghost, .hsvc__card:focus-visible .hsvc__ghost { transform: scale(1.08) rotate(-4deg); }
 .hsvc__card:focus-visible { outline: 3px solid var(--red-flag); outline-offset: 2px; clip-path: none; }
 @media (hover: none) { .hsvc__arr { opacity: 1; transform: none; } }
 
-/* Phone: horizontal media + body so 12 cards don't become a 6-screen scroll */
+/* Phone: compact media-object cards so 12 services don't become a 12-screen scroll. A 4:3 thumb (photo, or the
+   type tile's numeral + glyph) sits beside the title; the description runs the full card width underneath. */
 @media (max-width: 639.98px) {
-  .hsvc__card { flex-direction: row; align-items: stretch; clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%); }
-  .hsvc__media { flex: 0 0 28%; aspect-ratio: auto; min-height: 8.5rem; } /* narrower plate: the 16px description keeps a readable measure */
-  .hsvc__media::before { left: auto; right: 0; top: 0; bottom: 0; width: 3px; height: 100%; transform: scaleY(.25); transform-origin: top; }
+  .hsvc__card {
+    display: grid; grid-template-columns: minmax(0, 40%) minmax(0, 1fr); grid-template-areas: "media title" "desc desc";
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+  }
+  .hsvc__body { display: contents; }
+  .hsvc__media { grid-area: media; aspect-ratio: 4 / 3; }
+  .hsvc__img { object-position: var(--pos-m, var(--pos, 50% 50%)); }
+  .hsvc__media--type { border-bottom: 0; border-right: 1px solid var(--line-dark); }
+  .hsvc__ghost { right: -30%; width: 100%; }
+  .hsvc__glyph { top: .6rem; right: .6rem; width: 2.25rem; height: 2.25rem; }
+  .hsvc__glyph .icon { width: 20px; height: 20px; }
+  .hsvc__big { left: .7rem; bottom: .6rem; font-size: 3.6rem; -webkit-text-stroke-width: 1.25px; }
   .hsvc__num { top: .5rem; left: .5rem; min-width: 1.9rem; height: 1.4rem; padding-inline: .4rem; font-size: var(--fs-label); }
-  .hsvc__body { padding: 1rem 1rem 1.1rem; }
   .hsvc__ic { display: none; }
-  .hsvc__t { grid-row: 1; margin-top: 0; font-size: 1.3rem; }
-  .hsvc__p { grid-row: 2; margin-top: .35rem; font-size: var(--fs-desc); }
+  .hsvc__t { grid-area: title; align-self: center; margin: 0; padding: .75rem 1rem; font-size: 1.35rem; }
+    .hsvc__p { grid-area: desc; margin: 0; padding: .9rem 1rem 1.1rem; border-top: 1px solid var(--line); font-size: var(--fs-desc); }
+  .hsvc__card--type .hsvc__p { border-top-color: var(--line-dark); }
   .hsvc__arr { display: none; }
 }
 
@@ -214,7 +268,7 @@
   font: 700 .75rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; color: var(--on-dark-2);
 }
 .hsvc__feat-t {
-  font: 900 clamp(1.75rem, 1.15rem + 2.1vw, 3rem)/.95 var(--f-display); text-transform: uppercase; letter-spacing: .005em;
+  font: 900 clamp(1.5rem, .95rem + 2.6vw, 3rem)/.95 var(--f-display); text-transform: uppercase; letter-spacing: .005em;
   transition: transform .45s var(--ease-out);
 }
 .hsvc__feat-list a .icon { flex: none; margin-left: auto; color: rgba(255, 255, 255, .62); transition: transform .35s var(--ease-out), color .35s var(--ease-out); }
@@ -260,7 +314,7 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hsvc__card, .plate__img, .hsvc__feat-t { transition: none; }
+  .hsvc__card, .hsvc__img, .hsvc__ghost, .hsvc__big, .hsvc__feat-t { transition: none; }
   .hsvc__card:hover { transform: none; }
 }
 @keyframes hsvc-rise {

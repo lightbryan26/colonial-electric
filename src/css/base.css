@@ -167,9 +167,7 @@ main:focus { outline: none; }
   font: 700 var(--fs-eyebrow)/1.2 var(--f-wide); font-stretch: 125%;
   letter-spacing: .14em; text-transform: uppercase; color: var(--red);
 }
-.eyebrow::before { content: ""; width: 1.75rem; height: 2px; background: currentColor; }
 .on-dark .eyebrow { color: var(--on-dark-2); }
-.on-dark .eyebrow::before { background: var(--red); }
 
 .label-wide { font: 700 var(--fs-xs)/1.2 var(--f-wide); font-stretch: 125%; letter-spacing: .1em; text-transform: uppercase; }
 

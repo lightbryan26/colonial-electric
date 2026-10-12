@@ -110,7 +110,7 @@ for (const page of pages) {
   // relative asset (stylesheet, script, eager image) would be fetched against the bad URL first (stray 404s).
   // So site.css and site.js are written by script after <base>, and eager images are made lazy (the scanner skips lazy ones).
   const page = { slug: '404.html', title: 'Page Not Found', h1: 'Page Not Found', template: '404', description: site.homeDescription };
-  const baseTag = `<script>(function(){var s=location.pathname.split('/')[1],b=(s==='colonial-electric'||s==='docs')?'/'+s+'/':'/';document.write('<base href="'+b+'"><link rel="stylesheet" href="'+b+'assets/site.css?v=${version}">')})()</script>\n<noscript><link rel="stylesheet" href="/colonial-electric/assets/site.css?v=${version}"></noscript>\n`;
+  const baseTag = `<script>(function(){var s=location.pathname.split('/')[1],b=(s==='colonial-electric'||s==='docs')?'/'+s+'/':'/';document.write('<base href="'+b+'"><link rel="stylesheet" href="'+b+'assets/site.css?v=${version}">')})()</script>\n<noscript><link rel="stylesheet" href="${site.assetOrigin}/assets/site.css?v=${version}"></noscript>\n`;
   const ctx = makeCtx(page, { depth: 0, baseTag });
   const { render } = await import('./pages/notfound.mjs'); // branded 404 (brief §7); hrefs via ctx.r() resolve through baseTag
   const main = await render(ctx);

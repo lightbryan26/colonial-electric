@@ -10,7 +10,7 @@ export const pages = [
   P('about-colonial-electric/', 'About Us', 'About Us', 'about-colonial-electric'),
   P('services/', 'Services', 'Services', 'services'),
   ...services.map(s => P(s.slug + '/', s.title, s.h1, 'service', { service: s })), // incl. the permanent-outdoor-lighting variant (s.outdoor)
-  P('service-area/', 'Service Area', 'Colonial Electric — Your One-stop Solution For All Things Electrical!', 'service-area'),
+  P('service-area/', 'Service Area', 'Colonial Electric: Your One-stop Solution For All Things Electrical!', 'service-area'),
   ...towns.map(t => P(`service-area/${t.slug}/`, `${t.name} MA, Electrical Services`, `${t.name} MA, Electrical Services`, 'town', { town: t })),
   P('contact-us/', 'Contact Us', 'Contact Us', 'contact-us'),
   P('premium-membership/', 'Flash Pass Membership', 'Flash Pass Membership', 'premium-membership'),

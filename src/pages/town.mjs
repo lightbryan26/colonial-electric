@@ -48,16 +48,34 @@ function hero(ctx, t) {
 </section>`;
 }
 
+// Town map (client request: a Google Maps embed on every town page, for local SEO). The iframe shows the town itself;
+// the link opens Colonial Electric's Google Business Profile. Microcopy only, no claims.
+function townMap(t) {
+  const T = t.name;
+  return `<figure class="tw-map">
+      <div class="tw-map__frame"><div class="tw-map__mat">
+        <iframe src="${esc(site.townMapEmbed(T))}" title="Map of ${esc(T)}, MA" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div></div>
+      <figcaption class="tw-map__cap">
+        <h3 class="tw-map__h">${icon('pin', { size: 20 })}<span>Serving ${esc(T)}, MA</span></h3>
+        <a class="tw-link tw-map__link" href="${site.gbp.link}" target="_blank" rel="noopener"><span>Find Us on Google Maps</span>${icon('arrow-up-right', { size: 18 })}<span class="sr-only"> (opens in a new tab)</span></a>
+      </figcaption>
+    </figure>`;
+}
+
 function intro(t) {
   const body = introBodies[t.introVariant](t.name);
   return `<section class="tw-intro block"${t.introH2 ? ' aria-labelledby="tw-intro-h"' : ' aria-label="Introduction"'}>
   <div class="container tw-intro__grid${t.introH2 ? '' : ' tw-intro__grid--solo'}">
-    <p class="tw-intro__tag label-wide" aria-hidden="true"><span class="tw-intro__dot"></span>${esc(t.name)}, MA</p>
-    ${t.introH2 ? `<h2 class="tw-intro__h" id="tw-intro-h">${esc(t.introH2)}</h2>` : ''}
-    <div class="tw-intro__body">
-      <p>${esc(body)}</p>
-      <a class="tw-link" href="${site.tel}">${icon('phone', { size: 18 })}<span>${site.phone}</span>${icon('arrow-right', { size: 18 })}</a>
+    <div class="tw-intro__text">
+      <p class="tw-intro__tag label-wide" aria-hidden="true"><span class="tw-intro__dot"></span>${esc(t.name)}, MA</p>
+      ${t.introH2 ? `<h2 class="tw-intro__h" id="tw-intro-h">${esc(t.introH2)}</h2>` : ''}
+      <div class="tw-intro__body">
+        <p>${esc(body)}</p>
+        <a class="tw-link" href="${site.tel}">${icon('phone', { size: 18 })}<span>${site.phone}</span>${icon('arrow-right', { size: 18 })}</a>
+      </div>
     </div>
+    ${townMap(t)}
   </div>
 </section>`;
 }
@@ -152,7 +170,8 @@ export function render(ctx) {
     '@context': 'https://schema.org', '@type': 'Electrician', '@id': site.origin + '/' + ctx.page.slug + '#electrician',
     name: site.name, telephone: site.phoneSchema, url: site.origin + '/' + ctx.page.slug,
     image: biz.image, logo: biz.logo, address: biz.address,
-    areaServed: { '@type': 'City', name: `${t.name}, MA` },
+    hasMap: site.gbp.link,
+    areaServed: { '@type': 'City', name: `${t.name}, MA`, hasMap: 'https://maps.google.com/maps?q=' + encodeURIComponent(`${t.name}, MA`) },
     parentOrganization: { '@id': biz['@id'] },
   }];
   return [

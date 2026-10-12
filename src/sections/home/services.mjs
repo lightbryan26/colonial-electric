@@ -1,15 +1,14 @@
 import { serviceCards, servicesIntro, services, outdoor as outdoorData } from '../../data/services.mjs';
 import { site } from '../../data/site.mjs';
 import { icon } from '../../partials/icons.mjs';
-import { esc, images } from '../../lib/html.mjs';
-import { plate } from '../../blocks/plate.mjs';
-import { photoFor } from '../../data/service-photos.mjs';
+import { esc, images, picture } from '../../lib/html.mjs';
+import { cardPhotoFor } from '../../data/card-photos.mjs';
 
 // Homepage §4.4 services grid. Copy verbatim (brief §4.4); Permanent Outdoor Lighting as a feature panel
 // (allowed per §4.4 note; copy verbatim from /permanent-outdoor-lighting/, brief §5 variant).
-// Media: no photos. The live site's service photos are framed stock (brief §8 forbids reusing them) and there is no
-// clean original, so each card leads with a brand plate (src/blocks/plate.mjs: crest chip + the service glyph on the
-// navy star field). A real Colonial job photo mapped in src/data/service-photos.mjs drops into the same slot.
+// Media: a real Colonial job photo where one truthfully shows that service (src/data/card-photos.mjs: Colonial's own
+// media library, renamed by service). A service with no such photo gets a typographic tile instead: the whole card on
+// navy, led by its outlined index numeral and service glyph, so photo cards and type tiles alternate through the grid.
 // The outdoor feature leads with a typographic index of its four lighting services (verbatim panel titles, linked).
 
 const outdoor = {
@@ -20,7 +19,8 @@ const outdoor = {
 };
 
 const pad = n => String(n).padStart(2, '0');
-const slugOf = href => href.replace(/\/$/, '');
+// Hyphenated words ("Whole-house", "Whole-home") never break at the hyphen in the narrow phone title column.
+const keepHyphens = t => esc(t).replace(/\S+-\S+/g, w => `<span class="hsvc__nw">${w}</span>`);
 
 export function render(ctx) {
   const h2 = servicesIntro.h2; // "Your One-stop Solution For All Things Electrical"
@@ -29,20 +29,28 @@ export function render(ctx) {
     ? `<span class="hsvc__h-a">${esc(h2.slice(0, k).trim())}</span> <span class="hsvc__h-b">${esc(h2.slice(k))}</span>`
     : esc(h2);
 
-  const cardSizes = '(min-width: 1100px) 300px, (min-width: 640px) 46vw, 34vw';
+  // Card media width: 4-up inside the 1280px container (≈300px), 2-up from 640px, a ≈38vw thumbnail on phones.
+  const cardSizes = '(min-width: 1100px) 300px, (min-width: 640px) 46vw, 38vw';
   const cells = serviceCards.map((s, i) => {
-    const id = slugOf(s.href);
-    const hasPhoto = !!photoFor(id, images);
+    const n = pad(i + 1);
+    const photo = cardPhotoFor(s.href, images);
+    const media = photo
+      ? `<span class="hsvc__media" style="--pos:${photo.pos};--pos-m:${photo.posM}">
+            ${picture(ctx, photo.key, { alt: photo.alt, sizes: cardSizes, imgCls: 'hsvc__img' })}
+            <span class="hsvc__num" aria-hidden="true">${n}</span>
+          </span>`
+      : `<span class="hsvc__media hsvc__media--type" aria-hidden="true">
+            <span class="hsvc__ghost">${icon(s.icon, { size: 240 })}</span>
+            <span class="hsvc__glyph">${icon(s.icon, { size: 30 })}</span>
+            <span class="hsvc__big">${n}</span>
+          </span>`;
     return `
       <li class="hsvc__cell" style="--i:${i % 4}">
-        <a class="hsvc__card" href="${ctx.r(s.href)}">
-          <span class="hsvc__media${hasPhoto ? '' : ' hsvc__media--plate'}">
-            ${plate(ctx, { id, ic: s.icon, tone: 'navy', sizes: cardSizes })}
-            <span class="hsvc__num" aria-hidden="true">${pad(i + 1)}</span>
-          </span>
+        <a class="hsvc__card ${photo ? 'hsvc__card--photo' : 'hsvc__card--type'}" href="${ctx.r(s.href)}">
+          ${media}
           <span class="hsvc__body">
-            ${hasPhoto ? `<span class="hsvc__ic" aria-hidden="true">${icon(s.icon, { size: 22 })}</span>` : ''}
-            <h3 class="hsvc__t">${esc(s.title)}<span class="hsvc__arr" aria-hidden="true">${icon('arrow-right', { size: 18 })}</span></h3>
+            ${photo ? `<span class="hsvc__ic" aria-hidden="true">${icon(s.icon, { size: 22 })}</span>` : ''}
+            <h3 class="hsvc__t"><span>${keepHyphens(s.title)}</span><span class="hsvc__arr" aria-hidden="true">${icon('arrow-right', { size: 18 })}</span></h3>
             <p class="hsvc__p">${esc(s.blurb)}</p>
           </span>
         </a>

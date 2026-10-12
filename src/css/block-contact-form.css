@@ -28,9 +28,6 @@
   font: 900 clamp(2.75rem, 1.9rem + 2.6vw, 4rem)/.9 var(--f-display);
   text-transform: uppercase; letter-spacing: -.005em; color: var(--navy); text-wrap: balance;
 }
-.cf__h::after { /* brand-red rule, 16px under the display word */
-  content: ""; display: block; margin-top: 1rem; width: 3rem; height: 4px; background: var(--cf-red);
-}
 .cf__note { margin-top: 1rem; font-size: var(--fs-small); color: var(--ink-3); }
 .cf-req { color: var(--cf-red); font-weight: 700; }
 
@@ -41,7 +38,6 @@
   display: flex; align-items: center; gap: .8rem; width: 100%; padding: 0 0 .9rem;
   font: 700 var(--fs-xs)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--navy);
 }
-.cf-legend::after { content: ""; flex: 1; height: 1px; background: var(--cf-field); }
 .cf-legend__n {
   display: inline-grid; place-items: center; width: 2rem; height: 1.5rem;
   background: var(--navy); color: var(--white); font-size: var(--fs-label); letter-spacing: .06em;
@@ -204,7 +200,6 @@
   display: grid; gap: .35rem;
 }
 .cf-photo__role { display: flex; align-items: center; gap: .5rem; font: 700 var(--fs-label)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; color: var(--on-dark-2); }
-.cf-photo__role::before { content: ""; width: 1.1rem; height: 2px; background: var(--red-flag); }
 .cf-photo__name { font: 900 1.75rem/.9 var(--f-display); text-transform: uppercase; color: var(--white); letter-spacing: .01em; }
 
 .cf-direct { padding: 1.25rem clamp(1.25rem, .9rem + 1vw, 2rem) clamp(1.5rem, 1.1rem + 1vw, 2rem); }
@@ -212,7 +207,6 @@
   display: flex; align-items: center; gap: .6rem; margin: 0;
   font: 700 var(--fs-label)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; color: var(--on-dark-2);
 }
-.cf-direct__k::before { content: ""; width: 1.5rem; height: 2px; background: var(--red-flag); }
 .cf-direct__tel {
   display: inline-flex; align-items: center; gap: .8rem; margin-top: .75rem;
   font: 700 clamp(1.5rem, 1.1rem + 1.6vw, 2.375rem)/1 var(--f-wide); font-stretch: 125%; letter-spacing: var(--tel-track-lg);
@@ -278,7 +272,6 @@
 }
 .cf-crest__logo { display: block; width: min(15rem, 64%); }
 .cf-crest__logo img { display: block; width: 100%; height: auto; filter: drop-shadow(0 14px 28px rgba(0, 0, 0, .4)); }
-.cf-crest__rule { width: 4.5rem; height: 6px; background: repeating-linear-gradient(180deg, var(--red) 0 2px, var(--white) 2px 4px); }
 @media (max-width: 959px) {
   .cf-crest { flex: none; min-height: 0; }
   .cf-crest__logo { width: min(12rem, 52%); }

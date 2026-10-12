@@ -1,4 +1,4 @@
-// SERVICE template (brief §5) — one template for all 13 service pages, incl. the /permanent-outdoor-lighting/ variant.
+// SERVICE template (brief §5): one template for all 13 service pages, incl. the /permanent-outdoor-lighting/ variant.
 // Content: src/data/services.mjs (verbatim). Styles: src/css/tpl-service.css (every class prefixed .sv).
 // Section order (brief §5): hero · intro · block A · block B · trust strip · guarantee · why choose (generator: services grid)
 //   · contact CTA · booking process · reviews · quote + towns · contact form · FAQs.
@@ -15,8 +15,6 @@ import { servicesGrid } from '../blocks/services-grid.mjs';
 import { faqJsonLd } from '../blocks/faqs.mjs';
 import { icon } from '../partials/icons.mjs';
 import { esc, picture, images } from '../lib/html.mjs';
-import { plate } from '../blocks/plate.mjs';
-import { photoFor } from '../data/service-photos.mjs';
 
 const pad = n => String(n).padStart(2, '0');
 const isLead = b => typeof b === 'string' && /:\s*$/.test(b);
@@ -43,6 +41,66 @@ function body(blocks, opts) {
   return out;
 }
 
+/* ---------- hero media: the actual service, never the founder portrait ----------
+   A real Colonial job photo (photos/services/<slug>.jpg -> images.json 'services/<slug>') fills a crest frame dressed
+   like the badge: white inner border, navy keyline, red offset crest and the flag-stripe tab, signed with the real
+   badge. A service with no photo yet gets a typographic service sheet in the same frame: its homepage blurb and its
+   own listed points, all verbatim (brief §8: no drawn or generated stand-ins for photos). */
+const HERO_SIZES = '(min-width: 1280px) 34rem, (min-width: 960px) 40vw, 92vw';
+const heroPhotoKey = s => (images['services/' + s.slug] ? 'services/' + s.slug : null);
+const badge = (ctx, alt = '', loading = 'lazy') => `<picture><source type="image/webp" srcset="${ctx.asset('img/logo-badge-250.webp')}"><img src="${ctx.asset('img/logo-badge-250.png')}" width="250" height="150" alt="${esc(alt)}" loading="${loading}" decoding="async"></picture>`;
+const cardFor = s => serviceCards.find(c => c.href === s.slug + '/');
+
+/* The sheet's points, verbatim: the service's own term list (block A, then block B) under its list lead or H2;
+   failing that, its FAQ questions as jump links to the open answer (the FAQ section's own heading, "FAQs"). */
+function sheetPoints(s) {
+  for (const blk of [s.a, s.b].filter(Boolean)) {
+    const i = blk.body.findIndex(x => x.list && x.list.every(it => it.term));
+    if (i < 0) continue;
+    const prev = blk.body[i - 1];
+    const label = typeof prev === 'string' && isLead(prev) ? prev.replace(/:\s*$/, '') : blk.h2;
+    return { kind: 'terms', label, items: blk.body[i].list.map(it => ({ text: it.term })) };
+  }
+  if (s.faqs?.length) return { kind: 'faq', label: 'FAQs', items: s.faqs.map((f, i) => ({ text: f.q, href: `#svp-q-${i + 1}` })) };
+  return null;
+}
+
+function heroSheet(ctx, s) {
+  const card = cardFor(s);
+  let inner;
+  if (s.outdoor) {
+    inner = `<p class="svp-sheet__k">Lighting services</p>
+          <ol class="svp-sheet__nav" role="list">${outdoor.panels.map((p, i) => `<li><a href="#ol-${p.id}"><span class="svp-sheet__n">${pad(i + 1)}</span><span>${esc(p.title)}</span>${icon('arrow-right', { size: 16 })}</a></li>`).join('')}</ol>
+          <ul class="svp-sheet__chips" role="list" aria-label="Lighting system features">${outdoor.features.map(f => `<li>${esc(f.title)}</li>`).join('')}</ul>`;
+  } else {
+    const pts = sheetPoints(s);
+    inner = `${card ? `<p class="svp-sheet__blurb">${esc(card.blurb)}</p>` : ''}
+          ${pts ? `<div class="svp-sheet__pts"><p class="svp-sheet__k">${esc(pts.label)}</p><ul class="svp-sheet__list svp-sheet__list--${pts.kind}" role="list">${pts.items.map(t => t.href
+            ? `<li><a href="${t.href}"><span>${esc(t.text)}</span>${icon('arrow-right', { size: 16 })}</a></li>`
+            : `<li>${icon('bolt', { size: 14 })}<span>${esc(t.text)}</span></li>`).join('')}</ul></div>` : ''}`;
+  }
+  return `<div class="svp-hero__media svp-hero__media--sheet">
+      <div class="svp-hero__frame">
+        <div class="svp-crest"><div class="svp-crest__mat"><div class="svp-sheet${s.outdoor ? ' svp-sheet--ol' : ''}">
+          <div class="svp-sheet__top"><span class="svp-sheet__ic" aria-hidden="true">${icon(s.icon, { size: 30 })}</span><span class="svp-sheet__badge">${badge(ctx, 'Colonial Electric', 'eager')}</span></div>
+          ${inner}
+        </div></div></div>
+      </div>
+    </div>`;
+}
+
+function heroMedia(ctx, s) {
+  const key = heroPhotoKey(s);
+  if (!key) return heroSheet(ctx, s);
+  const soft = images[key].w < 600 ? ' svp-hero__media--soft' : '';
+  return `<figure class="svp-hero__media svp-hero__media--photo${soft}">
+      <div class="svp-hero__frame">
+        <div class="svp-crest"><div class="svp-crest__mat">${picture(ctx, key, { alt: s.heroAlt || `${s.h1} by Colonial Electric`, sizes: HERO_SIZES, priority: true, imgCls: 'svp-hero__img', style: s.heroFocus ? `object-position: ${s.heroFocus}` : '' })}</div></div>
+      </div>
+      <figcaption class="svp-hero__sign">${badge(ctx, 'Colonial Electric', 'eager')}</figcaption>
+    </figure>`;
+}
+
 /* ---------- hero ---------- */
 function hero(ctx, s, idx, { lead = '' } = {}) {
   const crumbs = [{ label: 'Home', href: '' }, { label: 'Services', href: 'services/' }, { label: s.h1 }];
@@ -65,10 +123,7 @@ function hero(ctx, s, idx, { lead = '' } = {}) {
         <li>${icon('pin', { size: 18 })}<span>Weymouth &amp; the South Shore</span></li>
       </ul>
     </div>
-    <figure class="svp-hero__media">
-      <div class="svp-hero__frame">${picture(ctx, 'scott-portrait', { alt: 'Scott Hays, founder of Colonial Electric, in a Colonial Electric polo', sizes: '(min-width: 960px) 30rem, 92vw', priority: true, imgCls: 'svp-hero__img' })}</div>
-      <figcaption class="svp-hero__cap"><span class="svp-hero__cap-n">${esc(site.founder)}</span><span class="svp-hero__cap-r">Founder, Colonial Electric</span></figcaption>
-    </figure>
+    ${heroMedia(ctx, s)}
   </div>
   <div class="sweep" aria-hidden="true"></div>
 </section>`;
@@ -94,7 +149,7 @@ function overview(ctx, s) {
     ${rail}
     <div class="svp-over__main">
       <div class="svp-intro" id="svp-intro">
-        <p class="svp-intro__k label-wide">${icon('bolt', { size: 14 })}Colonial Electric · ${esc(s.h1)}</p>
+        <p class="svp-intro__k label-wide">${icon('bolt', { size: 14 })}Overview</p>
         <p class="svp-intro__p">${esc(serviceIntro)}</p>
       </div>
       ${s.a ? `<article class="svp-a svp-reveal" id="svp-a" aria-labelledby="svp-a-h">
@@ -106,27 +161,43 @@ function overview(ctx, s) {
 </section>`;
 }
 
-/* ---------- block B media: a typographic service plate (no photo of this service exists) ----------
-   Crest chip with the service glyph, the service name and its verbatim homepage blurb (brief §4.4) on the navy
-   star field. Not the van: that photo appears once per page and the guarantee below carries it. A real job photo
-   mapped to this slug in src/data/service-photos.mjs replaces the plate with a captioned photo. */
+/* ---------- block B media ----------
+   A second real Colonial job photo where one truthfully shows this service (photos/library, keys 'photos/<name>'),
+   framed like the hero. The service's homepage blurb (verbatim, brief §4.4) rides on the photo as a note, or stands
+   alone as a navy statement card when there is no second photo. Services whose hero is the typographic sheet already
+   carry the blurb up top, so their block B runs as a two-column text spread instead. */
+// ar: the frame's aspect ratio (w/h; omitted = the photo's own). A portrait crop of a landscape photo is used only
+// where the subject sits in that slice, and the frame is never wider than the pixels it shows (no upscaling).
+const B_PHOTOS = {
+  'electrical-panel-upgrade': { key: 'photos/panel-branch-circuits', ar: 4 / 5, focus: '46% 50%', alt: 'New breaker panel with branch circuits landed and the cover off, on a diamond-plate backboard' },
+  'generator': { key: 'photos/generator-transfer-switch-panels', alt: 'Generac transfer switch beside two breaker panels on a diamond-plate backboard' },
+  'surge-protection': { key: 'photos/panel-surge-protector', alt: 'Breaker panel with a plug-in surge protective device at the top of the breaker column' },
+  'recessed-lighting': { key: 'photos/shower-rain-head-recessed-light', alt: 'Marble-tiled shower with a ceiling rain head and a recessed shower light' },
+  'remodels': { key: 'photos/walk-in-shower-recessed-light', alt: 'Subway-tiled walk-in shower with a frameless glass door and a recessed ceiling light' },
+  'lighting-additions': { key: 'photos/deck-railing-post-lights', ar: 4 / 5, focus: '88% 50%', alt: 'Lit post-cap and post-side lights on a white deck railing at dusk' },
+  'electrical-outlets': { key: 'photos/kitchen-backsplash-outlets', alt: 'Remodeled kitchen with a tiled backsplash, outlets and a switch beside the window over the sink' },
+};
+const bPhoto = s => { const p = B_PHOTOS[s.slug]; return p && images[p.key] ? p : null; };
+
 function blockBMedia(ctx, s) {
-  const sizes = '(min-width: 960px) 40vw, 92vw';
-  if (photoFor(s.slug, images)) {
-    return `<figure class="svp-b__media">
-      <div class="svp-b__frame">${plate(ctx, { id: s.slug, ic: s.icon, sizes })}</div>
-      <figcaption class="svp-b__cap"><span class="svp-b__badge">${icon(s.icon, { size: 22 })}</span><span><strong>${esc(s.h1)}</strong><span>${esc(site.license)}</span></span></figcaption>
-    </figure>`;
+  const card = heroPhotoKey(s) ? cardFor(s) : null; // sheet heroes already show the blurb
+  const note = card ? `<div class="svp-b__note"><span class="svp-b__badge" aria-hidden="true">${icon(s.icon, { size: 22 })}</span><p>${esc(card.blurb)}</p></div>` : '';
+  const p = bPhoto(s);
+  if (p) {
+    const im = images[p.key];
+    const ar = p.ar || im.w / im.h;
+    const max = Math.min(Math.round(Math.min(im.w, im.h * ar)), 640); // CSS px the visible slice can fill 1:1
+    return `<div class="svp-b__media svp-b__media--photo${ar < 1.2 ? ' svp-b__media--tall' : ''}" style="--b-max: ${max}px">
+      <figure class="svp-b__fig"><div class="svp-b__frame" style="aspect-ratio: ${+ar.toFixed(4)}"><div class="svp-crest"><div class="svp-crest__mat">${picture(ctx, p.key, { alt: p.alt, sizes: `(min-width: 960px) ${max}px, 92vw`, imgCls: 'svp-b__img', style: p.focus ? `object-position: ${p.focus}` : '' })}</div></div></div></figure>
+      ${note}
+    </div>`;
   }
-  const card = serviceCards.find(c => c.href === s.slug + '/');
-  return `<div class="svp-b__media svp-b__type">
-      <div class="svp-b__plate">
-        <span class="svp-b__ghost" aria-hidden="true">${icon(s.icon, { size: 240 })}</span>
-        <span class="svp-b__crest" aria-hidden="true"><span>${icon(s.icon, { size: 48 })}</span></span>
-        <p class="svp-b__name">${esc(s.h1)}</p>
-        <span class="flag-rule" aria-hidden="true"></span>
-        ${card ? `<p class="svp-b__pull">${esc(card.blurb)}</p>` : ''}
-        <p class="svp-b__lic label-wide">${icon('shield', { size: 14 })}<span>Licensed &amp; Insured · <span class="nowrap">${esc(site.license)}</span></span></p>
+  if (!card) return '';
+  return `<div class="svp-b__media svp-b__media--card">
+      <div class="svp-b__stmt">
+        <span class="svp-b__stmt-ic" aria-hidden="true">${icon(s.icon, { size: 26 })}</span>
+        <p class="svp-b__stmt-p">${esc(card.blurb)}</p>
+        <span class="svp-b__stmt-badge">${badge(ctx, 'Colonial Electric')}</span>
       </div>
     </div>`;
 }
@@ -135,9 +206,10 @@ function blockBMedia(ctx, s) {
 function blockB(ctx, s) {
   const b = s.b;
   const hasSteps = b.body.some(x => x.list && x.list.every(i => i.term));
-  return `<section class="svp-b" id="svp-b" aria-labelledby="svp-b-h">
+  const media = blockBMedia(ctx, s);
+  return `<section class="svp-b${media ? '' : ' svp-b--solo'}" id="svp-b" aria-labelledby="svp-b-h">
   <div class="container svp-b__grid">
-    ${blockBMedia(ctx, s)}
+    ${media}
     <div class="svp-b__copy">
       <header class="svp-sechead">${s.a ? '<span class="svp-sechead__n" aria-hidden="true">02</span>' : '<span class="svp-sechead__n" aria-hidden="true">01</span>'}<div>${b.eyebrow ? `<p class="eyebrow svp-b__eyebrow">${esc(b.eyebrow)}</p>` : ''}<h2 class="svp-h2" id="svp-b-h">${esc(b.h2)}</h2></div></header>
       <div class="svp-copy">${body(b.body, { steps: hasSteps })}</div>
@@ -189,7 +261,7 @@ const quoteTowns = ctx => `<section class="svp-qt" aria-labelledby="svp-qt-h">
   <div class="container svp-qt__grid">
     <figure class="svp-qt__quote">
       <blockquote><p>${quote.map((q, i) => `<span class="svp-qt__l svp-qt__l--${i + 1}">${esc(i === 0 ? '“' + q : i === quote.length - 1 ? q + '”' : q)}</span>`).join(' ')}</p></blockquote>
-      <figcaption class="svp-qt__by"><span class="flag-rule" aria-hidden="true"></span><span>Colonial Electric</span></figcaption>
+      <figcaption class="svp-qt__by">Colonial Electric</figcaption>
     </figure>
     <div class="svp-qt__towns">
       <h2 class="svp-qt__h" id="svp-qt-h"><span class="label-wide">${icon('pin', { size: 16 })}Service Area</span></h2>
@@ -215,12 +287,13 @@ function faqs(ctx, s) {
         </div>
       </div>
     </header>
-    <div class="svp-faq__list">${s.faqs.map((f, i) => `<details class="svp-q" name="svp-faq"${i === 0 ? ' open' : ''}>
+    <div class="svp-faq__list">${s.faqs.map((f, i) => `<details class="svp-q" id="svp-q-${i + 1}" name="svp-faq"${i === 0 ? ' open' : ''}>
         <summary><span class="svp-q__n" aria-hidden="true">${pad(i + 1)}</span><span class="svp-q__t">${esc(f.q)}</span><span class="svp-q__ic" aria-hidden="true"></span></summary>
         <div class="svp-q__a svp-copy">${body(f.a, { plainLeads: true })}</div>
       </details>`).join('')}</div>
   </div>
-</section>`;
+</section>
+<script>(function(){function o(){var h=location.hash;if(!/^#svp-q-[0-9]+$/.test(h))return;var d=document.getElementById(h.slice(1));if(!d)return;d.open=true;requestAnimationFrame(function(){d.scrollIntoView({block:'start'})})}addEventListener('hashchange',o);o()})();</script>`;
 }
 
 /* ---------- outdoor-lighting variant ---------- */
@@ -261,6 +334,7 @@ export function render(ctx) {
   const s = ctx.page.service;
   const idx = services.findIndex(x => x.slug === s.slug);
   ctx.jsonld = [{ '@context': 'https://schema.org', '@type': 'Service', name: s.h1, serviceType: s.h1, provider: { '@id': site.origin + '/#business' }, areaServed: towns.map(t => ({ '@type': 'City', name: `${t.name}, MA` })) }];
+  if (heroPhotoKey(s)) { ctx.preloadImage = heroPhotoKey(s); ctx.preloadSizes = HERO_SIZES; }
 
   if (s.outdoor) {
     return [

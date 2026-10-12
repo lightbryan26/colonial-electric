@@ -31,7 +31,6 @@ export function render(ctx) {
         <p class="eyebrow">How It Works</p>
         <h2 class="h2 proc__h" id="s-process-h">A Booking Process That Feels Like a&nbsp;Breeze</h2>
       </div>
-      <p class="proc__count" aria-hidden="true"><span>01</span><i></i><span>04</span></p>
     </header>
     <ol class="proc__steps" role="list">${steps}
     </ol>
@@ -42,11 +41,10 @@ export function render(ctx) {
         <span class="proc__mark" aria-hidden="true">“</span>
         <p class="proc__q1">${esc(q1.replace(/^“/, ''))}</p>
         <p class="proc__q2">${qRest.map(esc).join(' ')}”</p>
-        <span class="proc__flag" aria-hidden="true"></span>
       </blockquote>
       <div class="proc__cta">
         <a class="btn btn--red btn--lg" href="${telHref}">${icon('phone', { size: 18 })}<span>Call Now</span></a>
-        <p class="proc__lic"><b>Licensed &amp; Insured</b><span aria-hidden="true">·</span><wbr><b>MA Lic# 8720-A1</b></p>
+        <p class="proc__lic"><span class="proc__lic-in"><b>Licensed &amp; Insured</b><b>MA Lic# 8720-A1</b></span></p>
       </div>
     </figure>
   </div>

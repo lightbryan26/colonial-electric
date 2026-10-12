@@ -74,7 +74,6 @@ function platformsSection() {
   <div class="container">
     <header class="lr-platforms__head">
       <h2 class="h2 lr-platforms__h" id="lr-platforms-h">${esc(copy.h2)}</h2>
-      <span class="lr-platforms__rule" aria-hidden="true"></span>
       <p class="lr-platforms__note label-wide">${icon('arrow-up-right', { size: 16 })}<span>Links open in a new tab</span></p>
     </header>
     <ol class="lr-list" role="list">

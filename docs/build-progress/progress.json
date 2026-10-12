@@ -22,11 +22,11 @@
    "shot": "shots/home-safety-r1.png"
   },
   "home-services": {
-   "status": "won",
-   "round": 2,
-   "note": "Critic picked ours blind (slight). Remaining gap: The dark nav bar sits mid-viewport and covers the service card descriptions, a visible layout or sticky-header bug. It is made worse by tiny low-contrast card copy and photography with mismatched colo",
-   "updated": "2026-10-12T08:59:31.569Z",
-   "shot": "shots/home-services-r2.png"
+   "status": "done",
+   "round": 3,
+   "note": "Grids: 7 real Colonial job photos in the services grid (library first, hero fallback), 5 navy typographic tiles for services with no photo; phone = 4:3 thumb media-object cards",
+   "updated": "2026-10-12T19:36:15.974Z",
+   "shot": "shots/home-services-r3.png"
   },
   "home-why": {
    "status": "won",
@@ -100,10 +100,10 @@
   },
   "tpl-service": {
    "status": "won",
-   "round": 2,
-   "note": "Critic picked ours blind (clear). Remaining gap: The long-form body typography is broken. A 20px drop-cap paragraph of generic boilerplate outweighs the section headings, while the reasons-grid body sits at about 11px light gray, so the page's lower",
-   "updated": "2026-10-12T08:58:31.185Z",
-   "shot": "shots/tpl-service-r2.png"
+   "round": 10,
+   "note": "Critic picked ours blind (clear). Remaining gap: Below a strong hero, the page turns into walls of tiny, low-contrast grey text. The four-reason grid, the six-step process list and the intro paragraphs all use roughly 9-10px light body copy under very heavy condensed h",
+   "updated": "2026-10-12T19:52:39.410Z",
+   "shot": "shots/tpl-service-r10.jpg"
   },
   "tpl-town": {
    "status": "won",
@@ -120,11 +120,11 @@
    "shot": "shots/page-about-colonial-electric-r5.jpg"
   },
   "page-services": {
-   "status": "won",
-   "round": 6,
-   "note": "Critic picked ours blind (clear). Remaining gap: The copy is too small and too dense to read. The three service blocks on navy (Repairs, Installation, Upgrades) and the guarantee section are long paragraphs of roughly 12px grey-on-navy text, plus many tiny uppercase labels ('EXPLORE', 'THIS COULD INCLUDE', '",
-   "updated": "2026-10-12T10:49:25.692Z",
-   "shot": "shots/page-services-r6.jpg"
+   "status": "done",
+   "round": 3,
+   "note": "Catalogue: same photo/type card system (paper type zone); Electrical Upgrades category now uses the meter-bank photo (16:10, 4:3 at tablet 100% 50%)",
+   "updated": "2026-10-12T19:36:16.025Z",
+   "shot": "shots/page-services-r3.png"
   },
   "page-service-area": {
    "status": "won",
@@ -183,14 +183,296 @@
    "shot": "shots/integrate-r2.png"
   },
   "homepage": {
-   "status": "critiquing",
+   "status": "won",
+   "round": 4,
+   "note": "Critic picked ours blind (clear). Remaining gap: The 12-card services grid alternates real photos with empty navy tiles that hold huge outlined numbers (01, 06, 08, 09, 11). Those tiles look like missing images, and the checkerboard breaks the rhythm of the page’s main",
+   "updated": "2026-10-12T20:15:46.855Z",
+   "shot": "shots/homepage-r4.jpg"
+  },
+  "verify": {
+   "status": "done",
    "round": 1,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T17:20:14.815Z",
-   "shot": "shots/homepage-r1.png"
+   "note": "Build 45/45; 45/45 slugs 200 on /colonial-electric/ and root; linkcheck 0 internal broken on both (167 external fails are all sandbox DNS). Playwright 1440/768/375 + 404 with menus and FAQs open: 0 em dashes (text, attrs, pseudo content), 0 label dashes after fixes, no Scott portrait in any of 13 service heroes, no h-scroll, one H1. Fixed: short red line before town names on service-area cards; line after section numbers on terms/privacy below 1100px; drawn dash between map-key labels (items now grouped so dot stays with label); short rule before 'Links open in a new tab' on leave-us-a-review.",
+   "updated": "2026-10-12T20:28:03.880Z",
+   "shot": "shots/verify-r1.png"
+  },
+  "maps": {
+   "status": "done",
+   "round": 1,
+   "note": "Footer map (GBP embed, crest frame, 3rd masthead column at 1280+, full width below) on all 45 pages + 404; per-town map in the intro of all 21 town pages; hasMap in JSON-LD",
+   "updated": "2026-10-12T18:03:38.035Z",
+   "shot": "shots/maps-r1.png"
+  },
+  "photos": {
+   "status": "done",
+   "round": 1,
+   "note": "7 hero photos, 10 library photos processed",
+   "updated": "2026-10-12T19:24:43.360Z"
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T20:28:03.880Z",
+   "piece": "verify",
+   "status": "done",
+   "round": 1,
+   "note": "Build 45/45; 45/45 slugs 200 on /colonial-electric/ and root; linkcheck 0 internal broken on both (167 external fails are all sandbox DNS). Playwright 1440/768/375 + 404 with menus and FAQs open: 0 em dashes (text, attrs, pseudo content), 0 label dashes after fixes, no Scott portrait in any of 13 service heroes, no h-scroll, one H1. Fixed: short red line before town names on service-area cards; line after section numbers on terms/privacy below 1100px; drawn dash between map-key labels (items now grouped so dot stays with label); short rule before 'Links open in a new tab' on leave-us-a-review.",
+   "shot": "shots/verify-r1.png"
+  },
+  {
+   "t": "2026-10-12T20:15:52.253Z",
+   "piece": "verify",
+   "status": "verifying",
+   "round": 1,
+   "note": "Crawl + em-dash scan after real photos"
+  },
+  {
+   "t": "2026-10-12T20:15:46.855Z",
+   "piece": "homepage",
+   "status": "won",
+   "round": 4,
+   "note": "Critic picked ours blind (clear). Remaining gap: The 12-card services grid alternates real photos with empty navy tiles that hold huge outlined numbers (01, 06, 08, 09, 11). Those tiles look like missing images, and the checkerboard breaks the rhythm of the page’s main",
+   "shot": "shots/homepage-r4.jpg"
+  },
+  {
+   "t": "2026-10-12T20:07:54.316Z",
+   "piece": "homepage",
+   "status": "critiquing",
+   "round": 4,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T20:07:37.888Z",
+   "piece": "homepage",
+   "status": "done",
+   "round": 4,
+   "note": "QA fixes: removed Process fake pager (.proc__count markup + 3 CSS rules) and footer map-frame red top bar (::after). Same-class cleanup: removed the two standalone 72px stripe dashes (safety__rule above the Safety lead, proc__flag above the Process quote mark). Hero: QA's 1400-1540 object-position 92% added, but verification showed it still left an 'M' at 1536x864 and cut 'ECTRIC.COM' at 1600-1920, so added a container-unit framing (@supports cqw, >=1200px) that pins the livery: left edge at source x812 past '.COM', right edge >= x1455 so the crest stays whole, zooming only as needed; >=2100px shows the whole COLONIAL-ELECTRIC.COM. The % rules stay as fallback. Probed 1200-2560 at 768/900/1080 tall: no partial lettering and crest, rider, flag, phone and Scott whole everywhere (horse nose only shaved at <=1440 wide with 1080 tall, better than before). sizes updated so 1860-2099 gets the 2048 source. Build 45/45, no h-scroll at 1440/768/375, 0 em dashes.",
+   "shot": "shots/homepage-r4.png"
+  },
+  {
+   "t": "2026-10-12T19:54:44.881Z",
+   "piece": "homepage",
+   "status": "building",
+   "round": 4,
+   "note": "Remove Process fake pager (.proc__count markup+CSS), drop footer map-frame red accent ::after, add 1400-1540 hero object-position 92% to hide clipped livery lettering; rebuild and verify 1440/768/375"
+  },
+  {
+   "t": "2026-10-12T19:52:39.410Z",
+   "piece": "tpl-service",
+   "status": "won",
+   "round": 10,
+   "note": "Critic picked ours blind (clear). Remaining gap: Below a strong hero, the page turns into walls of tiny, low-contrast grey text. The four-reason grid, the six-step process list and the intro paragraphs all use roughly 9-10px light body copy under very heavy condensed h",
+   "shot": "shots/tpl-service-r10.jpg"
+  },
+  {
+   "t": "2026-10-12T19:41:59.546Z",
+   "piece": "homepage",
+   "status": "critiquing",
+   "round": 3,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T19:41:57.924Z",
+   "piece": "tpl-service",
+   "status": "critiquing",
+   "round": 10,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T19:41:32.041Z",
+   "piece": "tpl-service",
+   "status": "verifying",
+   "round": 11,
+   "note": "Real job photos in 7 service heroes (badge crest frame); typographic service sheets replace SVG clip-art on 6; block B uses truthful library photos; tablet 2-col hero; 45/45, no hscroll",
+   "shot": "shots/tpl-service-r11.png"
+  },
+  {
+   "t": "2026-10-12T19:41:28.401Z",
+   "piece": "tpl-service",
+   "status": "verifying",
+   "round": 1,
+   "note": "Real job photos in 7 service heroes (badge crest frame); typographic service sheets replace SVG clip-art on 6; block B uses truthful library photos; tablet 2-col hero; 45/45, no hscroll",
+   "shot": "shots/tpl-service-r1.png"
+  },
+  {
+   "t": "2026-10-12T19:36:16.025Z",
+   "piece": "page-services",
+   "status": "done",
+   "round": 3,
+   "note": "Catalogue: same photo/type card system (paper type zone); Electrical Upgrades category now uses the meter-bank photo (16:10, 4:3 at tablet 100% 50%)",
+   "shot": "shots/page-services-r3.png"
+  },
+  {
+   "t": "2026-10-12T19:36:15.974Z",
+   "piece": "home-services",
+   "status": "done",
+   "round": 3,
+   "note": "Grids: 7 real Colonial job photos in the services grid (library first, hero fallback), 5 navy typographic tiles for services with no photo; phone = 4:3 thumb media-object cards",
+   "shot": "shots/home-services-r3.png"
+  },
+  {
+   "t": "2026-10-12T19:24:43.360Z",
+   "piece": "photos",
+   "status": "done",
+   "round": 1,
+   "note": "7 hero photos, 10 library photos processed"
+  },
+  {
+   "t": "2026-10-12T19:20:30.192Z",
+   "piece": "photos",
+   "status": "building",
+   "round": 1,
+   "note": "Real job photos: download + resize"
+  },
+  {
+   "t": "2026-10-12T19:01:32.831Z",
+   "piece": "tpl-service",
+   "status": "building",
+   "round": 10,
+   "note": "Remove decorative flag-stripe bar under guarantee eyebrow (block-guarantee.css + home-composition.css) and red bar under CONTACT US heading (block-contact-form.css); rebuild 45/45; verify service pages, a town page and homepage at 1440/768/375."
+  },
+  {
+   "t": "2026-10-12T18:50:26.755Z",
+   "piece": "tpl-service",
+   "status": "critiquing",
+   "round": 9,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T18:50:16.126Z",
+   "piece": "tpl-service",
+   "status": "done",
+   "round": 9,
+   "note": "Lighting-additions section-B close-up window moved down (detail 52 96 192 240): pendant shades and light cones now show above the note card at 375, 768 and 1440. Built 45/45. Heroes on panel upgrade, EV charger and lighting additions show the service drawing at 1440/768/375, no Scott portrait, no em dashes, no horizontal scroll. The /services/ hub owner-van hero is outside this template and is left for the orchestrator.",
+   "shot": "shots/tpl-service-r9.png"
+  },
+  {
+   "t": "2026-10-12T18:48:38.308Z",
+   "piece": "tpl-service",
+   "status": "building",
+   "round": 9,
+   "note": "Round 9: move the lighting-additions section-B close-up window down (detail 52 96 192 240) so the pendant shades and light cones show at 375/768/1440; rebuild 45/45; re-check heroes on three service pages at 1440/768/375."
+  },
+  {
+   "t": "2026-10-12T18:36:01.733Z",
+   "piece": "tpl-service",
+   "status": "critiquing",
+   "round": 8,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T18:35:45.644Z",
+   "piece": "tpl-service",
+   "status": "done",
+   "round": 8,
+   "note": "Deleted the 3 hairline ::after rules (svp listlead, outdoor group labels, cf-legend in block-contact-form.css). Every service hero now shows its actual service: a hand-drawn inline SVG scene per service in src/pages/service-art.mjs (open panel, outlet with plug, surge protector, ceiling fan, EV charger with car, stud-wall wiring, inspection checklist and meter, recessed cans, remodel, kitchen pendants, battery, standby generator, roofline lights), signed with the real badge. No Scott, no photos, no AI, no text in the art. Block B swaps the title-repeating plate for a close-up of the same drawing (via use) plus the verbatim homepage blurb. Intro kicker no longer repeats the H1. heroPoints removed. Build 45/45, no horizontal scroll at 375/768/1440, 0 em dashes, 1 H1, no duplicate ids.",
+   "shot": "shots/tpl-service-r8.png"
+  },
+  {
+   "t": "2026-10-12T18:18:25.638Z",
+   "piece": "tpl-service",
+   "status": "building",
+   "round": 8,
+   "note": "Delete the 3 hairline ::after rules (listlead, outdoor group labels, contact-form legend). Replace the hero name+checklist panel with a hand-drawn inline SVG scene of each actual service (panel, outlet, EV charger, fan, generator, battery, etc.; no photos exist, no AI/stock). Block B plate drops the repeated title and shows a close-up of the same service drawing."
+  },
+  {
+   "t": "2026-10-12T18:09:15.235Z",
+   "piece": "tpl-service",
+   "status": "critiquing",
+   "round": 7,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T18:08:58.831Z",
+   "piece": "tpl-service",
+   "status": "done",
+   "round": 6,
+   "note": "Service heroes: Scott portrait removed from all 13; per-service photo slot (services/<slug>) with branded service panel fallback (crest + glyph, name, verbatim points, real badge); photo pipeline + README; checked 375/768/1440",
+   "shot": "shots/tpl-service-r6.png"
+  },
+  {
+   "t": "2026-10-12T18:03:38.035Z",
+   "piece": "maps",
+   "status": "done",
+   "round": 1,
+   "note": "Footer map (GBP embed, crest frame, 3rd masthead column at 1280+, full width below) on all 45 pages + 404; per-town map in the intro of all 21 town pages; hasMap in JSON-LD",
+   "shot": "shots/maps-r1.png"
+  },
+  {
+   "t": "2026-10-12T17:53:16.782Z",
+   "piece": "tpl-service",
+   "status": "building",
+   "round": 6,
+   "note": "Service heroes: remove Scott, per-service photo slot + branded panel"
+  },
+  {
+   "t": "2026-10-12T17:53:16.101Z",
+   "piece": "maps",
+   "status": "building",
+   "round": 1,
+   "note": "Google Maps embeds: footer + 21 town pages"
+  },
+  {
+   "t": "2026-10-12T17:46:14.295Z",
+   "piece": "verify",
+   "status": "done",
+   "round": 1,
+   "note": "45/45 at subpath and root, 0 broken. Fixed 404 noscript root-absolute css href. Externals unreachable from sandbox but match source and brief",
+   "shot": "shots/verify-r1.png"
+  },
+  {
+   "t": "2026-10-12T17:42:53.060Z",
+   "piece": "verify",
+   "status": "verifying",
+   "round": 1,
+   "note": "Crawling all 45 slugs at subpath and root"
+  },
+  {
+   "t": "2026-10-12T17:42:47.286Z",
+   "piece": "homepage",
+   "status": "won",
+   "round": 2,
+   "note": "Critic picked ours blind (clear). Remaining gap: Body copy across the whole page is too small and low-contrast, and there is too much of it. It starts with the six-line generic hero paragraph (\"Colonial Electric understands how important safety, quality, and reliability are...\") set in roughly 13px grey on n",
+   "shot": "shots/homepage-r2.jpg"
+  },
+  {
+   "t": "2026-10-12T17:41:53.096Z",
+   "piece": "homepage",
+   "status": "critiquing",
+   "round": 2,
+   "note": "capture + QA done: 1440/768/375 clean, no h-scroll, no errors, 1.07 MB at 375; blind composites ready",
+   "shot": "shots/homepage-r2.png"
+  },
+  {
+   "t": "2026-10-12T17:33:25.445Z",
+   "piece": "homepage",
+   "status": "critiquing",
+   "round": 2,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T17:33:11.638Z",
+   "piece": "homepage",
+   "status": "done",
+   "round": 2,
+   "note": "Hero sizes now 95rem so 1440 fetches owner-van-1600 (crisp, preload matches, single download); safety points renumbered 01-03; no dangling dot in licence line; lighting index single-line at 375; callbar space moved into navy footer (no white strip)",
+   "shot": "shots/homepage-r2.png"
+  },
+  {
+   "t": "2026-10-12T17:28:09.242Z",
+   "piece": "homepage",
+   "status": "building",
+   "round": 2,
+   "note": "Fix hero image sizes so 1440 fetches the 1600w source, then re-shoot 1440/768/375 and polish"
+  },
+  {
+   "t": "2026-10-12T17:28:09.188Z",
+   "piece": "homepage",
+   "status": "lost",
+   "round": 1,
+   "note": "Won blind but failed QA: The hero photo is upscaled and looks soft at 1440 (the face, flag stars and van lettering are blurred next to a correctly sized render). Files: src/sections/home/hero.mjs line 27 (the picture() sizes option) and src/pages/home.mjs line 5 (ctx.preloadSizes). Both strings are ’(min-width: 1200px) 48vw",
+   "shot": "shots/homepage-r1.jpg"
+  },
   {
    "t": "2026-10-12T17:20:14.815Z",
    "piece": "homepage",
@@ -1886,5 +2168,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T17:20:14.815Z"
+ "updated": "2026-10-12T20:28:03.880Z"
 }

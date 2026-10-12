@@ -7,6 +7,10 @@
 //  - ev-charger: truncated block-B opening fragment kept verbatim (supports the "Recommended By Top Brands" eyebrow)
 //  - permanent-outdoor-lighting: "Colonial Electrics" → "Colonial Electric"; feature-grid fixes per brief §5
 // Body blocks: string = paragraph · {list:[{term,text} | string]} = list.
+// Hero media: each service's hero shows the service itself: a real Colonial job photo (photos/services/<slug>.jpg ->
+//   images.json 'services/<slug>'), or, until one exists, a typographic service sheet built from this file's verbatim copy.
+//   Per-service hero photo fields: heroAlt (what the photo shows; never a customer name or address) · heroFocus (CSS
+//   object-position for the square crop below 960px, e.g. "50% 40%").
 // Owner: tpl-service (src/pages/service.mjs renders these).
 export const services = [
   {
@@ -133,6 +137,8 @@ export const services = [
     h1: "Electrical Panel Upgrade",
     heroLine: "Residential & Commercial Electrical Panel Upgrade in Weymouth",
     icon: "panel",
+    heroAlt: "New main breaker enclosure between two breaker panels on a diamond-plate backboard, installed by Colonial Electric",
+    heroFocus: "50% 45%",
     a: {
       h2: "Is It Worth Upgrading Electrical Panel?",
       body: [
@@ -254,6 +260,8 @@ export const services = [
     h1: "Surge Protection",
     heroLine: "Residential & Commercial Surge Protection in Weymouth",
     icon: "surge",
+    heroAlt: "Plug-in surge protective device in a Siemens breaker panel, installed by Colonial Electric",
+    heroFocus: "50% 40%",
     a: {
       h2: "What is Surge Protection & How Does It Work?",
       body: [
@@ -580,6 +588,8 @@ export const services = [
     h1: "Recessed Lighting",
     heroLine: "Residential & Commercial Recessed Lighting in Weymouth",
     icon: "recessed",
+    heroAlt: "Recessed ceiling lights evenly spaced across a remodeled kitchen, a Colonial Electric job",
+    heroFocus: "50% 0%",
     a: {
       h2: "What Is Recessed Lighting & Why Should I Have One?",
       body: [
@@ -680,6 +690,8 @@ export const services = [
     h1: "Remodels",
     heroLine: "Residential & Commercial Remodels in Weymouth",
     icon: "remodel",
+    heroAlt: "Remodeled kitchen with recessed ceiling lights over white shaker cabinets and a lit quartz backsplash, a Colonial Electric job",
+    heroFocus: "50% 15%",
     a: {
       h2: "Electrical Remodels & What It Involves",
       body: [
@@ -785,6 +797,8 @@ export const services = [
     h1: "Lighting Additions",
     heroLine: "Residential & Commercial Lighting Additions in Weymouth",
     icon: "bulb",
+    heroAlt: "Vertical exterior wall lights glowing beside sliding doors on a rear addition at dusk, a Colonial Electric job",
+    heroFocus: "50% 40%",
     a: null,
     b: {
       h2: "Colonial Electric – Illuminating Spaces & Elevating Experiences",
@@ -888,6 +902,8 @@ export const services = [
     h1: "Whole Home Battery Back Up",
     heroLine: "Residential & Commercial Whole Home Battery Back Up in Weymouth",
     icon: "battery",
+    heroAlt: "Tesla backup gateway and SPAN smart panel installed side by side by Colonial Electric",
+    heroFocus: "50% 50%",
     a: {
       h2: "Whole Home Battery VS Generators",
       body: [
@@ -944,10 +960,12 @@ export const services = [
     h1: "Generators",
     heroLine: "Residential & Commercial Generator Services in Weymouth",
     icon: "generator",
+    heroAlt: "Generac transfer switch mounted beside a breaker panel labelled for generator power, installed by Colonial Electric",
+    heroFocus: "50% 35%",
     a: {
       h2: "Why Hiring a Professional For Generators Is a Must",
       body: [
-        "In our world today, generators have served as invaluable assets, providing backup power during emergencies, ensuring continuity of operations in critical facilities, and offering peace of mind to homeowners and businesses alike. However, ensuring that your generator operates reliably and efficiently requires more than just purchasing and installing the equipment—it requires professional expertise and maintenance.",
+        "In our world today, generators have served as invaluable assets, providing backup power during emergencies, ensuring continuity of operations in critical facilities, and offering peace of mind to homeowners and businesses alike. However, ensuring that your generator operates reliably and efficiently requires more than just purchasing and installing the equipment; it requires professional expertise and maintenance.",
         {
           list: [
             {

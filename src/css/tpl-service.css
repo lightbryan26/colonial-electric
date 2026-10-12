@@ -1,5 +1,5 @@
 /* =====================================================================
-   tpl-service — SERVICE template (brief §5), all 13 service pages incl. the
+   tpl-service: SERVICE template (brief §5), all 13 service pages incl. the
    /permanent-outdoor-lighting/ variant. Every class is prefixed .sv so it
    cannot collide with shared blocks. Owner: tpl-service.
    ===================================================================== */
@@ -23,7 +23,6 @@
   margin-top: 2.25rem; display: flex; align-items: center; gap: .75rem;
   font: 700 .75rem/1.3 var(--f-wide); font-stretch: 125%; letter-spacing: .12em; text-transform: uppercase; color: var(--red);
 }
-.svp-copy > .svp-listlead::after { content: ""; flex: 1; height: 1px; background: var(--line-strong); }
 .tpl-service .svp-copy > .svp-listlead + * { margin-top: 1.25rem; }
 .tpl-service .svp-copy > ul + p, .tpl-service .svp-copy > ol + p { margin-top: 1.75rem; }
 
@@ -76,7 +75,7 @@
   display: grid; gap: clamp(2.5rem, 1rem + 4vw, 4rem); align-items: center;
   padding-block: clamp(2.25rem, 1.5rem + 3vw, 4.5rem) clamp(2.5rem, 1.5rem + 3vw, 4.5rem);
 }
-@media (min-width: 960px) { .svp-hero__grid { grid-template-columns: minmax(0, 1.35fr) minmax(0, .85fr); } }
+@media (min-width: 960px) { .svp-hero__grid { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); } }
 .svp-hero__crumbs { margin-bottom: clamp(1.75rem, 1rem + 2vw, 2.75rem); }
 .svp-hero__kicker { display: flex; align-items: center; gap: .9rem; }
 .svp-hero__ic {
@@ -105,34 +104,115 @@
 .svp-hero__facts .icon { color: var(--red-flag); }
 .svp-hero__lic { font: 700 var(--fs-xs)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .1em; color: var(--white); padding: .45rem .6rem; border: 1px solid var(--line-dark-strong); }
 
-.svp-hero__media { position: relative; justify-self: center; width: min(100%, 30rem); }
-.svp-hero__frame { position: relative; aspect-ratio: 4 / 5; }
+/* Hero media column. The hero shows the service itself, never the founder portrait:
+   --photo = a real Colonial job photo of this service ('services/<slug>' in images.json);
+   --sheet = until one exists, a typographic service sheet (verbatim blurb + the service's own listed points).
+   Both sit in the same badge-dressed crest: navy keyline, white inner border, red offset crest, flag-stripe tab. */
+.svp-hero__media { position: relative; justify-self: center; width: min(100%, 34rem); }
+.svp-hero__frame { position: relative; display: grid; aspect-ratio: 4 / 5; }
 .svp-hero__frame::before { /* offset keyline crest in red, like the badge border */
   content: ""; position: absolute; inset: 0; translate: 1.1rem 1.1rem; background: var(--red);
   clip-path: polygon(var(--cut-lg) 0, calc(100% - var(--cut-lg)) 0, 100% var(--cut-lg), 100% calc(100% - var(--cut-lg)), calc(100% - var(--cut-lg)) 100%, var(--cut-lg) 100%, 0 calc(100% - var(--cut-lg)), 0 var(--cut-lg),
     var(--cut-lg) 0, calc(var(--cut-lg) + 1px) 2px, 2px calc(var(--cut-lg) + 1px), 2px calc(100% - var(--cut-lg) - 1px), calc(var(--cut-lg) + 1px) calc(100% - 2px), calc(100% - var(--cut-lg) - 1px) calc(100% - 2px), calc(100% - 2px) calc(100% - var(--cut-lg) - 1px), calc(100% - 2px) calc(var(--cut-lg) + 1px), calc(100% - var(--cut-lg) - 1px) 2px, calc(var(--cut-lg) + 1px) 2px);
 }
-.svp-hero__frame picture { position: absolute; inset: 0; clip-path: var(--crest-lg); background: var(--navy-3); }
-.svp-hero__img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; }
 .svp-hero__frame::after { /* flag-stripe tab at the top edge */
-  content: ""; position: absolute; left: 2rem; top: -.5rem; width: 4.5rem; height: 1rem; z-index: 1;
+  content: ""; position: absolute; left: 2rem; top: -.5rem; width: 4.5rem; height: 1rem; z-index: 3;
   background: repeating-linear-gradient(180deg, var(--red) 0 2px, var(--white) 2px 4px);
 }
-.svp-hero__cap {
-  position: absolute; left: -1rem; bottom: 1.75rem; z-index: 2; display: grid; gap: .3rem;
-  padding: .9rem 1.25rem .95rem 1.1rem; background: var(--white); color: var(--navy); box-shadow: var(--shadow-lg);
-  border-left: 4px solid var(--red);
+
+/* The badge-dressed crest (hero + block B): navy keyline > white inner border > content. Each layer is a grid cell
+   that stretches, so a text sheet can grow past the frame's aspect ratio instead of overflowing it. */
+.svp-crest, .svp-crest__mat, .svp-crest__mat > * {
+  clip-path: polygon(var(--c) 0, calc(100% - var(--c)) 0, 100% var(--c), 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, var(--c) 100%, 0 calc(100% - var(--c)), 0 var(--c));
 }
-.svp-hero__cap-n { font: 800 1.5rem/1 var(--f-display); text-transform: uppercase; }
-.svp-hero__cap-r { font: 700 var(--fs-label)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+.svp-crest { --c: var(--cut-lg); position: relative; z-index: 1; display: grid; padding: 3px; background: var(--navy); }
+.svp-crest__mat { --c: calc(var(--cut-lg) - 1.25px); display: grid; padding: 5px; background: var(--white); }
+.svp-crest__mat > * { --c: calc(var(--cut-lg) - 3.3px); position: relative; display: block; min-width: 0; min-height: 0; background: var(--navy-3); }
+.svp-hero__img, .svp-b__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+
+.svp-hero__sign { /* the real badge signs the photo, like a photo credit */
+  position: absolute; left: -1rem; bottom: 1.75rem; z-index: 4; display: block; padding: .7rem .9rem;
+  background: var(--white); box-shadow: var(--shadow-lg); border-left: 4px solid var(--red);
+}
+.svp-hero__sign img { display: block; width: clamp(4.75rem, 3.5rem + 2.5vw, 6.25rem); height: auto; }
+
+/* Service sheet (no job photo yet): navy field with the badge pinstripe, set in type. */
+.svp-sheet {
+  display: flex; flex-direction: column; gap: clamp(1.5rem, 1rem + 1.2vw, 2.25rem); overflow: hidden;
+  padding: clamp(1.75rem, 1.1rem + 2vw, 2.75rem) clamp(1.5rem, 1rem + 1.8vw, 2.5rem) clamp(1.75rem, 1.1rem + 2vw, 2.5rem);
+  background: var(--navy); color: var(--white);
+  background-image: repeating-linear-gradient(180deg, rgba(255, 255, 255, .035) 0 1px, transparent 1px 4px);
+}
+.svp-sheet__top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.svp-sheet__ic {
+  display: grid; place-items: center; width: 3.75rem; height: 3.75rem; flex: none; color: var(--white); background: var(--red);
+  clip-path: polygon(11px 0, calc(100% - 11px) 0, 100% 11px, 100% calc(100% - 11px), calc(100% - 11px) 100%, 11px 100%, 0 calc(100% - 11px), 0 11px);
+}
+.svp-sheet__badge img { display: block; width: clamp(6rem, 4.5rem + 3vw, 8rem); height: auto; }
+.svp-sheet__blurb { font: 500 clamp(1.2rem, 1rem + .7vw, 1.55rem)/1.45 var(--f-body); color: var(--white); text-wrap: pretty; letter-spacing: -.004em; }
+.svp-sheet__pts { margin-top: auto; }
+.svp-sheet__k { display: flex; align-items: center; gap: .6rem; font: 700 var(--fs-label)/1.35 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--on-dark-2); }
+.svp-sheet__list { margin-top: .9rem; border-top: 1px solid var(--line-dark-strong); }
+.svp-sheet__list li { display: flex; align-items: center; gap: .8rem; padding: .8rem 0; border-bottom: 1px solid var(--line-dark); font: 800 clamp(1.15rem, 1rem + .45vw, 1.4rem)/1.1 var(--f-display); text-transform: uppercase; letter-spacing: .01em; }
+.svp-sheet__list .icon { flex: none; color: var(--red-on-dark); }
+.svp-sheet__list--faq li { display: block; padding: 0; font: 600 clamp(1rem, .95rem + .2vw, 1.0625rem)/1.4 var(--f-body); text-transform: none; letter-spacing: 0; }
+.svp-sheet__list--faq a { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .85rem 0; color: var(--white); text-decoration: none; }
+.svp-sheet__list--faq a:hover span { text-decoration: underline; text-decoration-color: var(--red-flag); text-decoration-thickness: 2px; text-underline-offset: .2em; }
+.svp-sheet__list--faq a .icon { transition: translate var(--dur) var(--ease-out); }
+.svp-sheet__list--faq a:hover .icon { translate: 4px 0; }
+.svp-sheet a:focus-visible { outline-color: var(--white); outline-offset: 2px; }
+/* outdoor-lighting variant: the four lighting services as jump links + the eight features */
+.svp-sheet--ol { gap: 1.25rem; }
+.svp-sheet__nav { border-top: 1px solid var(--line-dark-strong); }
+.svp-sheet__nav a {
+  display: grid; grid-template-columns: 2.25rem 1fr auto; align-items: center; gap: .5rem; padding: .85rem 0; border-bottom: 1px solid var(--line-dark);
+  color: var(--white); text-decoration: none; font: 800 clamp(1.3rem, 1.05rem + .7vw, 1.65rem)/1 var(--f-display); text-transform: uppercase;
+}
+.svp-sheet__nav a .icon { color: var(--red-on-dark); transition: translate var(--dur) var(--ease-out); }
+.svp-sheet__nav a:hover .icon { translate: 4px 0; }
+.svp-sheet__nav a:hover span:nth-child(2) { text-decoration: underline; text-decoration-color: var(--red-flag); text-decoration-thickness: 2px; text-underline-offset: .2em; }
+.svp-sheet__n { font: 700 var(--fs-label)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .08em; color: var(--red-on-dark); }
+.svp-sheet__chips { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: auto; }
+.svp-sheet__chips li { padding: .45rem .65rem; border: 1px solid var(--line-dark-strong); font: 700 var(--fs-label)/1.2 var(--f-wide); font-stretch: 125%; letter-spacing: .08em; text-transform: uppercase; color: var(--on-dark-2); }
+
+.tpl-service .svp-sheet__list { margin-top: .9rem; }
+.tpl-service .svp-sheet__chips { margin-top: auto; }
+@media (min-width: 960px) {
+  .svp-hero__media--soft { width: min(100%, 30rem); } /* 640px-wide originals: keep the upscale modest */
+}
+@media (max-width: 600px) { .svp-sheet__chips { display: none; } } /* the features grid follows right below */
 @media (max-width: 959px) {
-  .svp-hero__media { width: min(100%, 26rem); justify-self: start; margin-right: 1.1rem; }
-  .svp-hero__frame { aspect-ratio: 1 / 1; }
-  .svp-hero__cap { left: auto; right: -.25rem; bottom: 1.25rem; }
+  .svp-hero__media { width: min(100% - 1.1rem, 30rem); justify-self: start; margin-right: 1.1rem; }
+  .svp-hero__media--photo .svp-hero__frame { aspect-ratio: 1 / 1; }
+  .svp-hero__media--sheet .svp-hero__frame { aspect-ratio: auto; }
+  .svp-hero__media--sheet { width: min(100% - 1.1rem, 36rem); }
+  .svp-hero__sign { left: auto; right: 1.5rem; bottom: -1.4rem; } /* hangs off the bottom edge, clear of the subject */
+}
+/* tablet: copy and media side by side, so the photo neither shrinks to a corner nor gets upscaled across the page */
+@media (min-width: 720px) and (max-width: 959px) {
+  .svp-hero__grid { grid-template-columns: minmax(0, 1fr) minmax(0, .82fr); gap: 2.25rem; }
+  .svp-hero__h1 { font-size: clamp(3rem, .5rem + 6vw, 3.9rem); }
+  .svp-hero__media, .svp-hero__media--sheet { width: calc(100% - 1.1rem); }
+  .svp-hero__media--photo .svp-hero__frame { aspect-ratio: 4 / 5; }
+  .svp-hero__sign { left: -.75rem; right: auto; bottom: 1.25rem; }
+  .svp-hero__sign img { width: 4.25rem; }
+  .svp-sheet { padding: 1.5rem 1.35rem; gap: 1.25rem; }
+  .svp-sheet__blurb { font-size: 1.0625rem; }
+  .svp-sheet__badge img { width: 5.25rem; }
+  .svp-sheet__ic { width: 3rem; height: 3rem; }
+  .svp-sheet__list li { font-size: 1.05rem; padding: .6rem 0; }
+  .svp-sheet__list--faq li { font-size: .9375rem; }
+  .svp-sheet__list--faq a { padding: .6rem 0; }
+  .svp-sheet__nav a { font-size: 1.2rem; padding: .7rem 0; }
 }
 @media (max-width: 480px) {
+  .svp-hero__sign { padding: .45rem .6rem; border-left-width: 3px; }
+  .svp-hero__sign img { width: 3.5rem; }
   .svp-hero__ctas .btn { width: 100%; }
   .svp-hero__facts { gap: .75rem 1.25rem; font-size: var(--fs-small); }
+  .svp-sheet__ic { width: 3rem; height: 3rem; }
+  .svp-sheet__blurb { font-size: 1.125rem; }
+  .svp-sheet__ic .icon { width: 24px; height: 24px; }
 }
 
 /* Hero entrance */
@@ -143,9 +223,9 @@
   .svp-hero__copy > :nth-child(4) { animation-delay: .2s; }
   .svp-hero__copy > :nth-child(5) { animation-delay: .26s; }
   .svp-hero__copy > :nth-child(n+6) { animation-delay: .32s; }
-  .svp-hero__frame picture { animation: svp-wipe 1.1s var(--ease-out) .1s both; }
+  .svp-hero__frame > .svp-crest { animation: svp-wipe 1.1s var(--ease-out) .1s both; }
   .svp-hero__frame::before { animation: svp-slide .9s var(--ease-out) .35s both; }
-  .svp-hero__cap { animation: svp-up .8s var(--ease-out) .55s both; }
+  .svp-hero__sign { animation: svp-up .8s var(--ease-out) .55s both; }
 }
 @keyframes svp-up { from { opacity: 0; translate: 0 18px; } to { opacity: 1; translate: 0 0; } }
 @keyframes svp-wipe { from { clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%); } to { clip-path: var(--crest-lg); } }
@@ -200,54 +280,43 @@
 @media (min-width: 960px) { .svp-b__grid { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(3rem, 1rem + 5vw, 6.5rem); } }
 .svp-b__media { position: relative; }
 @media (min-width: 960px) { .svp-b__media { position: sticky; top: var(--svp-sticky); } }
-.svp-b__frame { position: relative; aspect-ratio: 4 / 5; clip-path: var(--crest-lg); background: var(--navy-3); }
-.svp-b__frame picture, .svp-b__img { position: absolute; inset: 0; width: 100%; height: 100%; }
-.svp-b__img { object-fit: cover; object-position: 66% 50%; }
-.svp-b__frame::after { content: ""; position: absolute; inset: auto 0 0 0; height: 45%; background: linear-gradient(180deg, transparent, rgba(8, 16, 32, .55)); pointer-events: none; }
-@media (max-width: 959px) { .svp-b__frame { aspect-ratio: 16 / 11; } .svp-b__img { object-position: 62% 50%; } }
-.svp-b__cap {
-  position: absolute; left: 1.25rem; right: 1.25rem; bottom: 1.25rem; z-index: 1; display: flex; align-items: center; gap: .9rem;
-  padding: .85rem 1rem; background: var(--white); color: var(--navy); clip-path: var(--crest); max-width: 24rem;
-}
-.svp-b__cap strong { display: block; font: 800 1.2rem/1.05 var(--f-display); text-transform: uppercase; }
-.svp-b__cap span span { display: block; margin-top: .25rem; font: 700 var(--fs-label)/1.3 var(--f-wide); font-stretch: 125%; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+/* a second real job photo, framed like the hero; never upscaled past its own width */
+.svp-b__media--photo { width: 100%; max-width: var(--b-max, 40rem); }
+.svp-b__frame { position: relative; display: grid; }
+.svp-b__frame .svp-crest { box-shadow: none; }
+@media (max-width: 959px) { .svp-b__media--photo { margin-inline: auto; } }
 .svp-b__badge { display: grid; place-items: center; flex: none; width: 2.75rem; height: 2.75rem; background: var(--red); color: var(--white); clip-path: polygon(8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px), 0 8px); }
-/* Typographic service plate (no photo of this service exists; brief §8): crest chip, name, verbatim blurb */
-.svp-b__plate {
-  position: relative; isolation: isolate; overflow: hidden;
-  display: flex; flex-direction: column; align-items: flex-start; gap: 1.15rem;
-  min-height: clamp(27rem, 18rem + 14vw, 36rem);
-  padding: clamp(1.75rem, 1.2rem + 2vw, 2.75rem);
+/* the service's homepage blurb (verbatim, brief §4.4), pinned to the photo */
+.svp-b__note {
+  position: relative; z-index: 2; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1rem; align-items: start;
+  margin: -1.75rem 1.25rem 0 auto; max-width: 25rem; padding: 1.25rem 1.4rem 1.3rem 1.1rem;
+  background: var(--white); box-shadow: var(--shadow-lg); border-left: 4px solid var(--red);
+}
+.svp-b__note p { font: 500 var(--fs-desc)/1.6 var(--f-body); color: var(--ink-2); text-wrap: pretty; }
+.svp-b__note .svp-b__badge { background: var(--navy); }
+.svp-b__media--tall .svp-b__note { margin-top: -4rem; } /* portrait/square frames have room to carry it */
+@media (max-width: 959px) { .svp-b__note, .svp-b__media--tall .svp-b__note { margin: -2rem .75rem 0 auto; } }
+@media (max-width: 480px) { .svp-b__note, .svp-b__media--tall .svp-b__note { margin: -1.5rem 0 0 1rem; } }
+/* no second photo: the blurb as a navy statement card */
+.svp-b__stmt {
+  position: relative; display: grid; gap: 1.75rem; padding: clamp(2rem, 1.25rem + 2.5vw, 3.25rem);
   background: var(--navy); color: var(--white); clip-path: var(--crest-lg);
+  background-image: repeating-linear-gradient(180deg, rgba(255, 255, 255, .035) 0 1px, transparent 1px 4px);
 }
-.svp-b__plate::before { /* van-wrap star field + badge pinstripe */
-  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='52' viewBox='0 0 120 104'%3E%3Cg fill='%23ffffff' fill-opacity='.06'%3E%3Cpath d='M20 10l2.9 6 6.6.9-4.8 4.6 1.2 6.5L20 25l-5.9 3 1.2-6.5-4.8-4.6 6.6-.9z'/%3E%3Cpath d='M80 62l2.9 6 6.6.9-4.8 4.6 1.2 6.5L80 77l-5.9 3 1.2-6.5-4.8-4.6 6.6-.9z'/%3E%3C/g%3E%3C/svg%3E") 0 0 / 60px 52px,
-    repeating-linear-gradient(180deg, rgba(255, 255, 255, .025) 0 1px, transparent 1px 4px);
+.svp-b__stmt-ic { display: grid; place-items: center; width: 3.5rem; height: 3.5rem; color: var(--white); background: var(--red); clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px), 0 10px); }
+.svp-b__stmt-p { font: 500 clamp(1.25rem, 1.05rem + .7vw, 1.6rem)/1.45 var(--f-body); text-wrap: pretty; }
+.svp-b__stmt-badge { justify-self: end; }
+.svp-b__stmt-badge img { display: block; width: 7rem; height: auto; }
+/* no media at all (sheet heroes carry the blurb): heading and copy run as a two-column spread */
+@media (min-width: 960px) {
+  .svp-b--solo .svp-b__grid { grid-template-columns: minmax(0, 1fr); }
+  .svp-b--solo .svp-b__copy { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); column-gap: clamp(3rem, 1rem + 5vw, 6.5rem); align-items: start; }
+  .svp-b--solo .svp-sechead { grid-column: 1; grid-row: 1; }
+  .svp-b--solo .svp-b__copy > .svp-copy, .svp-b--solo .svp-products { grid-column: 2; grid-row: 1 / span 3; }
+  .svp-b--solo .svp-b__copy > .svp-b__cta { grid-column: 1; grid-row: 2; align-self: start; margin-top: 2.5rem; padding-left: calc(2.75rem + 1.25rem); }
+  .tpl-service .svp-b--solo .svp-copy { margin-top: .35rem; padding-left: 0; }
+  .tpl-service .svp-b--solo .svp-b__cta, .tpl-service .svp-b--solo .svp-products { margin-left: 0; }
 }
-.svp-b__plate::after { /* chamfered inner keyline, like the badge */
-  content: ""; position: absolute; inset: 12px; z-index: -1; pointer-events: none; border: 1px solid rgba(255, 255, 255, .12);
-  clip-path: polygon(16px 0, calc(100% - 16px) 0, 100% 16px, 100% calc(100% - 16px), calc(100% - 16px) 100%, 16px 100%, 0 calc(100% - 16px), 0 16px);
-}
-.svp-b__ghost { position: absolute; z-index: -1; right: -24%; top: -10%; width: 92%; aspect-ratio: 1; color: rgba(255, 255, 255, .075); pointer-events: none; }
-.svp-b__ghost .icon { width: 100%; height: 100%; stroke-width: .5; }
-.svp-b__ghost .icon[fill="currentColor"] { fill: none; stroke: currentColor; stroke-width: .3; }
-.svp-b__crest {
-  display: grid; place-items: center; flex: none; width: clamp(4.75rem, 4rem + 2vw, 6rem); aspect-ratio: 1; padding: 3px; margin-bottom: auto;
-  background: var(--white); clip-path: polygon(26% 0, 74% 0, 100% 26%, 100% 74%, 74% 100%, 26% 100%, 0 74%, 0 26%);
-  filter: drop-shadow(0 12px 22px rgba(8, 16, 32, .5));
-}
-.svp-b__crest > span {
-  display: grid; place-items: center; width: 100%; height: 100%; background: var(--red); color: var(--white);
-  clip-path: polygon(25% 0, 75% 0, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0 75%, 0 25%);
-}
-.svp-b__crest .icon { width: 50%; height: 50%; }
-.svp-b__name { margin-top: 2.5rem; font: 900 clamp(2.4rem, 1.6rem + 2.4vw, 3.75rem)/.9 var(--f-display); text-transform: uppercase; letter-spacing: -.005em; text-wrap: balance; max-width: 12ch; }
-.svp-b__pull { font: 500 var(--fs-lead)/1.5 var(--f-body); color: var(--on-dark-2); max-width: 36ch; text-wrap: pretty; }
-.svp-b__lic { display: inline-flex; align-items: center; gap: .5rem; padding-top: 1rem; border-top: 1px solid var(--line-dark); align-self: stretch; color: var(--on-dark-2); }
-.svp-b__lic .icon { color: var(--red-on-dark); flex: none; }
-@media (max-width: 959px) { .svp-b__plate { min-height: 0; } .svp-b__name { margin-top: 1.75rem; } }
 .svp-b__eyebrow { margin-bottom: 1rem; }
 .svp-b .svp-copy { margin-top: 2rem; }
 .svp-b__cta { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.75rem; margin-top: 2.5rem; }
@@ -287,7 +356,8 @@
   position: relative; padding: clamp(1.75rem, 1.25rem + 1.5vw, 2.5rem); background: var(--paper); clip-path: var(--crest-lg);
   transition: background-color var(--dur) var(--ease-out), color var(--dur) var(--ease-out);
 }
-.svp-why__card::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: var(--red); transform: scaleX(.18); transform-origin: left; transition: transform .5s var(--ease-out); }
+/* full-width red top rule on hover only: no short dash at rest (client rule: no decorative short lines) */
+.svp-why__card::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform .5s var(--ease-out); }
 .svp-why__card:hover { background: var(--navy); color: var(--white); }
 .svp-why__card:hover::after { transform: scaleX(1); }
 .svp-why__top { display: flex; align-items: center; justify-content: space-between; }
@@ -300,7 +370,7 @@
 .svp-why__card p { margin-top: .9rem; color: var(--ink-2); line-height: 1.7; transition: color var(--dur); }
 .svp-why__card:hover p { color: var(--on-dark-2); }
 
-/* Generator: services grid replaces Why Choose — give it room on this page */
+/* Generator: services grid replaces Why Choose, so give it room on this page */
 .svp-grid { background: var(--white); }
 
 /* ---------- 9. BOOKING PROCESS ---------- */
@@ -356,7 +426,7 @@
 .svp-faq__call .tel-lg { color: var(--navy); font-size: 1.375rem; } /* fits the 17.5rem rail at the phone tracking */
 .svp-faq__call .tel-lg .icon { color: var(--red); }
 .svp-faq__list { border-top: 2px solid var(--navy); }
-.svp-q { border-bottom: 1px solid var(--line-strong); }
+.svp-q { border-bottom: 1px solid var(--line-strong); scroll-margin-top: 1rem; } /* html scroll-padding already clears the header */
 .svp-q summary {
   display: grid; grid-template-columns: 2.5rem 1fr 2.25rem; gap: 1rem; align-items: center; padding: 1.5rem 0; cursor: pointer; list-style: none;
 }
@@ -416,7 +486,6 @@
 .svp-olp__foot .btn { flex: none; }
 .svp-olp__g + .svp-olp__g { margin-top: 2.5rem; }
 .svp-olp__gh { display: flex; align-items: center; gap: .75rem; font: 700 .75rem/1.3 var(--f-wide); font-stretch: 125%; letter-spacing: .12em; text-transform: uppercase; color: var(--red); }
-.svp-olp__gh::after { content: ""; flex: 1; height: 1px; background: var(--line-strong); }
 .svp-olp__why { display: grid; gap: 1px; margin-top: 1.25rem; background: var(--line); border: 1px solid var(--line); }
 @media (min-width: 700px) { .svp-olp__why { grid-template-columns: 1fr 1fr; } }
 .svp-olp__why li { display: grid; grid-template-columns: auto 1fr; gap: .75rem; padding: 1.4rem; background: var(--white); }
@@ -451,9 +520,6 @@
    IntersectionObserver in service.mjs adds .is-in once; skipped entirely for reduced motion. ---------- */
 .svp-proc__line { transform-origin: left center; transition: transform 1.1s var(--ease-out) calc(var(--i, 0) * 140ms + .15s); }
 .svp-io .svp-reveal:not(.is-in) .svp-proc__line { transform: scaleX(0); }
-.svp-io .svp-why__card:not(.is-in)::after { transform: scaleX(0); }
-.svp-why__card::after { transition-delay: calc(var(--i, 0) * 120ms); }
-.svp-why__card:hover::after { transition-delay: 0s; }
 
 /* Guard: the shared guarantee certificate always renders at full contrast on service pages,
    whatever reveal state a screenshot or no-JS view catches (QA round 2). */

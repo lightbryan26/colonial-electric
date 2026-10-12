@@ -24,7 +24,7 @@ export function render(ctx) {
       <span class="hero__sweep hero__sweep--red" aria-hidden="true"></span>
       <span class="hero__sweep hero__sweep--white" aria-hidden="true"></span>
       <div class="hero__photo">
-        ${picture(ctx, 'owner-van', { alt: 'Founder Scott Hays standing in front of the red, white and blue Colonial Electric van', sizes: '(min-width: 1200px) 48vw, 100vw', priority: true, imgCls: 'hero__img' })}
+        ${picture(ctx, 'owner-van', { alt: 'Founder Scott Hays standing in front of the red, white and blue Colonial Electric van', sizes: '(min-width: 2100px) 95rem, (min-width: 1860px) 128rem, (min-width: 1200px) 95rem, 100vw', priority: true, imgCls: 'hero__img' })}
       </div>
       <figcaption class="hero__cap">
         ${picture(ctx, 'logo-lockup', { cls: 'hero__cap-mark', alt: '', sizes: '(min-width: 1200px) 7.5rem, (min-width: 640px) 6rem, 4.75rem', loading: 'eager' })}

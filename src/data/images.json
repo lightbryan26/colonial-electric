@@ -802,5 +802,182 @@
    800
   ],
   "fallback": "jpg"
+ },
+ "services/electrical-panel-upgrade": {
+  "w": 1236,
+  "h": 1545,
+  "widths": [
+   640,
+   960,
+   1236
+  ],
+  "fallback": "jpg"
+ },
+ "services/generator": {
+  "w": 1100,
+  "h": 1375,
+  "widths": [
+   640,
+   960,
+   1100
+  ],
+  "fallback": "jpg"
+ },
+ "services/lighting-additions": {
+  "w": 384,
+  "h": 480,
+  "widths": [
+   384
+  ],
+  "fallback": "jpg"
+ },
+ "services/recessed-lighting": {
+  "w": 384,
+  "h": 480,
+  "widths": [
+   384
+  ],
+  "fallback": "jpg"
+ },
+ "services/remodels": {
+  "w": 384,
+  "h": 480,
+  "widths": [
+   384
+  ],
+  "fallback": "jpg"
+ },
+ "services/surge-protection": {
+  "w": 600,
+  "h": 750,
+  "widths": [
+   600
+  ],
+  "fallback": "jpg"
+ },
+ "services/whole-home-battery-back-up": {
+  "w": 384,
+  "h": 480,
+  "widths": [
+   384
+  ],
+  "fallback": "jpg"
+ },
+ "photos/deck-railing-post-lights": {
+  "w": 960,
+  "h": 600,
+  "widths": [
+   480,
+   800,
+   960
+  ],
+  "fallback": "jpg"
+ },
+ "photos/generator-transfer-switch-panels": {
+  "w": 995,
+  "h": 622,
+  "widths": [
+   480,
+   800,
+   995
+  ],
+  "fallback": "jpg"
+ },
+ "photos/kitchen-backsplash-outlets": {
+  "w": 480,
+  "h": 300,
+  "widths": [
+   480
+  ],
+  "fallback": "jpg"
+ },
+ "photos/panel-branch-circuits": {
+  "w": 1360,
+  "h": 850,
+  "widths": [
+   480,
+   800,
+   1200,
+   1360
+  ],
+  "fallback": "jpg"
+ },
+ "photos/panel-surge-protector": {
+  "w": 580,
+  "h": 362,
+  "widths": [
+   480,
+   580
+  ],
+  "fallback": "jpg"
+ },
+ "photos/service-entrance-meter-bank": {
+  "w": 1400,
+  "h": 990,
+  "widths": [
+   480,
+   800,
+   1200,
+   1400
+  ],
+  "fallback": "jpg"
+ },
+ "photos/shower-rain-head-recessed-light": {
+  "w": 480,
+  "h": 480,
+  "widths": [
+   480
+  ],
+  "fallback": "jpg"
+ },
+ "photos/siemens-panel-closed": {
+  "w": 960,
+  "h": 1200,
+  "widths": [
+   480,
+   800,
+   960
+  ],
+  "fallback": "jpg"
+ },
+ "photos/two-meter-service-emergency-disconnect": {
+  "w": 1200,
+  "h": 1200,
+  "widths": [
+   480,
+   800,
+   1200
+  ],
+  "fallback": "jpg"
+ },
+ "photos/walk-in-shower-recessed-light": {
+  "w": 480,
+  "h": 480,
+  "widths": [
+   480
+  ],
+  "fallback": "jpg"
+ },
+ "services/permanent-outdoor-lighting": {
+  "w": 1536,
+  "h": 2048,
+  "widths": [
+   640,
+   960,
+   1280,
+   1536
+  ],
+  "fallback": "jpg"
+ },
+ "services/whole-house-wiring-or-rewiring": {
+  "w": 1536,
+  "h": 2048,
+  "widths": [
+   640,
+   960,
+   1280,
+   1536
+  ],
+  "fallback": "jpg"
  }
 }

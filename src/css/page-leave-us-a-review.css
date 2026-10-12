@@ -81,14 +81,12 @@
 
 /* ---------- Platforms (navy index list, one row per platform) ---------- */
 .lr-platforms { padding-block: var(--section); scroll-margin-top: var(--header-h); }
-.lr-platforms__head { display: flex; align-items: flex-end; gap: 1rem 1.5rem; margin-bottom: clamp(2.25rem, 1.5rem + 2.5vw, 4rem); }
+.lr-platforms__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem 1.5rem; margin-bottom: clamp(2.25rem, 1.5rem + 2.5vw, 4rem); }
 .lr-platforms__h { max-width: 18ch; color: var(--white); }
-.lr-platforms__rule { flex: 1; height: 2px; margin-bottom: .7rem; background: var(--line-dark-strong); min-width: 2rem; }
 .lr-platforms__note { display: inline-flex; align-items: center; gap: .5rem; margin: 0 0 .35rem; color: var(--on-dark-2); white-space: nowrap; }
 .lr-platforms__note .icon { color: var(--red-flag); flex: none; }
 @media (max-width: 719px) {
   .lr-platforms__head { flex-direction: column; align-items: flex-start; }
-  .lr-platforms__rule { display: none; }
 }
 
 .lr-platforms .lr-list { counter-reset: none; border-bottom: 1px solid var(--line-dark-strong); }

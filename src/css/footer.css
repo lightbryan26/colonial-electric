@@ -43,7 +43,6 @@
   font: 700 var(--fs-eyebrow)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase;
   color: var(--on-dark-2); margin-bottom: .85rem;
 }
-.site-footer__eyebrow::before { content: ""; width: 1.75rem; height: 3px; background: linear-gradient(90deg, var(--red) 0 60%, var(--white) 60% 72%, var(--blue-bright) 72%); }
 .site-footer__phone {
   position: relative; display: inline-flex; align-items: flex-start; gap: .35rem;
   font: 700 min(7vw, 3.65rem)/1 var(--f-wide); font-stretch: 125%; letter-spacing: var(--tel-track-lg); /* §3 phone face */
@@ -88,6 +87,39 @@
   .site-footer__fact { padding: 1.4rem 0 1.3rem; border-bottom: 0; }
 }
 
+/* ---- map (Google Business Profile embed) ----
+   Phones/tablets: full width under the facts. 1280+: a third masthead column beside the phone + facts (facts go 2×2).
+   Frame = the badge crest: hairline keyline → navy mat → chamfered map.
+   The iframe's box is fixed by CSS (aspect-ratio, or the grid row at 1280+), so the lazy embed never shifts layout. */
+.site-footer__map { grid-column: 1 / -1; min-width: 0; }
+.site-footer__map .site-footer__h { margin-bottom: 1rem; }
+.site-footer__map-frame {
+  --cut: 20px; position: relative; clip-path: var(--crest);
+  padding: 1px; background: var(--line-dark-strong);
+}
+.site-footer__map-mat { --cut: 19px; position: relative; clip-path: var(--crest); padding: 6px; background: var(--navy); }
+.site-footer__map-mat iframe {
+  --cut: 16px; display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; border: 0;
+  clip-path: var(--crest); background: var(--navy-3);
+}
+.site-footer__map-link { margin-top: 1.25rem; justify-self: start; }
+.site-footer__map-link .icon { flex: none; }
+.site-footer__map-link:hover .icon { transform: translate(2px, -2px); }
+@media (min-width: 640px) { .site-footer__map-mat iframe { aspect-ratio: 16 / 7; } }
+@media (min-width: 1080px) { .site-footer__map-mat iframe { aspect-ratio: 16 / 5; } }
+@media (min-width: 1280px) {
+  .site-footer__mast { grid-template-columns: auto auto minmax(0, 1fr); align-items: center; }
+  .site-footer__logo, .site-footer__call { grid-row: 1; }
+  .site-footer__facts { grid-row: 2; grid-column: 1 / 3; grid-template-columns: 1fr 1fr; column-gap: 2.5rem; border-bottom: 0; }
+  .site-footer__fact { padding: 1.15rem 0 1.05rem; border-bottom: 1px solid var(--line-dark); }
+  .site-footer__map {
+    grid-row: 1 / 3; grid-column: 3; align-self: stretch;
+    display: grid; grid-template-rows: auto minmax(0, 1fr) auto;
+  }
+  .site-footer__map-frame, .site-footer__map-mat { display: grid; min-height: 15rem; }
+  .site-footer__map-mat iframe { height: 100%; aspect-ratio: auto; }
+}
+
 /* ---- link grid ---- */
 .site-footer__grid {
   display: grid; gap: 2.75rem 2rem; grid-template-columns: 1fr;
@@ -115,12 +147,7 @@
   position: relative; display: inline-block; color: var(--on-dark-2); text-decoration: none; line-height: 1.35;
   transition: color .25s, transform .35s var(--ease-out);
 }
-.site-footer__col li a::before { /* red tick slides in on hover */
-  content: ""; position: absolute; left: -.9rem; top: .62em; width: .5rem; height: 2px; background: var(--red-flag);
-  transform: scaleX(0); transform-origin: right; transition: transform .35s var(--ease-out);
-}
 .site-footer__col li a:hover, .site-footer__col li a:focus-visible { color: var(--white); transform: translateX(.35rem); }
-.site-footer__col li a:hover::before, .site-footer__col li a:focus-visible::before { transform: scaleX(1); }
 .site-footer__col a[aria-current="page"] { color: var(--white); }
 .site-footer__col a[aria-current="page"]::before { transform: scaleX(1); }
 

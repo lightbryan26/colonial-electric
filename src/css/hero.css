@@ -95,7 +95,6 @@
   display: flex; gap: 1rem; align-items: baseline;
   font: 800 clamp(1.35rem, 1.1rem + .75vw, 1.6875rem)/1.1 var(--f-display); letter-spacing: .005em; text-wrap: balance; /* §3 headings face */
 }
-.hero__sub::before { content: ""; flex: none; width: 1.75rem; height: 2px; background: var(--red-flag); transform: translateY(-.35em); }
 .hero__body { margin-top: 1rem; max-width: 62ch; color: var(--on-dark-2); font-size: 1rem; line-height: 1.65; text-wrap: pretty; }
 .hero__ctas { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
 .hero__meta {
@@ -145,6 +144,36 @@
   .hero__photo        { left: calc(var(--sw-red) + var(--sw-white)); }
   .hero__sweep--red, .hero__sweep--white, .hero__photo { clip-path: polygon(var(--diag) 0, 100% 0, 100% 100%, 0 100%); }
   .hero__img { object-position: 84% 50%; }
+}
+@media (min-width: 1400px) and (max-width: 1540px) { /* keeps the van's web-address lettering fully out of frame, no stray fragment */
+  .hero__img { object-position: 92% 50%; }
+}
+/* Desktop framing pinned to the van livery (the two object-position rules above are the fallback).
+   The photo column's width:height ratio changes with the viewport, so any fixed % lets the diagonal cut through
+   the van's web-address lettering somewhere (a stray "OM" at 1536, "ECTRIC.COM" at 1600-1920).
+   So the image is sized and placed in source pixels of its 1600 x 983 frame, via container units:
+   - at the lettering's row (~mid-height) the visible left edge sits at source x 812, just past the ".COM";
+   - the right edge never falls short of source x 1455, so the crest stays whole (wins on narrow columns);
+   - the frame zooms in only as far as needed (830 source px across) for both to hold on wide screens.
+   From 2100px the column is wide enough to show the whole "COLONIAL-ELECTRIC.COM" with no zoom, so it does. */
+@supports (width: 1cqw) {
+  @media (min-width: 1200px) {
+    .hero__photo { container-type: size; }
+    .hero__photo picture { position: relative; }
+    .hero__img {
+      --u: max(100cqh / 983, 100cqw / 830); /* CSS px per source px */
+      position: absolute; max-width: none;
+      width: calc(var(--u) * 1600); height: calc(var(--u) * 983);
+      top: calc((100% - var(--u) * 983) / 2);
+      left: min(var(--diag) * .504 - var(--u) * 812, 100% - var(--u) * 1455);
+    }
+  }
+  @media (min-width: 2100px) {
+    .hero__img {
+      --u: max(100cqh / 983, 100cqw / 1600);
+      left: max(var(--diag) * .496 - var(--u) * 528, 100% - var(--u) * 1600);
+    }
+  }
 }
 
 /* caption — crest card */

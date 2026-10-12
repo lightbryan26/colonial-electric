@@ -57,7 +57,7 @@ export function header(ctx) {
   return `${financingBar(ctx)}
 <header class="site-header" data-header>
   <div class="site-header__in container">
-    <a class="brand" href="${ctx.r('')}" aria-label="Colonial Electric — Home">
+    <a class="brand" href="${ctx.r('')}" aria-label="Colonial Electric home page">
       <picture><source type="image/webp" srcset="${ctx.asset('img/logo-badge-250.webp')}"><img src="${ctx.asset('img/logo-badge-250.png')}" width="250" height="150" alt="Colonial Electric"></picture>
     </a>
     <nav class="nav" aria-label="Main">
@@ -75,7 +75,7 @@ export function header(ctx) {
 </header>
 <div class="mnav" id="mnav" role="dialog" aria-modal="true" aria-label="Menu" hidden data-menu>
   <div class="mnav__top container">
-    <a class="brand" href="${ctx.r('')}" aria-label="Colonial Electric — Home"><picture><source type="image/webp" srcset="${ctx.asset('img/logo-badge-250.webp')}"><img src="${ctx.asset('img/logo-badge-250.png')}" width="250" height="150" alt="Colonial Electric"></picture></a>
+    <a class="brand" href="${ctx.r('')}" aria-label="Colonial Electric home page"><picture><source type="image/webp" srcset="${ctx.asset('img/logo-badge-250.webp')}"><img src="${ctx.asset('img/logo-badge-250.png')}" width="250" height="150" alt="Colonial Electric"></picture></a>
     <button class="mnav__close" type="button" data-menu-close><span class="sr-only">Close menu</span>${icon('close', { size: 28 })}</button>
   </div>
   <nav class="mnav__body container" aria-label="Mobile">
