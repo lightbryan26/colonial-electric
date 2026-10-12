@@ -25,6 +25,7 @@ export function businessJsonLd() {
     areaServed: towns.map(t => ({ '@type': 'City', name: `${t.name}, MA` })),
     founder: { '@type': 'Person', name: site.founder },
     sameAs: [site.instagram],
+    hasMap: site.gbp.link,
     openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '08:00', closes: '16:00' }],
   };
 }

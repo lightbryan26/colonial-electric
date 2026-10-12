@@ -1,4 +1,4 @@
-// SERVICE template (brief §5) — one template for all 13 service pages, incl. the /permanent-outdoor-lighting/ variant.
+// SERVICE template (brief §5): one template for all 13 service pages, incl. the /permanent-outdoor-lighting/ variant.
 // Content: src/data/services.mjs (verbatim). Styles: src/css/tpl-service.css (every class prefixed .sv).
 // Section order (brief §5): hero · intro · block A · block B · trust strip · guarantee · why choose (generator: services grid)
 //   · contact CTA · booking process · reviews · quote + towns · contact form · FAQs.
@@ -17,6 +17,7 @@ import { icon } from '../partials/icons.mjs';
 import { esc, picture, images } from '../lib/html.mjs';
 import { plate } from '../blocks/plate.mjs';
 import { photoFor } from '../data/service-photos.mjs';
+import { serviceArt, serviceArtDetail, hasArt } from './service-art.mjs';
 
 const pad = n => String(n).padStart(2, '0');
 const isLead = b => typeof b === 'string' && /:\s*$/.test(b);
@@ -43,21 +44,13 @@ function body(blocks, opts) {
   return out;
 }
 
-/* ---------- hero media: the service's own photo, else the branded service panel ----------
-   The hero shows the actual service, never the founder portrait. A real job photo dropped in photos/services/<slug>.jpg
-   and processed by src/scripts/service-photos.mjs lands in images.json as 'services/<slug>' and fills the crest frame.
-   Until then the frame holds the service panel: the service glyph in the badge's crest, the service name, and short
-   verbatim points from that service's own copy (heroPoints in src/data/services.mjs), signed with the real logo badge. */
-const HERO_SIZES = '(min-width: 960px) 30rem, 92vw';
+/* ---------- hero media: the actual service, never the founder portrait ----------
+   A real job photo dropped in photos/services/<slug>.jpg and processed by src/scripts/service-photos.mjs lands in
+   images.json as 'services/<slug>' and fills the crest frame. Until then the frame holds a hand-drawn illustration of
+   the service itself (src/pages/service-art.mjs: the panel, the outlet, the charger...), signed with the real badge. */
+const HERO_SIZES = '(min-width: 960px) 34rem, 92vw';
 const heroPhotoKey = s => (images['services/' + s.slug] ? 'services/' + s.slug : null);
-
-function heroPoints(s) {
-  const pts = s.heroPoints ?? [];
-  const { heroPoints: _omit, ...rest } = s;
-  const own = JSON.stringify(s.outdoor ? [rest, outdoor] : [rest, serviceCards.find(c => c.href === s.slug + '/')]);
-  for (const p of pts) if (!own.includes(p)) throw new Error(`/${s.slug}/: hero point "${p}" is not verbatim in this service's own copy`);
-  return pts;
-}
+const badge = ctx => `<picture><source type="image/webp" srcset="${ctx.asset('img/logo-badge-250.webp')}"><img src="${ctx.asset('img/logo-badge-250.png')}" width="250" height="150" alt="" decoding="async"></picture>`;
 
 function heroMedia(ctx, s) {
   const key = heroPhotoKey(s);
@@ -67,20 +60,10 @@ function heroMedia(ctx, s) {
       <figcaption class="svp-hero__cap"><span class="svp-hero__cap-ic" aria-hidden="true">${icon(s.icon, { size: 22 })}</span><span><span class="svp-hero__cap-n">${esc(s.h1)}</span><span class="svp-hero__cap-r">${esc(site.license)}</span></span></figcaption>
     </figure>`;
   }
-  const pts = heroPoints(s);
-  return `<div class="svp-hero__media svp-hero__media--panel">
-      <div class="svp-hero__frame">
-        <div class="svp-panel">
-          <div class="svp-panel__id">
-            <span class="svp-panel__crest" aria-hidden="true"><span class="svp-panel__crest-in">${icon(s.icon, { size: 96 })}</span></span>
-            <p class="svp-panel__name">${esc(s.h1).replace(/\//g, '/<wbr>')}</p>
-          </div>
-          ${pts.length ? `<ul class="svp-panel__pts" role="list">${pts.map(p => `<li>${icon('bolt', { size: 18 })}<span>${esc(p)}</span></li>`).join('')}</ul>` : ''}
-          <div class="svp-panel__foot">
-            <picture class="svp-panel__badge"><source type="image/webp" srcset="${ctx.asset('img/logo-badge-250.webp')}"><img src="${ctx.asset('img/logo-badge-250.png')}" width="250" height="150" alt="Colonial Electric" decoding="async"></picture>
-          </div>
-        </div>
-      </div>
+  if (!hasArt(s.slug)) throw new Error(`/${s.slug}/: no hero photo and no service illustration in src/pages/service-art.mjs`);
+  return `<div class="svp-hero__media svp-hero__media--art">
+      <div class="svp-hero__frame">${serviceArt(s.slug, { cls: 'svp-hero__art' })}</div>
+      <span class="svp-hero__sign" aria-hidden="true">${badge(ctx)}</span>
     </div>`;
 }
 
@@ -132,7 +115,7 @@ function overview(ctx, s) {
     ${rail}
     <div class="svp-over__main">
       <div class="svp-intro" id="svp-intro">
-        <p class="svp-intro__k label-wide">${icon('bolt', { size: 14 })}Colonial Electric · ${esc(s.h1)}</p>
+        <p class="svp-intro__k label-wide">${icon('bolt', { size: 14 })}Overview</p>
         <p class="svp-intro__p">${esc(serviceIntro)}</p>
       </div>
       ${s.a ? `<article class="svp-a svp-reveal" id="svp-a" aria-labelledby="svp-a-h">
@@ -144,10 +127,9 @@ function overview(ctx, s) {
 </section>`;
 }
 
-/* ---------- block B media: a typographic service plate (no photo of this service exists) ----------
-   Crest chip with the service glyph, the service name and its verbatim homepage blurb (brief §4.4) on the navy
-   star field. Not the van: that photo appears once per page and the guarantee below carries it. A real job photo
-   mapped to this slug in src/data/service-photos.mjs replaces the plate with a captioned photo. */
+/* ---------- block B media: a close-up of the hero's service drawing, with the service's homepage blurb ----------
+   The same drawing reused through <use> (no duplicate markup), so section 2 shows the work instead of repeating the
+   service name. A real job photo mapped to this slug in src/data/service-photos.mjs replaces it with a captioned photo. */
 function blockBMedia(ctx, s) {
   const sizes = '(min-width: 960px) 40vw, 92vw';
   if (photoFor(s.slug, images)) {
@@ -157,15 +139,11 @@ function blockBMedia(ctx, s) {
     </figure>`;
   }
   const card = serviceCards.find(c => c.href === s.slug + '/');
-  return `<div class="svp-b__media svp-b__type">
-      <div class="svp-b__plate">
-        <span class="svp-b__ghost" aria-hidden="true">${icon(s.icon, { size: 240 })}</span>
-        <span class="svp-b__crest" aria-hidden="true"><span>${icon(s.icon, { size: 48 })}</span></span>
-        <p class="svp-b__name">${esc(s.h1)}</p>
-        <span class="flag-rule" aria-hidden="true"></span>
-        ${card ? `<p class="svp-b__pull">${esc(card.blurb)}</p>` : ''}
-        <p class="svp-b__lic label-wide">${icon('shield', { size: 14 })}<span>Licensed &amp; Insured · <span class="nowrap">${esc(site.license)}</span></span></p>
-      </div>
+  const art = heroPhotoKey(s) ? '' : serviceArtDetail(s.slug, { cls: 'svp-b__art' });
+  if (!art && !card) return '';
+  return `<div class="svp-b__media svp-b__media--art">
+      ${art ? `<div class="svp-b__frame svp-b__frame--art">${art}</div>` : ''}
+      ${card ? `<div class="svp-b__note"><span class="svp-b__badge" aria-hidden="true">${icon(s.icon, { size: 22 })}</span><p>${esc(card.blurb)}</p></div>` : ''}
     </div>`;
 }
 

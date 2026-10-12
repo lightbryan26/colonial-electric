@@ -99,11 +99,11 @@
    "shot": "shots/footer-r1.png"
   },
   "tpl-service": {
-   "status": "building",
-   "round": 6,
-   "note": "Service heroes: remove Scott, per-service photo slot + branded panel",
-   "updated": "2026-10-12T17:53:16.782Z",
-   "shot": "shots/tpl-service-r2.png"
+   "status": "critiquing",
+   "round": 9,
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T18:50:26.755Z",
+   "shot": "shots/tpl-service-r9.png"
   },
   "tpl-town": {
    "status": "won",
@@ -197,13 +197,81 @@
    "shot": "shots/verify-r1.png"
   },
   "maps": {
-   "status": "building",
+   "status": "done",
    "round": 1,
-   "note": "Google Maps embeds: footer + 21 town pages",
-   "updated": "2026-10-12T17:53:16.101Z"
+   "note": "Footer map (GBP embed, crest frame, 3rd masthead column at 1280+, full width below) on all 45 pages + 404; per-town map in the intro of all 21 town pages; hasMap in JSON-LD",
+   "updated": "2026-10-12T18:03:38.035Z",
+   "shot": "shots/maps-r1.png"
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T18:50:26.755Z",
+   "piece": "tpl-service",
+   "status": "critiquing",
+   "round": 9,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T18:50:16.126Z",
+   "piece": "tpl-service",
+   "status": "done",
+   "round": 9,
+   "note": "Lighting-additions section-B close-up window moved down (detail 52 96 192 240): pendant shades and light cones now show above the note card at 375, 768 and 1440. Built 45/45. Heroes on panel upgrade, EV charger and lighting additions show the service drawing at 1440/768/375, no Scott portrait, no em dashes, no horizontal scroll. The /services/ hub owner-van hero is outside this template and is left for the orchestrator.",
+   "shot": "shots/tpl-service-r9.png"
+  },
+  {
+   "t": "2026-10-12T18:48:38.308Z",
+   "piece": "tpl-service",
+   "status": "building",
+   "round": 9,
+   "note": "Round 9: move the lighting-additions section-B close-up window down (detail 52 96 192 240) so the pendant shades and light cones show at 375/768/1440; rebuild 45/45; re-check heroes on three service pages at 1440/768/375."
+  },
+  {
+   "t": "2026-10-12T18:36:01.733Z",
+   "piece": "tpl-service",
+   "status": "critiquing",
+   "round": 8,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T18:35:45.644Z",
+   "piece": "tpl-service",
+   "status": "done",
+   "round": 8,
+   "note": "Deleted the 3 hairline ::after rules (svp listlead, outdoor group labels, cf-legend in block-contact-form.css). Every service hero now shows its actual service: a hand-drawn inline SVG scene per service in src/pages/service-art.mjs (open panel, outlet with plug, surge protector, ceiling fan, EV charger with car, stud-wall wiring, inspection checklist and meter, recessed cans, remodel, kitchen pendants, battery, standby generator, roofline lights), signed with the real badge. No Scott, no photos, no AI, no text in the art. Block B swaps the title-repeating plate for a close-up of the same drawing (via use) plus the verbatim homepage blurb. Intro kicker no longer repeats the H1. heroPoints removed. Build 45/45, no horizontal scroll at 375/768/1440, 0 em dashes, 1 H1, no duplicate ids.",
+   "shot": "shots/tpl-service-r8.png"
+  },
+  {
+   "t": "2026-10-12T18:18:25.638Z",
+   "piece": "tpl-service",
+   "status": "building",
+   "round": 8,
+   "note": "Delete the 3 hairline ::after rules (listlead, outdoor group labels, contact-form legend). Replace the hero name+checklist panel with a hand-drawn inline SVG scene of each actual service (panel, outlet, EV charger, fan, generator, battery, etc.; no photos exist, no AI/stock). Block B plate drops the repeated title and shows a close-up of the same service drawing."
+  },
+  {
+   "t": "2026-10-12T18:09:15.235Z",
+   "piece": "tpl-service",
+   "status": "critiquing",
+   "round": 7,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T18:08:58.831Z",
+   "piece": "tpl-service",
+   "status": "done",
+   "round": 6,
+   "note": "Service heroes: Scott portrait removed from all 13; per-service photo slot (services/<slug>) with branded service panel fallback (crest + glyph, name, verbatim points, real badge); photo pipeline + README; checked 375/768/1440",
+   "shot": "shots/tpl-service-r6.png"
+  },
+  {
+   "t": "2026-10-12T18:03:38.035Z",
+   "piece": "maps",
+   "status": "done",
+   "round": 1,
+   "note": "Footer map (GBP embed, crest frame, 3rd masthead column at 1280+, full width below) on all 45 pages + 404; per-town map in the intro of all 21 town pages; hasMap in JSON-LD",
+   "shot": "shots/maps-r1.png"
+  },
   {
    "t": "2026-10-12T17:53:16.782Z",
    "piece": "tpl-service",
@@ -1974,5 +2042,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T17:53:16.782Z"
+ "updated": "2026-10-12T18:50:26.755Z"
 }

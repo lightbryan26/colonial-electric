@@ -41,6 +41,13 @@ export function footer(ctx) {
         <dd><a href="${site.instagram}" target="_blank" rel="noopener">${esc(site.instagramHandle)}<span class="sr-only"> (opens in a new tab)</span></a></dd>
       </div>
     </dl>
+    <div class="site-footer__map">
+      <h3 class="site-footer__h"><span class="site-footer__h-bolt" aria-hidden="true">${bolt}</span>Find Us on the Map</h3>
+      <div class="site-footer__map-frame"><div class="site-footer__map-mat">
+        <iframe src="${esc(site.gbp.embed)}" title="Map: Colonial Electric, Weymouth, MA" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div></div>
+      <a class="site-footer__all site-footer__map-link" href="${site.gbp.link}" target="_blank" rel="noopener">View on Google Maps${icon('arrow-up-right', { size: 16 })}<span class="sr-only"> (opens in a new tab)</span></a>
+    </div>
   </div>
 
   <div class="container site-footer__grid">

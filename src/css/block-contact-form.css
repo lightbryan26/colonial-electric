@@ -41,7 +41,6 @@
   display: flex; align-items: center; gap: .8rem; width: 100%; padding: 0 0 .9rem;
   font: 700 var(--fs-xs)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--navy);
 }
-.cf-legend::after { content: ""; flex: 1; height: 1px; background: var(--cf-field); }
 .cf-legend__n {
   display: inline-grid; place-items: center; width: 2rem; height: 1.5rem;
   background: var(--navy); color: var(--white); font-size: var(--fs-label); letter-spacing: .06em;
