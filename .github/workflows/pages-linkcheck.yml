@@ -6,7 +6,7 @@ name: Pages link check
 on:
   push:
     branches: [main]
-    paths: ['docs/**']
+    paths: ['docs/**', '.github/workflows/pages-linkcheck.yml']
   workflow_dispatch:
 
 jobs:
