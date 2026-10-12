@@ -1,3 +1,7 @@
+<!-- integrator pass 2026-10-12 -->
+> **Integrator pass 2026-10-12**
+> - ALREADY DONE: src/data/pages.mjs routes we-offer-financing/ to the we-offer-financing template.
+
 # Request from page-we-offer-financing
 
 File: src/data/pages.mjs (line 17)

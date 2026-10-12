@@ -136,8 +136,8 @@
   "page-contact-us": {
    "status": "critiquing",
    "round": 3,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T09:53:53.604Z",
+   "note": "QA done: 1 issue, 03 index contrast on dark section",
+   "updated": "2026-10-12T09:57:20.608Z",
    "shot": "shots/page-contact-us-r2.png"
   },
   "page-premium-membership": {
@@ -155,10 +155,10 @@
    "shot": "shots/page-we-offer-financing-r1.png"
   },
   "page-leave-us-a-review": {
-   "status": "building",
+   "status": "done",
    "round": 3,
-   "note": "Route is live: drop tpl-review stub CSS, fix card CTA overflow at 1440, h2 spacing, call-bar padding, real job photo beside intro, labelled town list",
-   "updated": "2026-10-12T09:48:57.942Z",
+   "note": "Real page now routed: deleted tpl-review stub CSS; platforms rebuilt as a navy index list (one row per platform, uniform CTAs, single-line labels 375-1440, no clipping); tablet intro split with Scott photo; towns get a Towns We Serve heading plus Service Area link in an even 7x3 / 3x7 grid; hero keyline kept inside the gutter",
+   "updated": "2026-10-12T09:57:42.000Z",
    "shot": "shots/page-leave-us-a-review-r2.png"
   },
   "page-calendar": {
@@ -169,14 +169,35 @@
    "shot": "shots/page-calendar-r1.png"
   },
   "page-terms": {
-   "status": "won",
-   "round": 1,
-   "note": "Critic picked ours blind (clear). Remaining gap: A broken two-column grid. The narrow table of contents and the large empty gutter push the text into a cramped, off-center column of hard-to-read light-gray text, with no call to action after the head",
-   "updated": "2026-10-12T08:56:41.987Z",
+   "status": "critiquing",
+   "round": 2,
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T09:57:32.929Z",
    "shot": "shots/page-terms-r1.png"
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T09:57:42.000Z",
+   "piece": "page-leave-us-a-review",
+   "status": "done",
+   "round": 3,
+   "note": "Real page now routed: deleted tpl-review stub CSS; platforms rebuilt as a navy index list (one row per platform, uniform CTAs, single-line labels 375-1440, no clipping); tablet intro split with Scott photo; towns get a Towns We Serve heading plus Service Area link in an even 7x3 / 3x7 grid; hero keyline kept inside the gutter"
+  },
+  {
+   "t": "2026-10-12T09:57:32.929Z",
+   "piece": "page-terms",
+   "status": "critiquing",
+   "round": 2,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T09:57:20.608Z",
+   "piece": "page-contact-us",
+   "status": "critiquing",
+   "round": 3,
+   "note": "QA done: 1 issue, 03 index contrast on dark section"
+  },
   {
    "t": "2026-10-12T09:54:54.035Z",
    "piece": "page-services",
@@ -1222,5 +1243,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T09:54:54.035Z"
+ "updated": "2026-10-12T09:57:42.000Z"
 }

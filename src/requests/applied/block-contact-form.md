@@ -1,3 +1,8 @@
+<!-- integrator pass 2026-10-12 -->
+> **Integrator pass 2026-10-12**
+> - ALREADY DONE: #1, tools/shot.mjs hides the sticky chrome in the selector branch.
+> - ALREADY DONE: #2, tools/blind.py `H` NameError fixed.
+
 # Requests from block-contact-form (round 2)
 
 1. tools/shot.mjs — element screenshots of sections taller than the viewport capture the sticky

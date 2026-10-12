@@ -1,3 +1,7 @@
+<!-- integrator pass 2026-10-12 -->
+> **Integrator pass 2026-10-12**
+> - ALREADY DONE: src/data/pages.mjs routes premium-membership/ to the premium-membership template.
+
 # Request from page-premium-membership
 
 File: src/data/pages.mjs (line with `P('premium-membership/', 'Flash Pass Membership', 'Flash Pass Membership', 'membership')`)

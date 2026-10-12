@@ -86,10 +86,10 @@ function introSection(ctx) {
   return `<section class="pm-intro" aria-labelledby="pm-intro-h">
   <div class="container">
     <p class="pm-index"><span class="pm-index__n">01</span><span class="pm-index__l">The Pass</span></p>
-    <h2 class="pm-intro__h" id="pm-intro-h">Experience <em>Platinum Privileges</em> That’s Unlike Any Other</h2>
+    <h2 class="pm-intro__h" id="pm-intro-h"><span>Experience <em>Platinum Privileges</em></span> <span>That’s Unlike Any Other</span></h2>
     <div class="pm-intro__grid">
       <figure class="pm-intro__media">
-        <div class="pm-intro__frame">${picture(ctx, 'scott-portrait', { alt: 'Scott Hays, founder of Colonial Electric, in a Colonial Electric polo', sizes: '(min-width: 1440px) 440px, (min-width: 960px) 34vw, 92vw' })}</div>
+        <div class="pm-intro__frame">${picture(ctx, 'scott-portrait', { alt: 'Scott Hays, founder of Colonial Electric, in a Colonial Electric polo', sizes: '(min-width: 1440px) 440px, (min-width: 960px) 34vw, 92vw', loading: 'eager' })}</div>
         <figcaption class="pm-intro__cap"><span class="label-wide">Founder</span><span class="pm-intro__name">Scott Hays</span></figcaption>
       </figure>
       <div class="pm-intro__text">
@@ -112,7 +112,7 @@ function introSection(ctx) {
 function joinSection(ctx) {
   return `<section class="pm-join" aria-labelledby="pm-join-h">
   <div class="container">
-    <div class="pm-join__card">
+    <div class="pm-join__shell"><div class="pm-join__frame"><div class="pm-join__card">
       <div class="pm-join__id">
         <p class="eyebrow pm-join__eyebrow">Exclusive Access Pass</p>
         <h2 class="pm-join__h" id="pm-join-h">Flash Pass <span>Membership</span></h2>
@@ -124,9 +124,9 @@ function joinSection(ctx) {
       <div class="pm-join__act">
         <a class="btn btn--red pm-join__btn" href="${site.tel}">${icon('bolt', { size: 18 })}Join Flash Pass</a>
         <a class="pm-join__tel" href="${site.tel}">${icon('phone', { size: 16 })}${site.phone}</a>
-        <p class="pm-join__fine">Enrollment by phone. Regular business hours 8:00 AM to 4:00 PM.</p>
+        <p class="pm-join__fine">${icon('clock', { size: 14 })}<span>Operating Hours: 8:00 AM – 4:00 PM</span></p>
       </div>
-    </div>
+    </div></div></div>
   </div>
 </section>`;
 }
@@ -148,14 +148,14 @@ function boltSection(ctx) {
         <p class="pm-index pm-index--dark"><span class="pm-index__n">02</span><span class="pm-index__l">The Benefits</span></p>
         <p class="eyebrow">${esc(bolt.eyebrow)}</p>
         <h2 class="pm-bolt__h" id="pm-bolt-h">${esc(bolt.h2)}</h2>
-        <p class="pm-bolt__hint">${icon('bolt', { size: 16 })}<span>${esc(bolt.hint)}</span></p>
       </div>
-      <figure class="pm-bolt__photo">
-        <picture><source type="image/webp" srcset="${pb}-480.webp 480w, ${pb}-800.webp 684w" sizes="(min-width: 1024px) 34rem, 92vw"><img src="${pb}-800.jpg" srcset="${pb}-480.jpg 480w, ${pb}-800.jpg 684w" sizes="(min-width: 1024px) 34rem, 92vw" width="684" height="428" alt="Open residential breaker panel with the wiring exposed during service" loading="lazy" decoding="async"></picture>
-        <figcaption class="label-wide">${icon('inspect', { size: 16 })}Annual whole-home safety inspections</figcaption>
-      </figure>
+      <p class="pm-bolt__hint"><span class="pm-bolt__hint-ic" aria-hidden="true">${icon('bolt', { size: 20 })}</span><span>${esc(bolt.hint)}</span></p>
     </header>
     <div class="pm-bolt__body">
+      <figure class="pm-bolt__photo">
+        <picture><source type="image/webp" srcset="${pb}-480.webp 480w, ${pb}-800.webp 684w" sizes="(min-width: 1024px) 26rem, 92vw"><img src="${pb}-800.jpg" srcset="${pb}-480.jpg 480w, ${pb}-800.jpg 684w" sizes="(min-width: 1024px) 26rem, 92vw" width="684" height="428" alt="Open residential breaker panel with the wiring exposed during service" loading="eager" fetchpriority="low" decoding="sync"></picture>
+        <figcaption class="label-wide">${icon('inspect', { size: 16 })}Annual whole-home safety inspections</figcaption>
+      </figure>
       <div class="pm-stage" data-pm-stage style="--lvl:${benefits[0].lvl}">
         <svg class="pm-stage__svg" viewBox="0 0 400 600" aria-hidden="true" focusable="false">
           <defs>
@@ -240,8 +240,14 @@ function saveBigSection() {
 </section>`;
 }
 
+// Every image on this page decodes synchronously: with decoding="async", Chromium's full-page capture
+// intermittently paints a below-the-fold photo (e.g. the CTA's town photo) as an empty frame.
+// The page's own two below-the-fold photos load eagerly (low priority) so a quick scroll-through or a
+// full-page capture never finds them unloaded.
+const syncDecode = s => s.replace(/decoding="async"/g, 'decoding="sync"');
+
 export function render(ctx) {
-  return [
+  return syncDecode([
     hero(ctx),
     joinSection(ctx),
     introSection(ctx),
@@ -251,5 +257,5 @@ export function render(ctx) {
     trustStrip(ctx),
     contactCta(ctx, { id: 'pm-cta', withTowns: true }),
     saveBigSection(),
-  ].join('\n');
+  ].join('\n'));
 }

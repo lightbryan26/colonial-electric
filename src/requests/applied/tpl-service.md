@@ -1,3 +1,10 @@
+<!-- integrator pass 2026-10-12 -->
+> **Integrator pass 2026-10-12**
+> - APPLIED: #1, src/data/descriptions.json "lighting-additions/" is now the block B opening sentence, checked verbatim against source/pages/lighting-additions.md. It is 160 characters (not 149), which is within the ≤160 rule. The built meta, og and twitter descriptions are updated.
+> - ALREADY DONE: #2 (FYI). /permanent-outdoor-lighting/ renders through service.mjs because services.mjs flags it `outdoor: true`. The optional delete of the unused src/pages/outdoor-lighting.mjs was not performed: pages.mjs still names it in the `s.variant ? 'outdoor-lighting' : 'service'` fallback, so remove both together.
+> - ALREADY DONE: #3, tools/blind.py `H` NameError fixed.
+> - ALREADY DONE: #4 (FYI, no change requested). Re-verified on /lighting-additions/ at 1440 and 375: the guarantee certificate renders at full opacity with clauses 01/02/03.
+
 # Requests from tpl-service
 
 ## 1. src/data/descriptions.json — fix /lighting-additions/ meta description

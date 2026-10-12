@@ -1,18 +1,15 @@
-# Request from page-leave-us-a-review (ROUND 2 — BLOCKING, still unapplied)
+# Requests from page-leave-us-a-review
 
-The round-1 critic judged the STUB (src/pages/review.mjs), not the real page, because this route change was never applied.
+## RESOLVED (round 3)
+The route change was applied: src/data/pages.mjs now maps `leave-us-a-review/` to the `leave-us-a-review` template
+(body.tpl-leave-us-a-review). The `body.tpl-review` workaround block has been deleted from
+src/css/page-leave-us-a-review.css. No shared-file changes are pending for this piece.
 
-File: src/data/pages.mjs (line 18)
-Change: `P('leave-us-a-review/', 'Leave Us a Review', 'Leave Us a Review', 'review'),` → `P('leave-us-a-review/', 'Leave Us a Review', 'Leave Us a Review', 'leave-us-a-review'),`
-(Alternative with identical effect: replace the whole body of src/pages/review.mjs with `export { render } from './leave-us-a-review.mjs';`.)
-Why: the full page (photo hero, portrait + lead intro, pinned-CTA platform cards, labelled town list — all round-2 QA fixes) lives in src/pages/leave-us-a-review.mjs + src/css/page-leave-us-a-review.css (.lr-* scoped). Verified via a scratch build with the route swapped (shots/lrprev.sh): no horizontal scroll, no errors at 1440/375.
+Optional cleanup (owner of src/pages/review.mjs): that stub is no longer routed by any page and could be deleted.
 
-Also (tool owner): tools/blind.py throws NameError — move `H=max(A.height,B.height)+80` onto its own line before `Image.new` (outside the elif).
+## Still open (tool owner)
+tools/blind.py: if it still throws NameError, move `H=max(A.height,B.height)+80` onto its own line before `Image.new` (outside the elif).
 
-Client flag: the live Facebook button links to the Google review URL (live defect); the rebuild uses a Facebook search for "Colonial Electric Weymouth MA" until the client supplies the real page URL.
-
-## ROUND 3 — STILL UNAPPLIED (3rd round the critic judged the stub)
-Every round-2 critic issue (CTA overflow, h2 collision, no photography, orphaned towns) describes src/pages/review.mjs, not my page.
-Simplest fix (same as about.mjs did): replace the body of src/pages/review.mjs with
-`export { render } from './leave-us-a-review.mjs';`
-Meanwhile src/css/page-leave-us-a-review.css carries a `body.tpl-review` workaround block patching the stub (wrapping CTAs, h2 spacing, mobile call-bar padding, real photo beside intro, towns label). Delete that block after routing.
+## Client flag (brief §11 item 6)
+The live "Leave a Facebook Review" button links to the Google review URL (live defect). The rebuild links to a Facebook
+search for "Colonial Electric Weymouth MA" until the client supplies the real Facebook page URL.

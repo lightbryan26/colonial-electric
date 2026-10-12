@@ -1,3 +1,7 @@
+<!-- integrator pass 2026-10-12 -->
+> **Integrator pass 2026-10-12**
+> - ALREADY DONE: src/data/pages.mjs routes services/ to the services template.
+
 # Request from page-services — URGENT / BLOCKING (round 2)
 
 The round-1 blind critic and QA judged the OLD STUB (src/pages/services-index.mjs), not the real page.

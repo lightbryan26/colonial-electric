@@ -1,3 +1,10 @@
+<!-- integrator pass 2026-10-12 -->
+> **Integrator pass 2026-10-12 (file stays in src/requests/: has SKIPPED items)**
+> - ALREADY DONE: #0, src/data/pages.mjs routes contact-us/ to the contact-us template.
+> - SKIPPED (owned by an in-flight piece): #1 targets src/css/block-contact-form.css, which is being edited now. At this pass the file no longer has a view()-timeline `cf-rise` that hides fields. The only opacity-0 keyframe is the time-based `cf-in` on .cf-status. The owner should confirm and close.
+> - ALREADY DONE: #2, tools/blind.py `H` NameError fixed.
+> - SKIPPED (owned by an in-flight piece): #3 targets src/blocks/contact-form.mjs and its CSS, both in flight. At this pass `.cf-photo picture/img` rules exist in the CSS, and "24/7" appears in the built site only in the home FAQ (visible copy plus FAQPage JSON-LD). The owner should confirm and close.
+
 # Requests from page-contact-us (round 2)
 
 ## 0. BLOCKER — src/data/pages.mjs (owner: build/data) — route /contact-us/ to the new template

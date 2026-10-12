@@ -1,3 +1,9 @@
+<!-- integrator pass 2026-10-12 -->
+> **Integrator pass 2026-10-12**
+> - APPLIED: deleted the dead `/* CTA band + town list */` (.block--cta .lead, .town-list*) and `/* trust strip */` (.trust-strip*) rules from src/css/blocks.css. Before deleting, checked that no class token in the built docs/ HTML and no selector or string in src/ uses them.
+> - ALREADY DONE: round 2 #1, the tools/blind.py `H` NameError. H is now on its own line after the if/elif.
+> - ALREADY DONE: round 2 #2, tools/shot.mjs hides .site-header/.callbar for element crops.
+
 # Request from block-contact-cta (optional cleanup, not blocking)
 File: src/css/blocks.css
 Change: delete the now-unused rules under "/* CTA band + town list */" (.block--cta .lead, .town-list*, ) and "/* trust strip */" (.trust-strip*).

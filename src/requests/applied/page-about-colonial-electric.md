@@ -1,3 +1,9 @@
+<!-- integrator pass 2026-10-12 -->
+> **Integrator pass 2026-10-12**
+> - ALREADY DONE: #1, src/data/pages.mjs routes about-colonial-electric/ to the about-colonial-electric template.
+> - APPLIED: #2, the sticky call bar stays hidden while the hero is on screen. src/partials/callbar.mjs renders `class="callbar is-hidden"`. src/js/base.js runs an IntersectionObserver on `main > section` and toggles .is-hidden; it removes the class if there is no hero or no IO. src/css/header.css: `.is-hidden` now also sets visibility:hidden, delayed until the slide finishes, so off-screen links leave the tab order, and a new `@media (scripting: none)` rule keeps the bar visible without JS. Verified at 375: hidden at the top, shown below the hero and at the page bottom, shown with JS disabled; display:none at 1440.
+> - NOTE for the page owner: the CSS-only workaround block at the end of src/css/page-about-colonial-electric.css (`body:is(.tpl-about-colonial-electric, .tpl-about) .callbar { transform...; visibility: hidden }` plus a scroll() timeline) can now be deleted. It overrides the sitewide toggle. In browsers without animation-timeline (Firefox) it also keeps the bar hidden on /about-colonial-electric/ for good, even with JS on or off.
+
 # Request from page-about-colonial-electric  (ROUND 2 — BLOCKING, please apply first)
 
 ## 1. [ROUND 3: worked around — src/pages/about.mjs now re-exports render from about-colonial-electric.mjs; switching pages.mjs template is still the cleaner fix] Route the slug to the finished page (was BLOCKING — the round-1 QA failure was caused by this)
