@@ -5,11 +5,11 @@
 // Styles: src/css/page-services.css (all classes prefixed .sv-). No prices, no invented claims.
 import { site } from '../data/site.mjs';
 import { services, serviceCards, servicesIntro } from '../data/services.mjs';
-import { bookingH2, trustItems } from '../data/shared.mjs';
+import { bookingH2, trustItems, processSteps } from '../data/shared.mjs';
 import { hero as homeHero } from '../data/home.mjs';
 import { guarantee } from '../blocks/guarantee.mjs';
 import { contactCta } from '../blocks/contact-cta.mjs';
-import { process, quoteBlock } from '../blocks/process.mjs';
+import { quoteBlock } from '../blocks/process.mjs';
 import { reviews } from '../blocks/reviews.mjs';
 import { townList } from '../blocks/town-list.mjs';
 import { contactForm } from '../blocks/contact-form.mjs';
@@ -153,10 +153,15 @@ function categoriesBlock(ctx) {
         const links = c.paras.flatMap(linksIn);
         const id = 'sv-cat-' + (i + 1);
         return `<li class="sv-cat" aria-labelledby="${id}">
-        <div class="sv-cat__top"><span class="sv-cat__n" aria-hidden="true">${pad(i + 1)}</span><span class="sv-cat__ic">${icon(c.ic, { size: 26 })}</span></div>
-        <h2 class="sv-cat__h" id="${id}">${esc(c.h2)}</h2>
+        <div class="sv-cat__head">
+          <div class="sv-cat__top"><span class="sv-cat__n" aria-hidden="true">${pad(i + 1)}</span><span class="sv-cat__ic">${icon(c.ic, { size: 26 })}</span></div>
+          <h2 class="sv-cat__h" id="${id}">${esc(c.h2)}</h2>
+        </div>
         <div class="sv-cat__body">${c.paras.map(p => `<p>${linkify(ctx, p)}</p>`).join('')}</div>
-        <ul class="sv-cat__links" role="list">${links.map(l => `<li><a href="${ctx.r(l.href)}"><span>${esc(l.label)}</span>${icon('arrow-up-right', { size: 16 })}</a></li>`).join('')}</ul>
+        <div class="sv-cat__side">
+          <p class="sv-cat__k">Explore</p>
+          <ul class="sv-cat__links" role="list">${links.map(l => `<li><a href="${ctx.r(l.href)}"><span>${esc(l.label)}</span>${icon('arrow-up-right', { size: 16 })}</a></li>`).join('')}</ul>
+        </div>
       </li>`;
       }).join('\n      ')}
     </ol>
@@ -185,6 +190,29 @@ function catalog(ctx) {
       <span class="sv-feature__txt"><span class="sv-feature__k">Also Available</span><span class="sv-feature__t">${esc(outdoor.h1)}</span><span class="sv-feature__s">${esc(outdoor.heroLine)}</span></span>
       <span class="sv-feature__go" aria-hidden="true">${icon('arrow-right', { size: 22 })}</span>
     </a>
+  </div>
+</section>`;
+}
+
+// Booking process: the four step names exactly as services.md sets them (Call / Share / Schedule / Relax),
+// each with its verbatim body. Own markup so this page never inherits the homepage step titles.
+function bookingBlock(ctx) {
+  const glyphs = ['phone', 'quote', 'calendar', 'check'];
+  const [h2a, h2b] = ['A Booking Process That', 'Feels Like a Breeze'];
+  const h2 = bookingH2 === `${h2a} ${h2b}` ? `${esc(h2a)} <span class="sv-book__h-2">${esc(h2b)}</span>` : esc(bookingH2);
+  return `<section class="block sv-book" aria-labelledby="sv-book-h">
+  <div class="container">
+    <header class="sv-book__head">
+      <h2 class="h2 sv-book__h" id="sv-book-h">${h2}</h2>
+      <a class="btn btn--red btn--lg sv-book__cta" href="${site.tel}">${icon('phone', { size: 18 })}<span>Call ${site.phone}</span></a>
+    </header>
+    <ol class="sv-steps" role="list">
+      ${processSteps.map((s, i) => `<li class="sv-step">
+        <div class="sv-step__top"><span class="sv-step__ic">${icon(glyphs[i] || 'bolt', { size: 22 })}</span><span class="sv-step__n">Step ${s.n}</span></div>
+        <h3 class="sv-step__t">${esc(s.short)}</h3>
+        <p class="sv-step__p">${esc(s.body)}</p>
+      </li>`).join('\n      ')}
+    </ol>
   </div>
 </section>`;
 }
@@ -233,7 +261,7 @@ export function render(ctx) {
     guarantee(ctx, { cls: 'sv-gx' }),
     catalog(ctx),
     contactCta(ctx),
-    process(ctx, { h2: bookingH2, withBodies: true }),
+    bookingBlock(ctx),
     reviews(ctx),
     townsBlock(ctx),
     contactForm(ctx),

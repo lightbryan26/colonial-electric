@@ -120,10 +120,10 @@
    "shot": "shots/page-about-colonial-electric-r2.png"
   },
   "page-services": {
-   "status": "critiquing",
-   "round": 4,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T10:16:42.718Z",
+   "status": "building",
+   "round": 5,
+   "note": "Render booking steps as Call/Share/Schedule/Relax in services.mjs; raise body size and contrast on dark category columns and guarantee card; solid numerals",
+   "updated": "2026-10-12T10:24:16.943Z",
    "shot": "shots/page-services-r2.png"
   },
   "page-service-area": {
@@ -177,6 +177,20 @@
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T10:24:16.943Z",
+   "piece": "page-services",
+   "status": "building",
+   "round": 5,
+   "note": "Render booking steps as Call/Share/Schedule/Relax in services.mjs; raise body size and contrast on dark category columns and guarantee card; solid numerals"
+  },
+  {
+   "t": "2026-10-12T10:24:16.900Z",
+   "piece": "page-services",
+   "status": "lost",
+   "round": 4,
+   "note": "Won blind but failed QA: The four booking step headings on /services/ don’t match the source copy. The built page shows H3s ’Give Us a Call’, ’Share Your Concerns’, ’Schedule An Appointment’ and ’Sit Back & Relax’. Those are the homepage titles from home.md. Source /home/user/colonial-electric/source/pages/services.md lines"
+  },
   {
    "t": "2026-10-12T10:20:37.821Z",
    "piece": "page-premium-membership",
@@ -1425,5 +1439,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T10:20:37.821Z"
+ "updated": "2026-10-12T10:24:16.943Z"
 }

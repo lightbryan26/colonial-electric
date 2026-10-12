@@ -167,7 +167,7 @@ export function legalPage(ctx, name) {
   <div class="container">
     <div class="lg-cta__card on-dark">
       <div class="lg-cta__rule" aria-hidden="true"></div>
-      <figure class="lg-cta__media">${picture(ctx, 'owner-van', { alt: 'Founder Scott Hays standing in front of the red, white and blue Colonial Electric van', sizes: '(min-width: 1360px) 640px, (min-width: 900px) 50vw, 100vw', imgCls: 'lg-cta__img' })}</figure>
+      <figure class="lg-cta__media">${picture(ctx, 'owner-van', { alt: 'Founder Scott Hays standing in front of the red, white and blue Colonial Electric van', sizes: '(min-width: 900px) 1280px, 100vw', imgCls: 'lg-cta__img', loading: 'eager' }).replace('loading="eager"', 'loading="eager" fetchpriority="low"')}</figure>
       <div class="lg-cta__body stars-bg">
         <p class="eyebrow">Weymouth &amp; the South Shore</p>
         <h2 class="lg-cta__h" id="lg-cta-h">${esc(contactCta.h2)}</h2>
