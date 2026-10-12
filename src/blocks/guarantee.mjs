@@ -21,7 +21,7 @@ function seal(ctx, uid) {
         <circle cx="100" cy="100" r="68" class="gx__ring-i"/>
         <text><textPath href="#${uid}-arc" textLength="512" lengthAdjust="spacing">${esc(ring)}</textPath></text>
       </svg>
-      <picture class="gx__logo"><source type="image/webp" srcset="${ctx.asset('img/logo-lockup-320.webp')} 320w, ${ctx.asset('img/logo-lockup-621.webp')} 621w" sizes="(min-width: 64em) 11rem, 7.5rem"><img src="${ctx.asset('img/logo-lockup-320.png')}" srcset="${ctx.asset('img/logo-lockup-320.png')} 320w, ${ctx.asset('img/logo-lockup-621.png')} 621w" sizes="(min-width: 64em) 11rem, 7.5rem" width="320" height="332" alt="" loading="lazy" decoding="async"></picture>
+      <picture class="gx__logo"><source type="image/webp" srcset="${ctx.asset('img/logo-lockup-320.webp')} 320w, ${ctx.asset('img/logo-lockup-621.webp')} 621w" sizes="(min-width: 64em) 13rem, 6rem"><img src="${ctx.asset('img/logo-lockup-320.png')}" srcset="${ctx.asset('img/logo-lockup-320.png')} 320w, ${ctx.asset('img/logo-lockup-621.png')} 621w" sizes="(min-width: 64em) 13rem, 6rem" width="320" height="332" alt="" loading="lazy" decoding="async"></picture>
     </div>`;
 }
 
@@ -39,8 +39,8 @@ export function guarantee(ctx, { id = '', cls = '' } = {}) {
         <div class="gx__top">
           <h2 class="h2 gx__h" id="${uid}-h">${headline(g.h2)}</h2>
           ${seal(ctx, uid)}
+          <p class="gx__lead">${esc(p1)}</p>
         </div>
-        <p class="gx__lead">${esc(p1)}</p>
         <div class="gx__cols">
           ${rest.map((p, i) => `<div class="gx__col"><span class="gx__num" aria-hidden="true">${icon('bolt', { size: 14 })}0${i + 2}</span><p>${esc(p)}</p></div>`).join('\n          ')}
         </div>

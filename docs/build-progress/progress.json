@@ -105,9 +105,22 @@
    "round": 1,
    "note": "Build About Us page: verbatim live content, real photos, editorial layout",
    "updated": "2026-10-12T08:36:06.614Z"
+  },
+  "page-services": {
+   "status": "building",
+   "round": 1,
+   "note": "Services index: editorial hero, numbered service catalogue with real photos, guarantee + CTA",
+   "updated": "2026-10-12T08:36:16.280Z"
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T08:36:16.280Z",
+   "piece": "page-services",
+   "status": "building",
+   "round": 1,
+   "note": "Services index: editorial hero, numbered service catalogue with real photos, guarantee + CTA"
+  },
   {
    "t": "2026-10-12T08:36:06.614Z",
    "piece": "page-about-colonial-electric",
@@ -310,5 +323,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T08:36:06.614Z"
+ "updated": "2026-10-12T08:36:16.280Z"
 }

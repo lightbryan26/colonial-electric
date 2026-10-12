@@ -12,7 +12,7 @@ export function footer(ctx) {
   const bolt = icon('bolt', { size: 12 });
 
   return `<footer class="site-footer" aria-labelledby="site-footer-title">
-  <h2 class="visually-hidden sr-only" id="site-footer-title">Colonial Electric site footer</h2>
+  <h2 class="sr-only" id="site-footer-title">Colonial Electric site footer</h2>
   <div class="site-footer__sweep" aria-hidden="true"><i></i><i></i><i></i></div>
 
   <div class="container site-footer__mast">
@@ -38,7 +38,7 @@ export function footer(ctx) {
       </div>
       <div class="site-footer__fact">
         <dt>${icon('instagram', { size: 16 })}Instagram</dt>
-        <dd><a href="${site.instagram}" target="_blank" rel="noopener">${esc(site.instagramHandle)}<span class="visually-hidden sr-only"> (opens in a new tab)</span></a></dd>
+        <dd><a href="${site.instagram}" target="_blank" rel="noopener">${esc(site.instagramHandle)}<span class="sr-only"> (opens in a new tab)</span></a></dd>
       </div>
     </dl>
   </div>
