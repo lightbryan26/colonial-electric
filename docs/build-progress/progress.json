@@ -134,10 +134,10 @@
    "shot": "shots/page-service-area-r1.png"
   },
   "page-contact-us": {
-   "status": "done",
+   "status": "critiquing",
    "round": 4,
-   "note": "Fixed 03 index contrast (FF6B6F, 6.86:1); merged intro into one band with the 2x2 contact cards so cards and form follow the hero (page 5281 to 4882px at 1440); micro-labels and form labels raised to 12-14px; 45/45 build, no h-scroll or errors at 375/768/1440",
-   "updated": "2026-10-12T10:12:56.160Z",
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T10:13:31.344Z",
    "shot": "shots/page-contact-us-r2.png"
   },
   "page-premium-membership": {
@@ -177,6 +177,13 @@
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T10:13:31.344Z",
+   "piece": "page-contact-us",
+   "status": "critiquing",
+   "round": 4,
+   "note": "screenshots + QA"
+  },
   {
    "t": "2026-10-12T10:13:11.831Z",
    "piece": "page-about-colonial-electric",
@@ -1362,5 +1369,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T10:13:11.831Z"
+ "updated": "2026-10-12T10:13:31.344Z"
 }

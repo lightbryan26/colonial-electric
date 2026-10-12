@@ -52,7 +52,7 @@ function scale() {
   const ticks = [3, 12, 24, 36, 48, 60, 72, 84, 96, 108, 120];
   const pos = m => ((m - 3) / 117 * 100).toFixed(2);
   return `<div class="fin-scale" aria-hidden="true">
-      <div class="fin-scale__track"><span class="fin-scale__fill"></span>${ticks.map(m => `<i style="left:${pos(m)}%"></i>`).join('')}</div>
+      <div class="fin-scale__track"><span class="fin-scale__fill"></span>${ticks.map(m => `<i style="--p:${pos(m)}"></i>`).join('')}</div>
       <div class="fin-scale__ends"><span>3</span><span>120</span></div>
     </div>`;
 }
