@@ -78,7 +78,7 @@
     .why__h2 { animation: why-rise linear both; animation-timeline: view(); animation-range: entry 0% entry 60%; }
   }
 }
-@keyframes why-rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+@keyframes why-rise { from { transform: translateY(28px); } to { transform: none; } } /* transform only: never hides copy (base.css §9) */
 @keyframes why-rule { from { transform: scaleX(0); } to { transform: scaleX(var(--rule, .14)); } }
 
 /* ---------- ≥ 768 ---------- */

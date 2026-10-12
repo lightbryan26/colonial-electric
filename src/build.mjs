@@ -4,7 +4,7 @@
 // - all internal URLs are relative (computed from depth) so the site works at / and under /colonial-electric/
 // - CSS: src/css/base.css first, then every other src/css/*.css alphabetically → docs/assets/site.css
 // - JS:  src/js/base.js first, then every other src/js/*.js alphabetically → docs/assets/site.js
-// - copies src/assets → docs/assets; writes sitemap.xml, robots.txt, 404.html; keeps docs/.nojekyll
+// - copies src/assets → docs/assets (and prunes docs/assets/img files whose source is gone); writes sitemap.xml, robots.txt, 404.html; keeps docs/.nojekyll
 // - NEVER touches docs/build-progress/. Every write is atomic (temp file + rename): several builders run concurrently.
 import fs from 'fs';
 import path from 'path';
@@ -45,6 +45,24 @@ function copyDir(from, to) {
   return n;
 }
 
+// Remove files under docs/assets/img that no longer exist in src/assets/img (retired or re-cropped images), so a
+// published asset can never outlive its source. Scoped to img/ (site.css/site.js are written by this script).
+function prune(from, to) {
+  if (!fs.existsSync(to)) return 0;
+  let n = 0;
+  for (const ent of fs.readdirSync(to, { withFileTypes: true })) {
+    if (ent.name.startsWith('.')) continue;
+    const a = path.join(from, ent.name), b = path.join(to, ent.name);
+    if (ent.isDirectory()) {
+      n += prune(a, b);
+      if (!fs.existsSync(a) && !fs.readdirSync(b).length) fs.rmdirSync(b);
+      continue;
+    }
+    if (!fs.existsSync(a)) { try { fs.unlinkSync(b); n++; } catch (e) { if (e.code !== 'ENOENT') throw e; } }
+  }
+  return n;
+}
+
 // 1. CSS + JS bundles (version hash busts caches across rebuilds)
 const css = concat(SRC + 'css/', 'base.css', '.css');
 const js = concat(SRC + 'js/', 'base.js', '.js');
@@ -54,6 +72,7 @@ writeAtomic(OUT + 'assets/site.js', js);
 
 // 2. Static assets
 const copied = copyDir(SRC + 'assets', OUT + 'assets');
+const pruned = prune(SRC + 'assets/img', OUT + 'assets/img');
 
 // 3. Pages
 function makeCtx(page, { depth, baseTag = '' } = {}) {
@@ -98,6 +117,9 @@ for (const page of pages) {
   const swap = (html, from, to) => { if (!html.includes(from)) throw new Error('404: expected markup not found: ' + from); return html.replace(from, to); };
   let html = layout(ctx, main);
   html = swap(html, '<meta name="description"', '<meta name="robots" content="noindex">\n<meta name="description"');
+  // noindex page: no canonical or og:url (a self-canonical on a noindex URL sends mixed signals)
+  html = swap(html, `<link rel="canonical" href="${site.origin}/404.html">\n`, '');
+  html = swap(html, `<meta property="og:url" content="${site.origin}/404.html">\n`, '');
   html = swap(html, `<link rel="stylesheet" href="${ctx.asset('site.css')}?v=${version}">\n`, '');
   // In-page fragment links would resolve against <base> (the home page), so point them at this URL; then load site.js.
   html = swap(html, `<script src="${ctx.asset('site.js')}?v=${version}" defer></script>`,
@@ -116,5 +138,5 @@ ${pages.map(p => `  <url><loc>${site.origin}/${p.slug}</loc><lastmod>${today}</l
 writeAtomic(OUT + 'robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${site.origin}/sitemap.xml\n`);
 if (!fs.existsSync(OUT + '.nojekyll')) writeAtomic(OUT + '.nojekyll', '');
 
-console.log(`built ${pages.length - failures.length}/${pages.length} pages + 404 · css ${(css.length / 1024).toFixed(1)}KB · js ${(js.length / 1024).toFixed(1)}KB · ${copied} assets copied · v${version} · ${Date.now() - t0}ms`);
+console.log(`built ${pages.length - failures.length}/${pages.length} pages + 404 · css ${(css.length / 1024).toFixed(1)}KB · js ${(js.length / 1024).toFixed(1)}KB · ${copied} assets copied${pruned ? `, ${pruned} stale pruned` : ''} · v${version} · ${Date.now() - t0}ms`);
 if (failures.length) { console.error('FAILED: ' + failures.join(', ')); process.exitCode = 1; }

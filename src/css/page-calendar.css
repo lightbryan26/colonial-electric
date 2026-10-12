@@ -103,7 +103,7 @@
   border-left: 4px solid var(--red);
   clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
 }
-.cal-founder__role { font: 700 .6875rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--on-dark-3); }
+.cal-founder__role { font: 700 var(--fs-label)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--on-dark-3); }
 .cal-founder__name { font: 800 1.75rem/1 var(--f-display); text-transform: uppercase; letter-spacing: .01em; }
 .cal-aside__line {
   font: 500 var(--fs-small)/1.55 var(--f-body); color: var(--ink-2);
@@ -120,8 +120,8 @@
   .cal-aside { grid-template-columns: 9rem minmax(0, 1fr); align-items: center; gap: 1rem 1.25rem; }
   .cal-founder__tag { bottom: .6rem; padding: .55rem .8rem .55rem .7rem; }
   .cal-founder__name { font-size: 1.15rem; }
-  .cal-founder__role { font-size: .5625rem; }
-  .cal-aside__line { padding-left: .85rem; font-size: .875rem; }
+  .cal-founder__role { font-size: var(--fs-label); }
+  .cal-aside__line { padding-left: .85rem; }
   .cal-embed { min-height: 760px; }
   .cal-embed iframe { min-height: 740px; }
 }

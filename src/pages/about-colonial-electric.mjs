@@ -6,6 +6,7 @@ import { trustStrip } from '../blocks/trust-strip.mjs';
 import { townList } from '../blocks/town-list.mjs';
 import { icon } from '../partials/icons.mjs';
 import { esc, picture } from '../lib/html.mjs';
+import { plate } from '../blocks/plate.mjs';
 
 const intro = {
   h2: 'Colonial Electric: The Dependable Source For Premium Electrical Service',
@@ -43,11 +44,13 @@ const facts = [
 const pull = 'Scott’s passion for the craft is palpable in every connection made.';
 
 // Photo row: the live site's own (clean, un-framed) service photos (brief §8), linked to their service pages.
+// Service tiles: a brand plate per service (src/blocks/plate.mjs; no framed stock photos, brief §8). A real Colonial
+// job photo mapped to the service slug in src/data/service-photos.mjs drops into the same tile.
 const work = [
-  { key: 'inspect', max: 440, h: 275, slug: 'electrical-inspections/', t: 'Electrical Inspections', alt: 'Electrician testing a wall control during an electrical inspection' },
-  { key: 'panel', max: 800, h: 500, slug: 'electrical-panel-upgrade/', t: 'Electrical Panel Upgrade', alt: 'Open residential electrical panel with breakers and wiring' },
-  { key: 'fan', max: 440, h: 275, slug: 'ceiling-fan-installation/', t: 'Ceiling Fan Installation', alt: 'Electrician on a ladder installing a ceiling fan' },
-  { key: 'outlets', max: 800, h: 500, slug: 'electrical-outlets/', t: 'Electrical Outlets', alt: 'Close-up of a duplex electrical outlet being wired into a wall box' },
+  { ic: 'inspect', slug: 'electrical-inspections/', t: 'Electrical Inspections' },
+  { ic: 'panel', slug: 'electrical-panel-upgrade/', t: 'Electrical Panel Upgrade' },
+  { ic: 'fan', slug: 'ceiling-fan-installation/', t: 'Ceiling Fan Installation' },
+  { ic: 'outlet', slug: 'electrical-outlets/', t: 'Electrical Outlets' },
 ];
 
 const mv = [
@@ -189,13 +192,11 @@ function workSection(ctx) {
       <p class="ab-work__k label-wide">${icon('bolt', { size: 14 })}Services</p>
       <a class="ab-link" href="${ctx.r('services/')}">All Services${icon('arrow-right', { size: 16 })}</a>
     </div>
-    <ul class="ab-work__grid" role="list">${work.map(w => {
-      const r = f => ctx.r('assets/img/home-services/' + w.key + f);
-      const set = ext => w.max >= 800 ? `${r('-480.' + ext)} 480w, ${r('-800.' + ext)} 800w` : `${r('-480.' + ext)} ${w.max}w`;
+    <ul class="ab-work__grid" role="list">${work.map((w, i) => {
       const sizes = '(min-width: 1440px) 310px, (min-width: 900px) 23vw, 46vw';
       return `
       <li><a class="ab-work__tile" href="${ctx.r(w.slug)}">
-        <span class="ab-work__ph"><picture><source type="image/webp" srcset="${set('webp')}" sizes="${sizes}"><img src="${r('-480.jpg')}" srcset="${set('jpg')}" sizes="${sizes}" width="${w.max}" height="${w.h}" alt="${esc(w.alt)}" loading="eager" fetchpriority="low" decoding="async"></picture></span>
+        <span class="ab-work__ph">${plate(ctx, { id: w.slug.replace(/\/$/, ''), ic: w.ic, tone: 'navy', num: String(i + 1).padStart(2, '0'), sizes, loading: 'eager' })}</span>
         <span class="ab-work__t">${esc(w.t)}${icon('arrow-right', { size: 16 })}</span>
       </a></li>`;
     }).join('')}

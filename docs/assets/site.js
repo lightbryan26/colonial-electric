@@ -16,6 +16,19 @@
     }
   }
 
+  /* ---------- Below-the-fold images: native lazy for the first paint, then warm the rest ----------
+     Markup keeps loading="lazy" (brief: lazy below the fold). Once the page has loaded and gone idle, the remaining
+     lazy images are switched to eager so nothing below the fold is ever a blank frame (fast scroll, full-page
+     capture, print). Without JS the browser's own lazy loading still applies. */
+  var warmed = false;
+  var warm = function () {
+    if (warmed) return; warmed = true;
+    doc.querySelectorAll('img[loading="lazy"]').forEach(function (img) { img.loading = 'eager'; });
+  };
+  window.addEventListener('beforeprint', warm);
+  var afterLoad = function () { if ('requestIdleCallback' in window) requestIdleCallback(warm, { timeout: 1200 }); else setTimeout(warm, 200); };
+  if (doc.readyState === 'complete') afterLoad(); else window.addEventListener('load', afterLoad);
+
   /* ---------- Header scrolled state ---------- */
   var header = doc.querySelector('[data-header]');
   if (header) {

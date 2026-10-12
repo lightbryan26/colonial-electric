@@ -52,11 +52,11 @@
   filter: drop-shadow(0 18px 30px rgba(8, 16, 32, .45));
 }
 .pm-pass__top { display: flex; align-items: center; justify-content: space-between; gap: .5rem; padding: .2rem .25rem 0; }
-.pm-pass__top img { width: 5.25rem; height: auto; }
-.pm-pass__chip { padding: .35rem .55rem; background: var(--red); color: var(--white); font-size: .625rem; clip-path: var(--crest); --cut: 4px; }
+.pm-pass__top img { width: 5.25rem; min-width: 0; flex: 0 1 auto; height: auto; }
+.pm-pass__chip { flex: none; padding: .35rem .5rem; background: var(--red); color: var(--white); font-size: var(--fs-label); letter-spacing: .06em; clip-path: var(--crest); --cut: 4px; } /* 12px floor: tighter tracking keeps the chip inside the pass */
 .pm-pass__name { display: flex; align-items: center; justify-content: space-between; padding: .55rem .25rem 0; border-top: 1px solid var(--line-strong); font: 900 2rem/.9 var(--f-display); text-transform: uppercase; letter-spacing: .005em; }
 .pm-pass__name .icon { color: var(--red); }
-.pm-pass__lic { padding: 0 .25rem .15rem; font-size: .5625rem; color: var(--ink-3); }
+.pm-pass__lic { padding: 0 .25rem .15rem; font-size: var(--fs-label); color: var(--ink-3); }
 
 .pm-hero::after { /* flag-stripe rule closing the hero */
   content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 6px; background: repeating-linear-gradient(180deg, var(--red) 0 2px, var(--white) 2px 4px);
@@ -232,7 +232,7 @@
 .pm-node:focus-visible .pm-node__t { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .2em; }
 @media (prefers-reduced-motion: no-preference) {
   .pm-node[aria-selected="true"] .pm-node__dot::after {
-    content: ""; position: absolute; inset: -7px; border-radius: 50%; border: 1.5px solid var(--red-flag); animation: pm-ping 1.8s var(--ease-out) infinite;
+    content: ""; position: absolute; inset: -7px; border-radius: 50%; border: 1.5px solid var(--red-flag); animation: pm-ping 1.8s var(--ease-out) 3; /* finite: WCAG 2.2.2 */
   }
 }
 @keyframes pm-ping { from { opacity: .9; transform: scale(1); } to { opacity: 0; transform: scale(1.7); } }
@@ -249,17 +249,23 @@
 .pm-js .pm-card:not(.is-on) { visibility: hidden; opacity: 0; transform: translateY(10px); }
 /* the incoming panel is visible (focusable) at once; only the outgoing one keeps visibility while it fades (it is inert by then) */
 .pm-js .pm-card.is-on { transition: opacity .45s var(--ease-out), visibility 0s, transform .45s var(--ease-out); }
-@media (max-width: 1023px) { .pm-js .pm-card:not(.is-on) { display: none; } } /* stacked layout: no empty panel height; desktop keeps one fixed cell so hovering never shifts the page */
+@media (max-width: 1023px) { .pm-js .pm-card:not(.is-on) { display: none; } }
+@media print { /* print shows all four benefits stacked, as without JS */
+  .pm-js .pm-panels { gap: 1.5rem; }
+  .pm-js .pm-card { grid-area: auto; }
+  .pm-js .pm-card:not(.is-on) { display: flex; visibility: visible; opacity: 1; transform: none; }
+} /* stacked layout: no empty panel height; desktop keeps one fixed cell so hovering never shifts the page */
 .pm-card:focus-visible { outline: 3px solid var(--white); outline-offset: -6px; }
 /* the photo absorbs any spare height in the shared desktop cell, so a shorter benefit never leaves an empty band */
 .pm-card__media { position: relative; overflow: hidden; flex: 1 0 auto; aspect-ratio: 16 / 9; background: var(--navy-3); }
 @media (min-width: 600px) { .pm-card__media { aspect-ratio: 5 / 2; } }
-.pm-card__media picture, .pm-card__media img { position: absolute; inset: 0; width: 100%; height: 100%; }
-.pm-card__media img { object-fit: cover; }
+.pm-card__media > .plate { position: absolute; inset: 0; }
+.pm-card__media .plate__chip { --c: clamp(4rem, 15cqw, 6.5rem); }
+.pm-card__media .plate__img { object-fit: cover; }
 .pm-card__media::before { /* scrim under the big numeral */
   content: ""; position: absolute; inset: 45% 0 0; z-index: 1; pointer-events: none; background: linear-gradient(180deg, rgba(8, 16, 32, 0), rgba(8, 16, 32, .6));
 }
-.pm-card__media::after { /* red flag-stripe seam between photo and copy */
+.pm-card__media::after { /* red flag-stripe seam between plate and copy */
   content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 5px; background: repeating-linear-gradient(180deg, var(--red) 0 2px, var(--white) 2px 3px, var(--red) 3px 5px);
 }
 .pm-card__n {
@@ -283,7 +289,7 @@
   display: flex; align-items: center; gap: .5rem 1rem; flex-wrap: wrap; width: 100%; min-height: 3.5rem; padding: 1rem 0 0; border: 0; border-top: 1px solid var(--line-dark-strong);
   background: none; color: var(--white); font: inherit; text-align: left; cursor: pointer;
 }
-.pm-card__next .label-wide { color: var(--on-dark-2); font-size: .6875rem; }
+.pm-card__next .label-wide { color: var(--on-dark-2); font-size: var(--fs-label); }
 .pm-card__next-t { flex: 1 1 12rem; font: 800 1.25rem/1.05 var(--f-display); text-transform: uppercase; letter-spacing: .01em; }
 .pm-card__next .icon { flex: none; color: var(--red-on-dark); transition: transform var(--dur) var(--ease-out); }
 .pm-card__next:hover .icon { transform: translateX(4px); }

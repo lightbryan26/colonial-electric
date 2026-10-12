@@ -49,8 +49,8 @@ export function header(ctx) {
   }).join('');
 
   const mobileItems = mainNav.map(n => n.dropdown
-    ? `<li class="mnav__item"><div class="mnav__row"><a class="mnav__link" href="${ctx.r(n.href)}">${n.label}</a><button class="mnav__toggle" type="button" aria-expanded="false" aria-controls="mnav-services" aria-label="Show services">${icon('chevron-down', { size: 22 })}</button></div>
-        <ul class="mnav__sub" id="mnav-services" role="list" hidden>${services.map(s => `<li><a href="${ctx.r(s.slug + '/')}">${esc(s.nav)}</a></li>`).join('')}</ul></li>`
+    ? `<li class="mnav__item"><div class="mnav__row"><a class="mnav__link" href="${ctx.r(n.href)}"${isCurrent(ctx, n.href) ? ' aria-current="page"' : ''}>${n.label}</a><button class="mnav__toggle" type="button" aria-expanded="false" aria-controls="mnav-services" aria-label="Show services">${icon('chevron-down', { size: 22 })}</button></div>
+        <ul class="mnav__sub" id="mnav-services" role="list" hidden>${services.map(s => `<li><a href="${ctx.r(s.slug + '/')}"${ctx.page.slug === s.slug + '/' ? ' aria-current="page"' : ''}>${esc(s.nav)}</a></li>`).join('')}</ul></li>`
     : `<li class="mnav__item"><a class="mnav__link" href="${ctx.r(n.href)}"${isCurrent(ctx, n.href) ? ' aria-current="page"' : ''}>${n.label}</a></li>`).join('');
 
   return `${financingBar(ctx)}
@@ -74,12 +74,12 @@ export function header(ctx) {
 </header>
 <div class="mnav" id="mnav" role="dialog" aria-modal="true" aria-label="Menu" hidden data-menu>
   <div class="mnav__top container">
-    <a class="brand" href="${ctx.r('')}" aria-label="Colonial Electric — Home"><img src="${ctx.asset('img/logo-badge-250.png')}" width="250" height="150" alt="Colonial Electric"></a>
+    <a class="brand" href="${ctx.r('')}" aria-label="Colonial Electric — Home"><picture><source type="image/webp" srcset="${ctx.asset('img/logo-badge-250.webp')}"><img src="${ctx.asset('img/logo-badge-250.png')}" width="250" height="150" alt="Colonial Electric"></picture></a>
     <button class="mnav__close" type="button" data-menu-close><span class="sr-only">Close menu</span>${icon('close', { size: 28 })}</button>
   </div>
   <nav class="mnav__body container" aria-label="Mobile">
     <ul class="mnav__list" role="list">${mobileItems}
-      <li class="mnav__item"><a class="mnav__link" href="${ctx.r(membershipLink.href)}">${membershipLink.label}</a></li>
+      <li class="mnav__item"><a class="mnav__link" href="${ctx.r(membershipLink.href)}"${ctx.page.slug === membershipLink.href ? ' aria-current="page"' : ''}>${membershipLink.label}</a></li>
     </ul>
     <div class="mnav__foot">
       <a class="btn btn--red btn--block" href="${site.tel}">${icon('phone', { size: 18 })}Call ${site.phone}</a>

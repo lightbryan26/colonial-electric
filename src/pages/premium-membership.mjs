@@ -16,6 +16,7 @@ import { trustStrip } from '../blocks/trust-strip.mjs';
 import { contactCta } from '../blocks/contact-cta.mjs';
 import { icon } from '../partials/icons.mjs';
 import { esc, picture } from '../lib/html.mjs';
+import { plate } from '../blocks/plate.mjs';
 
 const pullQuote = 'Our customers only deserve the best';
 
@@ -35,19 +36,17 @@ const bolt = {
 };
 
 // Node positions are % of the bolt artboard (viewBox 0 0 400 600); lvl = how far the charge fills (0–1).
-// img = the live site's own clean service photo for that benefit (assets/img/home-services/, brief §8).
+// Media = a brand plate per benefit (src/blocks/plate.mjs: crest chip + the benefit glyph on the badge-blue pinstripe).
+// No stock photos (the live ones are framed, brief §8, and none showed its benefit). plate = the photo slot id: a real
+// Colonial photo mapped to it in src/data/service-photos.mjs drops into the same panel.
 const benefits = [
-  { t: 'Front-of-the-Line Pass', ic: 'bolt', x: 59.25, y: 15, lvl: .24,
-    img: ['panel', 684, 428, 'Open residential electrical panel with breakers and wiring', '50% 45%'],
+  { t: 'Front-of-the-Line Pass', ic: 'bolt', plate: 'pm-front-of-the-line', x: 59.25, y: 15, lvl: .24,
     p: 'Electrical issues are a part of the daily life, but with our Exclusive Access Pass, waiting in line becomes a thing of the past. Our “Front of the Line Pass” guarantees immediate attention from our expert technicians for all repairs, services, and upgrades. No more long waits, just efficient solutions tailored to your needs.' },
-  { t: 'After-Hours Emergency Assistance', ic: 'clock', x: 44.5, y: 35, lvl: .43,
-    img: ['lighting', 684, 428, 'Filament bulbs glowing against a dark brick wall', '50% 40%'],
+  { t: 'After-Hours Emergency Assistance', ic: 'clock', plate: 'pm-after-hours', x: 44.5, y: 35, lvl: .43,
     p: 'Our regular business hours is from 8:00 AM to 4:00 PM, but we understand that electrical issues don’t adhere to schedules. That’s why our exclusive all-access pass extends beyond standard hours to provide emergency support when you need it most. With our after-hours assistance, customers can rest assured knowing that help is available even during critical after-hours moments, ensuring peace of mind and timely resolution to any electrical concerns.' },
-  { t: 'Waived Diagnostic & Service Fees', ic: 'shield', x: 57.75, y: 57.5, lvl: .64,
-    img: ['outlets', 637, 398, 'Close-up of a duplex electrical outlet being wired into a wall box', '50% 50%'],
+  { t: 'Waived Diagnostic & Service Fees', ic: 'shield', plate: 'pm-waived-fees', x: 57.75, y: 57.5, lvl: .64,
     p: 'Unlike many electrical companies that charge customers for service estimates, Colonial Electric takes a customer-first approach. With our exclusive all-access pass, there’s no need for concern about additional fees when requesting an electrician to assess your home for electrical issues. We prioritize transparency and customer satisfaction, ensuring that our visit to identify the cause of a problem or provide a price estimate is a complimentary service for our valued members.' },
-  { t: 'Annual Whole Home Electrical Safety Inspections', ic: 'inspect', x: 44, y: 80, lvl: 1,
-    img: ['generator', 684, 428, 'Standby generator installed beside a white clapboard home', '50% 60%'],
+  { t: 'Annual Whole Home Electrical Safety Inspections', ic: 'inspect', plate: 'pm-annual-inspections', x: 44, y: 80, lvl: 1,
     p: 'Regular inspections of a home’s electrical system is crucial for ensuring safety and efficiency. With our exclusive all-access pass, Colonial Electric goes the extra mile by offering comprehensive annual whole-home electrical safety inspections. Say goodbye to the hassle of searching for an electrician to handle these essential check-ups! We’ve got you covered.' },
 ];
 // A verbatim paragraph is set sentence by sentence: still ONE <p>, the sentences in order, joined by the
@@ -89,7 +88,7 @@ function hero(ctx) {
     <figure class="pm-hero__media">
       <div class="pm-hero__frame">${picture(ctx, 'owner-van', { alt: 'Founder Scott Hays standing beside the Colonial Electric service van', sizes: '(min-width: 1440px) 560px, (min-width: 960px) 42vw, 92vw', priority: true })}</div>
       <figcaption class="pm-pass" aria-hidden="true">
-        <span class="pm-pass__top"><img src="${ctx.asset('img/logo-badge-250.png')}" width="250" height="150" alt="" decoding="async"><span class="pm-pass__chip label-wide">Member</span></span>
+        <span class="pm-pass__top"><picture class="pic-contents"><source type="image/webp" srcset="${ctx.asset('img/logo-badge-250.webp')}"><img src="${ctx.asset('img/logo-badge-250.png')}" width="250" height="150" alt="" decoding="async"></picture><span class="pm-pass__chip label-wide">Member</span></span>
         <span class="pm-pass__name">Flash Pass${icon('bolt', { size: 22 })}</span>
         <span class="pm-pass__lic label-wide">${esc(site.license)}</span>
       </figcaption>
@@ -127,7 +126,7 @@ function introSection(ctx) {
 
 // Join panel straight under the hero: the sign-up path (by phone; NO price on this site, brief §7).
 function joinSection(ctx) {
-  return `<section class="pm-join" aria-labelledby="pm-join-h">
+  return `<section class="pm-join" aria-label="Join Flash Pass">
   <div class="container">
     <div class="pm-join__shell"><div class="pm-join__frame"><div class="pm-join__card">
       <div class="pm-join__id">
@@ -149,23 +148,21 @@ function joinSection(ctx) {
 }
 
 function boltSection(ctx) {
-  const IMG = ctx.asset('img/home-services/');
   const tabs = benefits.map((b, i) => `<button class="pm-node" type="button" role="tab" id="pm-tab-${i}" aria-selected="${i === 0}" aria-controls="pm-card-${i}" tabindex="${i === 0 ? 0 : -1}" data-lvl="${b.lvl}" style="--x:${b.x};--y:${b.y}">
           <span class="pm-node__dot" aria-hidden="true">${pad(i + 1)}</span><span class="pm-node__lead" aria-hidden="true"></span><span class="pm-node__t">${esc(b.t)}</span>
         </button>`).join('\n        ');
   const cards = benefits.map((b, i) => {
-    const [key, w, h, alt, pos] = b.img;
     const [lead, ...rest] = sentences(b.p);
     const nxt = (i + 1) % benefits.length;
-    return `<article class="pm-card${i === 0 ? ' is-on' : ''}" id="pm-card-${i}" role="tabpanel" aria-labelledby="pm-tab-${i}" tabindex="0">
-          <div class="pm-card__media"><picture><source type="image/webp" srcset="${IMG}${key}-480.webp 480w, ${IMG}${key}-800.webp ${w}w" sizes="(min-width: 1440px) 44rem, (min-width: 1024px) 56vw, 92vw"><img src="${IMG}${key}-800.jpg" srcset="${IMG}${key}-480.jpg 480w, ${IMG}${key}-800.jpg ${w}w" sizes="(min-width: 1440px) 44rem, (min-width: 1024px) 56vw, 92vw" width="${w}" height="${h}" alt="${esc(alt)}" loading="eager" fetchpriority="low" decoding="sync" style="object-position:${pos}"></picture><span class="pm-card__n" aria-hidden="true">${pad(i + 1)}</span></div>
+    return `<div class="pm-card${i === 0 ? ' is-on' : ''}" id="pm-card-${i}" role="tabpanel" aria-labelledby="pm-tab-${i}" tabindex="0">
+          <div class="pm-card__media">${plate(ctx, { id: b.plate, ic: b.ic, tone: 'blue', sizes: '(min-width: 1440px) 44rem, (min-width: 1024px) 56vw, 92vw', loading: 'eager' })}<span class="pm-card__n" aria-hidden="true">${pad(i + 1)}</span></div>
           <div class="pm-card__body">
             <p class="pm-card__k"><span class="pm-card__ic" aria-hidden="true">${icon(b.ic, { size: 22 })}</span><span class="pm-card__count label-wide" aria-hidden="true">${pad(i + 1)} / ${pad(benefits.length)}</span></p>
             <h3 class="pm-card__h">${esc(b.t)}</h3>
             <p class="pm-card__p"><span class="pm-card__lead">${esc(lead)}</span> ${rest.map(t => `<span class="pm-card__pt"><span class="pm-card__tick" aria-hidden="true">${icon('check', { size: 14 })}</span><span>${esc(t)}</span></span>`).join(' ')}</p>
           </div>
           <div class="pm-card__nav"><button class="pm-card__next" type="button" data-go="${nxt}"><span class="label-wide">${i < benefits.length - 1 ? 'Next benefit' : 'Back to the first'}</span><span class="pm-card__next-t">${esc(benefits[nxt].t)}</span>${icon('arrow-right', { size: 18 })}</button></div>
-        </article>`;
+        </div>`;
   }).join('\n        ');
   return `<section class="pm-bolt on-dark stars-bg" id="pm-benefits" aria-labelledby="pm-bolt-h">
   <div class="container">

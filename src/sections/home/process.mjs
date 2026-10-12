@@ -1,7 +1,8 @@
 // Homepage §4.8 — Process: four booking steps (titles verbatim; service-template bodies verbatim) + the process quote,
-// set against a wide crop of the real Colonial van photo. H2 is the brief's verbatim booking-process heading (brief §8 item 9).
+// set as a typographic navy crest band (star field, ghost bolt). No photo here: the owner-van photo is used once per
+// page and the homepage hero has it. H2 is the brief's verbatim booking-process heading (brief §8 item 9).
 import { processSteps, quote } from '../../data/shared.mjs';
-import { esc, picture, telHref } from '../../lib/html.mjs';
+import { esc, telHref } from '../../lib/html.mjs';
 import { icon } from '../../partials/icons.mjs';
 
 const stepIcons = ['phone', 'quote', 'calendar', 'check'];
@@ -32,10 +33,8 @@ export function render(ctx) {
     <ol class="proc__steps" role="list">${steps}
     </ol>
 
-    <figure class="proc__feature">
-      <div class="proc__photo">
-        ${picture(ctx, 'owner-van', { alt: 'The Colonial Electric van parked on a tree-lined residential street, with founder Scott Hays standing beside it', sizes: '(min-width: 1360px) 1280px, 100vw', imgCls: 'proc__img', loading: 'eager' })}
-      </div>
+    <figure class="proc__feature on-dark stars-bg">
+      <span class="proc__ghost" aria-hidden="true">${icon('bolt', { size: 240 })}</span>
       <blockquote class="proc__quote">
         <span class="proc__mark" aria-hidden="true">“</span>
         <p class="proc__q1">${esc(q1.replace(/^“/, ''))}</p>
@@ -44,7 +43,7 @@ export function render(ctx) {
       </blockquote>
       <div class="proc__cta">
         <a class="btn btn--red btn--lg" href="${telHref}">${icon('phone', { size: 18 })}<span>Call Now</span></a>
-        <p class="proc__lic">Licensed &amp; Insured<span aria-hidden="true">·</span><b>MA Lic# 8720-A1</b></p>
+        <p class="proc__lic"><b>Licensed &amp; Insured</b><span aria-hidden="true">·</span><wbr><b>MA Lic# 8720-A1</b></p>
       </div>
     </figure>
   </div>

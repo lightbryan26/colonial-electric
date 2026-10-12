@@ -37,7 +37,7 @@
   --line-strong: rgba(18, 35, 62, .22);
   --on-dark: #FFFFFF;
   --on-dark-2: rgba(255, 255, 255, .78);  /* ≥ 10:1 on navy-ink */
-  --on-dark-3: rgba(255, 255, 255, .62);
+  --on-dark-3: rgba(255, 255, 255, .7);   /* ≥ 6.3:1 on navy-3, ≥ 8:1 on navy / navy-ink */
   --line-dark: rgba(255, 255, 255, .12);
   --line-dark-strong: rgba(255, 255, 255, .24);
 
@@ -51,10 +51,15 @@
   --fs-h2: clamp(2rem, 1.35rem + 2.6vw, 3.5rem);
   --fs-h3: clamp(1.375rem, 1.2rem + .6vw, 1.75rem);
   --fs-lead: clamp(1.0625rem, 1rem + .3vw, 1.25rem);
-  --fs-body: 1.0625rem;
-  --fs-small: .9375rem;
-  --fs-xs: .8125rem;
-  --fs-eyebrow: .75rem;
+  /* Text floors (integrator pass 1.4). Nothing that carries meaning goes below --fs-label;
+     per-page CSS uses these tokens instead of hard-coded rem values so the floors hold sitewide. */
+  --fs-body: 1.0625rem;   /* 17px: long-form body copy, line-height ~1.6 */
+  --fs-desc: 1rem;        /* 16px: card / benefit / step descriptions (multi-sentence) */
+  --fs-small: .9375rem;   /* 15px: short secondary lines, captions, footer links, form helpers */
+  --fs-meta: .875rem;     /* 14px: sentence-case meta (legal row, licence line); never below this */
+  --fs-xs: .8125rem;      /* 13px: uppercase wide UI type (buttons, links in caps) */
+  --fs-eyebrow: .8125rem; /* 13px: eyebrows */
+  --fs-label: .75rem;     /* 12px floor: uppercase wide labels, chips, counters, index numerals */
 
   /* Space + layout */
   --gutter: clamp(1rem, .4rem + 3vw, 3rem);
@@ -98,6 +103,7 @@ body {
   overflow-x: clip;
 }
 img, picture, svg, video { display: block; max-width: 100%; }
+picture.pic-contents { display: contents; } /* WebP wrapper that leaves the <img> as the layout box */
 img { height: auto; }
 input, button, textarea, select { font: inherit; color: inherit; }
 button { cursor: pointer; background: none; border: 0; padding: 0; }
@@ -146,7 +152,7 @@ main:focus { outline: none; }
 .prose h2 { font: 800 clamp(1.5rem, 1.2rem + 1vw, 2rem)/1.1 var(--f-display); text-transform: uppercase; margin-top: 2em; color: var(--ink); }
 .prose ul { padding-left: 1.2em; }
 .prose a { color: var(--blue-bright); }
-.fineprint { font-size: var(--fs-xs); color: var(--ink-3); line-height: 1.6; margin-top: 2rem; }
+.fineprint { font-size: var(--fs-small); color: var(--ink-3); line-height: 1.6; margin-top: 2rem; }
 
 /* ---------- 4. Layout ---------- */
 .container { width: 100%; max-width: calc(var(--container) + var(--gutter) * 2); margin-inline: auto; padding-inline: var(--gutter); }
@@ -207,7 +213,7 @@ main:focus { outline: none; }
     var(--cut-sm) 0, calc(100% - var(--cut-sm)) 0, 100% var(--cut-sm), 100% calc(100% - var(--cut-sm)), calc(100% - var(--cut-sm)) 100%, var(--cut-sm) 100%, 0 calc(100% - var(--cut-sm)), 0 var(--cut-sm), var(--cut-sm) 0,
     var(--ki) var(--kl), calc(100% - var(--ki)) var(--kl), calc(100% - var(--kl)) var(--ki), calc(100% - var(--kl)) calc(100% - var(--ki)), calc(100% - var(--ki)) calc(100% - var(--kl)), var(--ki) calc(100% - var(--kl)), var(--kl) calc(100% - var(--ki)), var(--kl) var(--ki), var(--ki) var(--kl));
 }
-.btn--sm { min-height: 2.6rem; padding: .6rem 1.1rem; font-size: .6875rem; }
+.btn--sm { min-height: 2.6rem; padding: .6rem 1.1rem; font-size: var(--fs-label); }
 .btn--lg { min-height: 3.6rem; padding: 1rem 1.9rem; }
 .btn--block { width: 100%; }
 .btn-row { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; margin-top: 2rem; }
@@ -278,15 +284,23 @@ main:focus { outline: none; }
 .page-hero__sub { margin-top: 1.25rem; font: 600 var(--fs-lead)/1.4 var(--f-body); color: var(--on-dark-2); max-width: 44ch; }
 .page-hero .lead { margin-top: 1rem; }
 .page-hero .sweep { margin-bottom: -1px; }
-.crumbs ol { display: flex; flex-wrap: wrap; gap: .4rem .6rem; font: 700 .6875rem/1.4 var(--f-wide); font-stretch: 125%; letter-spacing: .1em; text-transform: uppercase; color: var(--on-dark-3); }
+.crumbs ol { display: flex; flex-wrap: wrap; gap: .4rem .6rem; font: 700 var(--fs-label)/1.4 var(--f-wide); font-stretch: 125%; letter-spacing: .1em; text-transform: uppercase; color: var(--on-dark-3); }
 .crumbs li + li::before { content: "›"; margin-right: .6rem; color: var(--red-flag); }
 .on-dark .crumbs li + li::before { color: var(--red-on-dark); }
 .crumbs a { color: var(--on-dark-2); text-decoration: none; }
 .crumbs a:hover { color: var(--white); text-decoration: underline; }
 .crumbs [aria-current] { color: var(--white); }
 
-/* ---------- 9. Reduced motion ---------- */
+/* ---------- 9. Reduced motion · print ---------- */
+/* House rule: content is visible by default. Motion only enhances it: no scroll-driven (animation-timeline) keyframe may
+   start from opacity 0 or a clip that hides text, because a view() timeline leaves off-screen content in its "from"
+   state (full-page captures, print, find-in-page). Scroll-driven reveals here are transform-only. */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; animation-delay: 0s !important; transition-duration: .001ms !important; }
+}
+@media print {
+  /* every animation jumps to its end state on the document timeline (scroll-driven ones included) */
+  *, *::before, *::after { animation-timeline: auto !important; animation-duration: 0s !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition: none !important; }
+  .callbar, .skip-link { display: none !important; }
 }

@@ -1,6 +1,6 @@
 import { site } from '../data/site.mjs';
 import { trustItems } from '../data/shared.mjs';
-import { esc } from '../lib/html.mjs';
+import { esc, claimVan } from '../lib/html.mjs';
 import { icon } from '../partials/icons.mjs';
 // Shared contact form block (brief §4 "Contact form"; option b = front end only, NEVER submits).
 // Behaviour lives in src/js/base.js ([data-cform]): it validates, writes errors into #<field-id>-err,
@@ -8,6 +8,8 @@ import { icon } from '../partials/icons.mjs';
 // the message was NOT sent (brief §4, §10). Class names are cf-* so this block owns its look outright.
 // Everything renders visible by default: no lazy photo, no opacity-gated reveals. The photo decodes
 // synchronously: with decoding="async" Chromium paints it blank in full-page captures taken from the top.
+// The photo is the owner-van crop, shown only when the page has not used the van photo yet (claimVan: once per page);
+// otherwise the aside opens with the crest variant: the real logo lockup on the navy star field.
 let n = 0;
 
 // Trust points above the submit button: verbatim from the brief's shared trust strip (§4).
@@ -27,6 +29,8 @@ export function contactForm(ctx, { id = '', cls = '', heading = 'Contact Us' } =
           </div>`;
 
   const photo = ctx.asset('img/cf-van');
+  const withPhoto = claimVan(ctx);
+  const lockup = ctx.asset('img/logo-lockup');
   const sizes = '(min-width: 1200px) 520px, (min-width: 960px) 40vw, 92vw';
 
   return `<section class="block cf ${cls}"${id ? ` id="${id}"` : ''} aria-labelledby="${u}-h">
@@ -84,13 +88,16 @@ export function contactForm(ctx, { id = '', cls = '', heading = 'Contact Us' } =
     </div>
 
     <aside class="cf__aside" aria-label="Other ways to reach Colonial Electric">
-      <figure class="cf-photo">
+      ${withPhoto ? `<figure class="cf-photo">
         <picture>
           <source type="image/webp" srcset="${photo}-640.webp 640w, ${photo}-1000.webp 1000w" sizes="${sizes}">
           <img src="${photo}-1000.jpg" srcset="${photo}-640.jpg 640w, ${photo}-1000.jpg 1000w" sizes="${sizes}" width="1000" height="900" alt="Scott Hays, founder of Colonial Electric, standing in front of the Colonial Electric van" loading="eager" decoding="sync">
         </picture>
         <figcaption class="cf-photo__cap"><span class="cf-photo__role">Founder</span><span class="cf-photo__name">${esc(site.founder)}</span></figcaption>
-      </figure>
+      </figure>` : `<div class="cf-crest">
+        <picture class="cf-crest__logo"><source type="image/webp" srcset="${lockup}-320.webp 320w, ${lockup}-621.webp 621w" sizes="15rem"><img src="${lockup}-320.png" srcset="${lockup}-320.png 320w, ${lockup}-621.png 621w" sizes="15rem" width="320" height="332" alt="Colonial Electric" loading="lazy" decoding="async"></picture>
+        <span class="cf-crest__rule" aria-hidden="true"></span>
+      </div>`}
 
       <div class="cf-direct">
         <p class="cf-direct__k">Call Us Today!</p>

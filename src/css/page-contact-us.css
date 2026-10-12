@@ -106,9 +106,9 @@
   .cu-hero__frame picture img { animation: cu-zoom 1.6s .15s var(--ease-out) both; }
   .cu-hero__frame::before { animation: cu-fade 1s .6s var(--ease-out) both; }
   .cu-tag { animation: cu-fade .7s .8s var(--ease-out) both; }
-  .cu-dial__ic::after { /* single soft ring, repeats slowly */
+  .cu-dial__ic::after { /* single soft ring, repeats twice (finite: WCAG 2.2.2) */
     content: ""; position: absolute; inset: 0; clip-path: var(--crest); box-shadow: inset 0 0 0 2px var(--red-flag);
-    animation: cu-ring 2.8s 1.4s var(--ease-out) infinite;
+    animation: cu-ring 2.8s 1.4s var(--ease-out) 2;
   }
 }
 @keyframes cu-rise { from { opacity: 0; transform: translateY(.35em); } to { opacity: 1; transform: none; } }
@@ -180,6 +180,7 @@
 /* Phone = the primary card: inverted to navy */
 .cu-card:nth-child(3) { background: var(--navy); color: var(--white); }
 .cu-card:nth-child(3) .cu-card__in { background: var(--navy); }
+.cu-card:nth-child(3) .cu-card__in :focus-visible { outline-color: var(--white); } /* red ring is 2.94:1 on navy */
 .cu-card:nth-child(3) .cu-card__ic { background: var(--red); }
 .cu-card:nth-child(3) .cu-card__n { color: var(--on-dark-3); }
 .cu-card:nth-child(3) .cu-card__v--tel a { color: var(--white); }
@@ -206,7 +207,7 @@
 .cu-form .cf-legend__n { font-size: .75rem; }
 .cu-form .cf-count { font-size: .75rem; }
 .cu-form .cf-consent__h { font-size: .75rem; }
-.cu-form .cf-consent__label { font-size: .875rem; }
+.cu-form .cf-consent__label { font-size: var(--fs-small); }
 .cu-form .cf-trust { font-size: .75rem; letter-spacing: .06em; column-gap: 1.1rem; }
 .cu-form .cf-photo__role, .cu-form .cf-direct__k { font-size: .75rem; }
 .cu-form .cf-fact dt { font-size: .75rem; letter-spacing: .1em; }

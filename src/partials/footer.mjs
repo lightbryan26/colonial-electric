@@ -2,7 +2,7 @@ import { site, usefulLinks, legalLinks } from '../data/site.mjs';
 import { services } from '../data/services.mjs';
 import { towns } from '../data/towns.mjs';
 import { icon } from './icons.mjs';
-import { esc } from '../lib/html.mjs';
+import { esc, escLic } from '../lib/html.mjs';
 
 // Site footer (brief §2 footer). Every string comes from src/data; no invented claims.
 export function footer(ctx) {
@@ -48,7 +48,7 @@ export function footer(ctx) {
       <p class="site-footer__blurb">${esc(site.aboutBlurb)}</p>
       <p class="site-footer__lic">
         <span class="site-footer__lic-ico" aria-hidden="true">${icon('shield', { size: 20 })}</span>
-        <span>${esc(site.licenseLine)}</span>
+        <span>${escLic(site.licenseLine)}</span>
       </p>
     </div>
     <nav class="site-footer__col" aria-label="Useful links">

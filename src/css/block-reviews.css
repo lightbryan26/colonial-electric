@@ -52,13 +52,13 @@
 .rv-stars .icon { display: block; }
 .rv-src {
   display: inline-flex; align-items: center; gap: .45rem;
-  font: 700 .625rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase;
+  font: 700 var(--fs-label)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase;
   color: var(--ink-3);
 }
 .rv-src__g {
   display: grid; place-items: center; width: 1.25rem; height: 1.25rem; border-radius: 50%;
   border: 1.5px solid currentColor;
-  font: 800 .625rem/1 var(--f-body); letter-spacing: 0;
+  font: 800 var(--fs-label)/1 var(--f-body); letter-spacing: 0;
 }
 .rv-mark {
   color: inherit;

@@ -15,7 +15,7 @@ function answer(a) {
   return a.map(b => {
     if (typeof b === 'string') return `<p>${esc(b)}</p>`;
     if (b.list) return `<ol class="hfaq__steps">${b.list.map((i, n) => `<li><span class="hfaq__step-n" aria-hidden="true">${pad(n + 1)}</span><p>${i.term ? `<strong>${esc(i.term)}:</strong> ` : ''}${esc(i.text ?? i)}</p></li>`).join('')}</ol>`;
-    return `<div class="hfaq__term"><h4 class="hfaq__term-h">${bolt}${esc(b.term)}</h4><p>${esc(b.text)}</p></div>`;
+    return `<div class="hfaq__term"><h3 class="hfaq__term-h">${bolt}${esc(b.term)}</h3><p>${esc(b.text)}</p></div>`;
   }).join('');
 }
 

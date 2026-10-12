@@ -4,7 +4,7 @@ import { servicesGrid } from '../blocks/services-grid.mjs';
 import { reviews } from '../blocks/reviews.mjs';
 import { contactCta } from '../blocks/contact-cta.mjs';
 import { icon } from '../partials/icons.mjs';
-import { esc, picture } from '../lib/html.mjs';
+import { esc, picture, images, escLic } from '../lib/html.mjs';
 
 // /service-area/ index (brief §6): hero · town grid (+ schematic South Shore map) · services · reviews · CTA.
 // Copy is verbatim (brief §6 + src/data). The map plots each town centre at its real lat/long; no coastline,
@@ -41,9 +41,9 @@ function heroMap(ctx) {
   // graticule ticks — a quiet survey grid behind the plot
   const grid = [];
   for (let gx = 40; gx < W; gx += 40) for (let gy = 40; gy < H; gy += 40) grid.push(`M${gx - 3} ${gy}h6M${gx} ${gy - 3}v6`);
+  // Decorative (aria-hidden): the town grid below lists every link, so the map's mouse-only links (tabindex=-1) stay out of AT and the tab order.
   return `<div class="sa-map" data-sa-map>
-    <svg class="sa-map__svg" viewBox="0 0 ${W} ${H}" role="img" aria-labelledby="sa-map-t">
-      <title id="sa-map-t">Schematic map of the 21 South Shore towns Colonial Electric serves, centred on Weymouth</title>
+    <svg class="sa-map__svg" viewBox="0 0 ${W} ${H}" aria-hidden="true" focusable="false">
       <path class="sa-map__grid" d="${grid.join('')}"/>
       <g class="sa-map__wires">${pts.filter(p => p.t.slug !== HQ).map(({ xy: [x, y], i }) => {
         const mx = (hx + x) / 2, my = (hy + y) / 2 - Math.hypot(x - hx, y - hy) * .12;
@@ -90,13 +90,13 @@ function townGrid(ctx) {
         <p class="eyebrow">Weymouth &amp; the South Shore</p>
         <h2 class="sa-towns__h" id="sa-towns-h">Towns We Serve</h2>
       </div>
-      <p class="sa-towns__aside">${esc(site.licenseLine)}</p>
+      <p class="sa-towns__aside">${escLic(site.licenseLine)}</p>
     </header>
     <ol class="sa-grid" role="list">
       ${towns.map((t, i) => {
-        const s = t.topSites[0];
+        const s = t.topSites[t.lead ?? 0];
         return `<li class="sa-card${t.slug === HQ ? ' is-hq' : ''}" style="--i:${i}">
-        <a class="sa-card__link" href="${ctx.r('service-area/' + t.slug + '/')}" data-town="${t.slug}" data-img="${ctx.asset('img/' + s.img + '-400.webp')}" data-site="${esc(s.name)}">
+        <a class="sa-card__link" href="${ctx.r('service-area/' + t.slug + '/')}" data-town="${t.slug}" data-img="${ctx.asset('img/' + s.img + '-' + images[s.img].widths[0] + '.webp')}" data-site="${esc(s.name)}">
           <span class="sa-card__img">${picture(ctx, s.img, { alt: '', sizes: '(min-width: 1200px) 180px, (min-width: 640px) 31vw, 46vw' })}</span>
           <span class="sa-card__n" aria-hidden="true">${pad(i + 1)}</span>
           ${icon('arrow-up-right', { size: 18, cls: 'sa-card__go' })}

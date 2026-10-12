@@ -111,12 +111,12 @@
 }
 .hero__call:hover .hero__call-ic { background: var(--red); }
 .hero__call-txt { display: flex; flex-direction: column; gap: .4rem; }
-.hero__call-label { font: 700 .625rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; color: var(--on-dark-3); }
+.hero__call-label { font: 700 var(--fs-label)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; color: var(--on-dark-3); }
 .hero__call-num { font: 700 clamp(1.2rem, 1.1rem + .4vw, 1.4rem)/1 var(--f-wide); font-stretch: 125%; letter-spacing: var(--tel-track); }
 .hero__call:hover .hero__call-num { text-decoration: underline; text-decoration-color: var(--red-flag); text-decoration-thickness: 2px; text-underline-offset: .25em; }
-.hero__lic { display: flex; align-items: center; gap: .65rem; font-size: var(--fs-xs); line-height: 1.35; color: var(--on-dark-3); }
+.hero__lic { display: flex; align-items: center; gap: .65rem; font-size: var(--fs-meta); line-height: 1.35; color: var(--on-dark-3); }
 .hero__lic .icon { color: var(--red-flag); flex: none; }
-.hero__lic strong { color: var(--white); font: 700 .75rem/1.5 var(--f-wide); font-stretch: 125%; letter-spacing: .06em; }
+.hero__lic strong { color: var(--white); font: 700 var(--fs-xs)/1.5 var(--f-wide); font-stretch: 125%; letter-spacing: .06em; }
 @media (min-width: 1200px) { .hero__meta { padding-left: 0; } .hero__lic { padding-left: 2rem; border-left: 1px solid var(--line-dark); } }
 
 /* ---------- media: diagonal photo with the sweep ---------- */
@@ -160,7 +160,7 @@
 .hero__cap-mark img { display: block; width: 100%; height: auto; }
 .hero__cap-txt { display: flex; flex-direction: column; gap: .3rem; }
 .hero__cap-name { font: 800 1.25rem/1 var(--f-display); text-transform: uppercase; letter-spacing: .01em; }
-.hero__cap-role { font: 700 .5625rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+.hero__cap-role { font: 700 var(--fs-label)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
 /* tablet: the card signs the open lawn on the left, clear of Scott */
 @media (min-width: 640px) and (max-width: 1199px) {
   .hero__cap { right: auto; left: var(--gutter); }
@@ -169,10 +169,10 @@
   .hero__cap { right: auto; left: calc(var(--sw-red) + var(--sw-white) + 2.5rem); bottom: 2.5rem; padding: .75rem 1.4rem .75rem .75rem; }
   .hero__cap-mark { width: 7.5rem; }
   .hero__cap-name { font-size: 1.5rem; }
-  .hero__cap-role { font-size: .625rem; }
+  .hero__cap-role { font-size: var(--fs-label); }
 }
 @media (max-width: 639px) {
-  .hero__eyebrow { font-size: .625rem; letter-spacing: .1em; gap: .6rem; }
+  .hero__eyebrow { font-size: var(--fs-label); letter-spacing: .04em; gap: .6rem; text-wrap: balance; } /* 12px floor; tighter tracking keeps the line whole at 375 */
   .hero__eyebrow { flex-direction: column; align-items: flex-start; gap: .55rem; }
   .hero__eyebrow > span:last-child { padding-left: 0; border-left: 0; }
   .hero__ctas .btn { flex: 1 1 100%; }
@@ -180,7 +180,7 @@
   .hero__copy { padding-top: 4.5rem; }
   .hero__cap-mark { width: 4.75rem; }
   .hero__cap-name { font-size: 1.05rem; }
-  .hero__cap-role { font-size: .5rem; }
+  .hero__cap-role { font-size: var(--fs-label); letter-spacing: .06em; line-height: 1.25; }
 }
 
 /* ---------- entrance choreography ---------- */

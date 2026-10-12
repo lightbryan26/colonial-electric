@@ -13,7 +13,7 @@ import { townList } from './town-list.mjs';
 const PICK = {
   'hanover-ma': 2, 'milton-ma': 2, 'norwell-ma': 1, 'randolph-ma': 2, 'scituate-ma': 1, 'whitman-ma': 2,
   'pembroke-ma': 1, 'weymouth-ma': 0, 'abington-ma': 0, 'braintree-ma': 3, 'hingham-ma': 0, 'quincy-ma': 1,
-  'rockland-ma': 2, 'hull-ma': 2, 'plymouth-ma': 2, 'holbrook-ma': 3, 'marshfield-ma': 2, 'hanson-ma': 2,
+  'rockland-ma': 2, 'hull-ma': 2, 'plymouth-ma': 2, 'holbrook-ma': 3, 'marshfield-ma': 3, 'hanson-ma': 2,
   'canton-ma': 1, 'carver-ma': 1, 'cohasset-ma': 2,
 };
 const HOME_TOWN = 'weymouth-ma';

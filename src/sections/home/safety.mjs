@@ -40,7 +40,7 @@ export function render(ctx) {
       <div class="safety__call-in">
         <div class="safety__call-top">
           <p class="safety__call-line">${esc(safety.callBox.line)}</p>
-          <img class="safety__call-mark" src="${ctx.asset('img/emblem-256.png')}" width="256" height="256" alt="" loading="lazy" decoding="async">
+          <picture class="pic-contents"><source type="image/webp" srcset="${ctx.asset('img/emblem-256.webp')}"><img class="safety__call-mark" src="${ctx.asset('img/emblem-256.png')}" width="256" height="256" alt="" loading="lazy" decoding="async"></picture>
         </div>
         <a class="safety__tel" href="${site.tel}"><span class="safety__tel-ico">${icon('phone', { size: 22 })}</span><span class="safety__tel-num">${esc(site.phone)}</span></a>
         <a class="btn btn--red btn--lg safety__cta" href="#s-contact-form">${esc(safety.callBox.cta)}${icon('arrow-right', { size: 18 })}</a>
@@ -63,7 +63,7 @@ function seal(ctx) {
           <polygon points="${oct}" class="safety__seal-key" transform="translate(120 120) scale(.93) translate(-120 -120)"/>
           <g class="safety__seal-ring">${starRing({ href: 'safety-ring', cx: 120, cy: 120, r: 93, length: 580, phrases: [safety.eyebrow.toUpperCase()], size: 5.2, lift: 5.6 })}</g>
           <circle cx="120" cy="120" r="74" class="safety__seal-disc"/>
-          <image href="${ctx.asset('img/emblem-256.png')}" x="66" y="66" width="108" height="108"/>
+          <image href="${ctx.asset('img/emblem-256.webp')}" x="66" y="66" width="108" height="108"/>
         </svg>
       </div>`;
 }

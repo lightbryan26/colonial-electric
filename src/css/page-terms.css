@@ -17,9 +17,11 @@
 }
 .lg-switch a:hover { color: var(--white); background: rgba(255,255,255,.08); }
 .lg-switch a[aria-current] { background: var(--white); color: var(--navy); }
+.lg-switch a:focus-visible { outline-offset: -4px; } /* inset ring survives the parent and own crest */
+.lg-switch a[aria-current]:focus-visible { outline-color: var(--navy); }
 @media (max-width: 559px) {
   .lg-switch { display: grid; grid-template-columns: 1fr 1fr; width: 100%; }
-  .lg-switch a { justify-content: center; text-align: center; padding: .7rem .5rem; font-size: .625rem; letter-spacing: .06em; line-height: 1.25; }
+  .lg-switch a { justify-content: center; text-align: center; padding: .7rem .5rem; font-size: var(--fs-label); letter-spacing: .06em; line-height: 1.25; }
 }
 
 /* Seal: real emblem in a white crest with navy keyline (badge motif) */
@@ -29,11 +31,11 @@
 .lg-seal__crest > picture::before { content: none; }
 .lg-seal__crest img { --cut: 22px; width: 100%; height: 100%; object-fit: contain; padding: 1.1rem; background: var(--white); clip-path: var(--crest); }
 .lg-seal__name { margin-top: 1.1rem; font: 900 1.6rem/1 var(--f-display); text-transform: uppercase; letter-spacing: .02em; }
-.lg-seal__lic { margin-top: .45rem; font: 700 .6875rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--on-dark-3); }
+.lg-seal__lic { margin-top: .45rem; font: 700 var(--fs-label)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--on-dark-3); }
 
 .lg-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); margin-top: clamp(2.5rem, 1.5rem + 3vw, 4rem); border-top: 1px solid var(--line-dark-strong); }
 .lg-meta > div { padding: 1.1rem 0 1.4rem; border-bottom: 1px solid var(--line-dark); }
-.lg-meta dt { font: 700 .6875rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--on-dark-3); }
+.lg-meta dt { font: 700 var(--fs-label)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--on-dark-3); }
 .lg-meta dd { margin: .55rem 0 0; font: 600 1.0625rem/1.3 var(--f-body); color: var(--white); overflow-wrap: anywhere; }
 .lg-meta dd a { color: inherit; text-decoration: none; background: linear-gradient(var(--red), var(--red)) 0 100% / 0 2px no-repeat; transition: background-size var(--dur) var(--ease-out); }
 .lg-meta dd a:hover { background-size: 100% 2px; }
@@ -84,7 +86,7 @@
 .lg-ask__text { margin-top: 1.25rem; }
 .lg-ask__k { font: 700 .75rem/1.3 var(--f-wide); font-stretch: 125%; letter-spacing: .12em; text-transform: uppercase; color: var(--red); }
 .lg-ask__name { display: flex; align-items: baseline; flex-wrap: wrap; gap: .25rem .6rem; margin-top: .55rem; font: 900 1.85rem/1 var(--f-display); text-transform: uppercase; color: var(--navy); }
-.lg-ask__name span { font: 700 .6875rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; color: var(--ink-3); }
+.lg-ask__name span { font: 700 var(--fs-label)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; color: var(--ink-3); }
 .lg-ask .lg-ask__links { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: .1rem; }
 .lg-ask__links a { display: flex; align-items: center; gap: .6rem; min-height: 2.75rem; font: 600 1rem/1.25 var(--f-body); color: var(--ink); text-decoration: none; overflow-wrap: anywhere; }
 .lg-ask__links a .icon { flex: none; color: var(--red); }
@@ -110,8 +112,8 @@
 /* Rail call card (desktop, sticky under the contents): navy crest, flag rule, phone + Request Service */
 .lg-rcta { --cut: 14px; flex: none; position: relative; display: grid; gap: .85rem; padding: 1.4rem 1.35rem 1.35rem; background: var(--navy-ink); clip-path: var(--crest); }
 .lg-rcta::before { content: ""; position: absolute; inset: 0 0 auto; height: 4px; background: linear-gradient(90deg, var(--red) 0 62%, var(--white) 62% 66%, var(--blue) 66%); }
-.lg-rcta__k { font: 700 .6875rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; color: var(--on-dark-2); }
-.lg-rcta__tel { display: inline-flex; align-items: center; gap: .55rem; justify-self: start; min-height: 2.75rem; font: 700 1.375rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: var(--tel-track); white-space: nowrap; color: var(--white); text-decoration: none; }
+.lg-rcta__k { font: 700 var(--fs-label)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; color: var(--on-dark-2); }
+.lg-rcta__tel { display: inline-flex; align-items: center; gap: .55rem; justify-self: start; min-height: 2.75rem; font: 700 1.25rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: var(--tel-track); white-space: nowrap; color: var(--white); text-decoration: none; }
 .lg-rcta__tel .icon { flex: none; color: var(--red-flag); }
 .lg-rcta__tel span { background: linear-gradient(var(--red), var(--red)) 0 100% / 0 2px no-repeat; padding-bottom: .15rem; transition: background-size var(--dur) var(--ease-out); }
 .lg-rcta__tel:hover span { background-size: 100% 2px; }
@@ -124,6 +126,7 @@
 .lg-mtoc { border: 1px solid var(--line-strong); background: var(--paper); clip-path: var(--crest); }
 .lg-mtoc summary { display: flex; align-items: center; gap: .75rem; padding: 1rem 1.15rem; cursor: pointer; list-style: none; min-height: 3.25rem; }
 .lg-mtoc summary::-webkit-details-marker { display: none; }
+.lg-mtoc > summary:focus-visible { outline-offset: -4px; }
 .lg-mtoc summary .label-wide { color: var(--navy); }
 .lg-mtoc__count { margin-left: auto; font-size: var(--fs-xs); color: var(--ink-3); }
 .lg-mtoc summary .icon { color: var(--red); transition: transform var(--dur) var(--ease-out); }
@@ -200,6 +203,7 @@
 .lg-next__t { grid-column: 1; font: 900 clamp(1.6rem, 1.2rem + 1.4vw, 2.4rem)/1 var(--f-display); text-transform: uppercase; }
 .lg-next__arrow { grid-column: 2; grid-row: 1 / span 2; display: grid; place-items: center; width: 3.25rem; height: 3.25rem; background: var(--red); clip-path: var(--crest); --cut: 8px; transition: transform var(--dur) var(--ease-out); }
 .lg-next:hover { background: var(--navy); }
+.lg-next:focus-visible { clip-path: none; }
 .lg-next:hover .lg-next__arrow { transform: translateX(4px); }
 .lg-top { font: 700 var(--fs-xs)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); text-decoration: none; padding: .75rem 0; }
 .lg-top:hover { color: var(--red); }
@@ -219,7 +223,7 @@
 .lg-cta__lead { margin-top: 1.25rem; max-width: 50ch; font-size: var(--fs-lead); line-height: 1.6; color: var(--on-dark-2); text-wrap: pretty; }
 .lg-cta__actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
 .lg-cta__tel { display: inline-grid; gap: .4rem; margin-top: 1.75rem; color: var(--white); text-decoration: none; }
-.lg-cta__tel-k { font: 700 .6875rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; color: var(--on-dark-3); }
+.lg-cta__tel-k { font: 700 var(--fs-label)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; color: var(--on-dark-3); }
 .lg-cta__tel-n { font: 700 clamp(1.6rem, 1.2rem + 1.4vw, 2.35rem)/1 var(--f-wide); font-stretch: 125%; letter-spacing: var(--tel-track-lg); white-space: nowrap; background: linear-gradient(var(--red), var(--red)) 0 100% / 0 3px no-repeat; padding-bottom: .2rem; transition: background-size var(--dur) var(--ease-out); }
 .lg-cta__tel:hover .lg-cta__tel-n { background-size: 100% 3px; }
 .lg-cta .lg-cta__meta { display: flex; flex-wrap: wrap; gap: .75rem 1.75rem; margin: 1.75rem 0 0; padding: 1.25rem 0 0; list-style: none; border-top: 1px solid var(--line-dark); }
@@ -254,7 +258,7 @@
 .nf__bolt .icon { width: 100%; height: auto; filter: drop-shadow(0 0 28px rgba(191,27,44,.55)); }
 @media (min-width: 960px) { .nf__grid { grid-template-columns: 1.05fr 1fr; } }
 @media (prefers-reduced-motion: no-preference) {
-  .nf__bolt .icon { animation: nf-flicker 4.5s steps(1, end) infinite; }
+  .nf__bolt .icon { animation: nf-flicker 4.5s steps(1, end) 2; } /* finite: WCAG 2.2.2 */
 }
 @keyframes nf-flicker { 0%, 100% { opacity: 1; } 91% { opacity: 1; } 92% { opacity: .25; } 93% { opacity: 1; } 95% { opacity: .4; } 96% { opacity: 1; } }
 

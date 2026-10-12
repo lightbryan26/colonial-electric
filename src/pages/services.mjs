@@ -16,6 +16,7 @@ import { contactForm } from '../blocks/contact-form.mjs';
 import { faqJsonLd } from '../blocks/faqs.mjs';
 import { icon } from '../partials/icons.mjs';
 import { esc, picture } from '../lib/html.mjs';
+import { plate } from '../blocks/plate.mjs';
 
 const pad = n => String(n).padStart(2, '0');
 
@@ -38,19 +39,19 @@ const residential = {
 // Each category is the verbatim services.md copy, set for scanning without changing a word or its order:
 // lead = the opening sentence; intro + items = the next sentence, broken at its own commas into a run-in list
 // (or, for Installation, its three service sentences); note = the closing paragraph.
-// photo = the live site's own clean service photo (assets/img/home-services/, brief §8); w = its real pixel width.
+// Media = a brand plate (src/blocks/plate.mjs): crest chip + the category glyph on the badge-blue pinstripe. The live
+// site's service photos are framed stock (brief §8), so none is used; a real Colonial job photo mapped to the plate id
+// in src/data/service-photos.mjs drops into the same frame.
 const categories = [
   {
-    h2: 'Electrical Repairs', ic: 'inspect',
-    photo: { key: 'inspect', w: 440, h: 275, alt: 'Electrician testing a wall control during an electrical inspection' },
+    h2: 'Electrical Repairs', ic: 'inspect', plate: 'services-electrical-repairs',
     lead: 'Electrical repairs involve fixing any issues or malfunctions within an existing electrical system.',
     intro: 'This could include',
     items: ['repairing faulty wiring,', 'addressing power outages,', 'replacing damaged outlets or switches,', 'troubleshooting circuit breakers,', 'or fixing any other electrical components that are not functioning correctly.'],
     note: 'An [[Electrical Inspection|electrical-inspections/]] is often necessary to identify these issues and ensure that all repairs are addressed properly.',
   },
   {
-    h2: 'Electrical Installation', ic: 'ev',
-    photo: { key: 'fan', w: 440, h: 275, alt: 'Electrician on a ladder installing a ceiling fan' },
+    h2: 'Electrical Installation', ic: 'ev', plate: 'services-electrical-installation',
     lead: 'Our Electrical installation services cover a wide range of needs to ensure your home is fully equipped with the latest electrical solutions.',
     items: [
       'We specialize in [[EV Charger Installation|ev-charger-installation/]], providing you with the convenience and efficiency of charging your electric vehicle at home.',
@@ -59,8 +60,7 @@ const categories = [
     ],
   },
   {
-    h2: 'Electrical Upgrades', ic: 'panel',
-    photo: { key: 'panel', w: 684, h: 428, alt: 'Open residential electrical panel with breakers and wiring' },
+    h2: 'Electrical Upgrades', ic: 'panel', plate: 'services-electrical-upgrades',
     lead: 'Electrical upgrades involve enhancing or modernizing an existing electrical system to improve its performance, efficiency, or safety.',
     intro: 'This could include',
     items: [
@@ -112,7 +112,7 @@ function hero(ctx) {
       <h2 class="sv-hero__h2">For a Job Done Right, Call <em>Colonial!</em></h2>
     </div>
     <figure class="sv-hero__media">
-      <div class="sv-hero__frame">${picture(ctx, 'owner-van', { alt: 'Scott Hays, founder of Colonial Electric, standing beside the wrapped Colonial Electric service van outside a South Shore home', sizes, priority: true })}</div>
+      <div class="sv-hero__frame">${picture(ctx, 'owner-van', { alt: 'Scott Hays, founder of Colonial Electric, standing beside the wrapped Colonial Electric service van', sizes, priority: true })}</div>
       <figcaption class="sv-hero__cap">
         <span class="sv-hero__cap-k">${boltSvg('sv-hero__cap-b')}Colonial Electric · Weymouth, MA</span>
         <span class="sv-hero__cap-n">Scott Hays, Founder</span>
@@ -158,13 +158,6 @@ function residentialBlock(ctx) {
 </section>`;
 }
 
-function catPhoto(ctx, p) {
-  const b = ctx.asset('img/home-services/' + p.key);
-  const sizes = '(min-width: 1024px) 28rem, (min-width: 640px) 17rem, 92vw';
-  const set = ext => p.w > 480 ? `${b}-480.${ext} 480w, ${b}-800.${ext} ${p.w}w` : `${b}-480.${ext} ${p.w}w`;
-  return `<picture><source type="image/webp" srcset="${set('webp')}" sizes="${sizes}"><img src="${b}-480.jpg" srcset="${set('jpg')}" sizes="${sizes}" width="${p.w}" height="${p.h}" alt="${esc(p.alt)}" loading="lazy" decoding="async"></picture>`;
-}
-
 function categoriesBlock(ctx) {
   return `<section class="sv-cats on-dark stars-bg" aria-label="Electrical repairs, installation and upgrades">
   <div class="container">
@@ -174,7 +167,7 @@ function categoriesBlock(ctx) {
         const id = 'sv-cat-' + (i + 1);
         return `<li class="sv-cat${i % 2 ? ' sv-cat--flip' : ''}" aria-labelledby="${id}">
         <figure class="sv-cat__fig">
-          <div class="sv-cat__ph">${catPhoto(ctx, c.photo)}</div>
+          <div class="sv-cat__ph">${plate(ctx, { id: c.plate, ic: c.ic, tone: 'blue', sizes: '(min-width: 1024px) 28rem, (min-width: 640px) 17rem, 92vw' })}</div>
           <span class="sv-cat__n" aria-hidden="true">${pad(i + 1)}</span>
         </figure>
         <div class="sv-cat__head">
@@ -266,7 +259,7 @@ function faqBlock(ctx) {
   ctx.jsonld = [...(ctx.jsonld || []), faqJsonLd(faqItems)];
   const ans = a => a.map(b => typeof b === 'string' ? `<p>${esc(b)}</p>`
     : b.list ? `<ul class="sv-faq__ul">${b.list.map(x => `<li>${boltSvg('sv-faq__b')}<span>${esc(x)}</span></li>`).join('')}</ul>`
-    : `<div class="sv-faq__term"><h4>${esc(b.term)}</h4><p>${esc(b.text)}</p></div>`).join('');
+    : `<div class="sv-faq__term"><h3>${esc(b.term)}</h3><p>${esc(b.text)}</p></div>`).join('');
   return `<section class="block sv-faq" aria-labelledby="sv-faq-h">
   <div class="container sv-faq__grid">
     <header class="sv-faq__head">

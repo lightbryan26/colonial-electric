@@ -1,16 +1,8 @@
 // Homepage §4.11 — Flash Pass membership teaser. NO price anywhere.
 // Copy: eyebrow / H2 / body / CTA from data/home.mjs (verbatim live copy).
-// Perk phrases: quoted exactly from source/pages/premium-membership.md (lines 22, 24, 14, 28).
 import { membership as m } from '../../data/home.mjs';
 import { icon } from '../../partials/icons.mjs';
 import { esc } from '../../lib/html.mjs';
-
-const perks = [
-  'Front of the Line Pass',
-  'after-hours assistance',
-  'waived diagnostic fees',
-  'annual whole-home electrical safety inspections',
-];
 
 // Split the H2 so the last two words carry the accent ("Access Pass").
 function headline(t) {
@@ -45,9 +37,6 @@ export function render(ctx) {
             <span class="mship__name-v">Flash Pass${icon('bolt', { size: 40, cls: 'mship__name-bolt' })}</span>
           </span>
           <span class="mship__rule" aria-hidden="true"></span>
-          <span class="mship__perks" role="list">
-            ${perks.map((p, i) => `<span class="mship__perk" role="listitem"><span class="mship__perk-n" aria-hidden="true">0${i + 1}</span><span>${esc(p)}</span></span>`).join('\n            ')}
-          </span>
           <span class="mship__card-foot">
             <span class="label-wide">Colonial Electric</span>
             <span class="mship__go" aria-hidden="true">${icon('arrow-up-right', { size: 20 })}</span>

@@ -8,7 +8,8 @@
    ===================================================================== */
 
 .cf {
-  --cf-field: #D6DAE1;
+  --cf-field: #D6DAE1;   /* decorative rules and the consent box */
+  --cf-edge: #858FA3;    /* input boundary: 3.25:1 on white (WCAG 1.4.11 needs 3:1) */
   --cf-red: var(--red);
   background: var(--white); overflow: clip;
   padding-block: clamp(5.5rem, 4rem + 3vw, 6.5rem) clamp(4rem, 3rem + 2vw, 5rem);
@@ -38,12 +39,12 @@
 .cf-set { margin: 0; padding: 0; border: 0; min-width: 0; }
 .cf-legend {
   display: flex; align-items: center; gap: .8rem; width: 100%; padding: 0 0 .9rem;
-  font: 700 .75rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--navy);
+  font: 700 var(--fs-xs)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--navy);
 }
 .cf-legend::after { content: ""; flex: 1; height: 1px; background: var(--cf-field); }
 .cf-legend__n {
   display: inline-grid; place-items: center; width: 2rem; height: 1.5rem;
-  background: var(--navy); color: var(--white); font-size: .6875rem; letter-spacing: .06em;
+  background: var(--navy); color: var(--white); font-size: var(--fs-label); letter-spacing: .06em;
   clip-path: polygon(5px 0, calc(100% - 5px) 0, 100% 5px, 100% calc(100% - 5px), calc(100% - 5px) 100%, 5px 100%, 0 calc(100% - 5px), 0 5px);
 }
 .cf-grid { display: grid; gap: 1rem 1rem; }
@@ -61,7 +62,7 @@
 .cf-labelrow { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
 .cf-label {
   display: block; margin-bottom: .75rem; /* 12px label → field */
-  font: 700 .6875rem/1.2 var(--f-wide); font-stretch: 125%; letter-spacing: .12em; text-transform: uppercase;
+  font: 700 var(--fs-xs)/1.2 var(--f-wide); font-stretch: 125%; letter-spacing: .1em; text-transform: uppercase;
   color: var(--ink-2); transition: color var(--dur) var(--ease-out);
 }
 .cf-field:focus-within .cf-label { color: var(--navy); }
@@ -69,13 +70,13 @@
 .cf-input {
   display: block; width: 100%; height: 3rem; padding: 0 .95rem;
   font: 500 1rem/1.4 var(--f-body); color: var(--ink);
-  background: var(--white); border: 1px solid var(--cf-field); border-radius: 4px;
+  background: var(--white); border: 1px solid var(--cf-edge); border-radius: 4px;
   -webkit-appearance: none; appearance: none;
   box-shadow: inset 0 1px 2px rgba(18, 35, 62, .04);
   transition: border-color var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out), background-color var(--dur) var(--ease-out);
 }
 .cf-input--area { height: auto; min-height: 7.25rem; padding-block: .8rem; resize: vertical; }
-.cf-input:hover { border-color: #AEB5C2; }
+.cf-input:hover { border-color: #6B768C; }
 .cf-input:focus, .cf-input:focus-visible {
   outline: none; border-color: var(--cf-red);
   box-shadow: 0 0 0 3px rgba(191, 27, 44, .16);
@@ -83,11 +84,11 @@
 .cf-input[aria-invalid="true"] { border-color: var(--cf-red); background: #FFF7F7; }
 .cf-input[aria-invalid="true"]:focus { box-shadow: 0 0 0 3px rgba(191, 27, 44, .22); }
 .cf-field:has([aria-invalid="true"]) .cf-label { color: var(--red-deep); }
-.cf-input[aria-invalid="false"] { border-color: #9AA6BA; }
+.cf-input[aria-invalid="false"] { border-color: var(--ink-3); }
 
 .cf-err {
   display: flex; align-items: flex-start; gap: .45rem; margin-top: .45rem;
-  font: 600 var(--fs-xs)/1.4 var(--f-body); color: var(--red-deep);
+  font: 600 var(--fs-meta)/1.4 var(--f-body); color: var(--red-deep);
 }
 .cf-err::before { /* bolt glyph */
   content: ""; flex: none; width: .85rem; height: .85rem; margin-top: .15rem; background: currentColor;
@@ -97,7 +98,7 @@
 .cf-err:empty { display: none; }
 .cf-count {
   margin: 0; flex: none;
-  font: 700 .6875rem/1.2 var(--f-wide); font-stretch: 125%; letter-spacing: .08em; color: var(--ink-3);
+  font: 700 var(--fs-label)/1.2 var(--f-wide); font-stretch: 125%; letter-spacing: .08em; color: var(--ink-3);
   font-variant-numeric: tabular-nums;
 }
 
@@ -125,10 +126,10 @@
 .cf-check:focus-visible { outline: 3px solid rgba(191, 27, 44, .35); outline-offset: 2px; border-color: var(--cf-red); }
 .cf-check[aria-invalid="true"] { border-color: var(--cf-red); background: #FFF7F7; }
 .cf-consent:has(.cf-check[aria-invalid="true"]) { border-left-color: var(--cf-red); }
-.cf-consent__label { cursor: pointer; font: 400 .8125rem/1.55 var(--f-body); color: var(--ink-2); text-wrap: pretty; }
+.cf-consent__label { cursor: pointer; font: 400 var(--fs-small)/1.55 var(--f-body); color: var(--ink-2); text-wrap: pretty; }
 .cf-consent__h {
   display: block; margin-bottom: .3rem;
-  font: 700 .6875rem/1.2 var(--f-wide); font-stretch: 125%; letter-spacing: .12em; text-transform: uppercase; color: var(--navy);
+  font: 700 var(--fs-label)/1.2 var(--f-wide); font-stretch: 125%; letter-spacing: .12em; text-transform: uppercase; color: var(--navy);
 }
 .cf-consent .cf-err { grid-column: 2; margin-top: 0; }
 
@@ -137,7 +138,7 @@
 .cf-trust {
   list-style: none; margin: 0; padding: 0;
   display: flex; flex-wrap: wrap; gap: .5rem 1.4rem;
-  font: 700 .6875rem/1.2 var(--f-wide); font-stretch: 125%; letter-spacing: .1em; text-transform: uppercase; color: var(--navy);
+  font: 700 var(--fs-label)/1.2 var(--f-wide); font-stretch: 125%; letter-spacing: .1em; text-transform: uppercase; color: var(--navy);
 }
 .cf-trust li { display: inline-flex; align-items: center; gap: .45rem; }
 .cf-trust .icon { flex: none; color: var(--cf-red); }
@@ -202,19 +203,19 @@
   position: absolute; z-index: 1; left: clamp(1.25rem, .9rem + 1vw, 2rem); bottom: .9rem;
   display: grid; gap: .35rem;
 }
-.cf-photo__role { display: flex; align-items: center; gap: .5rem; font: 700 .625rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; color: var(--on-dark-2); }
+.cf-photo__role { display: flex; align-items: center; gap: .5rem; font: 700 var(--fs-label)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; color: var(--on-dark-2); }
 .cf-photo__role::before { content: ""; width: 1.1rem; height: 2px; background: var(--red-flag); }
 .cf-photo__name { font: 900 1.75rem/.9 var(--f-display); text-transform: uppercase; color: var(--white); letter-spacing: .01em; }
 
 .cf-direct { padding: 1.25rem clamp(1.25rem, .9rem + 1vw, 2rem) clamp(1.5rem, 1.1rem + 1vw, 2rem); }
 .cf-direct__k {
   display: flex; align-items: center; gap: .6rem; margin: 0;
-  font: 700 .6875rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; color: var(--on-dark-2);
+  font: 700 var(--fs-label)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; color: var(--on-dark-2);
 }
 .cf-direct__k::before { content: ""; width: 1.5rem; height: 2px; background: var(--red-flag); }
 .cf-direct__tel {
   display: inline-flex; align-items: center; gap: .8rem; margin-top: .75rem;
-  font: 700 clamp(1.75rem, 1.35rem + 1.3vw, 2.375rem)/1 var(--f-wide); font-stretch: 125%; letter-spacing: var(--tel-track-lg);
+  font: 700 clamp(1.5rem, 1.1rem + 1.6vw, 2.375rem)/1 var(--f-wide); font-stretch: 125%; letter-spacing: var(--tel-track-lg);
   color: var(--white); text-decoration: none; white-space: nowrap;
 }
 .cf-direct__tel .icon {
@@ -230,7 +231,7 @@
 .cf-fact:nth-last-child(-n+2) { border-bottom: 0; padding-bottom: 0; }
 .cf-fact dt {
   display: flex; align-items: center; gap: .45rem;
-  font: 700 .625rem/1.2 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--on-dark-3);
+  font: 700 var(--fs-label)/1.2 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--on-dark-3);
 }
 .cf-fact dt .icon { flex: none; color: var(--red-on-dark); }
 .cf-fact dd { margin: 0; font: 500 .9375rem/1.35 var(--f-body); color: var(--white); overflow-wrap: anywhere; }
@@ -261,3 +262,24 @@
   }
 }
 @keyframes cf-photo-in { from { transform: scale(1.08); } to { transform: scale(1); } }
+
+/* ---------- Aside crest variant: no photo (the page already shows the van photo; once per page) ----------
+   The real logo lockup (≤ 240px) on the navy star field, seated above the direct line. */
+.cf-crest {
+  position: relative; isolation: isolate; flex: 1 1 auto;
+  display: grid; place-items: center; align-content: center; gap: 1.4rem;
+  min-height: 15rem; padding: clamp(2.25rem, 1.6rem + 2vw, 3.25rem) 1.5rem 1.25rem;
+  background: var(--navy);
+}
+.cf-crest::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='52' viewBox='0 0 120 104'%3E%3Cg fill='%23ffffff' fill-opacity='.06'%3E%3Cpath d='M20 10l2.9 6 6.6.9-4.8 4.6 1.2 6.5L20 25l-5.9 3 1.2-6.5-4.8-4.6 6.6-.9z'/%3E%3Cpath d='M80 62l2.9 6 6.6.9-4.8 4.6 1.2 6.5L80 77l-5.9 3 1.2-6.5-4.8-4.6 6.6-.9z'/%3E%3C/g%3E%3C/svg%3E") 0 0 / 60px 52px;
+}
+.cf-crest__logo { display: block; width: min(15rem, 64%); }
+.cf-crest__logo img { display: block; width: 100%; height: auto; filter: drop-shadow(0 14px 28px rgba(0, 0, 0, .4)); }
+.cf-crest__rule { width: 4.5rem; height: 6px; background: repeating-linear-gradient(180deg, var(--red) 0 2px, var(--white) 2px 4px); }
+@media (max-width: 959px) {
+  .cf-crest { flex: none; min-height: 0; }
+  .cf-crest__logo { width: min(12rem, 52%); }
+}

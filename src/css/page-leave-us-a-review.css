@@ -21,7 +21,7 @@
 .lr-hero .lr-hero__jump { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: clamp(2rem, 1.5rem + 1.5vw, 2.75rem); padding: 0; list-style: none; }
 .lr-hero__jump a {
   display: inline-flex; align-items: center; min-height: 2.75rem; padding: .55rem 1rem;
-  font: 700 .6875rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .12em; text-transform: uppercase;
+  font: 700 var(--fs-label)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .12em; text-transform: uppercase;
   color: var(--white); text-decoration: none; border: 1px solid var(--line-dark-strong);
   transition: background var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out);
 }
@@ -133,7 +133,7 @@
 @media (max-width: 719px) {
   .lr-row__n { margin-bottom: -.1rem; }
   .lr-row__cta { margin-top: .5rem; }
-  .lr-row__btn { gap: .6rem; padding-inline: 1rem; font-size: .6875rem; letter-spacing: .07em; }
+  .lr-row__btn { gap: .6rem; padding-inline: 1rem; font-size: var(--fs-label); letter-spacing: .07em; }
 }
 /* tablets: number in its own column, name / blurb / CTA stacked beside it */
 @media (min-width: 720px) {

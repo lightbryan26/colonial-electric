@@ -43,7 +43,7 @@
 }
 .gx__sig { display: grid; gap: .35rem; padding-top: .75rem; border-top: 2px solid rgba(255, 255, 255, .85); }
 .gx__sig-name { font: 800 1.75rem/1 var(--f-display); text-transform: uppercase; letter-spacing: .01em; color: var(--white); }
-.gx__sig-role { font: 700 .6875rem/1.3 var(--f-wide); font-stretch: 125%; letter-spacing: .1em; text-transform: uppercase; color: rgba(255, 255, 255, .8); }
+.gx__sig-role { font: 700 var(--fs-label)/1.3 var(--f-wide); font-stretch: 125%; letter-spacing: .1em; text-transform: uppercase; color: rgba(255, 255, 255, .8); }
 
 /* Primary call button: full red tile, number set big */
 .gx__call {
@@ -56,7 +56,7 @@
 .gx__call:focus-visible { outline: 3px solid var(--white); outline-offset: -6px; }
 .gx__call-ic { flex: none; display: grid; place-items: center; width: 2.6rem; height: 2.6rem; background: rgba(255, 255, 255, .14); }
 .gx__call-t { display: grid; gap: .3rem; }
-.gx__call-k { font: 700 .6875rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; opacity: .85; }
+.gx__call-k { font: 700 var(--fs-label)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; opacity: .85; }
 .gx__call-n { font: 700 clamp(1.2rem, 1rem + .35vw, 1.4rem)/1 var(--f-wide); font-stretch: 125%; white-space: nowrap; letter-spacing: var(--tel-track); font-variant-numeric: tabular-nums; }
 
 /* Seal: real logo lockup in a turning type ring, riding the top-right of the photo */
@@ -112,7 +112,7 @@
 .gx__cols { display: grid; gap: 1.25rem clamp(1.5rem, 3vw, 2.5rem); margin-top: clamp(1.25rem, .9rem + 1vw, 1.6rem); }
 .gx__col { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: baseline; gap: .9rem; padding-top: .9rem; border-top: 1px solid var(--line-strong); }
 .gx__col .gx__num, .gx__lead .gx__num { min-width: 2.6rem; }
-.gx__col p { color: var(--ink-2); font-size: .9375rem; line-height: 1.6; text-wrap: pretty; }
+.gx__col p { color: var(--ink-2); font-size: var(--fs-desc); line-height: 1.6; text-wrap: pretty; }
 
 /* ---------- Breakpoints ---------- */
 @media (min-width: 40em) {
@@ -164,4 +164,26 @@
 @media (min-width: 40em) and (max-width: 67.99em) { /* narrow two-up: numbers sit above their clause so the measure stays readable */
   .gx__col { grid-template-columns: 1fr; gap: .6rem; align-content: start; }
   .gx__col .gx__num { min-width: 0; }
+}
+
+/* ---------- Crest variant: no photo (the page already shows the van photo; it appears once per page) ----------
+   The seal is the column's hero on the navy star field; signature + call CTA keep their place at the foot. */
+.gx__media.gx__media--crest {
+  display: flex; flex-direction: column; align-items: center; gap: clamp(1.75rem, 1.2rem + 2vw, 2.75rem);
+  min-height: 0; padding-top: clamp(2.25rem, 1.5rem + 2.5vw, 3.5rem);
+}
+.gx__media.gx__media--crest::after { /* tone-on-tone star field (van wrap) + badge pinstripe */
+  inset: 0; height: auto; opacity: 1;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='52' viewBox='0 0 120 104'%3E%3Cg fill='%23ffffff' fill-opacity='.06'%3E%3Cpath d='M20 10l2.9 6 6.6.9-4.8 4.6 1.2 6.5L20 25l-5.9 3 1.2-6.5-4.8-4.6 6.6-.9z'/%3E%3Cpath d='M80 62l2.9 6 6.6.9-4.8 4.6 1.2 6.5L80 77l-5.9 3 1.2-6.5-4.8-4.6 6.6-.9z'/%3E%3C/g%3E%3C/svg%3E") 0 0 / 60px 52px,
+    repeating-linear-gradient(180deg, rgba(255, 255, 255, .025) 0 1px, transparent 1px 4px);
+}
+.gx__media--crest .gx__seal {
+  --s: clamp(10.5rem, 7rem + 7vw, 15rem);
+  position: relative; z-index: 2; top: auto; right: auto; margin-block: auto; /* centred in the column above the signature */
+  box-shadow: 0 0 0 7px rgba(255, 255, 255, .07), 0 0 0 8px rgba(255, 255, 255, .2), 0 24px 60px rgba(0, 0, 0, .45);
+}
+.gx__media--crest .gx__sign { position: relative; align-self: stretch; }
+@media (max-width: 55.99em) {
+  .gx__media--crest .gx__seal { --s: clamp(9.5rem, 7rem + 10vw, 12rem); }
 }

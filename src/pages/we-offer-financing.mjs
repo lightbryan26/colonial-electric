@@ -2,12 +2,15 @@
 // Every sentence below is the brief's exact text. NEVER refill from source/pages (it carries the removed $ / APR figures).
 // No dollar amounts, APRs or per-month figures anywhere on this page. Styles: src/css/page-we-offer-financing.css (.fin-*).
 // Social proof = real Google reviews only, verbatim from src/data/shared.mjs (brief §4 shared blocks). No aggregate rating or count.
-// Photos = the live site's own clean service photos (assets/img/home-services/, brief §8), labelled only with their service names.
+// Project tiles = brand plates (src/blocks/plate.mjs; no framed stock photos, brief §8), labelled only with their service
+// names. A real Colonial job photo mapped to the service slug in src/data/service-photos.mjs drops into the same tile.
 import { site } from '../data/site.mjs';
 import { reviews } from '../data/shared.mjs';
 import { townList } from '../blocks/town-list.mjs';
 import { icon } from '../partials/icons.mjs';
-import { esc, picture } from '../lib/html.mjs';
+import { esc, picture, claimVan, images } from '../lib/html.mjs';
+import { plate } from '../blocks/plate.mjs';
+import { photoFor } from '../data/service-photos.mjs';
 
 const PREQUALIFY = 'https://wisetack.us/#/t8ixrfe/prequalify'; // captured live href (source/pages.json)
 const copy = {
@@ -25,10 +28,10 @@ const highlights = [
 ];
 // Service pages (live titles / nav labels) shown with the live site's own photos.
 const work = [
-  { key: 'panel', t: 'Electrical Panel Upgrade', href: 'electrical-panel-upgrade/', ic: 'panel', alt: 'Open residential electrical panel with breakers and wiring' },
-  { key: 'ev', t: 'EV Charger Installation', href: 'ev-charger-installation/', ic: 'ev', alt: 'EV charging connector plugged into an electric car' },
-  { key: 'generator', t: 'Generators', href: 'generator/', ic: 'generator', alt: 'Standby generator installed beside a white clapboard home' },
-  { key: 'remodel', t: 'Remodels', href: 'remodels/', ic: 'remodel', alt: 'Remodel in progress with new drywall and staircase' },
+  { t: 'Electrical Panel Upgrade', href: 'electrical-panel-upgrade/', ic: 'panel' },
+  { t: 'EV Charger Installation', href: 'ev-charger-installation/', ic: 'ev' },
+  { t: 'Generators', href: 'generator/', ic: 'generator' },
+  { t: 'Remodels', href: 'remodels/', ic: 'remodel' },
 ];
 
 const review = name => reviews.find(r => r.name === name);
@@ -66,6 +69,7 @@ function hero(ctx) {
     ],
   }];
   // Real Colonial photo beside the terms card (brief §8): the site's own tight crop of the owner + wrapped-van shot.
+  if (!claimVan(ctx)) throw new Error('financing hero: the van photo must be the first on this page');
   const ph = ctx.asset('img/cf-van');
   const photoSizes = '(min-width: 1440px) 34rem, (min-width: 1024px) 38vw, (min-width: 640px) 88vw, 92vw';
   const photo = `<picture><source type="image/webp" srcset="${ph}-640.webp 640w, ${ph}-1000.webp 1000w" sizes="${photoSizes}"><img class="fin-hero__img" src="${ph}-1000.jpg" srcset="${ph}-640.jpg 640w, ${ph}-1000.jpg 1000w" sizes="${photoSizes}" width="1000" height="900" alt="Founder Scott Hays standing in front of the red, white and blue Colonial Electric van" loading="eager" fetchpriority="high" decoding="async"></picture>`;
@@ -142,7 +146,6 @@ function prequalify(ctx) {
 }
 
 function projects(ctx) {
-  const IMG = 'assets/img/home-services/';
   const sizes = '(min-width: 1024px) 19rem, (min-width: 640px) 46vw, 45vw';
   return `<section class="fin-work on-dark stars-bg" aria-labelledby="fin-work-h">
   <div class="container">
@@ -151,12 +154,13 @@ function projects(ctx) {
       <a class="fin-work__all" href="${ctx.r('services/')}"><span>View Our Services</span>${icon('arrow-right', { size: 18 })}</a>
     </header>
     <ul class="fin-work__grid" role="list">${work.map((w, i) => {
-      const r = f => ctx.r(IMG + w.key + f);
+      const id = w.href.replace(/\/$/, '');
+      const hasPhoto = !!photoFor(id, images);
       return `
       <li><a class="fin-work__tile" href="${ctx.r(w.href)}">
-        <span class="fin-work__ph"><picture><source type="image/webp" srcset="${r('-480.webp')} 480w, ${r('-800.webp')} 684w" sizes="${sizes}"><img src="${r('-800.jpg')}" srcset="${r('-480.jpg')} 480w, ${r('-800.jpg')} 684w" sizes="${sizes}" width="684" height="428" alt="${esc(w.alt)}" loading="eager" fetchpriority="low" decoding="async"></picture></span>
+        <span class="fin-work__ph">${plate(ctx, { id, ic: w.ic, tone: 'blue', sizes, loading: 'eager' })}</span>
         <span class="fin-work__n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>
-        <span class="fin-work__t"><span class="fin-work__ic" aria-hidden="true">${icon(w.ic, { size: 20 })}</span><span class="fin-work__name">${esc(w.t)}</span>${icon('arrow-up-right', { size: 18, cls: 'fin-work__go' })}</span>
+        <span class="fin-work__t">${hasPhoto ? `<span class="fin-work__ic" aria-hidden="true">${icon(w.ic, { size: 20 })}</span>` : ''}<span class="fin-work__name">${esc(w.t)}</span>${icon('arrow-up-right', { size: 18, cls: 'fin-work__go' })}</span>
       </a></li>`;
     }).join('')}
     </ul>
