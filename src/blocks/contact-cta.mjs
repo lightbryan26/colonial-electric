@@ -11,7 +11,7 @@ import { townList } from './town-list.mjs';
 
 // Which of each town's four live Top Sites photos represents it here (index into topSites).
 const PICK = {
-  'hanover-ma': 2, 'milton-ma': 2, 'norwell-ma': 1, 'randolph-ma': 2, 'scituate-ma': 0, 'whitman-ma': 2,
+  'hanover-ma': 2, 'milton-ma': 2, 'norwell-ma': 1, 'randolph-ma': 2, 'scituate-ma': 1, 'whitman-ma': 2,
   'pembroke-ma': 1, 'weymouth-ma': 0, 'abington-ma': 0, 'braintree-ma': 3, 'hingham-ma': 0, 'quincy-ma': 1,
   'rockland-ma': 2, 'hull-ma': 2, 'plymouth-ma': 2, 'holbrook-ma': 3, 'marshfield-ma': 2, 'hanson-ma': 2,
   'canton-ma': 1, 'carver-ma': 1, 'cohasset-ma': 2,
@@ -69,7 +69,7 @@ img.decode?img.decode().then(go,go):(img.onload=go)}
 r.querySelectorAll('[data-cc-town]').forEach(function(a){if(a.tagName!=='A')return;
 a.addEventListener('pointerenter',function(){clearTimeout(tm);tm=setTimeout(function(){show(a)},70)});
 a.addEventListener('pointerleave',function(){clearTimeout(tm)});a.addEventListener('focus',function(){show(a)})});
-if('IntersectionObserver' in window){r.classList.add('is-armed');var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){r.classList.add('is-in');io.disconnect()}},{threshold:.18});io.observe(r)}})();</script>`;
+if('IntersectionObserver' in window){r.classList.add('is-armed');var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){r.classList.add('is-in');io.disconnect()}},{threshold:.25,rootMargin:'0px 0px -8% 0px'});io.observe(r.querySelector('.cc__head'))}})();</script>`;
 
 export function contactCta(ctx, { id = '', cls = '', withTowns = false, button = c.button } = {}) {
   const hid = (id || 'cta') + '-h';

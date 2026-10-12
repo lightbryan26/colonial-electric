@@ -81,10 +81,10 @@ function introSection() {
   return `<section class="ab-intro" aria-labelledby="ab-intro-h">
   <div class="container">
     ${index(1, 'Our Company')}
-    <h2 class="ab-intro__h ab-rv" id="ab-intro-h">${esc(intro.h2).replace(':', ':<br>')}</h2>
+    <h2 class="ab-intro__h" id="ab-intro-h">${esc(intro.h2).replace(':', ':<br>')}</h2>
     <div class="ab-intro__cols">
-      <p class="ab-intro__lead ab-rv">${esc(lead)}</p>
-      <div class="ab-intro__rest ab-rv">${rest.map(p => `<p>${esc(p)}</p>`).join('')}</div>
+      <p class="ab-intro__lead">${esc(lead)}</p>
+      <div class="ab-intro__rest">${rest.map(p => `<p>${esc(p)}</p>`).join('')}</div>
     </div>
   </div>
 </section>`;
@@ -95,18 +95,18 @@ function founderSection(ctx) {
   <div class="container">
     <header class="ab-meet">
       ${index(2, 'The Founder')}
-      <h2 class="ab-meet__h ab-rv" id="ab-meet-h">${esc(meet.h2).replace('Behind', '<br class="ab-br">Behind')}</h2>
-      <p class="ab-meet__p ab-rv">${esc(meet.body)}</p>
+      <h2 class="ab-meet__h" id="ab-meet-h">${esc(meet.h2).replace('Behind', '<br class="ab-br">Behind')}</h2>
+      <p class="ab-meet__p">${esc(meet.body)}</p>
     </header>
     <div class="ab-founder__grid">
-      <figure class="ab-portrait ab-rv">
+      <figure class="ab-portrait">
         <div class="ab-portrait__frame">${picture(ctx, 'scott-portrait', { alt: 'Portrait of Scott Hays, founder of Colonial Electric, in a Colonial Electric polo', sizes: '(min-width: 1440px) 520px, (min-width: 960px) 38vw, 92vw' })}</div>
         <figcaption class="ab-portrait__cap"><span class="label-wide">${esc(founder.eyebrow)}</span><span class="ab-portrait__name">${esc(founder.name)}</span></figcaption>
       </figure>
       <div class="ab-bio">
         <p class="eyebrow">${esc(founder.eyebrow)}</p>
-        <h2 class="ab-bio__name" aria-describedby="ab-meet-h">${esc(founder.name)}</h2>
-        <div class="ab-bio__text">${founder.bio.map((p, i) => `<p class="ab-rv${i === 0 ? ' ab-bio__first' : ''}">${esc(p)}</p>`).join('')}</div>
+        <h2 class="ab-bio__name">${esc(founder.name)}</h2>
+        <div class="ab-bio__text">${founder.bio.map((p, i) => `<p${i === 0 ? ' class="ab-bio__first"' : ''}>${esc(p)}</p>`).join('')}</div>
         <ul class="ab-sectors" role="list" aria-label="Sectors served">${['Residential', 'Commercial', 'Utility'].map(s => `<li>${icon('bolt', { size: 14 })}${s}</li>`).join('')}</ul>
       </div>
     </div>
@@ -119,7 +119,7 @@ function mvSection(ctx) {
   <div class="container">
     ${index(3, 'What Drives Us')}
     <div class="ab-mv__grid">
-      ${mv.map((m, i) => `<article class="ab-mv__card ab-mv__card--${i ? 'vision' : 'mission'} ab-rv" aria-labelledby="ab-mv-${i}">
+      ${mv.map((m, i) => `<article class="ab-mv__card ab-mv__card--${i ? 'vision' : 'mission'}" aria-labelledby="ab-mv-${i}">
         ${i ? '' : `<img class="ab-mv__mark" src="${ctx.asset('img/emblem-512.png')}" width="512" height="512" alt="" loading="lazy" decoding="async">`}
         <p class="ab-mv__k" aria-hidden="true">${pad(i + 1)}</p>
         <h2 class="ab-mv__h" id="ab-mv-${i}">${esc(m.h2)}</h2>
@@ -141,7 +141,7 @@ function beyondSection(ctx) {
       <p class="btn-row"><a class="btn btn--navy" href="${site.tel}">${icon('phone', { size: 18 })}${site.phone}</a><a class="ab-link" href="${ctx.r('contact-us/')}">Contact Us${icon('arrow-right', { size: 16 })}</a></p>
     </div>
     <ol class="ab-pillars" role="list">
-      ${beyond.pillars.map((p, i) => `<li class="ab-pillar ab-rv">
+      ${beyond.pillars.map((p, i) => `<li class="ab-pillar">
         <span class="ab-pillar__n" aria-hidden="true">${pad(i + 1)}</span>
         <span class="ab-pillar__ic" aria-hidden="true">${icon(p.ic, { size: 22 })}</span>
         <div class="ab-pillar__body"><h3 class="ab-pillar__t">${esc(p.t)}</h3><p>${esc(p.body)}</p></div>
@@ -169,8 +169,8 @@ export function render(ctx) {
     founderSection(ctx),
     mvSection(ctx),
     beyondSection(ctx),
-    contactCta(ctx, { id: 'ab-cta', cls: 'ab-cta stars-bg' }),
-    trustStrip(ctx, { cls: 'ab-trust' }),
+    contactCta(ctx, { id: 'ab-cta' }),
+    trustStrip(ctx),
     townsSection(ctx),
   ].join('\n');
 }

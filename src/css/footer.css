@@ -31,7 +31,7 @@
 /* ---- masthead ---- */
 .site-footer__mast {
   display: grid; align-items: center;
-  grid-template-columns: auto 1fr; gap: 1.75rem 1.5rem;
+  grid-template-columns: 1fr; gap: 1.75rem 1.5rem;
   padding-block: clamp(3rem, 2rem + 3.5vw, 5.5rem) clamp(2.25rem, 1.75rem + 2vw, 3.5rem);
 }
 .site-footer__logo { display: block; width: clamp(6.5rem, 5rem + 5vw, 11rem); line-height: 0; transition: transform .5s var(--ease-out); }
@@ -46,7 +46,7 @@
 .site-footer__eyebrow::before { content: ""; width: 1.75rem; height: 3px; background: linear-gradient(90deg, var(--red) 0 60%, var(--white) 60% 72%, var(--blue-bright) 72%); }
 .site-footer__phone {
   position: relative; display: inline-flex; align-items: flex-start; gap: .35rem;
-  font: 900 clamp(2.4rem, 1.2rem + 5vw, 5.75rem)/.86 var(--f-display); letter-spacing: -.005em;
+  font: 900 min(12vw, 6.25rem)/.86 var(--f-display); letter-spacing: -.005em;
   color: var(--white); text-decoration: none; white-space: nowrap; font-variant-numeric: tabular-nums;
   padding-bottom: .12em;
 }
@@ -56,9 +56,9 @@
 }
 .site-footer__phone:hover::after, .site-footer__phone:focus-visible::after { transform: scaleX(1); }
 .site-footer__phone-ico {
-  display: grid; place-items: center; flex: none; width: .5em; height: .5em; margin-top: .02em;
+  display: grid; place-items: center; flex: none; width: max(.5em, 1.6rem); height: max(.5em, 1.6rem); margin-top: .02em;
   color: var(--white); background: var(--red); clip-path: var(--crest);
-  --cut: 6px; transition: background var(--dur), transform .5s var(--ease-out);
+  --cut: .1em; transition: background var(--dur), transform .5s var(--ease-out);
 }
 .site-footer__phone-ico .icon { width: 55%; height: 55%; }
 .site-footer__phone:hover .site-footer__phone-ico { background: var(--red-flag); transform: translate(2px, -2px); }
@@ -74,27 +74,26 @@
   font: 700 .6875rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--on-dark-3);
 }
 .site-footer__fact dt .icon { color: var(--red-flag); flex: none; }
-.site-footer__fact dd { margin: 0; color: var(--white); font-size: 1rem; font-weight: 500; overflow-wrap: anywhere; }
+.site-footer__fact dd { margin: 0; color: var(--white); font-size: 1rem; font-weight: 500; overflow-wrap: break-word; }
 .site-footer__fact a { color: var(--white); text-decoration: underline; text-decoration-color: var(--line-dark-strong); text-underline-offset: .3em; transition: text-decoration-color var(--dur); }
 .site-footer__fact a:hover { text-decoration-color: var(--red-flag); }
 
+@media (min-width: 560px) { .site-footer__mast { grid-template-columns: auto 1fr; } .site-footer__phone { font-size: min(9.5vw, 6.25rem); } }
 @media (min-width: 640px) {
   .site-footer__facts { grid-template-columns: 1fr 1fr; column-gap: 2rem; }
 }
 @media (min-width: 1080px) {
-  .site-footer__mast { grid-template-columns: auto auto 1fr; gap: 2.5rem clamp(2rem, 4vw, 4rem); }
-  .site-footer__facts { grid-column: auto; justify-self: end; width: 100%; max-width: 34rem; border-top: 0; column-gap: 2.5rem; }
-  .site-footer__fact { padding: 1.1rem 0; }
-  .site-footer__fact:nth-child(-n+2) { border-top: 1px solid var(--line-dark); }
+  .site-footer__mast { gap: 3.25rem clamp(2rem, 4vw, 4rem); }
+  .site-footer__facts { grid-template-columns: repeat(4, minmax(0, auto)); justify-content: space-between; column-gap: 2.5rem; border-bottom: 1px solid var(--line-dark); }
+  .site-footer__fact { padding: 1.4rem 0 1.3rem; border-bottom: 0; }
 }
 
 /* ---- link grid ---- */
 .site-footer__grid {
   display: grid; gap: 2.75rem 2rem; grid-template-columns: 1fr;
   padding-block: clamp(2.5rem, 2rem + 2vw, 4rem) clamp(2.5rem, 2rem + 2vw, 3.75rem);
-  border-top: 1px solid var(--line-dark);
 }
-@media (min-width: 1080px) { .site-footer__grid { border-top: 0; padding-top: 1rem; } }
+@media (min-width: 1080px) { .site-footer__grid { padding-top: .5rem; } }
 .site-footer__blurb { max-width: 46ch; line-height: 1.75; color: var(--on-dark-2); }
 .site-footer__lic {
   margin-top: 1.75rem; display: flex; gap: .9rem; align-items: center; max-width: 30rem;
@@ -109,7 +108,8 @@
   display: flex; align-items: center; gap: .55rem; margin-bottom: 1.35rem;
   font: 700 .6875rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; color: var(--white);
 }
-.site-footer__h-bolt { display: grid; place-items: center; width: 1.25rem; height: 1.25rem; background: var(--navy-3); color: var(--red-flag); clip-path: var(--crest); --cut: 4px; }
+.site-footer__h-bolt { display: grid; place-items: center; color: var(--red-flag); }
+.site-footer__h-bolt .icon { width: .85rem; height: .85rem; }
 .site-footer__col ul { display: grid; gap: .6rem; }
 .site-footer__col a {
   position: relative; display: inline-block; color: var(--on-dark-2); text-decoration: none; line-height: 1.35;
@@ -124,7 +124,8 @@
 .site-footer__col a[aria-current="page"] { color: var(--white); }
 .site-footer__col a[aria-current="page"]::before { transform: scaleX(1); }
 
-.site-footer__col--towns ul { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem 1rem; }
+.site-footer__col--towns ul, .site-footer__col[aria-label="Useful links"] ul { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem 1rem; }
+@media (min-width: 640px) { .site-footer__col[aria-label="Useful links"] ul { grid-template-columns: 1fr; } }
 .site-footer__all {
   display: inline-flex !important; align-items: center; gap: .5rem; margin-top: 1.5rem;
   font: 700 .6875rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase;
@@ -148,7 +149,8 @@
 /* ---- legal row ---- */
 .site-footer__legal {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem 2rem;
-  padding-block: 1.4rem 2rem; border-top: 1px solid var(--line-dark);
+  padding-block: 1.4rem 2rem;
+  background: linear-gradient(var(--line-dark), var(--line-dark)) center top / calc(100% - 2 * var(--gutter)) 1px no-repeat;
   font-size: var(--fs-xs); color: var(--on-dark-3);
 }
 .site-footer__legal ul { display: flex; flex-wrap: wrap; gap: .5rem 1.75rem; }

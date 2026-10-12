@@ -83,10 +83,11 @@
    "updated": "2026-10-12T08:34:57.785Z"
   },
   "footer": {
-   "status": "building",
+   "status": "critiquing",
    "round": 1,
-   "note": "Dark navy footer: logo lockup + big call CTA, 4-col grid (contact/hours/license, services, company links, towns), IG, legal bar",
-   "updated": "2026-10-12T08:35:07.985Z"
+   "note": "Footer rebuilt: masthead (lockup + display phone + 4 facts), link grid, crest license card, legal row",
+   "updated": "2026-10-12T08:39:22.787Z",
+   "shot": "shots/footer-r1.png"
   },
   "tpl-service": {
    "status": "building",
@@ -111,9 +112,43 @@
    "round": 1,
    "note": "Services index: editorial hero, numbered service catalogue with real photos, guarantee + CTA",
    "updated": "2026-10-12T08:36:16.280Z"
+  },
+  "page-service-area": {
+   "status": "building",
+   "round": 1,
+   "note": "Service-area index: hero w/ real photo, region-grouped town directory, map-style coverage, CTA",
+   "updated": "2026-10-12T08:39:04.933Z"
+  },
+  "page-contact-us": {
+   "status": "building",
+   "round": 1,
+   "note": "Contact page: photo-led hero, direct-line panel, form block, service area + hours, reviews",
+   "updated": "2026-10-12T08:39:41.379Z"
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T08:39:41.379Z",
+   "piece": "page-contact-us",
+   "status": "building",
+   "round": 1,
+   "note": "Contact page: photo-led hero, direct-line panel, form block, service area + hours, reviews"
+  },
+  {
+   "t": "2026-10-12T08:39:22.787Z",
+   "piece": "footer",
+   "status": "critiquing",
+   "round": 1,
+   "note": "Footer rebuilt: masthead (lockup + display phone + 4 facts), link grid, crest license card, legal row",
+   "shot": "shots/footer-r1.png"
+  },
+  {
+   "t": "2026-10-12T08:39:04.933Z",
+   "piece": "page-service-area",
+   "status": "building",
+   "round": 1,
+   "note": "Service-area index: hero w/ real photo, region-grouped town directory, map-style coverage, CTA"
+  },
   {
    "t": "2026-10-12T08:36:16.280Z",
    "piece": "page-services",
@@ -323,5 +358,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T08:36:16.280Z"
+ "updated": "2026-10-12T08:39:41.379Z"
 }
