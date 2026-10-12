@@ -73,7 +73,7 @@
   display: flex; align-items: center; gap: .5rem; margin-bottom: .45rem;
   font: 700 .75rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .12em; text-transform: uppercase; color: var(--on-dark-3);
 }
-.site-footer__fact dt .icon { color: var(--red-flag); flex: none; }
+.site-footer__fact dt .icon { color: var(--red-on-dark); flex: none; } /* same token as the contact-form fact icons (.cf-fact) */
 .site-footer__fact dd { margin: 0; color: var(--white); font-size: 1rem; font-weight: 500; overflow-wrap: break-word; }
 .site-footer__fact a { color: var(--white); text-decoration: underline; text-decoration-color: var(--line-dark-strong); text-underline-offset: .3em; transition: text-decoration-color var(--dur); }
 .site-footer__fact a:hover { text-decoration-color: var(--red-flag); }

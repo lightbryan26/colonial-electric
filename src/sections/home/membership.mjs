@@ -34,7 +34,6 @@ export function render(ctx) {
     </div>
 
     <div class="mship__stage stars-bg">
-      <div class="mship__emblem" aria-hidden="true"><img src="${a('img/emblem-512.png')}" width="512" height="512" alt="" decoding="async"></div>
       <div class="mship__deck">
       <div class="mship__ghost" aria-hidden="true"></div>
       <a class="mship__card" href="${ctx.r(m.cta.href)}" aria-label="Flash Pass Membership benefits">

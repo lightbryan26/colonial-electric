@@ -35,12 +35,7 @@
   -webkit-mask-image: linear-gradient(180deg, transparent, #000 40%);
           mask-image: linear-gradient(180deg, transparent, #000 40%);
 }
-.mship__emblem {
-  position: absolute; z-index: -1; left: -16%; bottom: -18%; width: 72%; aspect-ratio: 1;
-  pointer-events: none; opacity: .16;
-  mix-blend-mode: screen; /* inverted: white ground → black drops out → tone-on-tone rider */
-}
-.mship__emblem img { width: 100%; height: 100%; display: block; filter: grayscale(1) invert(1) contrast(1.4); }
+/* Texture comes from the §3 motifs only (.stars-bg star field + the pinstripe band above); the logo art is never ghosted or recoloured here. */
 
 /* Offset red crest behind the card: a stacked "second pass" */
 .mship__deck { position: relative; width: min(100%, 27rem); }
@@ -132,10 +127,8 @@
   @supports (animation-timeline: view()) {
     .mship__card { animation: mship-deal linear both; animation-timeline: view(); animation-range: entry 0% cover 45%; }
     .mship__ghost { animation: mship-ghost linear both; animation-timeline: view(); animation-range: entry 0% cover 45%; }
-    .mship__emblem { animation: mship-drift linear both; animation-timeline: view(); animation-range: cover 0% cover 100%; }
     @keyframes mship-deal { from { translate: 0 18%; rotate: 9deg; opacity: 0; } 40% { opacity: 1; } to { translate: 0 0; rotate: 0deg; opacity: 1; } }
     @keyframes mship-ghost { from { translate: -6% 10%; rotate: -8deg; } to { translate: 0 0; rotate: 0deg; } }
-    @keyframes mship-drift { from { translate: 0 -6%; } to { translate: 0 8%; } }
   }
 }
 
@@ -147,6 +140,5 @@
   .mship__stage { min-height: 0; padding: 2.75rem 1.25rem 3.25rem; --cut-lg: 16px; }
   .mship__card { transform: rotate(-2deg); }
   .mship__ghost { transform: translate(5%, 3%) rotate(4deg); }
-  .mship__emblem { width: 100%; left: -35%; bottom: -20%; }
   .mship__cta .btn { width: 100%; }
 }

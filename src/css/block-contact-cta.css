@@ -161,7 +161,7 @@
 .on-dark .tl, .on-dark .tl li { border-color: var(--line-dark); }
 .on-dark .tl a { color: var(--white); }
 .on-dark .tl__n { color: var(--on-dark-3); }
-.on-dark .tl a:hover .tl__n, .on-dark .tl a[aria-current] .tl__n { color: var(--red-flag); }
+.on-dark .tl a:hover .tl__n, .on-dark .tl a[aria-current] .tl__n { color: var(--red-on-dark); } /* 10px text: red-flag is only 3.55:1 on navy-ink */
 .on-dark .tl__go { color: var(--red-flag); }
 .on-dark .tl a[aria-current] { color: var(--white); }
 .on-dark .tl a[aria-current]::after { background: var(--red-flag); }
