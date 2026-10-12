@@ -141,24 +141,24 @@
    "shot": "shots/page-contact-us-r2.png"
   },
   "page-premium-membership": {
-   "status": "building",
+   "status": "done",
    "round": 2,
-   "note": "Finish round-2 plan: photo hero, no-price join panel, verbatim benefit cards with photo, fix washed-out guarantee locally, bigger body type",
-   "updated": "2026-10-12T09:48:48.322Z",
+   "note": "Fixed blank photos in full-page captures (eager load + sync decode), moved the panel photo under the bolt with a hint panel in the header, chamfered join card with real outline and shadow (no price, hours instead of an enrollment claim), two-line intro headline, 18px body type, tablet join layout",
+   "updated": "2026-10-12T09:59:27.613Z",
    "shot": "shots/page-premium-membership-r1.png"
   },
   "page-we-offer-financing": {
-   "status": "won",
-   "round": 1,
-   "note": "Critic picked ours blind (clear). Remaining gap: The financing content, the reason the page exists, is a tiny, under-designed text block floating in a big white void. There's no visual hierarchy, no offer framing (3 to 120 months, no credit impact),",
-   "updated": "2026-10-12T08:51:46.890Z",
+   "status": "critiquing",
+   "round": 2,
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T09:59:44.136Z",
    "shot": "shots/page-we-offer-financing-r1.png"
   },
   "page-leave-us-a-review": {
-   "status": "done",
+   "status": "critiquing",
    "round": 3,
-   "note": "Real page now routed: deleted tpl-review stub CSS; platforms rebuilt as a navy index list (one row per platform, uniform CTAs, single-line labels 375-1440, no clipping); tablet intro split with Scott photo; towns get a Towns We Serve heading plus Service Area link in an even 7x3 / 3x7 grid; hero keyline kept inside the gutter",
-   "updated": "2026-10-12T09:57:42.000Z",
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T09:58:33.064Z",
    "shot": "shots/page-leave-us-a-review-r2.png"
   },
   "page-calendar": {
@@ -177,6 +177,27 @@
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T09:59:44.136Z",
+   "piece": "page-we-offer-financing",
+   "status": "critiquing",
+   "round": 2,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T09:59:27.613Z",
+   "piece": "page-premium-membership",
+   "status": "done",
+   "round": 2,
+   "note": "Fixed blank photos in full-page captures (eager load + sync decode), moved the panel photo under the bolt with a hint panel in the header, chamfered join card with real outline and shadow (no price, hours instead of an enrollment claim), two-line intro headline, 18px body type, tablet join layout"
+  },
+  {
+   "t": "2026-10-12T09:58:33.064Z",
+   "piece": "page-leave-us-a-review",
+   "status": "critiquing",
+   "round": 3,
+   "note": "screenshots + QA"
+  },
   {
    "t": "2026-10-12T09:57:42.000Z",
    "piece": "page-leave-us-a-review",
@@ -1243,5 +1264,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T09:57:42.000Z"
+ "updated": "2026-10-12T09:59:44.136Z"
 }

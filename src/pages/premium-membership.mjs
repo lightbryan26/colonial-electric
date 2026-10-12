@@ -153,7 +153,7 @@ function boltSection(ctx) {
     </header>
     <div class="pm-bolt__body">
       <figure class="pm-bolt__photo">
-        <picture><source type="image/webp" srcset="${pb}-480.webp 480w, ${pb}-800.webp 684w" sizes="(min-width: 1024px) 26rem, 92vw"><img src="${pb}-800.jpg" srcset="${pb}-480.jpg 480w, ${pb}-800.jpg 684w" sizes="(min-width: 1024px) 26rem, 92vw" width="684" height="428" alt="Open residential breaker panel with the wiring exposed during service" loading="eager" fetchpriority="low" decoding="sync"></picture>
+        <picture><source type="image/webp" srcset="${pb}-480.webp 480w, ${pb}-800.webp 684w" sizes="(min-width: 1024px) 40rem, 92vw"><img src="${pb}-800.jpg" srcset="${pb}-480.jpg 480w, ${pb}-800.jpg 684w" sizes="(min-width: 1024px) 40rem, 92vw" width="684" height="428" alt="Open residential breaker panel with the wiring exposed during service" loading="eager" fetchpriority="low" decoding="sync"></picture>
         <figcaption class="label-wide">${icon('inspect', { size: 16 })}Annual whole-home safety inspections</figcaption>
       </figure>
       <div class="pm-stage" data-pm-stage style="--lvl:${benefits[0].lvl}">
