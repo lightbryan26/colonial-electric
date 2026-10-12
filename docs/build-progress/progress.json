@@ -169,14 +169,29 @@
    "shot": "shots/page-calendar-r1.png"
   },
   "page-terms": {
-   "status": "critiquing",
-   "round": 4,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T10:47:05.673Z",
-   "shot": "shots/page-terms-r1.png"
+   "status": "building",
+   "round": 5,
+   "note": "Fix terms meta description in my page module (or request), add sticky founder card + TOC, darker 16-17px body text at ~68ch, closing CTA band",
+   "updated": "2026-10-12T10:53:36.730Z",
+   "shot": "shots/page-terms-r4.jpg"
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T10:53:36.730Z",
+   "piece": "page-terms",
+   "status": "building",
+   "round": 5,
+   "note": "Fix terms meta description in my page module (or request), add sticky founder card + TOC, darker 16-17px body text at ~68ch, closing CTA band"
+  },
+  {
+   "t": "2026-10-12T10:53:33.691Z",
+   "piece": "page-terms",
+   "status": "lost",
+   "round": 4,
+   "note": "Won blind but failed QA: Brief §9 (Meta) violation on /terms/: the meta description, og:description and twitter:description in docs/terms/index.html are the garbled fragment \"com/ (together or individually “Service”) operated by Colonial Electric .\". That is not the page’s first verbatim sentence; it is the second sentence ",
+   "shot": "shots/page-terms-r4.jpg"
+  },
   {
    "t": "2026-10-12T10:53:07.871Z",
    "piece": "page-about-colonial-electric",
@@ -1695,5 +1710,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T10:53:07.871Z"
+ "updated": "2026-10-12T10:53:36.730Z"
 }
