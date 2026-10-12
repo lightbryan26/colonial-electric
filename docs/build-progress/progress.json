@@ -8,13 +8,29 @@
    "shot": "shots/setup-r0.png"
   },
   "foundation-hero": {
-   "status": "building",
+   "status": "critiquing",
    "round": 1,
-   "note": "Build generator, base design system, partials, real images, 45 stubs, home sections, then craft header+hero",
-   "updated": "2026-10-12T08:03:30.066Z"
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T08:28:39.533Z",
+   "shot": "shots/foundation-hero-r1.png"
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T08:28:39.533Z",
+   "piece": "foundation-hero",
+   "status": "critiquing",
+   "round": 1,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:28:11.487Z",
+   "piece": "foundation-hero",
+   "status": "critiquing",
+   "round": 1,
+   "note": "Foundation done (generator, tokens/motifs, partials, 89 real images, 45 pages, 404/sitemap/robots); hero = split type column + van-wrap diagonal photo sweep",
+   "shot": "shots/foundation-hero-r1.png"
+  },
   {
    "t": "2026-10-12T08:03:30.066Z",
    "piece": "foundation-hero",
@@ -31,5 +47,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T08:03:30.066Z"
+ "updated": "2026-10-12T08:28:39.533Z"
 }
