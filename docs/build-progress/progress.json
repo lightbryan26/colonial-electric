@@ -169,14 +169,22 @@
    "shot": "shots/page-calendar-r1.png"
   },
   "page-terms": {
-   "status": "critiquing",
+   "status": "won",
    "round": 5,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T11:03:17.841Z",
+   "note": "Critic picked ours blind (clear). Remaining gap: The body below the hero is a long run of text that is hard to read and gets monotonous. The legal copy is set very small, in light grey, in a narrow column. That leaves about 15% of the canvas as a dead gutter to the right of the content. The left rail (founde",
+   "updated": "2026-10-12T11:07:41.810Z",
    "shot": "shots/page-terms-r5.jpg"
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T11:07:41.810Z",
+   "piece": "page-terms",
+   "status": "won",
+   "round": 5,
+   "note": "Critic picked ours blind (clear). Remaining gap: The body below the hero is a long run of text that is hard to read and gets monotonous. The legal copy is set very small, in light grey, in a narrow column. That leaves about 15% of the canvas as a dead gutter to the right of the content. The left rail (founde",
+   "shot": "shots/page-terms-r5.jpg"
+  },
   {
    "t": "2026-10-12T11:03:17.841Z",
    "piece": "page-terms",
@@ -1748,5 +1756,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T11:03:17.841Z"
+ "updated": "2026-10-12T11:07:41.810Z"
 }
