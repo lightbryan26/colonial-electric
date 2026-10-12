@@ -129,7 +129,8 @@
 .pm-intro__name { font: 800 1.5rem/1 var(--f-display); text-transform: uppercase; color: var(--navy); }
 @media (min-width: 700px) { .pm-intro__media { position: sticky; top: calc(var(--header-h) + 1.5rem); } }
 .pm-intro__text { max-width: 44rem; }
-.pm-intro__lead { position: relative; padding-top: clamp(1.5rem, 1rem + 1vw, 2rem); font: 500 clamp(1.1875rem, 1.05rem + .45vw, 1.4375rem)/1.6 var(--f-body); color: var(--ink); text-wrap: pretty; border-top: 1px solid var(--line-strong); }
+.pm-intro__lead { position: relative; padding-top: clamp(1.5rem, 1rem + 1vw, 2rem); font-size: clamp(1.0625rem, 1rem + .15vw, 1.125rem); line-height: 1.7; color: var(--ink); text-wrap: pretty; border-top: 1px solid var(--line-strong); }
+.pm-intro__lead-k { display: block; margin-bottom: .9rem; font: 500 clamp(1.3125rem, 1.1rem + .7vw, 1.75rem)/1.4 var(--f-body); color: var(--navy); text-wrap: pretty; }
 .pm-intro__lead::before { content: ""; position: absolute; left: 0; top: -2px; width: 6rem; height: 3px; background: var(--red); }
 /* paragraph 2, one sentence per row (same <p>, same words) */
 .pm-intro__pts { display: grid; margin-top: clamp(1.5rem, 1rem + 1.5vw, 2.25rem); }
@@ -140,7 +141,10 @@
 .pm-pt__t strong { font-weight: 600; color: var(--navy); box-shadow: inset 0 -.38em 0 rgba(191, 27, 44, .14); }
 /* paragraph 3 = the sign-up band: its first sentence set big, then the call */
 .pm-intro__band { position: relative; margin-top: clamp(1.75rem, 1rem + 2vw, 2.75rem); padding: clamp(1.5rem, 1rem + 1.5vw, 2.25rem) clamp(1.25rem, .75rem + 2vw, 2.5rem); background: var(--paper); clip-path: var(--crest-lg); }
-.pm-intro__band::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: repeating-linear-gradient(180deg, var(--red) 0 2px, var(--white) 2px 3px, var(--red) 3px 4px); }
+.pm-intro__band::before { /* flag-stripe tab riding the top edge, clear of the chamfer */
+  content: ""; position: absolute; left: clamp(1.25rem, .75rem + 2vw, 2.5rem); top: 0; width: 4.5rem; height: 6px;
+  background: repeating-linear-gradient(180deg, var(--red) 0 2px, var(--white) 2px 4px); box-shadow: inset 0 0 0 1px var(--red);
+}
 .pm-intro__band-p { max-width: 40rem; }
 .pm-intro__band-k { display: block; font: 800 clamp(1.5rem, 1.15rem + 1.1vw, 2.125rem)/1.08 var(--f-display); text-transform: uppercase; letter-spacing: .005em; color: var(--navy); text-wrap: balance; }
 .pm-intro__band-s { display: block; margin-top: .85rem; font-size: clamp(1.0625rem, 1rem + .15vw, 1.125rem); line-height: 1.65; color: var(--ink); text-wrap: pretty; }
@@ -243,6 +247,8 @@
   transition: opacity .45s var(--ease-out), visibility .45s, transform .45s var(--ease-out);
 }
 .pm-js .pm-card:not(.is-on) { visibility: hidden; opacity: 0; transform: translateY(10px); }
+/* the incoming panel is visible (focusable) at once; only the outgoing one keeps visibility while it fades (it is inert by then) */
+.pm-js .pm-card.is-on { transition: opacity .45s var(--ease-out), visibility 0s, transform .45s var(--ease-out); }
 @media (max-width: 1023px) { .pm-js .pm-card:not(.is-on) { display: none; } } /* stacked layout: no empty panel height; desktop keeps one fixed cell so hovering never shifts the page */
 .pm-card:focus-visible { outline: 3px solid var(--white); outline-offset: -6px; }
 /* the photo absorbs any spare height in the shared desktop cell, so a shorter benefit never leaves an empty band */
@@ -283,7 +289,7 @@
 .pm-card__next:hover .icon { transform: translateX(4px); }
 .pm-card__next:hover .pm-card__next-t { text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: 2px; }
 .pm-card__next:focus-visible { outline: 3px solid var(--white); outline-offset: 4px; }
-@media (prefers-reduced-motion: reduce) { .pm-card, .pm-stage__charge, .pm-stage__halo, .pm-card__next .icon { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .pm-card, .pm-js .pm-card.is-on, .pm-stage__charge, .pm-stage__halo, .pm-card__next .icon { transition: none; } }
 
 /* Join row under the bolt (desktop: bottom of the left column) */
 .pm-bolt__join { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line-dark-strong); align-self: end; }

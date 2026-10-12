@@ -110,7 +110,7 @@ function introSection(ctx) {
         <figcaption class="pm-intro__cap"><span class="label-wide">Founder</span><span class="pm-intro__name">Scott Hays</span></figcaption>
       </figure>
       <div class="pm-intro__text">
-        <p class="pm-intro__lead">${esc(p1)}</p>
+        <p class="pm-intro__lead">${sentences(p1).map((t, i) => `<span class="${i ? 'pm-intro__lead-s' : 'pm-intro__lead-k'}">${esc(t)}</span>`).join(' ')}</p>
         <p class="pm-intro__pts">${sentences(p2).map(s => `<span class="pm-pt"><span class="pm-pt__ic" aria-hidden="true">${icon('bolt', { size: 16 })}</span><span class="pm-pt__t">${s.includes('dedicated point of contact') ? emph(s, 'you’ll have a dedicated point of contact') : esc(s)}</span></span>`).join(' ')}</p>
         <div class="pm-intro__band">
           <p class="pm-intro__band-p">${sentences(p3).map((s, i) => `<span class="${i ? 'pm-intro__band-s' : 'pm-intro__band-k'}">${esc(s)}</span>`).join(' ')}</p>

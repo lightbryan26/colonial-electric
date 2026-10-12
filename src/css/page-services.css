@@ -141,7 +141,7 @@
 @media (min-width: 640px) {
   .sv-cat { grid-template-columns: minmax(0, 17rem) minmax(0, 1fr); grid-template-areas: "fig head" "fig body" "side body"; grid-template-rows: auto auto 1fr; }
   .sv-cat__fig { margin-bottom: 0; }
-  .sv-cat__side { margin-top: 1.75rem; }
+  .sv-cat__side { margin-top: 2.75rem; }
 }
 @media (min-width: 1024px) {
   .sv-cat { grid-template-columns: minmax(0, 28rem) minmax(0, 1fr); }
@@ -168,7 +168,8 @@
 .sv-cat:hover .sv-cat__ic { background: var(--red); }
 .sv-cat__h { font: 800 clamp(2rem, 1.6rem + 1.4vw, 2.85rem)/.95 var(--f-display); text-transform: uppercase; color: var(--white); text-wrap: balance; }
 
-.sv-cat__body { margin-top: 1.1rem; padding-top: 1.25rem; border-top: 3px solid var(--red-flag); max-width: 44rem; }
+.sv-cat__body { margin-top: 1.1rem; padding-top: 1.25rem; border-top: 3px solid var(--red-flag); }
+.sv-cat__lead, .sv-cat__note { max-width: 46rem; }
 .sv-cat__lead { font: 500 clamp(1.1875rem, 1.05rem + .5vw, 1.375rem)/1.45 var(--f-body); color: var(--white); text-wrap: pretty; }
 .sv-cat__inc { margin-top: 1.25rem; }
 .sv-cat__intro { font-size: 1.0625rem; line-height: 1.5; color: rgba(255, 255, 255, .8); }
