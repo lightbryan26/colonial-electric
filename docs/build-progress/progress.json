@@ -190,13 +190,22 @@
    "shot": "shots/homepage-r2.jpg"
   },
   "verify": {
-   "status": "verifying",
+   "status": "done",
    "round": 1,
-   "note": "Crawling all 45 slugs at subpath and root",
-   "updated": "2026-10-12T17:42:53.060Z"
+   "note": "45/45 at subpath and root, 0 broken. Fixed 404 noscript root-absolute css href. Externals unreachable from sandbox but match source and brief",
+   "updated": "2026-10-12T17:46:14.295Z",
+   "shot": "shots/verify-r1.png"
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T17:46:14.295Z",
+   "piece": "verify",
+   "status": "done",
+   "round": 1,
+   "note": "45/45 at subpath and root, 0 broken. Fixed 404 noscript root-absolute css href. Externals unreachable from sandbox but match source and brief",
+   "shot": "shots/verify-r1.png"
+  },
   {
    "t": "2026-10-12T17:42:53.060Z",
    "piece": "verify",
@@ -1945,5 +1954,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T17:42:53.060Z"
+ "updated": "2026-10-12T17:46:14.295Z"
 }
