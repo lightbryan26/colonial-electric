@@ -99,10 +99,10 @@
    "shot": "shots/footer-r1.png"
   },
   "tpl-service": {
-   "status": "won",
-   "round": 2,
-   "note": "Critic picked ours blind (clear). Remaining gap: The long-form body typography is broken. A 20px drop-cap paragraph of generic boilerplate outweighs the section headings, while the reasons-grid body sits at about 11px light gray, so the page's lower",
-   "updated": "2026-10-12T08:58:31.185Z",
+   "status": "building",
+   "round": 6,
+   "note": "Service heroes: remove Scott, per-service photo slot + branded panel",
+   "updated": "2026-10-12T17:53:16.782Z",
    "shot": "shots/tpl-service-r2.png"
   },
   "tpl-town": {
@@ -195,9 +195,29 @@
    "note": "45/45 at subpath and root, 0 broken. Fixed 404 noscript root-absolute css href. Externals unreachable from sandbox but match source and brief",
    "updated": "2026-10-12T17:46:14.295Z",
    "shot": "shots/verify-r1.png"
+  },
+  "maps": {
+   "status": "building",
+   "round": 1,
+   "note": "Google Maps embeds: footer + 21 town pages",
+   "updated": "2026-10-12T17:53:16.101Z"
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T17:53:16.782Z",
+   "piece": "tpl-service",
+   "status": "building",
+   "round": 6,
+   "note": "Service heroes: remove Scott, per-service photo slot + branded panel"
+  },
+  {
+   "t": "2026-10-12T17:53:16.101Z",
+   "piece": "maps",
+   "status": "building",
+   "round": 1,
+   "note": "Google Maps embeds: footer + 21 town pages"
+  },
   {
    "t": "2026-10-12T17:46:14.295Z",
    "piece": "verify",
@@ -1954,5 +1974,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T17:46:14.295Z"
+ "updated": "2026-10-12T17:53:16.782Z"
 }

@@ -5,6 +5,8 @@ import fs from 'fs';
 const exe = process.env.PW_CHROMIUM || (fs.existsSync('/opt/pw-browsers/chromium') ? '/opt/pw-browsers/chromium' : undefined);
 const b = await chromium.launch(exe ? { executablePath: exe } : {});
 const p = await b.newPage({ viewport: { width: +w, height: +w < 600 ? 812 : 900 } });
+// Google Maps embeds can't load from the build sandbox: stand in a neutral placeholder so screenshots stay meaningful (live site loads the real map).
+await p.route(/^https:\/\/(www\.|maps\.)?google\.com\/maps/, r => r.fulfill({ contentType: 'text/html', body: '<html><body style="margin:0;display:grid;place-items:center;height:100vh;background:#e5e3df;font:600 14px system-ui;color:#5f6b82">Google Map (loads on the live site)</body></html>' }));
 const errors=[]; p.on('pageerror',e=>errors.push(e.message)); p.on('requestfailed',r=>errors.push('FAILED '+r.url()));
 p.on('response',r=>{ if(r.status()>=400) errors.push(r.status()+' '+r.url()) });
 await p.goto(url, { waitUntil: 'networkidle', timeout: 60000 });
