@@ -58,7 +58,7 @@
         t.setAttribute('aria-expanded', String(on)); sub.hidden = !on;
       });
     });
-    window.matchMedia('(min-width: 1080px)').addEventListener('change', function (m) { if (m.matches && !menu.hidden) close(); });
+    window.matchMedia('(min-width: 1180px)').addEventListener('change', function (m) { if (m.matches && !menu.hidden) close(); });
   }
 
   /* ---------- Contact forms: validation + 180 counter. NEVER submits (preview build). ---------- */

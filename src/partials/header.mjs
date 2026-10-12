@@ -67,7 +67,7 @@ export function header(ctx) {
         <span class="hcall__ic">${icon('phone', { size: 18 })}</span>
         <span class="hcall__txt"><span class="hcall__label">Call Us Today!</span><span class="hcall__num">${site.phone}</span></span>
       </a>
-      <a class="btn btn--ghost btn--sm hflash" href="${ctx.r(membershipLink.href)}">${icon('star', { size: 14 })}${membershipLink.label}</a>
+      <a class="btn btn--ghost btn--sm hflash" href="${ctx.r(membershipLink.href)}">${icon('star', { size: 14 })}<span>Flash Pass<span class="hflash__more"> Membership</span></span></a>
       <button class="burger" type="button" aria-expanded="false" aria-controls="mnav" data-menu-open><span class="sr-only">Open menu</span>${icon('menu', { size: 26 })}</button>
     </div>
   </div>
