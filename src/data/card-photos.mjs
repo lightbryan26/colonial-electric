@@ -35,6 +35,16 @@ export const cardPhotos = {
     alt: 'Remodeled kitchen with a tiled backsplash, outlets and a switch beside the window over the sink',
     pos: '50% 50%', posM: '42% 50%',
   },
+  'permanent-outdoor-lighting': { // hero photo, from Colonial's Google Business Profile
+    key: 'services/permanent-outdoor-lighting',
+    alt: 'LED step lights set into the risers of a white deck stair',
+    pos: '50% 62%', posM: '50% 62%',
+  },
+  'whole-house-wiring-or-rewiring': { // hero photo, from Colonial's Google Business Profile
+    key: 'services/whole-house-wiring-or-rewiring',
+    alt: 'New cable runs dropped into a breaker panel on a diamond-plate backboard',
+    pos: '50% 22%', posM: '50% 25%',
+  },
   'recessed-lighting': { // hero photo (no library shot for this service)
     key: 'services/recessed-lighting',
     alt: 'Recessed ceiling lights evenly spaced across a remodeled kitchen, a Colonial Electric job',
