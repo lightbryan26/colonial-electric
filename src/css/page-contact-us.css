@@ -26,7 +26,7 @@
 
 /* Direct line */
 .cu-dial { margin-top: clamp(2rem, 1.25rem + 2.5vw, 3.5rem); padding-top: clamp(1.5rem, 1rem + 1.5vw, 2.25rem); border-top: 1px solid var(--line-dark-strong); max-width: 40rem; }
-.cu-dial__k { display: inline-flex; align-items: center; gap: .55rem; font: 700 var(--fs-eyebrow)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; color: var(--on-dark-2); }
+.cu-dial__k { display: flex; align-items: center; gap: .55rem; font: 700 var(--fs-eyebrow)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; color: var(--on-dark-2); }
 .cu-dial__k .icon { color: var(--red-flag); }
 .cu-dial__num {
   display: inline-flex; align-items: center; gap: clamp(.75rem, .5rem + 1vw, 1.25rem); margin-top: 1rem;

@@ -146,3 +146,4 @@
   .sa-map__key-sep { display: none; }
   .sa-map__key > * { flex: none; }
 }
+@media (min-width: 640px) and (max-width: 959px) { .sa-map { max-width: 34rem; } }

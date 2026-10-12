@@ -33,7 +33,7 @@ function hero(ctx) {
   <div class="container cu-hero__grid">
     <div class="cu-hero__copy">
       <nav class="crumbs" aria-label="Breadcrumb"><ol role="list"><li><a href="${ctx.r('')}">Home</a></li><li><span aria-current="page">Contact Us</span></li></ol></nav>
-      <p class="eyebrow cu-hero__eyebrow">${esc(site.name)} · ${esc(site.address.city)}, ${esc(site.address.region)}</p>
+      <p class="eyebrow cu-hero__eyebrow">${esc(site.address.city)}, ${esc(site.address.region)} · South Shore</p>
       <h1 class="cu-hero__h1" id="cu-h1"><span class="cu-hero__w cu-hero__w--1">Contact</span> <span class="cu-hero__w cu-hero__w--2">Us</span></h1>
 
       <div class="cu-dial">

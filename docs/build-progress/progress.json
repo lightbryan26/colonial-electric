@@ -23,39 +23,39 @@
   "home-services": {
    "status": "critiquing",
    "round": 1,
-   "note": "Round 1 built: paper-ground crest ledger of 12 linked service cells + navy Permanent Outdoor Lighting feature crest",
-   "updated": "2026-10-12T08:34:47.329Z",
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T08:46:02.632Z",
    "shot": "shots/home-services-r1.png"
   },
   "home-why": {
-   "status": "done",
+   "status": "critiquing",
    "round": 1,
-   "note": "Navy editorial index: sticky 8rem headline col + 4 numbered pillars, crest icons, CSS scroll-driven reveal",
-   "updated": "2026-10-12T08:33:46.507Z"
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T08:45:14.763Z"
   },
   "block-reviews": {
-   "status": "done",
+   "status": "critiquing",
    "round": 1,
-   "note": "Editorial reviews block: header, navy featured story, masonry wall; 375/768/1440 checked",
-   "updated": "2026-10-12T08:34:25.496Z"
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T08:45:45.259Z"
   },
   "home-faqs": {
-   "status": "done",
+   "status": "critiquing",
    "round": 1,
-   "note": "Editorial split FAQ shipped: sticky masthead+call crest, exclusive animated details accordion, verbatim content, FAQPage JSON-LD",
-   "updated": "2026-10-12T08:35:20.387Z"
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T08:46:11.516Z"
   },
   "home-about": {
-   "status": "building",
+   "status": "critiquing",
    "round": 1,
-   "note": "Founder section: real Scott portrait, verbatim copy, editorial split",
-   "updated": "2026-10-12T08:30:29.404Z"
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T08:46:19.433Z"
   },
   "home-membership": {
    "status": "critiquing",
    "round": 1,
-   "note": "Built: split band, giant 2-tone H2 + Flash Pass card object on navy crest stage, 4 verified perks, scroll-driven deal-in",
-   "updated": "2026-10-12T08:34:37.951Z",
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T08:45:53.480Z",
    "shot": "shots/home-membership-r1.png"
   },
   "home-process": {
@@ -144,10 +144,10 @@
    "updated": "2026-10-12T08:42:35.914Z"
   },
   "page-calendar": {
-   "status": "building",
+   "status": "done",
    "round": 1,
-   "note": "Build calendar page: verbatim scraped content, branded hero + booking panel, responsive",
-   "updated": "2026-10-12T08:43:02.019Z"
+   "note": "Calendar page: display hero + van photo, lifted crest booking panel with live GHL widget, founder aside, noscript/JS-failure fallback",
+   "updated": "2026-10-12T08:45:46.679Z"
   },
   "page-terms": {
    "status": "building",
@@ -157,6 +157,55 @@
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T08:46:19.433Z",
+   "piece": "home-about",
+   "status": "critiquing",
+   "round": 1,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:46:11.516Z",
+   "piece": "home-faqs",
+   "status": "critiquing",
+   "round": 1,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:46:02.632Z",
+   "piece": "home-services",
+   "status": "critiquing",
+   "round": 1,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:45:53.480Z",
+   "piece": "home-membership",
+   "status": "critiquing",
+   "round": 1,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:45:46.679Z",
+   "piece": "page-calendar",
+   "status": "done",
+   "round": 1,
+   "note": "Calendar page: display hero + van photo, lifted crest booking panel with live GHL widget, founder aside, noscript/JS-failure fallback"
+  },
+  {
+   "t": "2026-10-12T08:45:45.259Z",
+   "piece": "block-reviews",
+   "status": "critiquing",
+   "round": 1,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:45:14.763Z",
+   "piece": "home-why",
+   "status": "critiquing",
+   "round": 1,
+   "note": "screenshots + QA"
+  },
   {
    "t": "2026-10-12T08:43:21.789Z",
    "piece": "page-terms",
@@ -437,5 +486,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T08:43:21.789Z"
+ "updated": "2026-10-12T08:46:19.433Z"
 }

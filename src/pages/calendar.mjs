@@ -62,7 +62,6 @@ export function render(ctx) {
         <figcaption class="cal-founder__tag"><span class="cal-founder__role">Founder</span><span class="cal-founder__name">${esc(site.founder)}</span></figcaption>
       </figure>
       <p class="cal-aside__line">${esc(site.licenseLine)}</p>
-      <img class="cal-aside__badge" src="${ctx.asset('img/emblem-256.png')}" width="256" height="256" alt="" loading="lazy" decoding="async">
     </aside>
   </div>
 </section>

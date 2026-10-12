@@ -45,7 +45,7 @@ function hero(ctx) {
   <div class="container fin-hero__grid">
     <div class="fin-hero__copy">
       <nav class="crumbs" aria-label="Breadcrumb"><ol role="list"><li><a href="${ctx.r('')}">Home</a></li><li><span aria-current="page">${esc(copy.h1)}</span></li></ol></nav>
-      <p class="eyebrow fin-hero__eyebrow">${esc(site.name)} <span aria-hidden="true">×</span> Wisetack</p>
+      <p class="eyebrow fin-hero__eyebrow">Pay over time</p>
       <h1 class="fin-hero__h1" id="fin-h1"><span>We Offer</span> <span class="fin-hero__h1-em">Financing</span></h1>
       <p class="fin-hero__lead">${esc(copy.intro)}</p>
       <p class="btn-row">${preBtn()}<a class="btn btn--ghost btn--lg" href="${site.tel}">${icon('phone', { size: 18 })}${esc(site.phone)}</a></p>
@@ -57,7 +57,7 @@ function hero(ctx) {
           <li class="fin-term">
             <span class="sr-only">${esc(copy.bullets[1])}</span>
             <span class="fin-term__pre" aria-hidden="true">Terms from</span>
-            <span class="fin-term__num" aria-hidden="true">3<span class="fin-term__dash">–</span>120</span>
+            <span class="fin-term__num" aria-hidden="true">3<span class="fin-term__to">to</span>120</span>
             <span class="fin-term__unit" aria-hidden="true">months<sup>*</sup></span>
             ${scale()}
           </li>

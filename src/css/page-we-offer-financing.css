@@ -3,11 +3,6 @@
 /* ---------- Hero ---------- */
 .fin-hero { padding-top: clamp(2.5rem, 1.5rem + 4vw, 6rem); overflow: hidden; }
 .fin-hero > .container { padding-bottom: clamp(5.5rem, 4rem + 5vw, 9rem); }
-.fin-hero::after { /* oversized ghost numeral echo: tone-on-tone, decorative */
-  content: ""; position: absolute; inset: auto -8% -6% auto; width: 46rem; height: 46rem; z-index: -1;
-  background: radial-gradient(closest-side, rgba(30, 68, 121, .55), transparent 70%);
-  pointer-events: none;
-}
 .fin-hero__grid { display: grid; gap: clamp(2.5rem, 1rem + 4vw, 5rem); align-items: center; }
 @media (min-width: 1024px) { .fin-hero__grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); } }
 
@@ -46,13 +41,15 @@
 .fin-card__list { margin-top: clamp(1.25rem, 1rem + 1vw, 2rem); }
 
 .fin-term { display: grid; }
+.fin-card__label { padding-bottom: 1.1rem; border-bottom: 1px solid var(--line-dark); }
 .fin-term__pre { font: 700 var(--fs-eyebrow)/1.2 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--white); }
 .fin-term__num {
   margin-top: .35rem;
   font: 900 clamp(4.5rem, 2.5rem + 8vw, 9rem)/.82 var(--f-display); letter-spacing: -.02em; color: var(--white);
   font-variant-numeric: lining-nums;
+  display: flex; align-items: center;
 }
-.fin-term__dash { color: var(--red-flag); margin-inline: .04em; }
+.fin-term__to { display: inline-block; margin-inline: .14em .1em; font: 700 clamp(.75rem, .6rem + .4vw, 1rem)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--red-flag); }
 .fin-term__unit { margin-top: .35rem; font: 800 clamp(1.5rem, 1.2rem + 1vw, 2.1rem)/1 var(--f-display); text-transform: uppercase; letter-spacing: .02em; color: var(--white); }
 .fin-term__unit sup { color: var(--red-flag); font-size: .6em; }
 
@@ -82,21 +79,22 @@
 .fin-glance__item + .fin-glance__item { border-top: 1px solid var(--line); }
 @media (min-width: 768px) {
   .fin-glance__item + .fin-glance__item { border-top: 0; border-left: 1px solid var(--line); }
-  .fin-glance__item { grid-template-columns: 1fr; row-gap: 1.25rem; }
+  .fin-glance__item { grid-template-columns: 1fr; row-gap: 1.25rem; align-content: start; }
 }
 .fin-glance__n { position: absolute; top: clamp(1.5rem, 1rem + 1.5vw, 2.5rem); right: clamp(1.5rem, 1rem + 1.5vw, 2.5rem); font: 700 .6875rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; color: var(--ink-3); }
 .fin-glance__ic { display: grid; place-items: center; width: 3rem; height: 3rem; background: var(--navy); color: var(--white); clip-path: var(--crest); --cut: 9px; transition: background-color var(--dur) var(--ease-out); }
 .fin-glance__item:hover .fin-glance__ic { background: var(--red); }
-.fin-glance__item p { align-self: center; padding-right: 2rem; font: 800 clamp(1.3rem, 1.1rem + .7vw, 1.75rem)/1.08 var(--f-display); text-transform: uppercase; color: var(--ink); text-wrap: balance; }
+.fin-glance__item p { align-self: start; margin-top: .45rem; padding-right: 2rem; font: 800 clamp(1.3rem, 1.1rem + .7vw, 1.75rem)/1.08 var(--f-display); text-transform: uppercase; color: var(--ink); text-wrap: balance; }
 
 /* ---------- Prequalify ---------- */
 .fin-pq__grid { display: grid; gap: clamp(2.5rem, 1.5rem + 4vw, 6rem); align-items: center; }
 @media (min-width: 960px) { .fin-pq__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); } }
-.fin-pq__media { position: relative; max-width: 32rem; width: 100%; justify-self: center; }
+.fin-pq__media { position: relative; max-width: min(32rem, 100%); width: 100%; justify-self: center; }
 .fin-pq__media::before { /* offset navy crest plate behind the photo */
   content: ""; position: absolute; inset: 1.25rem -1.25rem -1.25rem 1.25rem; background: var(--navy); clip-path: var(--crest-lg); z-index: -1;
 }
 .fin-pq__media { isolation: isolate; }
+@media (max-width: 639px) { .fin-pq__media::before { inset: .75rem -.6rem -.75rem .6rem; } }
 .fin-pq__img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 18%; clip-path: var(--crest-lg); }
 .fin-pq__tag {
   position: absolute; left: 1rem; bottom: 1rem; display: inline-flex; align-items: center; gap: .6rem;
@@ -134,3 +132,4 @@
 @media (prefers-reduced-motion: reduce) {
   .fin-hero__h1-em::after, .fin-scale__fill, .fin-card { animation: none; }
 }
+@media (min-width: 640px) and (max-width: 959px) { .fin-pq__media { max-width: 24rem; justify-self: start; } }

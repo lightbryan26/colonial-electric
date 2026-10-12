@@ -1,0 +1,141 @@
+/* =====================================================================
+   /calendar/ — page-calendar (owner: page-calendar). All selectors .cal-*.
+   Hero: oversized display H1 + van photo in a crest frame.
+   Booking: white crest panel lifted over the sweep, live GHL widget inside;
+   founder aside sticks beside it on desktop.
+   ===================================================================== */
+
+/* ---------- Hero ---------- */
+.cal-hero { padding-top: clamp(2.5rem, 1.5rem + 3.5vw, 5rem); overflow: hidden; }
+.cal-hero__grid {
+  display: grid; gap: clamp(2rem, 1rem + 3vw, 4rem); align-items: end;
+  padding-bottom: clamp(5.5rem, 3rem + 7vw, 10rem);
+}
+.cal-hero__eyebrow { margin-top: 1.5rem; }
+.cal-hero__h1 {
+  margin-top: .75rem;
+  font: 800 clamp(4.25rem, 1rem + 11vw, 9.75rem)/.82 var(--f-display);
+  text-transform: uppercase; letter-spacing: -.01em; color: var(--white);
+}
+.cal-hero__word { display: inline-block; position: relative; padding-bottom: .08em; }
+.cal-hero__word::after { /* flag-stripe underline, draws in */
+  content: ""; position: absolute; left: .04em; bottom: -.06em; height: clamp(6px, .6vw, 10px); width: 38%;
+  background: repeating-linear-gradient(180deg, var(--red) 0 2px, var(--white) 2px 4px);
+  box-shadow: 0 0 0 1px var(--red) inset;
+  transform-origin: left; animation: cal-draw .9s var(--ease-out) .25s both;
+}
+.cal-hero__lic {
+  display: inline-flex; align-items: center; gap: .55rem; margin-top: clamp(1.5rem, 1rem + 1.5vw, 2.5rem);
+  font: 700 .75rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .12em; text-transform: uppercase; color: var(--on-dark-2);
+}
+.cal-hero__lic .icon { color: var(--red-flag); }
+
+.cal-hero__media { margin: 0; position: relative; }
+.cal-hero__frame { --cut-lg: 26px; clip-path: var(--crest-lg); background: var(--navy-3); aspect-ratio: 16 / 10; overflow: hidden; }
+.cal-hero__frame picture, .cal-hero__frame img { display: block; width: 100%; height: 100%; }
+.cal-hero__frame img { object-fit: cover; object-position: 50% 55%; animation: cal-settle 1.4s var(--ease-out) both; }
+.cal-hero__media::before { /* red offset plate behind the photo */
+  content: ""; position: absolute; inset: 14px -14px -14px 14px; z-index: -1;
+  background: var(--red); clip-path: var(--crest-lg); --cut-lg: 26px; opacity: .9;
+}
+
+@media (min-width: 960px) {
+  .cal-hero__grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); }
+  .cal-hero__copy { padding-bottom: clamp(.5rem, 2vw, 2rem); }
+}
+
+/* ---------- Booking ---------- */
+.cal-book { display: flow-root; position: relative; z-index: 2; background: var(--paper); padding-bottom: var(--section); }
+.cal-book__grid { display: grid; gap: clamp(2rem, 1rem + 3vw, 3.5rem); margin-top: calc(-1 * clamp(4rem, 2.5rem + 5vw, 8rem)); }
+
+.cal-panel {
+  position: relative; background: var(--white);
+  --cut-lg: 22px; clip-path: var(--crest-lg);
+  filter: drop-shadow(0 30px 50px rgba(8, 16, 32, .16)) drop-shadow(0 2px 4px rgba(8, 16, 32, .06));
+  animation: cal-rise .8s var(--ease-out) .1s both;
+}
+.cal-panel__head {
+  display: flex; align-items: center; gap: 1rem;
+  padding: clamp(1.25rem, .9rem + 1.4vw, 2.25rem) clamp(1.25rem, .8rem + 2vw, 3rem);
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(90deg, var(--red) 0 6px, transparent 6px);
+}
+.cal-panel__ic {
+  flex: none; display: grid; place-items: center; width: 3rem; height: 3rem; color: var(--white); background: var(--navy);
+  clip-path: polygon(8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px), 0 8px);
+}
+.cal-panel__h2 {
+  font: 800 clamp(1.9rem, 1.3rem + 2.2vw, 3.25rem)/.95 var(--f-display);
+  text-transform: uppercase; letter-spacing: -.005em; color: var(--navy);
+}
+
+.cal-embed { position: relative; min-height: 640px; padding: clamp(.5rem, .2rem + 1vw, 1.25rem) clamp(.25rem, 0rem + 1.4vw, 1.75rem) clamp(1rem, .5rem + 1.5vw, 2rem); }
+.cal-embed iframe { position: relative; z-index: 1; display: block; min-height: 620px; background: transparent; }
+.cal-embed.is-failed iframe { display: none; }
+.cal-embed.is-failed { min-height: 0; padding: 0; }
+
+/* Quiet loading state under the iframe (covered once the widget paints) */
+.cal-embed__skeleton { position: absolute; inset: 2rem 2rem auto; display: grid; gap: 1rem; }
+.cal-embed__skeleton span { display: block; height: 1rem; background: var(--paper); border-radius: 2px; animation: cal-pulse 1.4s ease-in-out infinite; }
+.cal-embed__skeleton span:nth-child(1) { width: 40%; height: 1.5rem; }
+.cal-embed__skeleton span:nth-child(2) { width: 65%; }
+.cal-embed__skeleton span:nth-child(3) { width: 100%; height: 18rem; }
+.cal-embed.is-loaded .cal-embed__skeleton, .cal-embed.is-failed .cal-embed__skeleton { display: none; }
+
+/* Fallback (noscript or widget failure) */
+.cal-fallback { padding: clamp(1.25rem, .8rem + 2vw, 3rem); }
+.cal-fallback__card { border: 1px solid var(--line); background: var(--paper); padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); }
+.cal-fallback__k { display: inline-flex; align-items: center; gap: .5rem; font: 700 .75rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .12em; text-transform: uppercase; color: var(--red); }
+.cal-fallback__num { display: block; margin-top: .75rem; font: 800 clamp(2.25rem, 1.5rem + 3vw, 3.75rem)/1 var(--f-display); color: var(--navy); text-decoration: none; letter-spacing: .01em; }
+.cal-fallback__num:hover { color: var(--red); }
+.cal-fallback .btn-row { margin-top: 1.5rem; }
+
+/* Aside: founder + license line */
+.cal-aside { display: grid; gap: 1.5rem; align-content: start; position: relative; }
+.cal-founder { margin: 0; position: relative; }
+.cal-founder__frame { --cut-lg: 22px; clip-path: var(--crest-lg); aspect-ratio: 4 / 5; overflow: hidden; background: var(--navy-3); }
+.cal-founder__frame picture, .cal-founder__frame img { display: block; width: 100%; height: 100%; }
+.cal-founder__frame img { object-fit: cover; object-position: 50% 18%; transition: transform 1.2s var(--ease-out); }
+.cal-founder:hover .cal-founder__frame img { transform: scale(1.03); }
+.cal-founder__tag {
+  position: absolute; left: 0; bottom: 1.25rem; display: grid; gap: .3rem;
+  padding: .9rem 1.25rem .9rem 1.1rem; background: var(--navy); color: var(--white);
+  border-left: 4px solid var(--red);
+  clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+}
+.cal-founder__role { font: 700 .6875rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--on-dark-3); }
+.cal-founder__name { font: 800 1.75rem/1 var(--f-display); text-transform: uppercase; letter-spacing: .01em; }
+.cal-aside__line {
+  font: 500 var(--fs-small)/1.55 var(--f-body); color: var(--ink-2);
+  padding-left: 1rem; border-left: 2px solid var(--line-strong);
+}
+.cal-aside__badge { display: none; }
+
+@media (min-width: 640px) and (max-width: 959.98px) {
+  .cal-aside { grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); align-items: end; }
+  .cal-founder { grid-row: span 2; }
+  .cal-aside__line { align-self: end; }
+}
+@media (max-width: 639.98px) {
+  .cal-aside { grid-template-columns: 9rem minmax(0, 1fr); align-items: center; gap: 1rem 1.25rem; }
+  .cal-founder__tag { bottom: .6rem; padding: .55rem .8rem .55rem .7rem; }
+  .cal-founder__name { font-size: 1.15rem; }
+  .cal-founder__role { font-size: .5625rem; }
+  .cal-aside__line { padding-left: .85rem; font-size: .875rem; }
+  .cal-embed { min-height: 760px; }
+  .cal-embed iframe { min-height: 740px; }
+}
+@media (min-width: 960px) {
+  .cal-book__grid { grid-template-columns: minmax(0, 1fr) clamp(17rem, 22vw, 21rem); align-items: start; }
+  .cal-aside { position: sticky; top: calc(var(--header-h) + 1.5rem); padding-top: clamp(5rem, 3rem + 4vw, 9rem); }
+}
+
+/* ---------- Motion ---------- */
+@keyframes cal-draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes cal-settle { from { transform: scale(1.08); } to { transform: scale(1); } }
+@keyframes cal-rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+@keyframes cal-pulse { 50% { opacity: .45; } }
+@media (prefers-reduced-motion: reduce) {
+  .cal-hero__word::after, .cal-hero__frame img, .cal-panel, .cal-embed__skeleton span { animation: none; }
+  .cal-founder:hover .cal-founder__frame img { transform: none; }
+}
