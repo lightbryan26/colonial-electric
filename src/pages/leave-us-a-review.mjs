@@ -58,34 +58,42 @@ function intro(ctx) {
 </section>`;
 }
 
-function card(p, i) {
-  return `<li class="lr-card lr-card--${p.id}" id="lr-${p.id}">
-    <div class="lr-card__top">
-      <span class="lr-card__n label-wide" aria-hidden="true">${String(i + 1).padStart(2, '0')} / 04</span>
-      <span class="lr-card__go" aria-hidden="true">${icon('arrow-up-right', { size: 22 })}</span>
-    </div>
-    <h3 class="lr-card__name">${esc(p.name)}</h3>
-    <p class="lr-card__blurb">${esc(p.blurb)}</p>
-    <a class="lr-card__cta" href="${p.href}" target="_blank" rel="noopener">${icon('star', { size: 16 })}<span>${esc(p.cta)}</span><span class="sr-only"> (opens in a new tab)</span></a>
-  </li>`;
+// One row per platform (rendered once). The <a> is unclipped so its ::after can stretch over the whole row
+// as the hit area; the chamfered button face is the inner span.
+function row(p, i) {
+  return `<li class="lr-row lr-row--${p.id}" id="lr-${p.id}">
+      <span class="lr-row__n label-wide" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>
+      <h3 class="lr-row__name">${esc(p.name)}</h3>
+      <p class="lr-row__blurb">${esc(p.blurb)}</p>
+      <a class="lr-row__cta" href="${p.href}" target="_blank" rel="noopener"><span class="lr-row__btn">${icon('star', { size: 16 })}<span class="lr-row__label">${esc(p.cta)}</span>${icon('arrow-up-right', { size: 18, cls: 'lr-row__go' })}</span><span class="sr-only"> (opens in a new tab)</span></a>
+    </li>`;
 }
 
 function platformsSection() {
-  return `<section class="lr-platforms" id="lr-platforms" aria-labelledby="lr-platforms-h">
+  return `<section class="lr-platforms on-dark stars-bg" id="lr-platforms" aria-labelledby="lr-platforms-h">
   <div class="container">
     <header class="lr-platforms__head">
       <h2 class="h2 lr-platforms__h" id="lr-platforms-h">${esc(copy.h2)}</h2>
       <span class="lr-platforms__rule" aria-hidden="true"></span>
+      <p class="lr-platforms__note label-wide">${icon('arrow-up-right', { size: 16 })}<span>Links open in a new tab</span></p>
     </header>
-    <ul class="lr-grid" role="list">${platforms.map(card).join('')}</ul>
+    <ol class="lr-list" role="list">
+    ${platforms.map(row).join('\n    ')}
+    </ol>
   </div>
 </section>`;
 }
 
 function towns(ctx) {
   return `<section class="lr-towns" aria-labelledby="lr-towns-h">
-  <div class="container lr-towns__grid">
-    <h2 class="lr-towns__h label-wide" id="lr-towns-h">${icon('pin', { size: 16 })}Towns We Serve</h2>
+  <div class="container">
+    <header class="lr-towns__head">
+      <div class="lr-towns__title">
+        <p class="lr-towns__k label-wide">${icon('pin', { size: 16 })}<span>Colonial Electric</span></p>
+        <h2 class="lr-towns__h" id="lr-towns-h">Towns We Serve</h2>
+      </div>
+      <a class="lr-towns__more label-wide" href="${ctx.r('service-area/')}"><span>Service Area</span>${icon('arrow-right', { size: 16 })}</a>
+    </header>
     ${townList(ctx)}
   </div>
 </section>`;

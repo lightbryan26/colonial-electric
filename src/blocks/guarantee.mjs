@@ -2,10 +2,13 @@
 // a real job-site photo of founder Scott Hays at the Colonial van (signed + call CTA on the photo),
 // and the verbatim guarantee copy set as a numbered warranty document. Seal = the real Colonial logo
 // lockup inside a turning type ring (decorative, aria-hidden). Copy verbatim from src/data/shared.mjs.
-// No prices, no invented claims. Photo = a crop of the client's own owner-van photo (gx-scott-van-*).
+// No prices, no invented claims. Photo = a crop of the client's own owner-van photo (gx-scott-van-*), shown only when
+// the page has not used the van photo yet (claimVan: once per page). Otherwise the column becomes the crest variant:
+// the seal set large on the navy star field, with the same signature + call CTA.
 import { guarantee as g } from '../data/shared.mjs';
 import { icon } from '../partials/icons.mjs';
-import { esc, telHref } from '../lib/html.mjs';
+import { esc, telHref, claimVan } from '../lib/html.mjs';
+import { starRing } from '../lib/ring.mjs';
 
 // Split the verbatim H2 so the guarantee name can carry the accent; the text itself is unchanged.
 function headline(h2) {
@@ -15,15 +18,14 @@ function headline(h2) {
 }
 
 function seal(ctx, uid) {
-  const ring = 'Lifetime Craftsmanship Guarantee ★ Colonial Electric ★ ';
   return `<div class="gx__seal" aria-hidden="true">
         <svg class="gx__ring" viewBox="0 0 200 200" focusable="false">
           <defs><path id="${uid}-arc" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs>
           <circle cx="100" cy="100" r="98" class="gx__ring-o"/>
           <circle cx="100" cy="100" r="64" class="gx__ring-i"/>
-          <text><textPath href="#${uid}-arc" textLength="500" lengthAdjust="spacing">${esc(ring)}</textPath></text>
+          ${starRing({ href: `${uid}-arc`, cx: 100, cy: 100, r: 80, length: 500, phrases: ['Lifetime Craftsmanship Guarantee', 'Colonial Electric'], size: 4.2, lift: 4.3 })}
         </svg>
-        <img class="gx__logo" src="${ctx.asset('img/logo-lockup-320.png')}" width="320" height="332" alt="" loading="eager" decoding="async">
+        <picture class="pic-contents"><source type="image/webp" srcset="${ctx.asset('img/logo-lockup-320.webp')}"><img class="gx__logo" src="${ctx.asset('img/logo-lockup-320.png')}" width="320" height="332" alt="" loading="eager" decoding="async"></picture>
       </div>`;
 }
 
@@ -37,12 +39,13 @@ export function guarantee(ctx, { id = '', cls = '' } = {}) {
   const uid = id || 'guarantee';
   const [p1, ...rest] = g.paras;
   const num = n => `<span class="gx__num" aria-hidden="true">${icon('bolt', { size: 13 })}0${n}</span>`;
+  const withPhoto = claimVan(ctx);
   return `<section class="block block--guarantee gx ${cls}"${id ? ` id="${id}"` : ''} aria-labelledby="${uid}-h">
   <div class="container">
     <article class="gx__cert">
       <div class="gx__paper">
-        <figure class="gx__media">
-          ${photo(ctx)}
+        <figure class="gx__media${withPhoto ? '' : ' gx__media--crest'}">
+          ${withPhoto ? photo(ctx) : ''}
           ${seal(ctx, uid)}
           <figcaption class="gx__sign">
             <span class="gx__sig">

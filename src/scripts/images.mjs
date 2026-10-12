@@ -27,6 +27,8 @@ await job('scott-portrait', RAW + 'DSC_6221-Ev-scaled.jpg', [480, 800, 1200, 160
 await job('logo-lockup', RAW + 'COLONIALELECTRIC_LogoPackageWS_Both.png', [320, 621], { fallback: 'png', quality: 90 });
 await job('logo-badge', RAW + 'COLONIALELECTRIC_Web2_Badge.png', [250], { fallback: 'png', quality: 92 });
 await job('emblem', RAW + 'cropped-Untitled-design-5.png', [256, 512], { fallback: 'png', quality: 90 });
+// Town photos: after this loop, run src/scripts/town-crops.mjs. It re-exports them from source/images/town/ with
+// per-image crops that remove the Google Maps watermark, contributor chips and overlays (src/data/town-crops.json).
 for (const f of fs.readdirSync(RAW).filter(f => /-MA-/.test(f))) {
   const key = 'town/' + f.replace(/\.(png|jpe?g)$/i, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/,'');
   await job(key, RAW + f, [400, 800], { quality: 72 });

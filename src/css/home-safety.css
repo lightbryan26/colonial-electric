@@ -1,13 +1,13 @@
 /* =====================================================================
    Homepage §4.3 — Safety & Satisfaction Guaranteed  (#s-safety)
-   Owner: home-safety. Editorial split on paper: oversized two-line
+   Owner: home-safety. Editorial split on white: oversized two-line
    headline, lead + crest call card, numbered points with hairlines.
    ===================================================================== */
 
 .safety {
   position: relative;
   padding-block: var(--section);
-  background: var(--paper);
+  background: var(--white);
   overflow: clip;
 }
 /* fine pinstripe band behind the headline — the badge's inner texture, navy on paper */
@@ -27,18 +27,10 @@
 }
 
 /* ---------- Headline ---------- */
-.safety__eyebrow {
-  display: inline-flex; align-items: center; gap: .65rem;
-  font: 700 var(--fs-eyebrow)/1.2 var(--f-wide); font-stretch: 125%;
-  letter-spacing: .14em; text-transform: uppercase; color: var(--red);
-}
-.safety__eyebrow .icon { flex: none; }
-.safety__eyebrow::after { content: none; width: 2.5rem; height: 2px; background: currentColor; opacity: .5; }
-
 .safety__title {
-  margin-top: clamp(1rem, .6rem + 1vw, 1.75rem);
+  margin-top: 1rem;
   font-family: var(--f-display); font-weight: 900;
-  font-size: clamp(2.75rem, .9rem + 7.2vw, 8rem);
+  font-size: var(--fs-h2-xl);
   line-height: .86; letter-spacing: -.01em;
   text-transform: uppercase; color: var(--navy);
 }
@@ -72,9 +64,11 @@
 .safety__seal-disc { fill: var(--white); stroke: var(--red); stroke-width: 3; }
 .safety__seal-ring { transform-origin: 120px 120px; }
 .safety__seal text { fill: var(--white); font: 700 15.5px var(--f-wide); font-stretch: 125%; }
+.safety__seal .ring-star { fill: var(--white); } /* drawn star (the ★ glyph is not in Archivo) */
 @media (prefers-reduced-motion: no-preference) {
-  .safety__seal-ring { animation: safetySpin 40s linear infinite; }
-  .safety__seal:hover .safety__seal-ring { animation-duration: 12s; }
+  /* one turn on load (< 5s, WCAG 2.2.2); keeps turning only while hovered */
+  .safety__seal-ring { animation: safetySpin 4.8s var(--ease-out) 1; }
+  .safety__seal:hover .safety__seal-ring { animation: safetySpin 12s linear infinite; }
 }
 @keyframes safetySpin { to { transform: rotate(360deg); } }
 
@@ -154,8 +148,8 @@
   transition: background-color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
 }
 .safety__tel-num {
-  font: 700 clamp(1.25rem, 7.4cqi, 2.25rem)/1 var(--f-wide); font-stretch: 125%;
-  letter-spacing: .01em; white-space: nowrap; font-variant-numeric: tabular-nums;
+  font: 700 clamp(1.25rem, 6.8cqi, 2.25rem)/1 var(--f-wide); font-stretch: 125%;
+  letter-spacing: var(--tel-track-lg); white-space: nowrap; font-variant-numeric: tabular-nums;
 }
 .safety__tel:hover .safety__tel-ico { background: var(--red-flag); transform: rotate(-8deg); }
 .safety__tel:hover .safety__tel-num { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .2em; }
@@ -198,6 +192,16 @@
   .safety__call-mark { display: none; }
   .safety__call-line { max-width: 18ch; font-size: clamp(1.5rem, 1rem + 1vw, 2.125rem); }
   .safety__cta { width: auto; white-space: nowrap; }
+  /* explicit placement: line · number · call-back (auto-placement left an empty track and dropped the button to a 2nd row) */
+  .safety__call-in { grid-template-columns: minmax(0, 1fr) auto; }
+  .safety__call-line { grid-column: 1; grid-row: 1; }
+  .safety__tel { grid-column: 2; grid-row: 1; border-right: 0; padding-right: 0; }
+  .safety__cta { grid-column: 1 / -1; grid-row: 2; width: 100%; }
+}
+@media (min-width: 75em) {
+  .safety__call-in { grid-template-columns: minmax(0, 1fr) auto auto; }
+  .safety__tel { border-right: 1px solid var(--line-dark-strong); padding-right: clamp(1.5rem, 1rem + 1.5vw, 3rem); }
+  .safety__cta { grid-column: 3; grid-row: 1; width: auto; }
 }
 
 /* ---------- Motion (scroll-driven, no JS) ---------- */

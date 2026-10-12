@@ -4,6 +4,29 @@
    Every other src/css/*.css is appended after this file (alphabetical).
    ===================================================================== */
 
+/* ---------- 0. Fonts ---------- */
+/* Google Fonts (§3) self-hosted, latin subset, so they come from this origin and the hero faces can be preloaded
+   (src/partials/head.mjs). Files: src/assets/fonts (SIL OFL). */
+@font-face { font-family: "Barlow Condensed"; font-style: normal; font-weight: 600; font-display: swap; src: url("fonts/barlow-condensed-600-latin.woff2") format("woff2"); }
+@font-face { font-family: "Barlow Condensed"; font-style: normal; font-weight: 700; font-display: swap; src: url("fonts/barlow-condensed-700-latin.woff2") format("woff2"); }
+@font-face { font-family: "Barlow Condensed"; font-style: normal; font-weight: 800; font-display: swap; src: url("fonts/barlow-condensed-800-latin.woff2") format("woff2"); }
+@font-face { font-family: "Barlow Condensed"; font-style: normal; font-weight: 900; font-display: swap; src: url("fonts/barlow-condensed-900-latin.woff2") format("woff2"); }
+@font-face { font-family: "Barlow Condensed"; font-style: italic; font-weight: 800; font-display: swap; src: url("fonts/barlow-condensed-800-italic-latin.woff2") format("woff2"); }
+@font-face { font-family: "Archivo"; font-style: normal; font-weight: 600 700; font-stretch: 125%; font-display: swap; src: url("fonts/archivo-wdth125-600-700-latin.woff2") format("woff2"); }
+@font-face { font-family: "Barlow"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/barlow-400-latin.woff2") format("woff2"); }
+@font-face { font-family: "Barlow"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/barlow-500-latin.woff2") format("woff2"); }
+@font-face { font-family: "Barlow"; font-style: normal; font-weight: 600; font-display: swap; src: url("fonts/barlow-600-latin.woff2") format("woff2"); }
+@font-face { font-family: "Barlow"; font-style: normal; font-weight: 700; font-display: swap; src: url("fonts/barlow-700-latin.woff2") format("woff2"); }
+/* Metric-matched fallbacks: Arial (or its metric twins Liberation Sans / Arimo) scaled to each face's average glyph width,
+   measured on the site's own above-the-fold text, with the web font's ascent/descent. Text set in the fallback during a
+   cold load wraps like the web font, so the swap does not reflow the hero (brief §9: no layout shift). Where no Arial is
+   installed these faces fail and the stack falls through as before. */
+@font-face { font-family: "Barlow Condensed Fallback"; font-weight: 600 700; src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"), local("LiberationSans-Bold"), local("Arimo Bold"); size-adjust: 67.8%; ascent-override: 147.49%; descent-override: 29.5%; line-gap-override: 0%; }
+@font-face { font-family: "Barlow Condensed Fallback"; font-weight: 800 900; src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"), local("LiberationSans-Bold"), local("Arimo Bold"); size-adjust: 70.3%; ascent-override: 142.25%; descent-override: 28.45%; line-gap-override: 0%; }
+@font-face { font-family: "Archivo Fallback"; font-weight: 600 700; src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"), local("LiberationSans-Bold"), local("Arimo Bold"); size-adjust: 129.1%; ascent-override: 68.01%; descent-override: 16.27%; line-gap-override: 0%; }
+@font-face { font-family: "Barlow Fallback"; font-weight: 400 500; src: local("Arial"), local("ArialMT"), local("Liberation Sans"), local("LiberationSans"), local("Arimo"); size-adjust: 97.2%; ascent-override: 102.88%; descent-override: 20.58%; line-gap-override: 0%; }
+@font-face { font-family: "Barlow Fallback"; font-weight: 600 700; src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"), local("LiberationSans-Bold"), local("Arimo Bold"); size-adjust: 91.5%; ascent-override: 109.29%; descent-override: 21.86%; line-gap-override: 0%; }
+
 /* ---------- 1. Tokens ---------- */
 :root {
   /* Brand masters (sampled from the logo; brief §3) */
@@ -17,6 +40,16 @@
   --white: #FFFFFF;
   --paper: #F6F7F9;
 
+  /* The one red for TEXT/ICONS on dark grounds (brand-red hue 354°/75%, lifted to L64%).
+     5.65:1 on navy-ink, 5.17:1 on navy-2, 4.68:1 on navy, 3.95:1 on navy-3 (large/icons only there).
+     --red / --red-flag stay as fills (chips, rules, banners) on dark; never as small text there. */
+  --red-on-dark: #E85E6C;
+
+  /* Phone number type (§3: Archivo expanded wdth 125 at 700, tracked 0.08–0.15em).
+     --tel-track for text sizes; --tel-track-lg only for display sizes where .08em would overrun. */
+  --tel-track: .08em;
+  --tel-track-lg: .04em;
+
   /* Derived neutrals (navy-tinted) */
   --navy-2: #0D1A30;            /* between ink and navy */
   --navy-3: #1A3050;            /* raised surface on navy */
@@ -27,24 +60,34 @@
   --line-strong: rgba(18, 35, 62, .22);
   --on-dark: #FFFFFF;
   --on-dark-2: rgba(255, 255, 255, .78);  /* ≥ 10:1 on navy-ink */
-  --on-dark-3: rgba(255, 255, 255, .62);
+  --on-dark-3: rgba(255, 255, 255, .7);   /* ≥ 6.3:1 on navy-3, ≥ 8:1 on navy / navy-ink */
   --line-dark: rgba(255, 255, 255, .12);
   --line-dark-strong: rgba(255, 255, 255, .24);
 
   /* Type */
-  --f-display: "Barlow Condensed", "Roboto Condensed", "Arial Narrow", "Helvetica Neue Condensed", Impact, sans-serif;
-  --f-wide: "Archivo", "Helvetica Neue", Arial, sans-serif;
-  --f-body: "Barlow", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --f-display: "Barlow Condensed", "Barlow Condensed Fallback", "Roboto Condensed", "Arial Narrow", "Helvetica Neue Condensed", Impact, sans-serif;
+  --f-wide: "Archivo", "Archivo Fallback", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Barlow", "Barlow Fallback", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 
   --fs-display: clamp(2.75rem, 1.05rem + 6.3vw, 6.5rem);
   --fs-h1: clamp(2.5rem, 1.5rem + 4.2vw, 5rem);
   --fs-h2: clamp(2rem, 1.35rem + 2.6vw, 3.5rem);
   --fs-h3: clamp(1.375rem, 1.2rem + .6vw, 1.75rem);
+  /* Section-heading scale (homepage composition pass): three steps, used instead of per-section clamps.
+     xl = short statement headings · lg = standard section H2 · md = H2 set inside a panel/card. */
+  --fs-h2-xl: clamp(3.25rem, 1.6rem + 5.2vw, 6.25rem);  /* 52 → 65 (768) → 100 (1440) */
+  --fs-h2-lg: clamp(2.5rem, 1.25rem + 4.2vw, 5rem);     /* 40 → 52 → 80 */
+  --fs-h2-md: clamp(2.25rem, 1.25rem + 2.8vw, 4rem);    /* 36 → 41 → 60 */
   --fs-lead: clamp(1.0625rem, 1rem + .3vw, 1.25rem);
-  --fs-body: 1.0625rem;
-  --fs-small: .9375rem;
-  --fs-xs: .8125rem;
-  --fs-eyebrow: .75rem;
+  /* Text floors (integrator pass 1.4). Nothing that carries meaning goes below --fs-label;
+     per-page CSS uses these tokens instead of hard-coded rem values so the floors hold sitewide. */
+  --fs-body: 1.0625rem;   /* 17px: long-form body copy, line-height ~1.6 */
+  --fs-desc: 1rem;        /* 16px: card / benefit / step descriptions (multi-sentence) */
+  --fs-small: .9375rem;   /* 15px: short secondary lines, captions, footer links, form helpers */
+  --fs-meta: .875rem;     /* 14px: sentence-case meta (legal row, licence line); never below this */
+  --fs-xs: .8125rem;      /* 13px: uppercase wide UI type (buttons, links in caps) */
+  --fs-eyebrow: .8125rem; /* 13px: eyebrows */
+  --fs-label: .75rem;     /* 12px floor: uppercase wide labels, chips, counters, index numerals */
 
   /* Space + layout */
   --gutter: clamp(1rem, .4rem + 3vw, 3rem);
@@ -88,6 +131,7 @@ body {
   overflow-x: clip;
 }
 img, picture, svg, video { display: block; max-width: 100%; }
+picture.pic-contents { display: contents; } /* WebP wrapper that leaves the <img> as the layout box */
 img { height: auto; }
 input, button, textarea, select { font: inherit; color: inherit; }
 button { cursor: pointer; background: none; border: 0; padding: 0; }
@@ -136,7 +180,7 @@ main:focus { outline: none; }
 .prose h2 { font: 800 clamp(1.5rem, 1.2rem + 1vw, 2rem)/1.1 var(--f-display); text-transform: uppercase; margin-top: 2em; color: var(--ink); }
 .prose ul { padding-left: 1.2em; }
 .prose a { color: var(--blue-bright); }
-.fineprint { font-size: var(--fs-xs); color: var(--ink-3); line-height: 1.6; margin-top: 2rem; }
+.fineprint { font-size: var(--fs-small); color: var(--ink-3); line-height: 1.6; margin-top: 2rem; }
 
 /* ---------- 4. Layout ---------- */
 .container { width: 100%; max-width: calc(var(--container) + var(--gutter) * 2); margin-inline: auto; padding-inline: var(--gutter); }
@@ -187,14 +231,23 @@ main:focus { outline: none; }
   transition: background-color var(--dur) var(--ease-out);
 }
 .btn--ghost:hover::before { background: var(--navy-3); }
-.btn--outline { --btn-bg: transparent; --btn-fg: var(--navy); --btn-bg-hover: var(--paper); box-shadow: inset 0 0 0 1.5px var(--navy); }
-.btn--sm { min-height: 2.6rem; padding: .6rem 1.1rem; font-size: .6875rem; }
+.btn--outline { /* chamfer-true keyline: ::after is an octagonal ring (even-odd clip), so the line follows the chamfered corners on any ground */
+  --btn-bg: transparent; --btn-fg: var(--navy); --btn-bg-hover: var(--paper); --kl: 1.5px; --kl-color: var(--navy);
+}
+.btn--outline::after {
+  --ki: calc(var(--cut-sm) + var(--kl) * .4142); /* inner chamfer point: keeps the diagonal stroke the same width as the straight edges */
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: var(--kl-color);
+  clip-path: polygon(evenodd,
+    var(--cut-sm) 0, calc(100% - var(--cut-sm)) 0, 100% var(--cut-sm), 100% calc(100% - var(--cut-sm)), calc(100% - var(--cut-sm)) 100%, var(--cut-sm) 100%, 0 calc(100% - var(--cut-sm)), 0 var(--cut-sm), var(--cut-sm) 0,
+    var(--ki) var(--kl), calc(100% - var(--ki)) var(--kl), calc(100% - var(--kl)) var(--ki), calc(100% - var(--kl)) calc(100% - var(--ki)), calc(100% - var(--ki)) calc(100% - var(--kl)), var(--ki) calc(100% - var(--kl)), var(--kl) calc(100% - var(--ki)), var(--kl) var(--ki), var(--ki) var(--kl));
+}
+.btn--sm { min-height: 2.6rem; padding: .6rem 1.1rem; font-size: var(--fs-label); }
 .btn--lg { min-height: 3.6rem; padding: 1rem 1.9rem; }
 .btn--block { width: 100%; }
 .btn-row { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; margin-top: 2rem; }
 .btn-row--center { justify-content: center; }
 
-.tel-lg { display: inline-flex; align-items: center; gap: .6rem; font: 700 clamp(1.25rem, 1.1rem + .6vw, 1.6rem)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .02em; text-decoration: none; color: inherit; }
+.tel-lg { display: inline-flex; align-items: center; gap: .6rem; font: 700 clamp(1.25rem, 1.1rem + .6vw, 1.6rem)/1 var(--f-wide); font-stretch: 125%; letter-spacing: var(--tel-track); white-space: nowrap; text-decoration: none; color: inherit; }
 .tel-lg:hover { color: var(--red-flag); }
 .on-dark .tel-lg:hover { color: var(--white); text-decoration: underline; }
 
@@ -259,14 +312,23 @@ main:focus { outline: none; }
 .page-hero__sub { margin-top: 1.25rem; font: 600 var(--fs-lead)/1.4 var(--f-body); color: var(--on-dark-2); max-width: 44ch; }
 .page-hero .lead { margin-top: 1rem; }
 .page-hero .sweep { margin-bottom: -1px; }
-.crumbs ol { display: flex; flex-wrap: wrap; gap: .4rem .6rem; font: 700 .6875rem/1.4 var(--f-wide); font-stretch: 125%; letter-spacing: .1em; text-transform: uppercase; color: var(--on-dark-3); }
+.crumbs ol { display: flex; flex-wrap: wrap; gap: .4rem .6rem; font: 700 var(--fs-label)/1.4 var(--f-wide); font-stretch: 125%; letter-spacing: .1em; text-transform: uppercase; color: var(--on-dark-3); }
 .crumbs li + li::before { content: "›"; margin-right: .6rem; color: var(--red-flag); }
+.on-dark .crumbs li + li::before { color: var(--red-on-dark); }
 .crumbs a { color: var(--on-dark-2); text-decoration: none; }
 .crumbs a:hover { color: var(--white); text-decoration: underline; }
 .crumbs [aria-current] { color: var(--white); }
 
-/* ---------- 9. Reduced motion ---------- */
+/* ---------- 9. Reduced motion · print ---------- */
+/* House rule: content is visible by default. Motion only enhances it: no scroll-driven (animation-timeline) keyframe may
+   start from opacity 0 or a clip that hides text, because a view() timeline leaves off-screen content in its "from"
+   state (full-page captures, print, find-in-page). Scroll-driven reveals here are transform-only. */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; animation-delay: 0s !important; transition-duration: .001ms !important; }
+}
+@media print {
+  /* every animation jumps to its end state on the document timeline (scroll-driven ones included) */
+  *, *::before, *::after { animation-timeline: auto !important; animation-duration: 0s !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition: none !important; }
+  .callbar, .skip-link { display: none !important; }
 }

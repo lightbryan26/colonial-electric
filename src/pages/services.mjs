@@ -1,21 +1,22 @@
 // /services/ — Services index (brief §7). All copy verbatim from source/pages/services.md.
-// Section order (brief §7): hero + "For a Job Done Right" → residential → 3 categories → trust strip →
+// Section order (brief §7): hero (H1, H2 + paragraph, founder/van photo) → residential → 3 categories → trust strip →
 // guarantee → services catalogue (+ Permanent Outdoor Lighting) → Contact CTA → booking process →
 // reviews + quote → town list → contact form → FAQs.
 // Styles: src/css/page-services.css (all classes prefixed .sv-). No prices, no invented claims.
 import { site } from '../data/site.mjs';
 import { services, serviceCards, servicesIntro } from '../data/services.mjs';
-import { bookingH2, trustItems } from '../data/shared.mjs';
+import { bookingH2, trustItems, processSteps } from '../data/shared.mjs';
 import { hero as homeHero } from '../data/home.mjs';
 import { guarantee } from '../blocks/guarantee.mjs';
 import { contactCta } from '../blocks/contact-cta.mjs';
-import { process, quoteBlock } from '../blocks/process.mjs';
+import { quoteBlock } from '../blocks/process.mjs';
 import { reviews } from '../blocks/reviews.mjs';
 import { townList } from '../blocks/town-list.mjs';
 import { contactForm } from '../blocks/contact-form.mjs';
 import { faqJsonLd } from '../blocks/faqs.mjs';
 import { icon } from '../partials/icons.mjs';
 import { esc, picture } from '../lib/html.mjs';
+import { plate } from '../blocks/plate.mjs';
 
 const pad = n => String(n).padStart(2, '0');
 
@@ -35,27 +36,39 @@ const residential = {
 };
 
 // [[label|href]] marks a linked service name inside verbatim text.
+// Each category is the verbatim services.md copy, set for scanning without changing a word or its order:
+// lead = the opening sentence; intro + items = the next sentence, broken at its own commas into a run-in list
+// (or, for Installation, its three service sentences); note = the closing paragraph.
+// Media = a brand plate (src/blocks/plate.mjs): crest chip + the category glyph on the badge-blue pinstripe. The live
+// site's service photos are framed stock (brief §8), so none is used; a real Colonial job photo mapped to the plate id
+// in src/data/service-photos.mjs drops into the same frame.
 const categories = [
   {
-    h2: 'Electrical Repairs', ic: 'inspect',
-    paras: [
-      'Electrical repairs involve fixing any issues or malfunctions within an existing electrical system. This could include repairing faulty wiring, addressing power outages, replacing damaged outlets or switches, troubleshooting circuit breakers, or fixing any other electrical components that are not functioning correctly.',
-      'An [[Electrical Inspection|electrical-inspections/]] is often necessary to identify these issues and ensure that all repairs are addressed properly.',
-    ],
+    h2: 'Electrical Repairs', ic: 'inspect', plate: 'services-electrical-repairs',
+    lead: 'Electrical repairs involve fixing any issues or malfunctions within an existing electrical system.',
+    intro: 'This could include',
+    items: ['repairing faulty wiring,', 'addressing power outages,', 'replacing damaged outlets or switches,', 'troubleshooting circuit breakers,', 'or fixing any other electrical components that are not functioning correctly.'],
+    note: 'An [[Electrical Inspection|electrical-inspections/]] is often necessary to identify these issues and ensure that all repairs are addressed properly.',
   },
   {
-    h2: 'Electrical Installation', ic: 'ev',
-    paras: [
-      'Our Electrical installation services cover a wide range of needs to ensure your home is fully equipped with the latest electrical solutions. We specialize in [[EV Charger Installation|ev-charger-installation/]], providing you with the convenience and efficiency of charging your electric vehicle at home. Additionally, our [[Ceiling Fan Installation|ceiling-fan-installation/]] service helps enhance your comfort and air circulation.',
+    h2: 'Electrical Installation', ic: 'ev', plate: 'services-electrical-installation',
+    lead: 'Our Electrical installation services cover a wide range of needs to ensure your home is fully equipped with the latest electrical solutions.',
+    items: [
+      'We specialize in [[EV Charger Installation|ev-charger-installation/]], providing you with the convenience and efficiency of charging your electric vehicle at home.',
+      'Additionally, our [[Ceiling Fan Installation|ceiling-fan-installation/]] service helps enhance your comfort and air circulation.',
       'We also handle the installation of [[Electrical Outlets|electrical-outlets/]] to ensure you have sufficient and strategically placed access points for all your electrical devices.',
     ],
   },
   {
-    h2: 'Electrical Upgrades', ic: 'panel',
-    paras: [
-      'Electrical upgrades involve enhancing or modernizing an existing electrical system to improve its performance, efficiency, or safety. This could include an [[Electrical Panel Upgrade|electrical-panel-upgrade/]] to accommodate increased power demands, [[Whole House Rewiring|whole-house-wiring-or-rewiring/]] to replace outdated wiring with newer, more energy-efficient materials, or [[Lighting Additions|lighting-additions/]] to upgrade lighting fixtures and enhance aesthetics and functionality.',
-      'When considering electrical upgrades, it’s crucial to assess the current state of the system and identify areas that need improvement.',
+    h2: 'Electrical Upgrades', ic: 'panel', plate: 'services-electrical-upgrades',
+    lead: 'Electrical upgrades involve enhancing or modernizing an existing electrical system to improve its performance, efficiency, or safety.',
+    intro: 'This could include',
+    items: [
+      'an [[Electrical Panel Upgrade|electrical-panel-upgrade/]] to accommodate increased power demands,',
+      '[[Whole House Rewiring|whole-house-wiring-or-rewiring/]] to replace outdated wiring with newer, more energy-efficient materials,',
+      'or [[Lighting Additions|lighting-additions/]] to upgrade lighting fixtures and enhance aesthetics and functionality.',
     ],
+    note: 'When considering electrical upgrades, it’s crucial to assess the current state of the system and identify areas that need improvement.',
   },
 ];
 
@@ -83,53 +96,39 @@ const boltSvg = cls => `<svg class="${cls}" viewBox="0 0 12 20" aria-hidden="tru
 function hero(ctx) {
   const crumbs = [{ label: 'Home', href: '' }, { label: 'Services' }];
   ctx.jsonld = [...(ctx.jsonld || []), { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.label, item: site.origin + '/' + (c.href ?? ctx.page.slug) })) }];
-  const [a, b] = [services.slice(0, 7), services.slice(7)];
-  const breaker = (s, i) => `<li class="sv-brk" style="--i:${i}"><a href="${ctx.r(s.slug + '/')}"><span class="sv-brk__n">${pad(i + 1)}</span><span class="sv-brk__t">${esc(s.nav)}</span><span class="sv-brk__sw" aria-hidden="true"><span></span></span></a></li>`;
+  // Rendered width runs wider than the frame (object-fit: cover on a tall frame), so sizes reflect the scaled image.
+  const sizes = '(min-width: 1024px) 80vw, (min-width: 640px) 96vw, 120vw';
+  ctx.preloadImage = 'owner-van';
+  ctx.preloadSizes = sizes;
+  // One verbatim paragraph; its first sentence is set as the lead line (same words, same order).
+  const cut = intro.body.indexOf('. ') + 1;
+  const [first, rest] = [intro.body.slice(0, cut), intro.body.slice(cut)];
   return `<section class="sv-hero on-dark stars-bg" aria-labelledby="sv-h1">
   <div class="container sv-hero__grid">
-    <div class="sv-hero__copy">
+    <div class="sv-hero__head">
       <nav class="crumbs" aria-label="Breadcrumb"><ol role="list"><li><a href="${ctx.r('')}">Home</a></li><li><span aria-current="page">Services</span></li></ol></nav>
       <h1 class="sv-hero__h1" id="sv-h1"><span class="sv-hero__h1-in">Services</span></h1>
       <div class="sv-hero__rule" aria-hidden="true"><span></span>${boltSvg('sv-hero__bolt')}<span></span></div>
       <h2 class="sv-hero__h2">For a Job Done Right, Call <em>Colonial!</em></h2>
-      <p class="sv-hero__lead">${esc(intro.body)}</p>
+    </div>
+    <figure class="sv-hero__media">
+      <div class="sv-hero__frame">${picture(ctx, 'owner-van', { alt: 'Scott Hays, founder of Colonial Electric, standing beside the wrapped Colonial Electric service van', sizes, priority: true })}</div>
+      <figcaption class="sv-hero__cap">
+        <span class="sv-hero__cap-k">${boltSvg('sv-hero__cap-b')}Colonial Electric · Weymouth, MA</span>
+        <span class="sv-hero__cap-n">Scott Hays, Founder</span>
+        <span class="sv-hero__cap-l">${esc(site.license)}</span>
+      </figcaption>
+    </figure>
+    <div class="sv-hero__body">
+      <p class="sv-hero__lead"><span class="sv-hero__lead-1">${esc(first)}</span>${esc(rest)}</p>
       <div class="sv-hero__ctas">
         <a class="btn btn--red btn--lg" href="${site.tel}">${icon('phone', { size: 18 })}<span>Call ${site.phone}</span></a>
         <a class="btn btn--ghost btn--lg" href="#sv-catalog-h"><span>Browse Services</span>${icon('arrow-right', { size: 16 })}</a>
       </div>
       <p class="sv-rating"><span class="sv-rating__stars" aria-hidden="true">${'<svg viewBox="0 0 20 20" focusable="false"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6L10 15l-5.4 3 1.2-6L1.3 7.8l6.1-.7L10 1.5z" fill="currentColor"/></svg>'.repeat(5)}</span><span class="sv-rating__t">${esc(homeHero.eyebrow)}</span></p>
     </div>
-    <nav class="sv-panel" aria-label="All services">
-      <div class="sv-panel__frame">
-        <header class="sv-panel__head">
-          <span class="sv-panel__k">Service Directory</span>
-          <span class="sv-panel__lic">${esc(site.license)}</span>
-        </header>
-        <div class="sv-panel__cols">
-          <ol class="sv-panel__col" role="list">${a.map((s, i) => breaker(s, i)).join('')}</ol>
-          <ol class="sv-panel__col" role="list" start="8">${b.map((s, i) => breaker(s, i + 7)).join('')}</ol>
-        </div>
-        <footer class="sv-panel__foot"><span class="sv-panel__dot" aria-hidden="true"></span><span>Colonial Electric · Weymouth, MA</span></footer>
-      </div>
-    </nav>
   </div>
   <div class="sweep" aria-hidden="true"></div>
-</section>`;
-}
-
-function photoBand(ctx) {
-  return `<section class="sv-photo" aria-label="Colonial Electric on the road">
-  <figure class="sv-photo__fig">
-    ${picture(ctx, 'owner-van', { alt: 'Scott Hays, founder of Colonial Electric, standing beside the wrapped Colonial Electric service van outside a South Shore home', sizes: '100vw', cls: 'sv-photo__pic' })}
-    <figcaption class="sv-photo__cap container">
-      <span class="sv-photo__card">
-        <span class="sv-photo__k">${boltSvg('sv-photo__b')}Colonial Electric · Weymouth, MA</span>
-        <span class="sv-photo__n">Scott Hays, Founder</span>
-        <span class="sv-photo__l">${esc(site.license)}</span>
-      </span>
-      <a class="sv-photo__call" href="${site.tel}">${icon('phone', { size: 18 })}<span><span class="sv-photo__call-k">Call Us Today!</span><span class="sv-photo__call-n">${site.phone}</span></span></a>
-    </figcaption>
-  </figure>
 </section>`;
 }
 
@@ -164,13 +163,30 @@ function categoriesBlock(ctx) {
   <div class="container">
     <ol class="sv-cats__list" role="list">
       ${categories.map((c, i) => {
-        const links = c.paras.flatMap(linksIn);
+        const links = [...c.items, c.note || ''].flatMap(linksIn);
         const id = 'sv-cat-' + (i + 1);
-        return `<li class="sv-cat" aria-labelledby="${id}">
-        <div class="sv-cat__top"><span class="sv-cat__n" aria-hidden="true">${pad(i + 1)}</span><span class="sv-cat__ic">${icon(c.ic, { size: 26 })}</span></div>
-        <h2 class="sv-cat__h" id="${id}">${esc(c.h2)}</h2>
-        <div class="sv-cat__body">${c.paras.map(p => `<p>${linkify(ctx, p)}</p>`).join('')}</div>
-        <ul class="sv-cat__links" role="list">${links.map(l => `<li><a href="${ctx.r(l.href)}"><span>${esc(l.label)}</span>${icon('arrow-up-right', { size: 16 })}</a></li>`).join('')}</ul>
+        return `<li class="sv-cat${i % 2 ? ' sv-cat--flip' : ''}" aria-labelledby="${id}">
+        <figure class="sv-cat__fig">
+          <div class="sv-cat__ph">${plate(ctx, { id: c.plate, ic: c.ic, tone: 'blue', sizes: '(min-width: 1024px) 28rem, (min-width: 640px) 17rem, 92vw' })}</div>
+          <span class="sv-cat__n" aria-hidden="true">${pad(i + 1)}</span>
+        </figure>
+        <div class="sv-cat__head">
+          <span class="sv-cat__ic">${icon(c.ic, { size: 24 })}</span>
+          <h2 class="sv-cat__h" id="${id}">${esc(c.h2)}</h2>
+        </div>
+        <div class="sv-cat__body">
+          <p class="sv-cat__lead">${esc(c.lead)}</p>
+          <div class="sv-cat__inc${c.intro ? '' : ' sv-cat__inc--s'}">
+            ${c.intro ? `<p class="sv-cat__intro">${esc(c.intro)}</p>\n            ` : ''}<ul class="sv-cat__ul" role="list">
+              ${c.items.map(t => `<li>${boltSvg('sv-cat__b')} <span>${linkify(ctx, t)}</span></li>`).join('\n              ')}
+            </ul>
+          </div>
+          ${c.note ? `<p class="sv-cat__note">${linkify(ctx, c.note)}</p>` : ''}
+        </div>
+        <div class="sv-cat__side">
+          <p class="sv-cat__k">Explore</p>
+          <ul class="sv-cat__links" role="list">${links.map(l => `<li><a href="${ctx.r(l.href)}"><span>${esc(l.label)}</span>${icon('arrow-up-right', { size: 16 })}</a></li>`).join('')}</ul>
+        </div>
       </li>`;
       }).join('\n      ')}
     </ol>
@@ -203,6 +219,29 @@ function catalog(ctx) {
 </section>`;
 }
 
+// Booking process: the four step names exactly as services.md sets them (Call / Share / Schedule / Relax),
+// each with its verbatim body. Own markup so this page never inherits the homepage step titles.
+function bookingBlock(ctx) {
+  const glyphs = ['phone', 'quote', 'calendar', 'check'];
+  const [h2a, h2b] = ['A Booking Process That', 'Feels Like a Breeze'];
+  const h2 = bookingH2 === `${h2a} ${h2b}` ? `${esc(h2a)} <span class="sv-book__h-2">${esc(h2b)}</span>` : esc(bookingH2);
+  return `<section class="block sv-book" aria-labelledby="sv-book-h">
+  <div class="container">
+    <header class="sv-book__head">
+      <h2 class="h2 sv-book__h" id="sv-book-h">${h2}</h2>
+      <a class="btn btn--red btn--lg sv-book__cta" href="${site.tel}">${icon('phone', { size: 18 })}<span>Call ${site.phone}</span></a>
+    </header>
+    <ol class="sv-steps" role="list">
+      ${processSteps.map((s, i) => `<li class="sv-step">
+        <div class="sv-step__top"><span class="sv-step__ic">${icon(glyphs[i] || 'bolt', { size: 22 })}</span><span class="sv-step__n">Step ${s.n}</span></div>
+        <h3 class="sv-step__t">${esc(s.short)}</h3>
+        <p class="sv-step__p">${esc(s.body)}</p>
+      </li>`).join('\n      ')}
+    </ol>
+  </div>
+</section>`;
+}
+
 function townsBlock(ctx) {
   return `<section class="block block--alt sv-towns" aria-labelledby="sv-towns-h">
   <div class="container sv-towns__grid">
@@ -220,7 +259,7 @@ function faqBlock(ctx) {
   ctx.jsonld = [...(ctx.jsonld || []), faqJsonLd(faqItems)];
   const ans = a => a.map(b => typeof b === 'string' ? `<p>${esc(b)}</p>`
     : b.list ? `<ul class="sv-faq__ul">${b.list.map(x => `<li>${boltSvg('sv-faq__b')}<span>${esc(x)}</span></li>`).join('')}</ul>`
-    : `<div class="sv-faq__term"><h4>${esc(b.term)}</h4><p>${esc(b.text)}</p></div>`).join('');
+    : `<div class="sv-faq__term"><h3>${esc(b.term)}</h3><p>${esc(b.text)}</p></div>`).join('');
   return `<section class="block sv-faq" aria-labelledby="sv-faq-h">
   <div class="container sv-faq__grid">
     <header class="sv-faq__head">
@@ -241,14 +280,13 @@ function faqBlock(ctx) {
 export function render(ctx) {
   return [
     hero(ctx),
-    photoBand(ctx),
     residentialBlock(ctx),
     categoriesBlock(ctx),
     trustBar(),
     guarantee(ctx, { cls: 'sv-gx' }),
     catalog(ctx),
     contactCta(ctx),
-    process(ctx, { h2: bookingH2, withBodies: true }),
+    bookingBlock(ctx),
     reviews(ctx),
     townsBlock(ctx),
     contactForm(ctx),

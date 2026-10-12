@@ -6,6 +6,7 @@
 // Styles: src/css/page-terms.css (all .lg-* scoped).
 import fs from 'fs';
 import { site } from '../data/site.mjs';
+import { contactCta } from '../data/shared.mjs';
 import { icon } from '../partials/icons.mjs';
 import { esc, picture } from '../lib/html.mjs';
 
@@ -14,8 +15,8 @@ const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, 
 const pad = n => String(n).padStart(2, '0');
 
 const DOCS = {
-  terms: { label: 'Terms & Conditions', href: 'terms/' },
-  privacy: { label: 'Privacy Policy', href: 'privacy/' },
+  terms: { label: 'Terms & Conditions', href: 'terms/', ask: 'Questions about these Terms?' },
+  privacy: { label: 'Privacy Policy', href: 'privacy/', ask: 'Questions about this policy?' },
 };
 
 /** Parse the scraped markdown into numbered sections of typed blocks. Text is never altered. */
@@ -46,9 +47,13 @@ function parse(name) {
   return sections;
 }
 
+/** U+2011 (non-breaking hyphen, in the source's "Opt‑In"/"Opt‑Out") is not in Barlow/Archivo and falls back to a system
+ *  font. Show it as an ordinary hyphen and keep the word unbroken, which is what the character was for. Takes escaped HTML. */
+const nbh = html => html.replace(/[^\s<>"]*\u2011[^\s<>"]*/g, w => `<span class="nowrap">${w.replace(/\u2011/g, '-')}</span>`);
+
 /** Escape + add links/emphasis on words that are already there. */
 function inline(ctx, s, name) {
-  let o = esc(s);
+  let o = nbh(esc(s));
   o = o.replace(/([a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,})/gi, '<a href="mailto:$1">$1</a>');
   o = o.replace(/http:\/\/colonial-electric\.com\//g, `<a href="${ctx.r('')}">http://colonial-electric.com/</a>`);
   o = o.replace(/www\.allaboutcookies\.org/g, '<a href="https://www.allaboutcookies.org" rel="noopener" target="_blank">www.allaboutcookies.org</a>');
@@ -60,17 +65,17 @@ function inline(ctx, s, name) {
 /** "Lead phrase. rest" / "Lead: rest" list items get a bold lead-in (privacy §2, §4). */
 function listItem(ctx, s, name) {
   const m = s.match(/^([A-Z][^.:]{2,48}[.:])\s(.+)$/);
-  if (m && /^[A-Z]/.test(m[2])) return `<li><strong>${esc(m[1])}</strong> ${inline(ctx, m[2], name)}</li>`;
+  if (m && /^[A-Z]/.test(m[2])) return `<li><strong>${nbh(esc(m[1]))}</strong> ${inline(ctx, m[2], name)}</li>`;
   return `<li>${inline(ctx, s, name)}</li>`;
 }
 
 function block(ctx, b, name) {
   switch (b.t) {
     case 'p': return `<p>${inline(ctx, b.text, name)}</p>`;
-    case 'h3': return `<h3 class="lg-h3">${esc(b.text)}</h3>`;
+    case 'h3': return `<h3 class="lg-h3">${nbh(esc(b.text))}</h3>`;
     case 'ul': return `<ul class="lg-list" role="list">${b.items.map(i => listItem(ctx, i, name)).join('')}</ul>`;
-    case 'dl': return `<dl class="lg-defs">${b.items.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${inline(ctx, v, name)}</dd></div>`).join('')}</dl>`;
-    case 'note': return `<aside class="lg-note"><span class="lg-note__icon">${icon('shield', { size: 20 })}</span><p><strong>${esc(b.k)}</strong> ${inline(ctx, b.v, name)}</p></aside>`;
+    case 'dl': return `<dl class="lg-defs">${b.items.map(([k, v]) => `<div><dt>${nbh(esc(k))}</dt><dd>${inline(ctx, v, name)}</dd></div>`).join('')}</dl>`;
+    case 'note': return `<aside class="lg-note"><span class="lg-note__icon">${icon('shield', { size: 20 })}</span><p><strong>${nbh(esc(b.k))}</strong> ${inline(ctx, b.v, name)}</p></aside>`;
   }
   return '';
 }
@@ -81,12 +86,21 @@ export function legalPage(ctx, name) {
   const sections = parse(name);
   const email = 'scott@colonial-electric.com';
 
+  // Meta description (brief §9): the page's first verbatim sentence. The shared generator (src/scripts/descriptions.mjs)
+  // drops Terms' 60-char opening line and then cuts the next sentence at the "." inside the URL, so set it here from the
+  // source itself. Privacy's generated entry is already its first sentence and is left alone.
+  if (name === 'terms') {
+    const first = sections[0]?.blocks.find(b => b.t === 'p')?.text || '';
+    const sent = (first.match(/^.+?[.!?](?=\s|$)/) || [first])[0].trim();
+    if (sent) ctx.page.description = sent;
+  }
+
   ctx.jsonld = [...(ctx.jsonld || []), { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: site.origin + '/' },
     { '@type': 'ListItem', position: 2, name: doc.label, item: site.origin + '/' + doc.href },
   ] }];
 
-  const tocItems = sections.map(s => `<li><a href="#${s.id}" data-lg-link><span class="lg-toc__n">${pad(s.n)}</span><span class="lg-toc__t">${esc(s.title)}</span></a></li>`).join('');
+  const tocItems = sections.map(s => `<li><a href="#${s.id}" data-lg-link><span class="lg-toc__n">${pad(s.n)}</span><span class="lg-toc__t">${nbh(esc(s.title))}</span></a></li>`).join('');
 
   const hero = `<section class="lg-hero on-dark stars-bg">
   <div class="container lg-hero__grid">
@@ -116,7 +130,7 @@ export function legalPage(ctx, name) {
 </section>`;
 
   const body = sections.map(s => `<section class="lg-sec" id="${s.id}" aria-labelledby="${s.id}-h" data-lg-sec>
-  <h2 class="lg-sec__h" id="${s.id}-h"><span class="lg-sec__n" aria-hidden="true">${pad(s.n)}</span><span class="sr-only">${s.n}. </span><span class="lg-sec__t">${esc(s.title)}</span></h2>
+  <h2 class="lg-sec__h" id="${s.id}-h"><span class="lg-sec__n" aria-hidden="true"><span class="lg-sec__nn">${pad(s.n)}</span></span><span class="sr-only">${s.n}. </span><span class="lg-sec__t">${nbh(esc(s.title))}</span></h2>
   <div class="lg-sec__body">
     ${s.blocks.map(b => block(ctx, b, name)).join('\n    ')}
     ${s.address ? `<address class="lg-address">${icon('pin', { size: 20 })}<span>${s.address.map(esc).join('<br>')}</span></address>` : ''}
@@ -130,11 +144,29 @@ export function legalPage(ctx, name) {
       <ol role="list" class="lg-toc__list">${tocItems}</ol>
     </details>
     <aside class="lg-rail">
-      <nav class="lg-toc" aria-label="On this page">
-        <p class="label-wide lg-toc__label">On this page</p>
-        <div class="lg-toc__track"><span class="lg-toc__fill" data-lg-fill></span></div>
-        <ol role="list" class="lg-toc__list">${tocItems}</ol>
-      </nav>
+      <div class="lg-ask">
+        <div class="lg-ask__pic">${picture(ctx, 'scott-portrait', { alt: 'Scott Hays, founder of Colonial Electric', sizes: '296px', imgCls: 'lg-ask__img' })}</div>
+        <div class="lg-ask__text">
+          <p class="lg-ask__k">${esc(doc.ask)}</p>
+          <p class="lg-ask__name">Scott Hays<span>Founder</span></p>
+          <ul class="lg-ask__links" role="list">
+            <li><a href="mailto:${email}">${icon('mail', { size: 16 })}<span>${email}</span></a></li>
+            <li><a href="${site.tel}">${icon('phone', { size: 16 })}<span>${site.phone}</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="lg-rail__stick">
+        <nav class="lg-toc" aria-label="On this page">
+          <p class="label-wide lg-toc__label">On this page</p>
+          <div class="lg-toc__track"><span class="lg-toc__fill" data-lg-fill></span></div>
+          <ol role="list" class="lg-toc__list">${tocItems}</ol>
+        </nav>
+        <div class="lg-rcta on-dark">
+          <p class="lg-rcta__k">Call Us Today!</p>
+          <a class="lg-rcta__tel" href="${site.tel}">${icon('phone', { size: 18 })}<span>${site.phone}</span></a>
+          <a class="btn btn--red lg-rcta__btn" href="${ctx.r('contact-us/')}">Request Service${icon('arrow-right', { size: 18 })}</a>
+        </div>
+      </div>
     </aside>
     <article class="lg-article" aria-label="${esc(doc.label)}">
       ${body}
@@ -150,21 +182,55 @@ export function legalPage(ctx, name) {
   </div>
 </section>`;
 
-  return [hero, doc_, script].join('\n');
+  // Closing contact band: shared "Contact Us Today" copy (verbatim, data/shared.mjs) + the real owner/van photo.
+  const cta = `<section class="lg-cta" aria-labelledby="lg-cta-h">
+  <div class="container">
+    <div class="lg-cta__card on-dark">
+      <div class="lg-cta__rule" aria-hidden="true"></div>
+      <figure class="lg-cta__media">${picture(ctx, 'owner-van', { alt: 'Founder Scott Hays standing in front of the red, white and blue Colonial Electric van', sizes: '(min-width: 900px) 1280px, 100vw', imgCls: 'lg-cta__img', loading: 'eager' }).replace('loading="eager"', 'loading="eager" fetchpriority="low"').replace('decoding="async"', 'decoding="sync"')}</figure>
+      <div class="lg-cta__body stars-bg">
+        <p class="eyebrow">Weymouth &amp; the South Shore</p>
+        <h2 class="lg-cta__h" id="lg-cta-h">${esc(contactCta.h2)}</h2>
+        <p class="lg-cta__lead">${esc(contactCta.body)}</p>
+        <div class="lg-cta__actions">
+          <a class="btn btn--red btn--lg" href="${site.tel}">${icon('phone', { size: 18 })}${esc(contactCta.button)}</a>
+          <a class="btn btn--ghost btn--lg" href="${ctx.r('calendar/')}">${icon('calendar', { size: 18 })}Schedule Service</a>
+        </div>
+        <a class="lg-cta__tel" href="${site.tel}"><span class="lg-cta__tel-k">Call Us Today!</span><span class="lg-cta__tel-n">${site.phone}</span></a>
+        <ul class="lg-cta__meta" role="list">
+          <li>${icon('shield', { size: 16 })}<span>${esc(site.license)}</span></li>
+          <li>${icon('clock', { size: 16 })}<span>${esc(site.hours)}</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+  return [hero, doc_, cta, script].join('\n');
 }
 
 // Scroll-spy + progress rail + close mobile contents on pick. Progressive enhancement only.
+// Spy = the LAST section whose top has passed a reading line (40% of the viewport, max 360px). A contents click
+// highlights its target at once and holds it until the (smooth) scroll settles, so the jump never shows a neighbour.
 const script = `<script>
 (function(){
-  var root=document.querySelector('[data-lg]'); if(!root||!('IntersectionObserver' in window)) return;
+  var root=document.querySelector('[data-lg]'); if(!root) return;
   var secs=[].slice.call(root.querySelectorAll('[data-lg-sec]')), links=[].slice.call(root.querySelectorAll('[data-lg-link]')), fill=root.querySelector('[data-lg-fill]'), art=root.querySelector('.lg-article'), md=root.querySelector('.lg-mtoc');
-  var set=function(id){links.forEach(function(a){var on=a.getAttribute('href')==='#'+id;a.classList.toggle('is-active',on);if(on)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});};
-  var vis={};
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){vis[e.target.id]=e.isIntersecting;});for(var i=0;i<secs.length;i++){if(vis[secs[i].id]){set(secs[i].id);break;}}},{rootMargin:'-20% 0px -65% 0px'});
-  secs.forEach(function(s){io.observe(s);});
-  var tick=false, upd=function(){tick=false;var r=art.getBoundingClientRect(),h=r.height-window.innerHeight*.5,p=Math.min(1,Math.max(0,(window.innerHeight*.35-r.top)/h));if(fill)fill.style.transform='scaleY('+p.toFixed(4)+')';};
-  window.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(upd);}},{passive:true}); upd();
-  if(md) md.addEventListener('click',function(e){if(e.target.closest('a'))md.open=false;});
+  if(!secs.length) return;
+  var cur='', lock=false, lockT=0, tick=false, box=root.querySelector('.lg-rail .lg-toc__list');
+  var set=function(id){if(id===cur)return;cur=id;secs.forEach(function(s){s.classList.toggle('is-current',s.id===id);});links.forEach(function(a){var on=a.getAttribute('href')==='#'+id;a.classList.toggle('is-active',on);if(on)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});
+    if(box&&box.scrollHeight>box.clientHeight+1){var on=box.querySelector('a.is-active');if(on)box.scrollTop=Math.max(0,on.offsetTop-box.clientHeight/2);}};
+  var spy=function(){var line=Math.min(window.innerHeight*.4,360),id=secs[0].id;for(var i=0;i<secs.length;i++){if(secs[i].getBoundingClientRect().top<=line)id=secs[i].id;else break;}set(id);};
+  var prog=function(){if(!fill||!art)return;var r=art.getBoundingClientRect(),h=Math.max(1,r.height-window.innerHeight*.5),p=Math.min(1,Math.max(0,(window.innerHeight*.35-r.top)/h));fill.style.transform='scaleY('+p.toFixed(4)+')';};
+  var upd=function(){tick=false;prog();if(!lock)spy();};
+  var queue=function(){if(!tick){tick=true;requestAnimationFrame(upd);}};
+  var hold=function(id,ms){lock=true;set(id);clearTimeout(lockT);lockT=setTimeout(function(){lock=false;},ms);};
+  window.addEventListener('scroll',function(){if(lock){clearTimeout(lockT);lockT=setTimeout(function(){lock=false;},180);}queue();},{passive:true});
+  window.addEventListener('resize',queue);
+  links.forEach(function(a){a.addEventListener('click',function(){hold(a.getAttribute('href').slice(1),1200);if(md&&md.contains(a))md.open=false;});});
+  var h=decodeURIComponent(location.hash.slice(1));
+  if(h&&secs.some(function(s){return s.id===h;}))hold(h,1200);else spy();
+  prog();
 })();
 </script>`;
 

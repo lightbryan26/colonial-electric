@@ -1,10 +1,11 @@
 // /calendar/ — Calendar (brief §7). H1 "Calendar", H2 "Scheduling Calendar".
 // Primary content = the live GoHighLevel booking widget (no invented calendar UI).
 // The Call Now / Contact Us card is a fallback only: inside <noscript>, and revealed by script
-// if the widget fails to load. Styles: src/css/page-calendar.css (all selectors .cal-*).
+// if the widget fails to load. The embed script's onerror (same host) is decisive: Chrome fires the iframe 'load'
+// event for its own error page too, so 'load' alone never suppresses the fallback. Styles: src/css/page-calendar.css (all selectors .cal-*).
 import { site } from '../data/site.mjs';
 import { icon } from '../partials/icons.mjs';
-import { esc, picture } from '../lib/html.mjs';
+import { esc, picture, escLic } from '../lib/html.mjs';
 
 const WIDGET = 'https://link.colonial-electric.com/widget/booking/vm1WWPnUuFiEePldaora';
 const EMBED_JS = 'https://link.colonial-electric.com/js/form_embed.js';
@@ -35,7 +36,7 @@ export function render(ctx) {
       <p class="cal-hero__lic">${icon('shield', { size: 16 })}${esc(site.license)}</p>
     </div>
     <figure class="cal-hero__media" aria-hidden="false">
-      <div class="cal-hero__frame">${picture(ctx, 'owner-van', { alt: 'Colonial Electric service van', sizes: '(min-width: 1440px) 720px, (min-width: 960px) 50vw, 100vw', priority: true })}</div>
+      <div class="cal-hero__frame">${picture(ctx, 'owner-van', { alt: 'Founder Scott Hays standing in front of the Colonial Electric van', sizes: '(min-width: 1440px) 720px, (min-width: 960px) 50vw, 100vw', priority: true })}</div>
     </figure>
   </div>
   <div class="sweep" aria-hidden="true"></div>
@@ -61,11 +62,11 @@ export function render(ctx) {
         <div class="cal-founder__frame">${picture(ctx, 'scott-portrait', { alt: 'Scott Hays, founder of Colonial Electric', sizes: '(min-width: 960px) 360px, (min-width: 640px) 50vw, 90vw' })}</div>
         <figcaption class="cal-founder__tag"><span class="cal-founder__role">Founder</span><span class="cal-founder__name">${esc(site.founder)}</span></figcaption>
       </figure>
-      <p class="cal-aside__line">${esc(site.licenseLine)}</p>
+      <p class="cal-aside__line">${escLic(site.licenseLine)}</p>
     </aside>
   </div>
 </section>
-<script>(function(){var f=document.querySelector('[data-cal-fallback]'),w=document.querySelector('[data-cal-embed]'),i=document.getElementById('cal-widget');if(!f||!i)return;var ok=false;function fail(){if(ok)return;f.hidden=false;w.classList.add('is-failed');}i.addEventListener('load',function(){ok=true;w.classList.add('is-loaded');});i.addEventListener('error',fail);if(document.documentElement.classList.contains('cal-failed'))fail();var t=setInterval(function(){if(document.documentElement.classList.contains('cal-failed')){clearInterval(t);fail();}},500);setTimeout(function(){clearInterval(t);fail();},12000);})();</script>`;
+<script>(function(){var f=document.querySelector('[data-cal-fallback]'),w=document.querySelector('[data-cal-embed]'),i=document.getElementById('cal-widget');if(!f||!i)return;var ok=false;function fail(force){if(ok&&!force)return;f.hidden=false;w.classList.remove('is-loaded');w.classList.add('is-failed');}i.addEventListener('load',function(){ok=true;w.classList.add('is-loaded');});i.addEventListener('error',fail);if(document.documentElement.classList.contains('cal-failed'))fail(true);var t=setInterval(function(){if(document.documentElement.classList.contains('cal-failed')){clearInterval(t);fail(true);}},500);setTimeout(function(){clearInterval(t);fail();},12000);})();</script>`;
 
   return [hero, booking].join('\n');
 }

@@ -1,6 +1,6 @@
 // /contact-us/ — Contact Us (brief §7). Copy verbatim from source/pages/contact-us.md.
-// Order (brief §7): hero (H1 + direct line + founder portrait) → intro (H2 + 2 paragraphs)
-// → info ledger (Location / Email / Phone / Operating Hours) → shared contact form → find-us band (Google Maps link + town list).
+// Order (brief §7): hero (H1 + direct line + founder portrait) → one band holding the intro (H2 + 2 paragraphs)
+// beside the info cards (Location / Email / Phone / Operating Hours) → shared contact form → find-us band (Google Maps link + town list).
 // Styles: src/css/page-contact-us.css (all selectors .cu-*). New microcopy only labels actions; no factual claims.
 import { site } from '../data/site.mjs';
 import { contactForm } from '../blocks/contact-form.mjs';
@@ -60,7 +60,10 @@ function hero(ctx) {
 </section>`;
 }
 
-function ledger(ctx) {
+// Intro + info cards share one band (brief §7 items 2–3, same order): the H2 and its two verbatim
+// paragraphs sit beside the 2×2 contact cards, so contact methods and the form follow the hero directly.
+function contactBand() {
+  const [lead, rest] = intro.paras;
   const items = [
     { ic: 'pin', h: 'Location', body: `<address class="cu-card__v">${esc(site.name)}<br>${esc(site.address.po)}<br>${esc(site.address.city)} ${esc(site.address.region)} ${esc(site.address.zip)}</address>`,
       act: `<a class="cu-card__act" href="${mapsHref}" target="_blank" rel="noopener">View on Google Maps${icon('arrow-up-right', { size: 16 })}<span class="sr-only"> (opens in a new tab)</span></a>` },
@@ -71,32 +74,24 @@ function ledger(ctx) {
     { ic: 'clock', h: 'Operating Hours', body: `<p class="cu-card__v cu-card__v--hours">${esc(site.hours)}</p>`,
       act: `<a class="cu-card__act" href="#cu-form">Send a Message${icon('arrow-right', { size: 16 })}</a>` },
   ];
-  return `<section class="cu-ledger" aria-label="Contact details">
-  <div class="container">
-    <div class="cu-ledger__head"><p class="cu-index"><span class="cu-index__n">02</span><span>Contact Details</span></p><p class="cu-ledger__lic">${icon('shield', { size: 16 })}${esc(site.license)}</p></div>
-    <ul class="cu-ledger__list" role="list">
-      ${items.map((it, i) => `<li class="cu-card" style="--i:${i}"><div class="cu-card__in">
-        <div class="cu-card__top"><span class="cu-card__ic" aria-hidden="true">${icon(it.ic, { size: 22 })}</span><span class="cu-card__n" aria-hidden="true">${pad(i + 1)}</span></div>
-        <h2 class="cu-card__h">${esc(it.h)}</h2>
-        ${it.body}
-        ${it.act}
-      </div></li>`).join('\n      ')}
-    </ul>
-  </div>
-</section>`;
-}
-
-function introSection() {
-  const [lead, rest] = intro.paras;
-  return `<section class="cu-intro" aria-labelledby="cu-intro-h">
-  <div class="container cu-intro__grid">
-    <div class="cu-intro__head">
+  return `<section class="cu-band" aria-labelledby="cu-intro-h">
+  <div class="container cu-band__grid">
+    <div class="cu-intro">
       <p class="cu-index"><span class="cu-index__n">01</span><span>We’re Here to Help</span></p>
       <h2 class="cu-intro__h" id="cu-intro-h"><span>${esc(intro.h2[0])}</span> <span class="cu-intro__h2">${esc(intro.h2[1])}</span></h2>
-    </div>
-    <div class="cu-intro__body">
       <p class="cu-intro__lead">${esc(lead)}</p>
       <p class="cu-intro__p">${esc(rest)}</p>
+    </div>
+    <div class="cu-ledger">
+      <div class="cu-ledger__head"><p class="cu-index"><span class="cu-index__n">02</span><span>Contact Details</span></p><p class="cu-ledger__lic">${icon('shield', { size: 16 })}${esc(site.license)}</p></div>
+      <ul class="cu-ledger__list" role="list">
+        ${items.map((it, i) => `<li class="cu-card" style="--i:${i}"><div class="cu-card__in">
+          <div class="cu-card__top"><span class="cu-card__ic" aria-hidden="true">${icon(it.ic, { size: 22 })}</span><span class="cu-card__n" aria-hidden="true">${pad(i + 1)}</span></div>
+          <h3 class="cu-card__h">${esc(it.h)}</h3>
+          ${it.body}
+          ${it.act}
+        </div></li>`).join('\n        ')}
+      </ul>
     </div>
   </div>
 </section>`;
@@ -125,8 +120,7 @@ function findUs(ctx) {
 export function render(ctx) {
   return [
     hero(ctx),
-    introSection(),
-    ledger(ctx),
+    contactBand(),
     // founder photo loads eagerly here: it is the page's second hero, and lazy loading left it blank in no-scroll renders
     contactForm(ctx, { id: 'cu-form', cls: 'cu-form', heading: 'Get in Touch' }).replace('loading="lazy"', 'loading="eager"'),
     findUs(ctx),

@@ -13,7 +13,7 @@ import { townList } from './town-list.mjs';
 const PICK = {
   'hanover-ma': 2, 'milton-ma': 2, 'norwell-ma': 1, 'randolph-ma': 2, 'scituate-ma': 1, 'whitman-ma': 2,
   'pembroke-ma': 1, 'weymouth-ma': 0, 'abington-ma': 0, 'braintree-ma': 3, 'hingham-ma': 0, 'quincy-ma': 1,
-  'rockland-ma': 2, 'hull-ma': 2, 'plymouth-ma': 2, 'holbrook-ma': 3, 'marshfield-ma': 2, 'hanson-ma': 2,
+  'rockland-ma': 2, 'hull-ma': 2, 'plymouth-ma': 2, 'holbrook-ma': 3, 'marshfield-ma': 3, 'hanson-ma': 2,
   'canton-ma': 1, 'carver-ma': 1, 'cohasset-ma': 2,
 };
 const HOME_TOWN = 'weymouth-ma';
@@ -25,7 +25,7 @@ function photo(ctx, t, i, { first = false } = {}) {
   const base = ctx.asset('img/' + s.img);
   const set = ext => im.widths.map(w => `${base}-${w}.${ext} ${w}w`).join(', ');
   const sizes = '(min-width: 1024px) 34vw, (min-width: 640px) 60vw, 92vw';
-  return `<picture class="cc__img${first ? ' is-on' : ''}"><source type="image/webp" srcset="${set('webp')}" sizes="${sizes}"><img src="${base}-${im.widths.at(-1)}.${im.fallback}" srcset="${set(im.fallback)}" sizes="${sizes}" width="${im.w}" height="${im.h}" alt="${esc(s.name)}, ${esc(t.name)} MA" loading="eager" fetchpriority="low" decoding="async"></picture>`;
+  return `<picture class="cc__img${first ? ' is-on' : ''}"><source type="image/webp" srcset="${set('webp')}" sizes="${sizes}"><img src="${base}-${im.widths.at(-1)}.${im.fallback}" srcset="${set(im.fallback)}" sizes="${sizes}" width="${im.w}" height="${im.h}" alt="${esc(s.name)}, ${esc(t.name)} MA" loading="eager" fetchpriority="low" decoding="sync"></picture>`;
 }
 
 function serviceArea(ctx, id) {

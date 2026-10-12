@@ -1,7 +1,10 @@
 // 21 towns, live order. Verbatim per brief §6 (town fixes applied). topSites img = key in src/data/images.json
+// lead = index of the Top Site photo that represents the town in its hero postcard and on /service-area/ (default 0);
+// set where photo 0 is not the town's most recognisable landmark. topSites order itself stays verbatim.
 export const towns = [
  {
   "slug": "hanover-ma",
+  "lead": 2,
   "name": "Hanover",
   "introH2": null,
   "introVariant": "R",
@@ -392,6 +395,7 @@ export const towns = [
  },
  {
   "slug": "holbrook-ma",
+  "lead": 3,
   "name": "Holbrook",
   "introH2": "Your Go-To Electrician in Holbrook MA for All Things Electrical",
   "introVariant": "L",
@@ -418,6 +422,7 @@ export const towns = [
  },
  {
   "slug": "marshfield-ma",
+  "lead": 3,
   "name": "Marshfield",
   "introH2": null,
   "introVariant": "L",
@@ -444,6 +449,7 @@ export const towns = [
  },
  {
   "slug": "hanson-ma",
+  "lead": 3,
   "name": "Hanson",
   "introH2": "Your Go-To Electrician in Hanson MA for All Things Electrical",
   "introVariant": "L",

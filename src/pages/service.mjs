@@ -3,7 +3,7 @@
 // Section order (brief §5): hero · intro · block A · block B · trust strip · guarantee · why choose (generator: services grid)
 //   · contact CTA · booking process · reviews · quote + towns · contact form · FAQs.
 // Variant (outdoor): hero+lead · 4 lighting panels · 8 features · why choose · CTA · booking · reviews · quote + towns.
-import { services, serviceIntro, outdoor, whyChoose } from '../data/services.mjs';
+import { services, serviceIntro, outdoor, whyChoose, serviceCards } from '../data/services.mjs';
 import { towns } from '../data/towns.mjs';
 import { site } from '../data/site.mjs';
 import { bookingH2, whyIntro, trustItems, processSteps, quote } from '../data/shared.mjs';
@@ -14,7 +14,9 @@ import { contactForm } from '../blocks/contact-form.mjs';
 import { servicesGrid } from '../blocks/services-grid.mjs';
 import { faqJsonLd } from '../blocks/faqs.mjs';
 import { icon } from '../partials/icons.mjs';
-import { esc, picture } from '../lib/html.mjs';
+import { esc, picture, images } from '../lib/html.mjs';
+import { plate } from '../blocks/plate.mjs';
+import { photoFor } from '../data/service-photos.mjs';
 
 const pad = n => String(n).padStart(2, '0');
 const isLead = b => typeof b === 'string' && /:\s*$/.test(b);
@@ -50,7 +52,7 @@ function hero(ctx, s, idx, { lead = '' } = {}) {
     <div class="svp-hero__copy">
       <nav class="crumbs svp-hero__crumbs" aria-label="Breadcrumb"><ol role="list">${crumbs.map((c, i) => i < crumbs.length - 1 ? `<li><a href="${ctx.r(c.href)}">${esc(c.label)}</a></li>` : `<li><span aria-current="page">${esc(c.label)}</span></li>`).join('')}</ol></nav>
       <p class="svp-hero__kicker"><span class="svp-hero__ic">${icon(s.icon, { size: 22 })}</span><span class="svp-hero__idx">Service ${pad(idx + 1)} <span aria-hidden="true">/</span> ${pad(services.length)}</span></p>
-      <h1 class="svp-hero__h1" id="svp-h1">${esc(s.h1)}</h1>
+      <h1 class="svp-hero__h1" id="svp-h1">${esc(s.h1).replace(/\//g, '/<wbr>')}</h1>
       <p class="svp-hero__line">${esc(s.heroLine)}</p>
       ${lead ? `<p class="svp-hero__lead">${esc(lead)}</p>` : ''}
       <div class="svp-hero__ctas">
@@ -83,7 +85,7 @@ function overview(ctx, s) {
           <p class="svp-callcard__k">Call Us Today!</p>
           <a class="svp-callcard__tel" href="${site.tel}">${site.phone}</a>
           <a class="btn btn--red btn--block" href="${site.tel}">${icon('phone', { size: 16 })}<span>Call Now</span></a>
-          <p class="svp-callcard__lic">${icon('shield', { size: 14 })}<span>Licensed &amp; Insured · ${esc(site.license)}</span></p>
+          <p class="svp-callcard__lic">${icon('shield', { size: 14 })}<span>Licensed &amp; Insured · <span class="nowrap">${esc(site.license)}</span></span></p>
         </div>
       </div>
     </aside>`;
@@ -104,16 +106,38 @@ function overview(ctx, s) {
 </section>`;
 }
 
-/* ---------- block B: the Colonial block with the van photo ---------- */
+/* ---------- block B media: a typographic service plate (no photo of this service exists) ----------
+   Crest chip with the service glyph, the service name and its verbatim homepage blurb (brief §4.4) on the navy
+   star field. Not the van: that photo appears once per page and the guarantee below carries it. A real job photo
+   mapped to this slug in src/data/service-photos.mjs replaces the plate with a captioned photo. */
+function blockBMedia(ctx, s) {
+  const sizes = '(min-width: 960px) 40vw, 92vw';
+  if (photoFor(s.slug, images)) {
+    return `<figure class="svp-b__media">
+      <div class="svp-b__frame">${plate(ctx, { id: s.slug, ic: s.icon, sizes })}</div>
+      <figcaption class="svp-b__cap"><span class="svp-b__badge">${icon(s.icon, { size: 22 })}</span><span><strong>${esc(s.h1)}</strong><span>${esc(site.license)}</span></span></figcaption>
+    </figure>`;
+  }
+  const card = serviceCards.find(c => c.href === s.slug + '/');
+  return `<div class="svp-b__media svp-b__type">
+      <div class="svp-b__plate">
+        <span class="svp-b__ghost" aria-hidden="true">${icon(s.icon, { size: 240 })}</span>
+        <span class="svp-b__crest" aria-hidden="true"><span>${icon(s.icon, { size: 48 })}</span></span>
+        <p class="svp-b__name">${esc(s.h1)}</p>
+        <span class="flag-rule" aria-hidden="true"></span>
+        ${card ? `<p class="svp-b__pull">${esc(card.blurb)}</p>` : ''}
+        <p class="svp-b__lic label-wide">${icon('shield', { size: 14 })}<span>Licensed &amp; Insured · <span class="nowrap">${esc(site.license)}</span></span></p>
+      </div>
+    </div>`;
+}
+
+/* ---------- block B: the Colonial block ---------- */
 function blockB(ctx, s) {
   const b = s.b;
   const hasSteps = b.body.some(x => x.list && x.list.every(i => i.term));
   return `<section class="svp-b" id="svp-b" aria-labelledby="svp-b-h">
   <div class="container svp-b__grid">
-    <figure class="svp-b__media">
-      <div class="svp-b__frame">${picture(ctx, 'owner-van', { alt: 'Scott Hays standing beside the Colonial Electric service van', sizes: '(min-width: 960px) 40vw, 92vw', imgCls: 'svp-b__img' })}</div>
-      <figcaption class="svp-b__cap"><span class="svp-b__badge">${icon(s.icon, { size: 22 })}</span><span><strong>${esc(s.h1)}</strong><span>Residential &amp; Commercial · Weymouth, MA</span></span></figcaption>
-    </figure>
+    ${blockBMedia(ctx, s)}
     <div class="svp-b__copy">
       <header class="svp-sechead">${s.a ? '<span class="svp-sechead__n" aria-hidden="true">02</span>' : '<span class="svp-sechead__n" aria-hidden="true">01</span>'}<div>${b.eyebrow ? `<p class="eyebrow svp-b__eyebrow">${esc(b.eyebrow)}</p>` : ''}<h2 class="svp-h2" id="svp-b-h">${esc(b.h2)}</h2></div></header>
       <div class="svp-copy">${body(b.body, { steps: hasSteps })}</div>
@@ -213,12 +237,12 @@ function outdoorPanels(ctx) {
         <p class="svp-olp__n" aria-hidden="true">${pad(i + 1)}</p>
         <h3 class="svp-olp__h" id="ol-${p.id}-h">${esc(p.title)}</h3>
         <p class="svp-olp__lead">${esc(p.lead)}</p>
-        <p class="svp-olp__close">${esc(p.close)}</p>
-        <a class="btn btn--red" href="${site.tel}">${icon('phone', { size: 16 })}<span>Call Now</span></a>
       </div>
       <div class="svp-olp__main">${p.groups.map(g => g.services
         ? `<div class="svp-olp__g"><h4 class="svp-olp__gh">${esc(g.h)}</h4><ul class="svp-olp__svc" role="list">${g.items.map(it => `<li><strong>${esc(it.term)}</strong><span>${esc(it.text)}</span></li>`).join('')}</ul></div>`
-        : `<div class="svp-olp__g"><h4 class="svp-olp__gh">${esc(g.h)}</h4><ul class="svp-olp__why" role="list">${g.items.map(it => `<li>${icon('bolt', { size: 16 })}<div><strong>${esc(it.term)}</strong><p>${esc(it.text)}</p></div></li>`).join('')}</ul></div>`).join('')}</div>
+        : `<div class="svp-olp__g"><h4 class="svp-olp__gh">${esc(g.h)}</h4><ul class="svp-olp__why" role="list">${g.items.map(it => `<li>${icon('bolt', { size: 16 })}<div><strong>${esc(it.term)}</strong><p>${esc(it.text)}</p></div></li>`).join('')}</ul></div>`).join('')}
+        <div class="svp-olp__foot"><p class="svp-olp__close">${esc(p.close)}</p><a class="btn btn--red" href="${site.tel}">${icon('phone', { size: 16 })}<span>Call Now</span></a></div>
+      </div>
     </article>`).join('\n    ')}
   </div>
 </section>`;

@@ -6,6 +6,7 @@ import { trustStrip } from '../blocks/trust-strip.mjs';
 import { townList } from '../blocks/town-list.mjs';
 import { icon } from '../partials/icons.mjs';
 import { esc, picture } from '../lib/html.mjs';
+import { plate } from '../blocks/plate.mjs';
 
 const intro = {
   h2: 'Colonial Electric: The Dependable Source For Premium Electrical Service',
@@ -30,6 +31,27 @@ const founder = {
     'At Colonial Electric, Scott’s passion for the craft is palpable in every connection made. As both a master electrician and an advocate for knowledge-sharing, he fosters a culture of innovation and expertise within the team. With Scott’s leadership, Colonial Electric continues to redefine standards of excellence, delivering unparalleled service and reliability to clients across residential, commercial, and utility sectors.',
   ],
 };
+
+// Fact strip: only the bio facts brief §7 lists (master electrician, over a decade, started at 18, lineman, local college).
+// Values/labels are fragments of the verbatim bio; no new facts, no counts.
+const facts = [
+  { v: ['Master', 'Electrician'], l: 'At the helm of Colonial Electric' },
+  { v: ['Over a', 'Decade'], l: 'Of experience' },
+  { v: ['Started', 'at 18'], l: 'In the dynamic world of electrical work' },
+  { v: ['Lineman &', 'Educator'], l: 'Electrical substations & a local college' },
+];
+// Pull quote: a verbatim sentence fragment from bio paragraph 3 (aria-hidden; the paragraph itself stays intact).
+const pull = 'Scott’s passion for the craft is palpable in every connection made.';
+
+// Photo row: the live site's own (clean, un-framed) service photos (brief §8), linked to their service pages.
+// Service tiles: a brand plate per service (src/blocks/plate.mjs; no framed stock photos, brief §8). A real Colonial
+// job photo mapped to the service slug in src/data/service-photos.mjs drops into the same tile.
+const work = [
+  { ic: 'inspect', slug: 'electrical-inspections/', t: 'Electrical Inspections' },
+  { ic: 'panel', slug: 'electrical-panel-upgrade/', t: 'Electrical Panel Upgrade' },
+  { ic: 'fan', slug: 'ceiling-fan-installation/', t: 'Ceiling Fan Installation' },
+  { ic: 'outlet', slug: 'electrical-outlets/', t: 'Electrical Outlets' },
+];
 
 const mv = [
   { h2: 'Mission', body: 'At Colonial Electric, we enrich homes and businesses with safe, reliable, and innovative electrical solutions. We exceed industry standards through exceptional service, fostering lasting relationships with clients and communities. With dedication to excellence and integrity, we’re your trusted partner for all electrical needs, ensuring peace of mind and satisfaction in every project.' },
@@ -64,7 +86,10 @@ function hero(ctx) {
     <div class="ab-hero__copy">
       <nav class="crumbs" aria-label="Breadcrumb"><ol role="list"><li><a href="${ctx.r('')}">Home</a></li><li><span aria-current="page">About Us</span></li></ol></nav>
       <p class="eyebrow ab-hero__eyebrow">${esc(site.name)}</p>
-      <h1 class="ab-hero__h1" id="ab-h1">About <span>Us</span></h1>
+      <div class="ab-hero__title">
+        <h1 class="ab-hero__h1" id="ab-h1">About <span>Us</span></h1>
+        ${picture(ctx, 'logo-lockup', { cls: 'ab-hero__mark', alt: '', sizes: '12rem', loading: 'eager' })}
+      </div>
       <p class="ab-hero__lic label-wide">${icon('bolt', { size: 14 })}${esc(site.license)}</p>
       <p class="btn-row"><a class="btn btn--red btn--lg" href="${site.tel}">${icon('phone', { size: 18 })}${site.phone}</a><a class="btn btn--ghost btn--lg" href="#ab-founder">Meet Scott${icon('arrow-right', { size: 16 })}</a></p>
     </div>
@@ -86,9 +111,16 @@ function introSection() {
       <p class="ab-intro__lead">${esc(lead)}</p>
       <div class="ab-intro__rest">${rest.map(p => `<p>${esc(p)}</p>`).join('')}</div>
     </div>
+    <div class="ab-facts">
+      <ul class="ab-facts__list" role="list" aria-label="Scott Hays at a glance">${facts.map(f => `
+        <li class="ab-fact">${icon('bolt', { size: 16 })}<span class="ab-fact__v">${f.v.map(esc).join('<br>')}</span><span class="ab-fact__l">${esc(f.l)}</span></li>`).join('')}
+      </ul>
+    </div>
   </div>
 </section>`;
 }
+
+const pullQuote = where => `<p class="ab-pull ab-pull--${where}" aria-hidden="true">${icon('bolt', { size: 22 })}<span>${esc(pull)}</span></p>`;
 
 function founderSection(ctx) {
   return `<section class="ab-founder on-dark" id="ab-founder" aria-labelledby="ab-meet-h">
@@ -99,14 +131,17 @@ function founderSection(ctx) {
       <p class="ab-meet__p">${esc(meet.body)}</p>
     </header>
     <div class="ab-founder__grid">
+      <div class="ab-founder__aside">
       <figure class="ab-portrait">
         <div class="ab-portrait__frame">${picture(ctx, 'scott-portrait', { alt: 'Portrait of Scott Hays, founder of Colonial Electric, in a Colonial Electric polo', sizes: '(min-width: 1440px) 520px, (min-width: 960px) 38vw, 92vw' })}</div>
         <figcaption class="ab-portrait__cap"><span class="label-wide">${esc(founder.eyebrow)}</span><span class="ab-portrait__name">${esc(founder.name)}</span></figcaption>
       </figure>
+      ${pullQuote('side')}
+      </div>
       <div class="ab-bio">
         <p class="eyebrow">${esc(founder.eyebrow)}</p>
         <h2 class="ab-bio__name">${esc(founder.name)}</h2>
-        <div class="ab-bio__text">${founder.bio.map((p, i) => `<p${i === 0 ? ' class="ab-bio__first"' : ''}>${esc(p)}</p>`).join('')}</div>
+        <div class="ab-bio__text">${founder.bio.map((p, i) => `<p${i === 0 ? ' class="ab-bio__first"' : ''}>${esc(p)}</p>${i === 1 ? `${pullQuote('inline')}` : ''}`).join('')}</div>
         <ul class="ab-sectors" role="list" aria-label="Sectors served">${['Residential', 'Commercial', 'Utility'].map(s => `<li>${icon('bolt', { size: 14 })}${s}</li>`).join('')}</ul>
       </div>
     </div>
@@ -119,8 +154,7 @@ function mvSection(ctx) {
   <div class="container">
     ${index(3, 'What Drives Us')}
     <div class="ab-mv__grid">
-      ${mv.map((m, i) => `<article class="ab-mv__card ab-mv__card--${i ? 'vision' : 'mission'}" aria-labelledby="ab-mv-${i}">
-        ${i ? '' : `<img class="ab-mv__mark" src="${ctx.asset('img/logo-lockup-320.png')}" width="320" height="332" alt="" loading="lazy" decoding="async">`}
+      ${mv.map((m, i) => `<article class="ab-mv__card ab-mv__card--${i ? 'vision' : 'mission stars-bg'}" aria-labelledby="ab-mv-${i}">
         <p class="ab-mv__k" aria-hidden="true">${pad(i + 1)}</p>
         <h2 class="ab-mv__h" id="ab-mv-${i}">${esc(m.h2)}</h2>
         <span class="flag-rule" aria-hidden="true"></span>
@@ -151,6 +185,26 @@ function beyondSection(ctx) {
 </section>`;
 }
 
+function workSection(ctx) {
+  return `<section class="ab-worksec" aria-label="Services">
+  <div class="container ab-work">
+    <div class="ab-work__head">
+      <p class="ab-work__k label-wide">${icon('bolt', { size: 14 })}Services</p>
+      <a class="ab-link" href="${ctx.r('services/')}">All Services${icon('arrow-right', { size: 16 })}</a>
+    </div>
+    <ul class="ab-work__grid" role="list">${work.map((w, i) => {
+      const sizes = '(min-width: 1440px) 310px, (min-width: 900px) 23vw, 46vw';
+      return `
+      <li><a class="ab-work__tile" href="${ctx.r(w.slug)}">
+        <span class="ab-work__ph">${plate(ctx, { id: w.slug.replace(/\/$/, ''), ic: w.ic, tone: 'navy', num: String(i + 1).padStart(2, '0'), sizes, loading: 'eager' })}</span>
+        <span class="ab-work__t">${esc(w.t)}${icon('arrow-right', { size: 16 })}</span>
+      </a></li>`;
+    }).join('')}
+    </ul>
+  </div>
+</section>`;
+}
+
 function townsSection(ctx) {
   return `<section class="ab-towns" aria-labelledby="ab-towns-h">
   <div class="container ab-towns__grid">
@@ -172,6 +226,7 @@ export function render(ctx) {
     hero(ctx),
     introSection(),
     founderSection(ctx),
+    workSection(ctx),
     mvSection(ctx),
     beyondSection(ctx),
     contactCta(ctx, { id: 'ab-cta' }),

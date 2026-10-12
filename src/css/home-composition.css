@@ -1,0 +1,64 @@
+/* =====================================================================
+   Homepage composition pass (owner: homepage). The page as ONE composition:
+   the shared blocks as they sit on the homepage, and settled-by-default scroll motion.
+   Scoped by section id (#s-…) or #main, so service, town and standard pages keep the blocks unchanged.
+   Ground sequence: hero ink · safety white · services paper · about ink · why white · reviews paper ·
+   process ink · guarantee paper · contact ink · membership paper · form white · FAQs paper · footer ink.
+   Every section uses var(--section) padding, the .eyebrow style and the --fs-h2-{xl,lg,md} scale.
+   ===================================================================== */
+
+/* Reviews: paper ground (white cards) so it does not merge with the white "Why" band above it */
+#s-reviews.rv { background: var(--paper); }
+#s-reviews .rv-card:not(.rv-card--short) .rv-card__fig { background: var(--white); box-shadow: inset 0 0 0 1px var(--line); }
+#s-reviews .rv-card:not(.rv-card--short):hover .rv-card__fig { background: var(--white); }
+#s-reviews .rv-h2 { margin-top: 1rem; font-size: var(--fs-h2-lg); }
+
+/* Guarantee: same section rhythm as its neighbours (the block's own compact padding is for inner pages) */
+#s-guarantee.gx { padding-block: var(--section); }
+#s-guarantee .gx__h { font-size: var(--fs-h2-md); }
+
+/* Contact CTA: house eyebrow (dash, not dot), statement-size H2, section rhythm */
+#s-contact-cta.cc { padding-block: var(--section); }
+#s-contact-cta .cc__eyebrow { gap: .6em; letter-spacing: .14em; }
+#s-contact-cta .cc__eyebrow::before { content: ""; flex: none; width: 1.75rem; height: 2px; background: var(--red); }
+#s-contact-cta .cc__dot { display: none; }
+#s-contact-cta .cc__h { margin-top: 1rem; font-size: var(--fs-h2-xl); line-height: .86; }
+
+/* Contact form: section rhythm + panel-size H2 */
+#s-contact-form.cf { padding-block: var(--section); }
+#s-contact-form .cf__h { margin-top: 1rem; font-size: var(--fs-h2-md); }
+
+/* ---------- Scroll-linked motion: settled by default ----------
+   Every homepage reveal is transform-only (base.css §9). Here they also hold no "before" state (fill: forwards) and start at
+   entry 0%, while the element is still below the viewport, so the hand-off is invisible when scrolling, and anything not yet
+   scrolled to (print, find-in-page, a full-page capture) sits exactly where the layout puts it instead of offset or tilted. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    #main .safety__line, #main .safety__em::after, #main .safety__point, #main .safety__call,
+    #main .hsvc__cell,
+    #main .habout__pic img, #main .habout__media::before, #main .habout__plate,
+    #main .why__h2, #main .why__item > *,
+    #s-reviews .rv-feature, #s-reviews .rv-card,
+    #main .proc__main, #main .proc__body,
+    #s-guarantee .gx__ring, #s-guarantee .gx__meta::after,
+    #main .mship__card, #main .mship__ghost,
+    #s-contact-form .cf-photo img { animation-fill-mode: forwards; }
+
+    #main .safety__em::after { animation-range: entry 0% cover 35%; }
+    #main .safety__point { animation-range: entry 0% entry 80%; }
+    #main .hsvc__cell { animation-range: entry 0% entry calc(70% + var(--i, 0) * 6%); }
+    #main .habout__plate { animation-range: entry 0% cover 50%; }
+    #s-reviews .rv-feature, #s-reviews .rv-card { animation-range: entry 0% cover 28%; }
+    #s-guarantee .gx__meta::after { animation-range: entry 0% entry 80%; }
+  }
+}
+
+/* Contact CTA head: heading and lead start on the same line (bottom-aligning left a dead navy corner above the eyebrow) */
+@media (min-width: 1024px) { #s-contact-cta .cc__inner { align-items: start; } }
+
+/* Every navy chapter after the hero opens on the same red / white / blue flag rule (the van sweep colours),
+   as the Contact band and the footer already do: one divider, used the same way each time. */
+#s-about, #s-process {
+  border-top: 6px solid var(--red);
+  border-image: linear-gradient(90deg, var(--red) 0 62%, var(--white) 62% 64%, var(--blue) 64%) 1;
+}

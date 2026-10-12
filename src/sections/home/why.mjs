@@ -1,7 +1,9 @@
-// Homepage §4.6 "Why Choose Us?" — navy editorial index: sticky headline column + four numbered pillars.
+// Homepage §4.6 "Why Choose Us?" — light breather between the navy founder band and the reviews.
+// Split head (statement H2 | intro + call) over a four-up pillar row: crest icon chip, index, title, verbatim body.
 import { why } from '../../data/home.mjs';
 import { whyIntro } from '../../data/shared.mjs';
 import { esc, telHref } from '../../lib/html.mjs';
+import { icon } from '../../partials/icons.mjs';
 
 // One consistent stroke icon set (Lucide-style, 24px grid, 1.75 stroke).
 const ICONS = [
@@ -16,29 +18,26 @@ const ICONS = [
 ];
 
 export function render(ctx) {
-  const items = why.pillars.map((p, i) => {
-    const n = String(i + 1).padStart(2, '0');
-    return `<li class="why__item" style="--i:${i}">
-        <span class="why__num" aria-hidden="true">${n}</span>
-        <div class="why__body">
-          <div class="why__title-row">
-            <span class="why__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">${ICONS[i]}</svg></span>
-            <h3 class="why__title">${esc(p.title)}</h3>
-          </div>
-          <p class="why__text">${esc(p.body)}</p>
+  const items = why.pillars.map((p, i) => `<li class="why__item" style="--i:${i}">
+        <div class="why__top">
+          <span class="why__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">${ICONS[i]}</svg></span>
+          <span class="why__num" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>
         </div>
-      </li>`;
-  }).join('\n      ');
+        <h3 class="why__title">${esc(p.title)}</h3>
+        <p class="why__text">${esc(p.body)}</p>
+      </li>`).join('\n      ');
 
-  return `<section id="s-why" class="why on-dark stars-bg" aria-labelledby="s-why-h">
-  <div class="container why__grid">
+  return `<section id="s-why" class="why" aria-labelledby="s-why-h">
+  <div class="container">
     <header class="why__head">
-      <div class="why__sticky">
-        <p class="why__kicker label-wide" aria-hidden="true"><span class="why__flag"></span>Colonial Electric</p>
-        <h2 class="why__h2" id="s-why-h">${esc(why.h2).replace(/\s(\S+)$/, '<br> $1')}</h2>
+      <div class="why__head-a">
+        <p class="eyebrow">Colonial Electric</p>
+        <h2 class="why__h2" id="s-why-h">${esc(why.h2).replace(/\s(\S+)$/, ' <span class="why__h2-b">$1</span>')}</h2>
+      </div>
+      <div class="why__head-b">
         <p class="why__lead">${esc(whyIntro)}</p>
         <div class="why__cta">
-          <a class="btn btn--red" href="${telHref}">Call (781) 287-8729</a>
+          <a class="btn btn--red btn--lg" href="${telHref}">${icon('phone', { size: 18 })}<span>Call (781) 287-8729</span></a>
         </div>
       </div>
     </header>

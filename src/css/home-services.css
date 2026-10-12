@@ -1,6 +1,7 @@
 /* =====================================================================
    Home §4.4 — Services (#s-services). Owner: home-services.
-   Split head (slab H2 / proof + phone-first CTAs) → 12 photo cards → photo-led feature crest.
+   Split head (slab H2 / proof + phone-first CTAs) → 12 cards led by brand plates (src/css/block-plate.css;
+   no stock photos, brief §8) → feature crest with a typographic index of the four lighting services.
    ===================================================================== */
 .hsvc {
   position: relative;
@@ -16,7 +17,7 @@
 }
 .hsvc__h {
   margin-top: 1rem;
-  font: 900 clamp(2.4rem, 1.25rem + 4.6vw, 5.25rem)/.9 var(--f-display);
+  font: 900 var(--fs-h2-lg)/.9 var(--f-display);
   text-transform: uppercase; letter-spacing: -.01em; color: var(--navy);
   text-wrap: balance;
 }
@@ -32,14 +33,14 @@
   font: 600 .9375rem/1.35 var(--f-body); color: var(--navy);
 }
 .hsvc__proof li > .icon { color: var(--red); flex: none; }
-.hsvc__stars { display: inline-flex; gap: 1px; color: #E8A317; flex: none; }
+.hsvc__stars { display: inline-flex; gap: 1px; color: var(--red); flex: none; } /* brand red on paper (5.75:1); §3: no yellow/gold */
 .hsvc__stars .icon { fill: currentColor; stroke: none; }
 
 .hsvc__actions { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; margin-top: 1.75rem; }
 .hsvc__call {
   gap: .6rem;
-  font: 700 1.1875rem/1 var(--f-body); letter-spacing: .01em; text-transform: none;
-  min-height: 3.5rem; padding-inline: 1.6rem;
+  font: 700 1rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: var(--tel-track); text-transform: none; /* §3 phone face */
+  min-height: 3.6rem; padding-inline: 1.6rem;
 }
 .hsvc__call .icon { width: 20px; height: 20px; }
 
@@ -69,8 +70,8 @@
   position: relative; display: block; overflow: hidden;
   aspect-ratio: 16 / 10; background: var(--navy);
 }
-.hsvc__pic, .hsvc__pic img { display: block; width: 100%; height: 100%; }
-.hsvc__pic img {
+/* a real job photo mapped into the plate slot (src/data/service-photos.mjs) gets the house grade + hover zoom */
+.hsvc__media .plate__img {
   object-fit: cover;
   /* one consistent grade across mixed sources: slightly cooled, settled contrast */
   filter: saturate(.86) contrast(1.04) brightness(.97);
@@ -87,10 +88,14 @@
   background: var(--red); transform: scaleX(.18); transform-origin: left;
   transition: transform .6s var(--ease-out);
 }
+.hsvc__media--plate::after { display: none; } /* the grade is for photos; the plate is already a brand ground */
+.hsvc__media--plate + .hsvc__body .hsvc__t { margin-top: 0; }
+.hsvc__card:hover .plate__ghost, .hsvc__card:focus-visible .plate__ghost { transform: scale(1.08) rotate(-4deg); }
+.hsvc__card:hover .plate__chip, .hsvc__card:focus-visible .plate__chip { transform: translateY(-3px); }
 .hsvc__num {
   position: absolute; z-index: 2; top: .75rem; left: .75rem;
   display: inline-grid; place-items: center; min-width: 2.25rem; height: 1.6rem; padding-inline: .55rem;
-  font: 700 .6875rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .12em;
+  font: 700 var(--fs-label)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .12em;
   color: var(--navy); background: rgba(255, 255, 255, .94);
   border-radius: 999px;
   box-shadow: 0 2px 8px rgba(8, 16, 32, .18);
@@ -116,7 +121,7 @@
   grid-column: 1 / -1; grid-row: 2;
   margin-top: .9rem;
   display: flex; align-items: baseline; justify-content: space-between; gap: .75rem;
-  font: 600 1.25rem/1.2 var(--f-body); letter-spacing: -.005em; text-transform: none;
+  font: 800 1.5rem/1.05 var(--f-display); letter-spacing: .005em; text-transform: uppercase; /* matches .svc-card__t on the templates */
   color: var(--navy);
   text-wrap: balance;
   transition: color .35s var(--ease-out);
@@ -129,7 +134,7 @@
 .hsvc__p {
   grid-column: 1 / -1; grid-row: 3;
   margin-top: .5rem;
-  font-size: .9375rem; line-height: 1.55; color: #4A5568;
+  font-size: var(--fs-desc); line-height: 1.6; color: #4A5568;
   text-wrap: pretty;
 }
 
@@ -138,7 +143,7 @@
   box-shadow: 0 0 0 1px var(--line-strong), var(--shadow);
   transform: translateY(-3px);
 }
-.hsvc__card:hover .hsvc__pic img, .hsvc__card:focus-visible .hsvc__pic img { transform: scale(1.06); filter: saturate(1) contrast(1.04) brightness(1); }
+.hsvc__card:hover .plate__img, .hsvc__card:focus-visible .plate__img { transform: scale(1.06); filter: saturate(1) contrast(1.04) brightness(1); }
 .hsvc__card:hover .hsvc__media::before, .hsvc__card:focus-visible .hsvc__media::before { transform: scaleX(1); }
 .hsvc__card:hover .hsvc__media::after, .hsvc__card:focus-visible .hsvc__media::after { opacity: .5; }
 .hsvc__card:hover .hsvc__ic, .hsvc__card:focus-visible .hsvc__ic { background: var(--red); }
@@ -150,13 +155,13 @@
 /* Phone: horizontal media + body so 12 cards don't become a 6-screen scroll */
 @media (max-width: 639.98px) {
   .hsvc__card { flex-direction: row; align-items: stretch; clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%); }
-  .hsvc__media { flex: 0 0 34%; aspect-ratio: auto; min-height: 8.5rem; }
+  .hsvc__media { flex: 0 0 28%; aspect-ratio: auto; min-height: 8.5rem; } /* narrower plate: the 16px description keeps a readable measure */
   .hsvc__media::before { left: auto; right: 0; top: 0; bottom: 0; width: 3px; height: 100%; transform: scaleY(.25); transform-origin: top; }
-  .hsvc__num { top: .5rem; left: .5rem; min-width: 1.9rem; height: 1.4rem; padding-inline: .4rem; font-size: .625rem; }
+  .hsvc__num { top: .5rem; left: .5rem; min-width: 1.9rem; height: 1.4rem; padding-inline: .4rem; font-size: var(--fs-label); }
   .hsvc__body { padding: 1rem 1rem 1.1rem; }
   .hsvc__ic { display: none; }
-  .hsvc__t { grid-row: 1; margin-top: 0; font-size: 1.125rem; }
-  .hsvc__p { grid-row: 2; margin-top: .35rem; font-size: .9375rem; }
+  .hsvc__t { grid-row: 1; margin-top: 0; font-size: 1.3rem; }
+  .hsvc__p { grid-row: 2; margin-top: .35rem; font-size: var(--fs-desc); }
   .hsvc__arr { display: none; }
 }
 
@@ -168,20 +173,54 @@
   background-color: var(--navy-ink); color: var(--on-dark);
   clip-path: var(--crest, polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 22px 100%, 0 calc(100% - 22px)));
 }
-.hsvc__feat-media { position: relative; min-height: 18rem; overflow: hidden; }
-.hsvc__feat-media picture, .hsvc__feat-media img { display: block; width: 100%; height: 100%; }
-.hsvc__feat-media img { position: absolute; inset: 0; object-fit: cover; object-position: 40% 60%; }
-.hsvc__feat-media::after { /* seat the photo into the navy panel */
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(180deg, rgba(8, 16, 32, 0) 60%, rgba(8, 16, 32, .9) 100%);
+.hsvc__feat-media { /* typographic index of the four lighting services on the badge-blue pinstripe ground */
+  position: relative; overflow: hidden; isolation: isolate;
+  display: flex; flex-direction: column; justify-content: center; gap: 1.1rem;
+  padding: clamp(1.75rem, 1rem + 3vw, 3.75rem) clamp(1.25rem, .8rem + 3vw, 3.75rem);
+  background: var(--blue);
 }
+.hsvc__feat-media::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background-image: repeating-linear-gradient(180deg, rgba(255, 255, 255, .055) 0 1px, transparent 1px 5px);
+}
+.hsvc__feat-glyph {
+  position: absolute; z-index: -1; right: -18%; top: 50%; width: min(34rem, 92%); aspect-ratio: 1;
+  translate: 0 -50%; color: rgba(255, 255, 255, .09); pointer-events: none;
+}
+.hsvc__feat-glyph .icon { width: 100%; height: 100%; stroke-width: .5; }
 .hsvc__feat-cap {
-  position: absolute; z-index: 1; left: 1.25rem; bottom: 1.1rem;
-  display: inline-flex; align-items: center; gap: .45rem;
-  font: 700 .6875rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase;
-  color: var(--white);
+  display: inline-flex; align-items: center; gap: .7rem;
+  font: 700 var(--fs-eyebrow)/1.2 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--on-dark-2);
 }
-.hsvc__feat-cap .icon { color: var(--red-flag); }
+.hsvc__feat-chip {
+  display: grid; place-items: center; width: 2.25rem; height: 2.25rem; padding: 2px; flex: none;
+  background: var(--white);
+  clip-path: polygon(26% 0, 74% 0, 100% 26%, 100% 74%, 74% 100%, 26% 100%, 0 74%, 0 26%);
+}
+.hsvc__feat-chip .icon {
+  width: 100%; height: 100%; padding: .45rem; color: var(--white); background: var(--red);
+  clip-path: polygon(25% 0, 75% 0, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0 75%, 0 25%);
+}
+.hsvc .hsvc__feat-list { margin: 0; padding: 0; list-style: none; border-bottom: 1px solid rgba(255, 255, 255, .18); }
+.hsvc__feat-list li { border-top: 1px solid rgba(255, 255, 255, .18); }
+.hsvc__feat-list a {
+  display: flex; align-items: center; gap: clamp(.85rem, .5rem + 1vw, 1.5rem);
+  padding: clamp(.8rem, .6rem + .6vw, 1.15rem) 0;
+  color: var(--white); text-decoration: none;
+}
+.hsvc__feat-n {
+  flex: none; min-width: 2.2em;
+  font: 700 .75rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; color: var(--on-dark-2);
+}
+.hsvc__feat-t {
+  font: 900 clamp(1.75rem, 1.15rem + 2.1vw, 3rem)/.95 var(--f-display); text-transform: uppercase; letter-spacing: .005em;
+  transition: transform .45s var(--ease-out);
+}
+.hsvc__feat-list a .icon { flex: none; margin-left: auto; color: rgba(255, 255, 255, .62); transition: transform .35s var(--ease-out), color .35s var(--ease-out); }
+.hsvc__feat-list a:hover .hsvc__feat-t, .hsvc__feat-list a:focus-visible .hsvc__feat-t { transform: translateX(6px); }
+.hsvc__feat-list a:hover .icon, .hsvc__feat-list a:focus-visible .icon { color: var(--white); transform: translate(3px, -3px); }
+.hsvc__feat-list a:focus-visible { outline: 3px solid var(--white); outline-offset: 2px; }
 .hsvc__feat-body { padding: clamp(1.75rem, 1rem + 3vw, 4rem) clamp(1.25rem, .8rem + 3vw, 4rem) clamp(2rem, 1.2rem + 3vw, 4rem); }
 .hsvc__feat-tag {
   display: inline-flex; align-items: center; gap: .65rem;
@@ -194,39 +233,20 @@
 }
 .hsvc__feat-h {
   margin-top: 1rem;
-  font: 900 clamp(2.25rem, 1.3rem + 3.2vw, 4rem)/.9 var(--f-display);
+  font: 900 var(--fs-h2-md)/.9 var(--f-display);
   text-transform: uppercase; letter-spacing: -.005em; text-wrap: balance;
 }
 .hsvc__feat-sub { margin-top: .9rem; font: 600 var(--fs-lead)/1.35 var(--f-body); color: var(--white); max-width: 34ch; }
 .hsvc__feat-p { margin-top: .9rem; color: var(--on-dark-2); max-width: 54ch; line-height: 1.6; text-wrap: pretty; }
 
-.hsvc .hsvc__kinds {
-  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .6rem;
-  margin: 1.75rem 0 0; padding: 0; list-style: none;
-}
-.hsvc__kind { position: relative; overflow: hidden; aspect-ratio: 1; background: var(--navy-3); }
-.hsvc__kind picture, .hsvc__kind img { display: block; width: 100%; height: 100%; }
-.hsvc__kind img { object-fit: cover; transition: transform .9s var(--ease-out); }
-.hsvc__kind::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(180deg, rgba(8, 16, 32, 0) 40%, rgba(8, 16, 32, .85) 100%);
-}
-.hsvc__kind span {
-  position: absolute; z-index: 1; left: .6rem; right: .6rem; bottom: .6rem;
-  font: 600 .8125rem/1.2 var(--f-body); color: var(--white);
-}
-.hsvc__kind:hover img { transform: scale(1.06); }
 .hsvc__feat-cta { margin-top: 1.75rem; }
 
 @media (min-width: 960px) {
   .hsvc__feat { grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); }
-  .hsvc__feat-media { min-height: 100%; }
-  .hsvc__feat-media::after { background: linear-gradient(90deg, rgba(8, 16, 32, 0) 70%, rgba(8, 16, 32, .55) 100%); }
-  .hsvc__feat-cap { left: 1.75rem; bottom: 1.5rem; padding: .55rem .8rem; background: rgba(8, 16, 32, .72); }
+  .hsvc__feat-media { order: -1; min-height: 100%; } /* DOM: copy first (heading before the list); visually the index leads */
 }
 @media (max-width: 420px) {
   .hsvc__actions .btn, .hsvc__feat-cta { width: 100%; justify-content: center; white-space: normal; text-align: center; }
-  .hsvc__kind span { font-size: .75rem; left: .45rem; bottom: .45rem; }
 }
 
 /* ---------- Motion: staggered rise as cards enter (transform only; nothing is ever hidden) ---------- */
@@ -240,7 +260,7 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hsvc__card, .hsvc__pic img, .hsvc__kind img { transition: none; }
+  .hsvc__card, .plate__img, .hsvc__feat-t { transition: none; }
   .hsvc__card:hover { transform: none; }
 }
 @keyframes hsvc-rise {
@@ -248,6 +268,6 @@
   to { transform: none; }
 }
 
-/* outline button: base chamfer clip-path slices the inset keyline at the corners (see src/requests/home-services.md) */
-.hsvc__actions .btn--outline { clip-path: none; min-height: 3.5rem; }
-@media (max-width: 959.98px) { .hsvc__feat-media img { object-position: 50% 30%; } }
+/* outline button: matches the red call button's height (chamfer keyline now comes from base.css) */
+.hsvc__actions .btn--outline { min-height: 3.5rem; }
+

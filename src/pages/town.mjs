@@ -8,6 +8,7 @@ import { reviews } from '../blocks/reviews.mjs';
 import { contactCta } from '../blocks/contact-cta.mjs';
 import { icon } from '../partials/icons.mjs';
 import { esc, picture } from '../lib/html.mjs';
+import { businessJsonLd } from '../partials/head.mjs';
 
 // Town template (brief §6) — one data-driven template for all 21 town pages.
 // Section order is fixed by the brief: hero · intro · safety · call box + form · services · town list · reviews · about/top sites · CTA.
@@ -21,7 +22,7 @@ function hero(ctx, t) {
   const h1 = ctx.page.h1; // "{Town} MA, Electrical Services"
   const rest = h1.startsWith(T) ? h1.slice(T.length) : '';
   const [ma, ...svc] = rest.trim().split(' ');
-  const lead = t.topSites[0];
+  const lead = t.topSites[t.lead ?? 0]; // data: the town's most recognisable landmark photo
   const crumbs = [{ label: 'Home', href: '' }, { label: 'Service Area', href: 'service-area/' }, { label: T }];
   ctx.jsonld.push({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.label, item: site.origin + '/' + (c.href ?? ctx.page.slug) })) });
   return `<section class="tw-hero on-dark stars-bg" aria-labelledby="tw-h1">
@@ -146,10 +147,13 @@ export function render(ctx) {
   const t = ctx.page.town;
   ctx.preloadImage = 'owner-van';
   ctx.preloadSizes = '(min-width: 1200px) 640px, (min-width: 900px) 50vw, 100vw';
+  const biz = businessJsonLd();
   ctx.jsonld = [{
-    '@context': 'https://schema.org', '@type': 'Electrician', name: site.name, telephone: site.phoneSchema,
-    url: site.origin + '/' + ctx.page.slug, areaServed: { '@type': 'City', name: `${t.name}, MA` },
-    parentOrganization: { '@id': site.origin + '/#business' },
+    '@context': 'https://schema.org', '@type': 'Electrician', '@id': site.origin + '/' + ctx.page.slug + '#electrician',
+    name: site.name, telephone: site.phoneSchema, url: site.origin + '/' + ctx.page.slug,
+    image: biz.image, logo: biz.logo, address: biz.address,
+    areaServed: { '@type': 'City', name: `${t.name}, MA` },
+    parentOrganization: { '@id': biz['@id'] },
   }];
   return [
     hero(ctx, t),

@@ -2,7 +2,7 @@ import { site, usefulLinks, legalLinks } from '../data/site.mjs';
 import { services } from '../data/services.mjs';
 import { towns } from '../data/towns.mjs';
 import { icon } from './icons.mjs';
-import { esc } from '../lib/html.mjs';
+import { esc, escLic } from '../lib/html.mjs';
 
 // Site footer (brief §2 footer). Every string comes from src/data; no invented claims.
 export function footer(ctx) {
@@ -17,7 +17,7 @@ export function footer(ctx) {
 
   <div class="container site-footer__mast">
     <a class="site-footer__logo" href="${ctx.r('')}" aria-label="Colonial Electric, home">
-      <picture><source type="image/webp" srcset="${ctx.asset('img/logo-lockup-320.webp')} 320w, ${ctx.asset('img/logo-lockup-621.webp')} 621w" sizes="(min-width: 1080px) 176px, 136px"><img src="${ctx.asset('img/logo-lockup-320.png')}" width="320" height="332" alt="Colonial Electric" loading="lazy" decoding="async"></picture>
+      <picture><source type="image/webp" srcset="${ctx.asset('img/logo-lockup-320.webp')} 320w, ${ctx.asset('img/logo-lockup-621.webp')} 621w" sizes="(min-width: 1080px) 176px, 136px"><img src="${ctx.asset('img/logo-lockup-320.png')}" width="320" height="332" alt="Colonial Electric" loading="eager" fetchpriority="low" decoding="sync"></picture>
     </a>
     <div class="site-footer__call">
       <p class="site-footer__eyebrow">Call Us Today!</p>
@@ -48,7 +48,7 @@ export function footer(ctx) {
       <p class="site-footer__blurb">${esc(site.aboutBlurb)}</p>
       <p class="site-footer__lic">
         <span class="site-footer__lic-ico" aria-hidden="true">${icon('shield', { size: 20 })}</span>
-        <span>${esc(site.licenseLine)}</span>
+        <span>${escLic(site.licenseLine)}</span>
       </p>
     </div>
     <nav class="site-footer__col" aria-label="Useful links">

@@ -86,7 +86,7 @@
 .cal-fallback { padding: clamp(1.25rem, .8rem + 2vw, 3rem); }
 .cal-fallback__card { border: 1px solid var(--line); background: var(--paper); padding: clamp(1.5rem, 1rem + 2vw, 2.5rem); }
 .cal-fallback__k { display: inline-flex; align-items: center; gap: .5rem; font: 700 .75rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .12em; text-transform: uppercase; color: var(--red); }
-.cal-fallback__num { display: block; margin-top: .75rem; font: 800 clamp(2.25rem, 1.5rem + 3vw, 3.75rem)/1 var(--f-display); color: var(--navy); text-decoration: none; letter-spacing: .01em; }
+.cal-fallback__num { display: block; margin-top: .75rem; font: 700 clamp(1.3rem, .87rem + 1.75vw, 2.2rem)/1.1 var(--f-wide); font-stretch: 125%; letter-spacing: var(--tel-track-lg); color: var(--navy); text-decoration: none; }
 .cal-fallback__num:hover { color: var(--red); }
 .cal-fallback .btn-row { margin-top: 1.5rem; }
 
@@ -103,7 +103,7 @@
   border-left: 4px solid var(--red);
   clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
 }
-.cal-founder__role { font: 700 .6875rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--on-dark-3); }
+.cal-founder__role { font: 700 var(--fs-label)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--on-dark-3); }
 .cal-founder__name { font: 800 1.75rem/1 var(--f-display); text-transform: uppercase; letter-spacing: .01em; }
 .cal-aside__line {
   font: 500 var(--fs-small)/1.55 var(--f-body); color: var(--ink-2);
@@ -120,8 +120,8 @@
   .cal-aside { grid-template-columns: 9rem minmax(0, 1fr); align-items: center; gap: 1rem 1.25rem; }
   .cal-founder__tag { bottom: .6rem; padding: .55rem .8rem .55rem .7rem; }
   .cal-founder__name { font-size: 1.15rem; }
-  .cal-founder__role { font-size: .5625rem; }
-  .cal-aside__line { padding-left: .85rem; font-size: .875rem; }
+  .cal-founder__role { font-size: var(--fs-label); }
+  .cal-aside__line { padding-left: .85rem; }
   .cal-embed { min-height: 760px; }
   .cal-embed iframe { min-height: 740px; }
 }

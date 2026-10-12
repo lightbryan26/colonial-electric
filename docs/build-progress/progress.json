@@ -85,11 +85,11 @@
    "shot": "shots/block-contact-cta-r2.png"
   },
   "block-contact-form": {
-   "status": "building",
+   "status": "won",
    "round": 3,
-   "note": "Remove Emergency support 24/7 row from info card, rebuild, verify 1440/375",
-   "updated": "2026-10-12T08:59:40.578Z",
-   "shot": "shots/block-contact-form-r2.png"
+   "note": "Critic picked ours blind (clear). Remaining gap: The form's small type is too faint and too small. The tracked uppercase field labels (NAME, EMAIL, PHONE, SUBJECT, MESSAGE), the \"Fields marked * are required\" note and the 0/180 counter look about 9-10px and light grey. The inputs have ver",
+   "updated": "2026-10-12T10:44:37.584Z",
+   "shot": "shots/block-contact-form-r3.jpg"
   },
   "footer": {
    "status": "won",
@@ -113,18 +113,18 @@
    "shot": "shots/tpl-town-r2.png"
   },
   "page-about-colonial-electric": {
-   "status": "critiquing",
-   "round": 3,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T09:00:12.645Z",
-   "shot": "shots/page-about-colonial-electric-r2.png"
+   "status": "won",
+   "round": 5,
+   "note": "Critic picked ours blind (clear). Remaining gap: Long-form copy is dense and hard to read. The two-column intro under 'The Dependable Source' and especially the Scott Hays bio, about 400 words in a narrow column, are walls of small body text at roughly 12-13px with tight leading. On an otherwise strong, bold",
+   "updated": "2026-10-12T10:53:07.871Z",
+   "shot": "shots/page-about-colonial-electric-r5.jpg"
   },
   "page-services": {
    "status": "won",
-   "round": 2,
-   "note": "Critic picked ours blind (clear). Remaining gap: The page opens weakly and loses density as it goes. A short, image-less navy SERVICES hero leads into a narrow centered wall of grey body copy, and the page ends in a monotonous eight-card grid of tin",
-   "updated": "2026-10-12T08:57:51.483Z",
-   "shot": "shots/page-services-r2.png"
+   "round": 6,
+   "note": "Critic picked ours blind (clear). Remaining gap: The copy is too small and too dense to read. The three service blocks on navy (Repairs, Installation, Upgrades) and the guarantee section are long paragraphs of roughly 12px grey-on-navy text, plus many tiny uppercase labels ('EXPLORE', 'THIS COULD INCLUDE', '",
+   "updated": "2026-10-12T10:49:25.692Z",
+   "shot": "shots/page-services-r6.jpg"
   },
   "page-service-area": {
    "status": "won",
@@ -135,31 +135,31 @@
   },
   "page-contact-us": {
    "status": "won",
-   "round": 2,
-   "note": "Critic picked ours blind (clear). Remaining gap: The pacing and density are poor. The intro sits as a narrow column next to a large empty area, the info-card band is padded far beyond its content, and the form's tiny letter-spaced capital labels mak",
-   "updated": "2026-10-12T08:58:13.362Z",
-   "shot": "shots/page-contact-us-r2.png"
+   "round": 5,
+   "note": "Critic picked ours blind (clear). Remaining gap: The contact form, which is the main conversion element, is underweighted. Its inputs are thin and short, the labels are tiny, the Name/Email/Phone row is cramped and the message box is small. Meanwhile the founder/van card next to it draws more attention. Make",
+   "updated": "2026-10-12T10:52:39.249Z",
+   "shot": "shots/page-contact-us-r5.jpg"
   },
   "page-premium-membership": {
-   "status": "building",
-   "round": 2,
-   "note": "Two-col photo hero, plan/join block (no price), verbatim benefit cards w/ photo, fix guarantee visibility locally, bigger body type",
-   "updated": "2026-10-12T08:56:58.742Z",
-   "shot": "shots/page-premium-membership-r1.png"
+   "status": "won",
+   "round": 4,
+   "note": "Critic picked ours blind (clear). Remaining gap: The type scale is too small and the copy too dense below the headlines. The eyebrow labels, the benefit list inside the floating hero card, the bullet points in the Platinum Privileges section and the benefit-detail text all render as tiny, low-contrast grey t",
+   "updated": "2026-10-12T10:51:31.008Z",
+   "shot": "shots/page-premium-membership-r4.jpg"
   },
   "page-we-offer-financing": {
    "status": "won",
-   "round": 1,
-   "note": "Critic picked ours blind (clear). Remaining gap: The financing content, the reason the page exists, is a tiny, under-designed text block floating in a big white void. There's no visual hierarchy, no offer framing (3 to 120 months, no credit impact),",
-   "updated": "2026-10-12T08:51:46.890Z",
-   "shot": "shots/page-we-offer-financing-r1.png"
+   "round": 5,
+   "note": "Critic picked ours blind (clear). Remaining gap: The hero's real photo is undersized. The Colonial truck/owner shot is a small tile in the right column, and the \"3 to 120 months\" financing card covers half of it, so the page's strongest trust image reads as a cramped collage. The microcopy is also very small",
+   "updated": "2026-10-12T11:01:57.933Z",
+   "shot": "shots/page-we-offer-financing-r5.jpg"
   },
   "page-leave-us-a-review": {
-   "status": "building",
-   "round": 3,
-   "note": "Fix CTA overflow, h2 spacing, mobile call-bar padding, add real job photo split with intro, give town list context",
-   "updated": "2026-10-12T08:58:26.461Z",
-   "shot": "shots/page-leave-us-a-review-r2.png"
+   "status": "won",
+   "round": 4,
+   "note": "Critic picked ours blind (clear). Remaining gap: The supporting text is too small and too low-contrast against the strong display type. This includes the platform-row descriptions, the eyebrow labels, the hero platform chips, the 21-town grid, the contact strip and the footer columns. They render at roughly",
+   "updated": "2026-10-12T10:52:11.073Z",
+   "shot": "shots/page-leave-us-a-review-r4.jpg"
   },
   "page-calendar": {
    "status": "won",
@@ -170,13 +170,726 @@
   },
   "page-terms": {
    "status": "won",
+   "round": 5,
+   "note": "Critic picked ours blind (clear). Remaining gap: The body below the hero is a long run of text that is hard to read and gets monotonous. The legal copy is set very small, in light grey, in a narrow column. That leaves about 15% of the canvas as a dead gutter to the right of the content. The left rail (founde",
+   "updated": "2026-10-12T11:07:41.810Z",
+   "shot": "shots/page-terms-r5.jpg"
+  },
+  "integrate": {
+   "status": "won",
+   "round": 3,
+   "note": "Shared fixes done: 32 sitewide findings fixed over 2 audit rounds",
+   "updated": "2026-10-12T17:04:44.553Z",
+   "shot": "shots/integrate-r2.png"
+  },
+  "homepage": {
+   "status": "critiquing",
    "round": 1,
-   "note": "Critic picked ours blind (clear). Remaining gap: A broken two-column grid. The narrow table of contents and the large empty gutter push the text into a cramped, off-center column of hard-to-read light-gray text, with no call to action after the head",
-   "updated": "2026-10-12T08:56:41.987Z",
-   "shot": "shots/page-terms-r1.png"
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T17:20:14.815Z",
+   "shot": "shots/homepage-r1.png"
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T17:20:14.815Z",
+   "piece": "homepage",
+   "status": "critiquing",
+   "round": 1,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T17:19:59.040Z",
+   "piece": "homepage",
+   "status": "done",
+   "round": 1,
+   "note": "One composition: grounds now alternate ink, white, paper with no matching neighbours (Why turned light as a 4-up pillar row, Process turned navy with a white quote card, Reviews and FAQs on paper); one 3-step H2 scale, one eyebrow style, lg buttons, var(--section) rhythm on every band, flag rule opening each navy chapter; call box layout fixed; scroll reveals settle by default so captures show the real layout",
+   "shot": "shots/homepage-r1.png"
+  },
+  {
+   "t": "2026-10-12T17:09:22.533Z",
+   "piece": "homepage",
+   "status": "building",
+   "round": 1,
+   "note": "Whole-page pass: alternate grounds (dark-light-paper) so no neighbours match, Why goes light with a pillar row, Process goes dark, one H2 scale, one eyebrow style, one section rhythm"
+  },
+  {
+   "t": "2026-10-12T17:04:44.553Z",
+   "piece": "integrate",
+   "status": "won",
+   "round": 3,
+   "note": "Shared fixes done: 32 sitewide findings fixed over 2 audit rounds"
+  },
+  {
+   "t": "2026-10-12T17:04:16.780Z",
+   "piece": "integrate",
+   "status": "done",
+   "round": 3,
+   "note": "All 11 fixed: SA landmark names unclamped, FAQ list JSON-LD, og image on pitch host, bolt jump focus, navy form focus ring, aria-current true on parents, founder 02 contrast, finbar and callbar landmarks, calendar alt, self-hosted preloaded fonts with metric fallbacks (max CLS 0.039 with fonts delayed), hero caption gutter. 45/45, linkcheck clean, axe region gone"
+  },
+  {
+   "t": "2026-10-12T16:45:21.004Z",
+   "piece": "integrate",
+   "status": "building",
+   "round": 3,
+   "note": "Fixing 11 confirmed sitewide findings"
+  },
+  {
+   "t": "2026-10-12T14:07:41.848Z",
+   "piece": "integrate",
+   "status": "done",
+   "round": 2,
+   "note": "Round 2 shared fixes: 21 of 21 fixed. Focus rings visible on clip-path controls, callbar fits 375 and no longer hides focus, mobile nav marks the current page, lighting panel close moved after services, town JSON-LD has address, calendar fallback is reliable, WebP logos, finite animations, AA input borders",
+   "shot": "shots/integrate-r2.png"
+  },
+  {
+   "t": "2026-10-12T13:51:55.140Z",
+   "piece": "integrate",
+   "status": "building",
+   "round": 2,
+   "note": "Fixing 21 confirmed sitewide findings"
+  },
+  {
+   "t": "2026-10-12T12:50:24.961Z",
+   "piece": "integrate",
+   "status": "done",
+   "round": 1,
+   "note": "Pass 1.4 done: text floors set in base.css tokens (body 17, descriptions 16, secondary 15, meta 14, labels 12) with 82 sub-12px per-page overrides raised; scroll-driven reveals made transform-only plus print fallback and idle warm-up of lazy images, so process steps and photos show in full-page captures; 45/45, no horizontal scroll",
+   "shot": "shots/integrate-r1.png"
+  },
+  {
+   "t": "2026-10-12T12:25:21.219Z",
+   "piece": "integrate",
+   "status": "building",
+   "round": 1,
+   "note": "Pass 1.4: Sitewide type scale and visible-by-default content"
+  },
+  {
+   "t": "2026-10-12T12:24:59.800Z",
+   "piece": "integrate",
+   "status": "done",
+   "round": 1,
+   "note": "Pass 1.3 done: 16 framed stock photos and the UK socket shot retired for brand plates with a photo slot in src/data/service-photos.mjs; 84 town photos re-cropped free of Google marks, chips, arrows, ad copy and watermarks; van photo capped at one per page, enforced in picture()"
+  },
+  {
+   "t": "2026-10-12T12:00:31.266Z",
+   "piece": "integrate",
+   "status": "building",
+   "round": 1,
+   "note": "Pass 1.3: Imagery: stock crops, Google-chrome town photos, van overuse"
+  },
+  {
+   "t": "2026-10-12T12:00:08.204Z",
+   "piece": "integrate",
+   "status": "done",
+   "round": 1,
+   "note": "Pass 1.2 done: gold stars to brand red and white, one red-on-dark token replaces 9 ad-hoc reds and fixes AA, logo ghosts removed, true-colour rider lockup added to home and about heroes, all phones in Archivo wide 700 with tracking tokens, display face for headings, drawn ring stars, no U+2011 fallback",
+   "shot": "shots/integrate-r1.png"
+  },
+  {
+   "t": "2026-10-12T11:30:14.152Z",
+   "piece": "integrate",
+   "status": "building",
+   "round": 1,
+   "note": "Pass 1.2: Brand: palette, logo art, typefaces"
+  },
+  {
+   "t": "2026-10-12T11:29:49.224Z",
+   "piece": "integrate",
+   "status": "done",
+   "round": 1,
+   "note": "Pass 1.1 done: 7 request files closed (1 rejected: brief typo), 8 stub templates deleted and permanent-outdoor-lighting routed to service, dead blocks.css removed, 404 makes no stray requests, home 21-towns count removed, header call link named at 375, outdoor-lighting tabs fit at 375"
+  },
+  {
+   "t": "2026-10-12T11:16:27.181Z",
+   "piece": "integrate",
+   "status": "building",
+   "round": 1,
+   "note": "Pass 1.1: Leftover requests, stub cleanup, 404, header a11y"
+  },
+  {
+   "t": "2026-10-12T11:07:41.810Z",
+   "piece": "page-terms",
+   "status": "won",
+   "round": 5,
+   "note": "Critic picked ours blind (clear). Remaining gap: The body below the hero is a long run of text that is hard to read and gets monotonous. The legal copy is set very small, in light grey, in a narrow column. That leaves about 15% of the canvas as a dead gutter to the right of the content. The left rail (founde",
+   "shot": "shots/page-terms-r5.jpg"
+  },
+  {
+   "t": "2026-10-12T11:03:17.841Z",
+   "piece": "page-terms",
+   "status": "critiquing",
+   "round": 5,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T11:03:00.785Z",
+   "piece": "page-terms",
+   "status": "done",
+   "round": 5,
+   "note": "Terms meta description now the first verbatim sentence (set in terms.mjs, data fix filed as request); desktop rail: TOC + call card with Request Service are sticky, section numbers hang as large margin numerals on the spine, measure ~68ch",
+   "shot": "shots/page-terms-r5.jpg"
+  },
+  {
+   "t": "2026-10-12T11:01:57.933Z",
+   "piece": "page-we-offer-financing",
+   "status": "won",
+   "round": 5,
+   "note": "Critic picked ours blind (clear). Remaining gap: The hero's real photo is undersized. The Colonial truck/owner shot is a small tile in the right column, and the \"3 to 120 months\" financing card covers half of it, so the page's strongest trust image reads as a cramped collage. The microcopy is also very small",
+   "shot": "shots/page-we-offer-financing-r5.jpg"
+  },
+  {
+   "t": "2026-10-12T10:58:35.299Z",
+   "piece": "page-we-offer-financing",
+   "status": "critiquing",
+   "round": 5,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T10:58:21.498Z",
+   "piece": "page-we-offer-financing",
+   "status": "done",
+   "round": 5,
+   "note": "Fixed empty header call-link name at 599px and below (page-scoped visually-hidden text, header.css request filed); hero now pairs a real Colonial photo of Scott and the wrapped van with an overlapping terms card; 3 to 120 set with a readable baseline word",
+   "shot": "shots/page-we-offer-financing-r5.png"
+  },
+  {
+   "t": "2026-10-12T10:53:36.730Z",
+   "piece": "page-terms",
+   "status": "building",
+   "round": 5,
+   "note": "Fix terms meta description in my page module (or request), add sticky founder card + TOC, darker 16-17px body text at ~68ch, closing CTA band"
+  },
+  {
+   "t": "2026-10-12T10:53:33.691Z",
+   "piece": "page-terms",
+   "status": "lost",
+   "round": 4,
+   "note": "Won blind but failed QA: Brief §9 (Meta) violation on /terms/: the meta description, og:description and twitter:description in docs/terms/index.html are the garbled fragment \"com/ (together or individually “Service”) operated by Colonial Electric .\". That is not the page’s first verbatim sentence; it is the second sentence ",
+   "shot": "shots/page-terms-r4.jpg"
+  },
+  {
+   "t": "2026-10-12T10:53:07.871Z",
+   "piece": "page-about-colonial-electric",
+   "status": "won",
+   "round": 5,
+   "note": "Critic picked ours blind (clear). Remaining gap: Long-form copy is dense and hard to read. The two-column intro under 'The Dependable Source' and especially the Scott Hays bio, about 400 words in a narrow column, are walls of small body text at roughly 12-13px with tight leading. On an otherwise strong, bold",
+   "shot": "shots/page-about-colonial-electric-r5.jpg"
+  },
+  {
+   "t": "2026-10-12T10:52:39.249Z",
+   "piece": "page-contact-us",
+   "status": "won",
+   "round": 5,
+   "note": "Critic picked ours blind (clear). Remaining gap: The contact form, which is the main conversion element, is underweighted. Its inputs are thin and short, the labels are tiny, the Name/Email/Phone row is cramped and the message box is small. Meanwhile the founder/van card next to it draws more attention. Make",
+   "shot": "shots/page-contact-us-r5.jpg"
+  },
+  {
+   "t": "2026-10-12T10:52:32.170Z",
+   "piece": "page-we-offer-financing",
+   "status": "building",
+   "round": 5,
+   "note": "Fix empty header call-link name at 599px and below, add a real Colonial photo to the hero, set the term as 3-120 with a readable dash"
+  },
+  {
+   "t": "2026-10-12T10:52:32.095Z",
+   "piece": "page-we-offer-financing",
+   "status": "lost",
+   "round": 4,
+   "note": "Won blind but failed QA: Accessibility defect that breaks the brief’s §9 ’Accessible’ requirement and its Lighthouse a11y 90+ target (WCAG 2.4.4 / 4.1.2). At widths of 599px and below, the header click-to-call link <a class=\"hcall\" href=\"tel:+17812878729\"> has an EMPTY accessible name. This was confirmed with the Chromium A",
+   "shot": "shots/page-we-offer-financing-r4.jpg"
+  },
+  {
+   "t": "2026-10-12T10:52:11.073Z",
+   "piece": "page-leave-us-a-review",
+   "status": "won",
+   "round": 4,
+   "note": "Critic picked ours blind (clear). Remaining gap: The supporting text is too small and too low-contrast against the strong display type. This includes the platform-row descriptions, the eyebrow labels, the hero platform chips, the 21-town grid, the contact strip and the footer columns. They render at roughly",
+   "shot": "shots/page-leave-us-a-review-r4.jpg"
+  },
+  {
+   "t": "2026-10-12T10:51:31.008Z",
+   "piece": "page-premium-membership",
+   "status": "won",
+   "round": 4,
+   "note": "Critic picked ours blind (clear). Remaining gap: The type scale is too small and the copy too dense below the headlines. The eyebrow labels, the benefit list inside the floating hero card, the bullet points in the Platinum Privileges section and the benefit-detail text all render as tiny, low-contrast grey t",
+   "shot": "shots/page-premium-membership-r4.jpg"
+  },
+  {
+   "t": "2026-10-12T10:49:26.428Z",
+   "piece": "page-about-colonial-electric",
+   "status": "critiquing",
+   "round": 5,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T10:49:25.692Z",
+   "piece": "page-services",
+   "status": "won",
+   "round": 6,
+   "note": "Critic picked ours blind (clear). Remaining gap: The copy is too small and too dense to read. The three service blocks on navy (Repairs, Installation, Upgrades) and the guarantee section are long paragraphs of roughly 12px grey-on-navy text, plus many tiny uppercase labels ('EXPLORE', 'THIS COULD INCLUDE', '",
+   "shot": "shots/page-services-r6.jpg"
+  },
+  {
+   "t": "2026-10-12T10:47:32.552Z",
+   "piece": "page-contact-us",
+   "status": "critiquing",
+   "round": 5,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T10:47:05.673Z",
+   "piece": "page-terms",
+   "status": "critiquing",
+   "round": 4,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T10:46:49.849Z",
+   "piece": "page-terms",
+   "status": "done",
+   "round": 4,
+   "note": "TOC numerals now full-opacity ink-3 (5.0:1 on paper, 5.3:1 on white); desktop gets a paper sidebar ending in a document spine with a crest number per section (red = section being read); body copy darkened to ink"
+  },
+  {
+   "t": "2026-10-12T10:45:07.587Z",
+   "piece": "page-premium-membership",
+   "status": "critiquing",
+   "round": 4,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T10:45:00.359Z",
+   "piece": "page-leave-us-a-review",
+   "status": "critiquing",
+   "round": 4,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T10:45:00.175Z",
+   "piece": "page-we-offer-financing",
+   "status": "critiquing",
+   "round": 4,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T10:44:58.872Z",
+   "piece": "page-services",
+   "status": "critiquing",
+   "round": 6,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T10:44:51.238Z",
+   "piece": "page-premium-membership",
+   "status": "done",
+   "round": 4,
+   "note": "Bolt panels go inert the moment they are deselected and the incoming panel is visible at once, so a quick Arrow+Tab always lands on the active panel at every width (Playwright verified); intro and benefit copy set one sentence per row at 17-18px with a big lead and a sign-up band, guarantee clauses in one readable column on this page; all copy still verbatim; 45/45 build, no h-scroll at 375/768/1440"
+  },
+  {
+   "t": "2026-10-12T10:44:44.880Z",
+   "piece": "page-services",
+   "status": "done",
+   "round": 6,
+   "note": "Fixed mobile outdoor-lighting sweep (3 bands inside card at 375-719). Repairs/Installation/Upgrades rows now carry real service photos in crest frames with numeral tags, zig-zag layout, verbatim copy set as lead sentence plus run-in bullet list plus note at 17-22px near-white; hero body contrast raised. 45/45 built, no h-scroll or errors at 1440/768/375."
+  },
+  {
+   "t": "2026-10-12T10:44:37.801Z",
+   "piece": "page-about-colonial-electric",
+   "status": "critiquing",
+   "round": 4,
+   "note": "Won blind, but the stitched Dribbble reference had a duplicated carousel strip (now fixed). Re-judging against the corrected reference.",
+   "shot": "shots/page-about-colonial-electric-r4.jpg"
+  },
+  {
+   "t": "2026-10-12T10:44:37.741Z",
+   "piece": "page-contact-us",
+   "status": "critiquing",
+   "round": 4,
+   "note": "Won blind, but the stitched Dribbble reference had a duplicated carousel strip (now fixed). Re-judging against the corrected reference.",
+   "shot": "shots/page-contact-us-r4.jpg"
+  },
+  {
+   "t": "2026-10-12T10:44:37.697Z",
+   "piece": "page-leave-us-a-review",
+   "status": "critiquing",
+   "round": 3,
+   "note": "Won blind, but the stitched Dribbble reference had a duplicated carousel strip (now fixed). Re-judging against the corrected reference.",
+   "shot": "shots/page-leave-us-a-review-r3.jpg"
+  },
+  {
+   "t": "2026-10-12T10:44:37.640Z",
+   "piece": "page-we-offer-financing",
+   "status": "critiquing",
+   "round": 3,
+   "note": "Won blind, but the stitched Dribbble reference had a duplicated carousel strip (now fixed). Re-judging against the corrected reference.",
+   "shot": "shots/page-we-offer-financing-r3.jpg"
+  },
+  {
+   "t": "2026-10-12T10:44:37.584Z",
+   "piece": "block-contact-form",
+   "status": "won",
+   "round": 3,
+   "note": "Critic picked ours blind (clear). Remaining gap: The form's small type is too faint and too small. The tracked uppercase field labels (NAME, EMAIL, PHONE, SUBJECT, MESSAGE), the \"Fields marked * are required\" note and the 0/180 counter look about 9-10px and light grey. The inputs have ver",
+   "shot": "shots/block-contact-form-r3.jpg"
+  },
+  {
+   "t": "2026-10-12T10:38:46.576Z",
+   "piece": "page-terms",
+   "status": "building",
+   "round": 4,
+   "note": "Drop opacity on TOC numerals for AA contrast, verify body text size and contrast, keep sticky rail and CTA band, rebuild and recheck all widths"
+  },
+  {
+   "t": "2026-10-12T10:38:46.529Z",
+   "piece": "page-terms",
+   "status": "lost",
+   "round": 3,
+   "note": "Won blind but failed QA: AA contrast failure (brief section 9, ’AA contrast’ on all text) on both /terms/ and /privacy/: the inactive table-of-contents section numbers (.lg-toc__n, the ’01’-’20’ / ’01’-’14’ numerals) render at 13px/800 in --ink-3 #5F6B82 multiplied by opacity .75, which works out to rgb(135,144,161). That i"
+  },
+  {
+   "t": "2026-10-12T10:38:30.054Z",
+   "piece": "page-terms",
+   "status": "building",
+   "round": 4,
+   "note": "Drop opacity on TOC numerals for AA contrast, verify body text size and contrast, keep sticky rail and CTA band, rebuild and recheck all widths"
+  },
+  {
+   "t": "2026-10-12T10:37:38.727Z",
+   "piece": "page-premium-membership",
+   "status": "building",
+   "round": 4,
+   "note": "Make outgoing bolt panels inert so focus never lands on a fading card; tighten intro and benefit copy into a short lead plus bullets at 17px; fix copy typos"
+  },
+  {
+   "t": "2026-10-12T10:37:38.677Z",
+   "piece": "page-premium-membership",
+   "status": "lost",
+   "round": 3,
+   "note": "Won blind but failed QA: Keyboard focus is lost in the benefits bolt at desktop widths (>=1024px), against brief §9 ’keyboard-operable ... bolt’. Steps to reproduce at 1440: focus #pm-tab-0, press ArrowDown, then press Tab within about 450ms. Focus lands on the panel that is fading out (#pm-card-0, still visibility:visible )"
+  },
+  {
+   "t": "2026-10-12T10:36:21.178Z",
+   "piece": "page-services",
+   "status": "building",
+   "round": 6,
+   "note": "Fix mobile feature sweep clip; add job-site photos to the three service rows, shorten their copy to short bullets, lift body text to 17px high-contrast on navy; trim hero and guarantee density"
+  },
+  {
+   "t": "2026-10-12T10:36:21.119Z",
+   "piece": "page-services",
+   "status": "lost",
+   "round": 5,
+   "note": "Won blind but failed QA: Clipped decorative element at 719px and below: the red/white/blue sweep on the ’Also Available / Permanent Outdoor Lighting’ banner (.sv-feature::before) gets cut off. The mobile rule sets right:-1rem and width:4rem with a 100deg gradient, so the white and navy bands fall past the card’s clipped rig"
+  },
+  {
+   "t": "2026-10-12T10:32:18.394Z",
+   "piece": "page-premium-membership",
+   "status": "critiquing",
+   "round": 3,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T10:32:10.560Z",
+   "piece": "page-terms",
+   "status": "critiquing",
+   "round": 3,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T10:32:02.155Z",
+   "piece": "page-premium-membership",
+   "status": "done",
+   "round": 3,
+   "note": "Fixed 02 index contrast (#E8545A, 5.3:1) and 375 hero gutters; bolt rebuilt as a numbered tab list (node, leader, title per benefit) driving one large photo panel with the verbatim first sentence as a lead, 18-24px high-contrast copy, Next benefit stepping and a repeated Join Flash Pass CTA; intro copy 19px with key verbatim phrases bolded"
+  },
+  {
+   "t": "2026-10-12T10:31:53.424Z",
+   "piece": "page-terms",
+   "status": "done",
+   "round": 3,
+   "note": "Scroll-spy rewritten (last section past a reading line; a click highlights its target and holds it until the scroll settles), verified on all 20 Terms and 14 Privacy links at 1440x900, 1280x720 and 1920x1080. Hero seal no longer fades, so it shows in captures. Rail now opens with a real Scott portrait card (doc email and phone) above the sticky contents. Body copy darker (#27334A, 17/18px, 1.7). Closing Contact Us Today band with owner-van photo, Call Now, Schedule Service and the phone number. 375/768/1440: no horizontal scroll, no errors. Footer logo lazy-load fix filed in src/requests/page-terms.md"
+  },
+  {
+   "t": "2026-10-12T10:28:52.262Z",
+   "piece": "page-services",
+   "status": "critiquing",
+   "round": 5,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T10:28:38.371Z",
+   "piece": "page-services",
+   "status": "done",
+   "round": 5,
+   "note": "Booking steps now Call/Share/Schedule/Relax (own block in services.mjs); categories reset as readable rows with 17-18px light text and solid red numerals; larger, darker body copy in guarantee, cards, hero, FAQ; solid card numerals"
+  },
+  {
+   "t": "2026-10-12T10:24:16.943Z",
+   "piece": "page-services",
+   "status": "building",
+   "round": 5,
+   "note": "Render booking steps as Call/Share/Schedule/Relax in services.mjs; raise body size and contrast on dark category columns and guarantee card; solid numerals"
+  },
+  {
+   "t": "2026-10-12T10:24:16.900Z",
+   "piece": "page-services",
+   "status": "lost",
+   "round": 4,
+   "note": "Won blind but failed QA: The four booking step headings on /services/ don’t match the source copy. The built page shows H3s ’Give Us a Call’, ’Share Your Concerns’, ’Schedule An Appointment’ and ’Sit Back & Relax’. Those are the homepage titles from home.md. Source /home/user/colonial-electric/source/pages/services.md lines"
+  },
+  {
+   "t": "2026-10-12T10:20:37.821Z",
+   "piece": "page-premium-membership",
+   "status": "building",
+   "round": 3,
+   "note": "Fix 02 index contrast and 375 gutters; rebuild the bolt as a labelled numbered bolt list with one large readable benefit panel and a repeated Join Flash Pass CTA; larger, higher-contrast body copy"
+  },
+  {
+   "t": "2026-10-12T10:20:37.779Z",
+   "piece": "page-premium-membership",
+   "status": "lost",
+   "round": 2,
+   "note": "Won blind but failed QA: AA contrast failure (brief section 9): the section index numeral 02 above The Benefits renders in --red-flag #C73136 (rgb 199,49,54) on the bolt section #081020 background at 12px. That is 3.55:1 against the 4.5:1 needed for small text, at 375 and 1440. The 01 and 03 indexes sit on white a)"
+  },
+  {
+   "t": "2026-10-12T10:16:53.118Z",
+   "piece": "page-terms",
+   "status": "building",
+   "round": 3,
+   "note": "Fix scroll-spy (reverse scan + click set), seal capture fade, 16px darker body copy, end-of-page branded contact band with photo, phone and Schedule Service"
+  },
+  {
+   "t": "2026-10-12T10:16:53.064Z",
+   "piece": "page-terms",
+   "status": "lost",
+   "round": 2,
+   "note": "Won blind but failed QA: BLOCKING: the sticky contents rail highlights the wrong section, one behind the section clicked, on both /terms/ and /privacy/ at 1440x900. I clicked all 20 Terms links and all 14 Privacy links: every link except 01 lights up the section before it. For example, clicking ’15 Limitation of Liability’ "
+  },
+  {
+   "t": "2026-10-12T10:16:42.718Z",
+   "piece": "page-services",
+   "status": "critiquing",
+   "round": 4,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T10:16:24.015Z",
+   "piece": "page-we-offer-financing",
+   "status": "critiquing",
+   "round": 3,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T10:16:05.811Z",
+   "piece": "page-services",
+   "status": "done",
+   "round": 4,
+   "note": "Steps grid scoped to 1/2x2/4 columns (no orphan at 768); hero now carries the real founder-and-van photo in a crest frame in place of the 13-item directory, with the first sentence as a short white lead; duplicate photo band removed; hero image preloaded"
+  },
+  {
+   "t": "2026-10-12T10:16:02.162Z",
+   "piece": "page-we-offer-financing",
+   "status": "done",
+   "round": 3,
+   "note": "AA fix on terms card (to = on-dark-2, asterisk = white); added 2 verbatim Google reviews (hero + prequalify), 4-tile real service photo band, split prequalify H2 into headline + deck, 2-col towns band"
+  },
+  {
+   "t": "2026-10-12T10:13:31.344Z",
+   "piece": "page-contact-us",
+   "status": "critiquing",
+   "round": 4,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T10:13:11.831Z",
+   "piece": "page-about-colonial-electric",
+   "status": "critiquing",
+   "round": 4,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T10:12:56.160Z",
+   "piece": "page-contact-us",
+   "status": "done",
+   "round": 4,
+   "note": "Fixed 03 index contrast (FF6B6F, 6.86:1); merged intro into one band with the 2x2 contact cards so cards and form follow the hero (page 5281 to 4882px at 1440); micro-labels and form labels raised to 12-14px; 45/45 build, no h-scroll or errors at 375/768/1440"
+  },
+  {
+   "t": "2026-10-12T10:12:22.187Z",
+   "piece": "page-about-colonial-electric",
+   "status": "done",
+   "round": 4,
+   "note": "Fixed all round-3 QA: removed callbar workaround (shared call bar now shows on About like every page), 02 index and Mission 01 and drop cap now FF6B6B on navy, pillar numerals in fixed 2.75rem column. Body copy 17-19px darker ink, crest fact card from bio facts straddling intro and founder, verbatim pull quote under portrait, row of 4 real live-site service photos linked to service pages"
+  },
+  {
+   "t": "2026-10-12T10:10:23.923Z",
+   "piece": "page-we-offer-financing",
+   "status": "building",
+   "round": 3,
+   "note": "Fix red-on-navy contrast on terms card; add real job photo, shorten prequalify headline, fill towns band"
+  },
+  {
+   "t": "2026-10-12T10:10:23.882Z",
+   "piece": "page-we-offer-financing",
+   "status": "lost",
+   "round": 2,
+   "note": "Won blind but failed QA: The text fails AA contrast on the hero terms card: the small word ’to’ between 3 and 120 (span.fin-term__to) is --red-flag #C73136 on the --navy #12233E card, which measures 2.94:1. It renders at 12-16px bold, so it needs 4.5:1, and it fails at 375, 768 and 1440. Being aria-hidden does not exempt it"
+  },
+  {
+   "t": "2026-10-12T10:09:54.436Z",
+   "piece": "page-premium-membership",
+   "status": "critiquing",
+   "round": 2,
+   "note": "capture and QA done - 2 small fixes found: benefits index 02 contrast, 375 hero frame gutter"
+  },
+  {
+   "t": "2026-10-12T10:08:43.410Z",
+   "piece": "page-services",
+   "status": "building",
+   "round": 4,
+   "note": "Fix orphaned step card at 768 with page-scoped 1/2/4 column steps grid; bring founder/van photo into hero and trim hero copy"
+  },
+  {
+   "t": "2026-10-12T10:08:43.355Z",
+   "piece": "page-services",
+   "status": "lost",
+   "round": 3,
+   "note": "Won blind but failed QA: Orphaned booking-step card at 768px. In the ’A Booking Process That Feels Like a Breeze’ section, .steps uses grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)) (src/css/blocks.css line 28). At 768 the roughly 709px container fits 3 columns, so Steps 1-3 fill one row and ’Step 4 "
+  },
+  {
+   "t": "2026-10-12T10:08:17.228Z",
+   "piece": "page-contact-us",
+   "status": "building",
+   "round": 4,
+   "note": "Fix 03 index contrast to FF6B6F; merge intro into the contact-cards band (copy left, 2x2 cards right) so cards and form follow the hero; raise micro-labels to 12-13px"
+  },
+  {
+   "t": "2026-10-12T10:08:17.172Z",
+   "piece": "page-contact-us",
+   "status": "lost",
+   "round": 3,
+   "note": "Won blind but failed QA: AA contrast failure: the ’03’ section index in the dark Service Area section (span.cu-index__n inside .on-dark) is 12px bold #C73136 (--red-flag) on #081020 (--navy-ink), which gives 3.55:1. Small text needs at least 4.5:1 (brief section 3 and section 9 require AA on all text). Measured at 375, 768 "
+  },
+  {
+   "t": "2026-10-12T10:03:30.499Z",
+   "piece": "page-premium-membership",
+   "status": "critiquing",
+   "round": 2,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T10:01:57.538Z",
+   "piece": "page-about-colonial-electric",
+   "status": "building",
+   "round": 4,
+   "note": "Remove callbar workaround, fix on-dark index contrast and pillar numeral column, raise body text to 17px darker ink, tighten bio with pull quote, add real job photo row"
+  },
+  {
+   "t": "2026-10-12T10:01:57.460Z",
+   "piece": "page-about-colonial-electric",
+   "status": "lost",
+   "round": 3,
+   "note": "Won blind but failed QA: [BLOCKER, brief §9 click-to-call sticky bar on every page and §9 consistency] File: src/css/page-about-colonial-electric.css, lines 192-208, the ’sticky-bar workaround’. Line 195 always hides .callbar at 767px and below (transform: translateY(110%); visibility: hidden). Only the @supports (animation)"
+  },
+  {
+   "t": "2026-10-12T10:01:21.345Z",
+   "piece": "block-contact-form",
+   "status": "critiquing",
+   "round": 3,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T09:59:44.136Z",
+   "piece": "page-we-offer-financing",
+   "status": "critiquing",
+   "round": 2,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T09:59:27.613Z",
+   "piece": "page-premium-membership",
+   "status": "done",
+   "round": 2,
+   "note": "Fixed blank photos in full-page captures (eager load + sync decode), moved the panel photo under the bolt with a hint panel in the header, chamfered join card with real outline and shadow (no price, hours instead of an enrollment claim), two-line intro headline, 18px body type, tablet join layout"
+  },
+  {
+   "t": "2026-10-12T09:58:33.064Z",
+   "piece": "page-leave-us-a-review",
+   "status": "critiquing",
+   "round": 3,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T09:57:42.000Z",
+   "piece": "page-leave-us-a-review",
+   "status": "done",
+   "round": 3,
+   "note": "Real page now routed: deleted tpl-review stub CSS; platforms rebuilt as a navy index list (one row per platform, uniform CTAs, single-line labels 375-1440, no clipping); tablet intro split with Scott photo; towns get a Towns We Serve heading plus Service Area link in an even 7x3 / 3x7 grid; hero keyline kept inside the gutter"
+  },
+  {
+   "t": "2026-10-12T09:57:32.929Z",
+   "piece": "page-terms",
+   "status": "critiquing",
+   "round": 2,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T09:57:20.608Z",
+   "piece": "page-contact-us",
+   "status": "critiquing",
+   "round": 3,
+   "note": "QA done: 1 issue, 03 index contrast on dark section"
+  },
+  {
+   "t": "2026-10-12T09:54:54.035Z",
+   "piece": "page-services",
+   "status": "critiquing",
+   "round": 3,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T09:54:41.595Z",
+   "piece": "block-contact-form",
+   "status": "done",
+   "round": 3,
+   "note": "24/7 Emergency support row confirmed gone (FAQ 7 is the only 24/7 on the page). Photo now decodes sync so it paints in full-page captures, not a blank navy panel. Tablet aside is now a 3:2 photo over the full-width direct line so facts stop wrapping. Photo sizes fixed for tablet."
+  },
+  {
+   "t": "2026-10-12T09:53:53.604Z",
+   "piece": "page-contact-us",
+   "status": "critiquing",
+   "round": 3,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T09:48:57.942Z",
+   "piece": "page-leave-us-a-review",
+   "status": "building",
+   "round": 3,
+   "note": "Route is live: drop tpl-review stub CSS, fix card CTA overflow at 1440, h2 spacing, call-bar padding, real job photo beside intro, labelled town list"
+  },
+  {
+   "t": "2026-10-12T09:48:48.322Z",
+   "piece": "page-premium-membership",
+   "status": "building",
+   "round": 2,
+   "note": "Finish round-2 plan: photo hero, no-price join panel, verbatim benefit cards with photo, fix washed-out guarantee locally, bigger body type"
+  },
+  {
+   "t": "2026-10-12T09:48:42.860Z",
+   "piece": "page-about-colonial-electric",
+   "status": "critiquing",
+   "round": 3,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T09:48:29.892Z",
+   "piece": "block-contact-form",
+   "status": "building",
+   "round": 3,
+   "note": "Verify 24/7 Emergency support row is gone from info card, rebuild, QA at 1440/768/375 plus shared pages"
+  },
   {
    "t": "2026-10-12T09:00:12.645Z",
    "piece": "page-about-colonial-electric",
@@ -1173,5 +1886,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T09:00:12.645Z"
+ "updated": "2026-10-12T17:20:14.815Z"
 }

@@ -2,6 +2,9 @@
 export const site = {
   name: 'Colonial Electric',
   origin: 'https://colonial-electric.com',
+  // Host for og:image / twitter:image / JSON-LD image+logo. Until DNS cut-over colonial-electric.com is still the WordPress
+  // site (no /assets/img/), so share previews load from the deployed pitch host. Cut-over: set this back to `origin`.
+  assetOrigin: 'https://lightbryan26.github.io/colonial-electric',
   phone: '(781) 287-8729',
   tel: 'tel:+17812878729',
   phoneSchema: '+1-781-287-8729',

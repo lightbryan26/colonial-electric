@@ -50,7 +50,7 @@
  },
  "town/abington-ma-ames-nowell-state-park": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -59,7 +59,7 @@
  },
  "town/abington-ma-buds-goods-provisions-south-shore-dispensary": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -68,7 +68,7 @@
  },
  "town/abington-ma-roslyn-park": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -77,7 +77,7 @@
  },
  "town/abington-ma-strawberry-valley-golf-course": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -86,7 +86,7 @@
  },
  "town/braintre-ma-farmers-market": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -95,7 +95,7 @@
  },
  "town/braintre-ma-south-shore-plaza": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -104,7 +104,7 @@
  },
  "town/braintre-ma-space-zero": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -113,7 +113,7 @@
  },
  "town/braintre-ma-x1-boston": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -122,7 +122,7 @@
  },
  "town/canton-ma-blue-hills-ski-area": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -131,7 +131,7 @@
  },
  "town/canton-ma-canton-equestrian-center": {
   "w": 800,
-  "h": 800,
+  "h": 680,
   "widths": [
    400,
    800
@@ -140,7 +140,7 @@
  },
  "town/canton-ma-canton-ice-house": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -149,7 +149,7 @@
  },
  "town/canton-ma-trillium-canton": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -158,7 +158,7 @@
  },
  "town/carver-ma-edaville-family-theme-park": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -167,7 +167,7 @@
  },
  "town/carver-ma-mamma-mias-restaurants": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -176,7 +176,7 @@
  },
  "town/carver-ma-myles-standish-state-forest": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -185,7 +185,7 @@
  },
  "town/carver-ma-off-the-wall-kidz": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -194,7 +194,7 @@
  },
  "town/cohassett-ma-blue-heron-fine-art": {
   "w": 800,
-  "h": 800,
+  "h": 726,
   "widths": [
    400,
    800
@@ -203,7 +203,7 @@
  },
  "town/cohassett-ma-cohasset-sports-complex": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -212,7 +212,7 @@
  },
  "town/cohassett-ma-holly-hill-farm": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -221,7 +221,7 @@
  },
  "town/cohassett-ma-south-shore-art-center": {
   "w": 800,
-  "h": 800,
+  "h": 632,
   "widths": [
    400,
    800
@@ -230,7 +230,7 @@
  },
  "town/hanover-ma-crazy-axes": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -239,7 +239,7 @@
  },
  "town/hanover-ma-forge-pond-park-hanover-ma": {
   "w": 800,
-  "h": 800,
+  "h": 636,
   "widths": [
    400,
    800
@@ -248,7 +248,7 @@
  },
  "town/hanover-ma-ryan-family-amusements": {
   "w": 800,
-  "h": 800,
+  "h": 636,
   "widths": [
    400,
    800
@@ -256,17 +256,17 @@
   "fallback": "jpg"
  },
  "town/hanover-ma-starland-sportsplex-fun-park-hanover-ma": {
-  "w": 800,
-  "h": 800,
+  "w": 756,
+  "h": 456,
   "widths": [
    400,
-   800
+   756
   ],
   "fallback": "jpg"
  },
  "town/hanson-ma-burrage-pond-wildlife-management-area": {
   "w": 800,
-  "h": 800,
+  "h": 692,
   "widths": [
    400,
    800
@@ -274,17 +274,17 @@
   "fallback": "jpg"
  },
  "town/hanson-ma-channell-homestead-family-farm": {
-  "w": 800,
-  "h": 800,
+  "w": 794,
+  "h": 728,
   "widths": [
    400,
-   800
+   794
   ],
   "fallback": "jpg"
  },
  "town/hanson-ma-heidis-hollow-farm": {
   "w": 800,
-  "h": 800,
+  "h": 628,
   "widths": [
    400,
    800
@@ -292,17 +292,17 @@
   "fallback": "jpg"
  },
  "town/hanson-ma-the-blueberry-farm": {
-  "w": 800,
-  "h": 800,
+  "w": 790,
+  "h": 728,
   "widths": [
    400,
-   800
+   790
   ],
   "fallback": "jpg"
  },
  "town/hingham-ma-bathing-beach": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -311,7 +311,7 @@
  },
  "town/hingham-ma-beach-house-at-hingham-bathing-beach": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -320,7 +320,7 @@
  },
  "town/hingham-ma-wompatuck-state-park": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -329,7 +329,7 @@
  },
  "town/hingham-ma-worlds-end": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -338,7 +338,7 @@
  },
  "town/holbrook-ma-holbrook-town-forest": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -347,7 +347,7 @@
  },
  "town/holbrook-ma-nihtila-farm": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -356,7 +356,7 @@
  },
  "town/holbrook-ma-solea-ageless-beauty": {
   "w": 800,
-  "h": 800,
+  "h": 700,
   "widths": [
    400,
    800
@@ -365,7 +365,7 @@
  },
  "town/holbrook-ma-the-connection-cafe": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -374,7 +374,7 @@
  },
  "town/hull-ma-bumpkin-island": {
   "w": 800,
-  "h": 800,
+  "h": 628,
   "widths": [
    400,
    800
@@ -383,7 +383,7 @@
  },
  "town/hull-ma-fort-andrews": {
   "w": 800,
-  "h": 800,
+  "h": 632,
   "widths": [
    400,
    800
@@ -392,7 +392,7 @@
  },
  "town/hull-ma-fort-revere-park": {
   "w": 800,
-  "h": 800,
+  "h": 726,
   "widths": [
    400,
    800
@@ -401,7 +401,7 @@
  },
  "town/hull-ma-hull-lifesaving-museum": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -410,7 +410,7 @@
  },
  "town/marshfield-ma-donna-green-studio": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -419,7 +419,7 @@
  },
  "town/marshfield-ma-fieldston-beach-parking": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -427,17 +427,16 @@
   "fallback": "jpg"
  },
  "town/marshfield-ma-marshfield-kids-at-play-park": {
-  "w": 800,
-  "h": 800,
+  "w": 384,
+  "h": 462,
   "widths": [
-   400,
-   800
+   384
   ],
   "fallback": "jpg"
  },
  "town/marshfield-ma-mass-audubons-daniel-webster-wildlife-sanctuary": {
   "w": 800,
-  "h": 800,
+  "h": 664,
   "widths": [
    400,
    800
@@ -446,7 +445,7 @@
  },
  "town/milton-ma-blue-hills-reservation": {
   "w": 800,
-  "h": 800,
+  "h": 724,
   "widths": [
    400,
    800
@@ -455,7 +454,7 @@
  },
  "town/milton-ma-eustis-estate-museum-and-study-center": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -464,7 +463,7 @@
  },
  "town/milton-ma-houghtons-pond": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -473,7 +472,7 @@
  },
  "town/milton-ma-milton-public-library": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -482,7 +481,7 @@
  },
  "town/norwell-ma-donovan-wildcat-trails-parking-norwell-ma": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -491,7 +490,7 @@
  },
  "town/norwell-ma-hornstra-farms-norwell-ma": {
   "w": 800,
-  "h": 800,
+  "h": 608,
   "widths": [
    400,
    800
@@ -500,7 +499,7 @@
  },
  "town/norwell-ma-norris-reservation-norwell-ma": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -509,7 +508,7 @@
  },
  "town/norwell-ma-things-to-do-stonehouse-antique-shop": {
   "w": 800,
-  "h": 800,
+  "h": 684,
   "widths": [
    400,
    800
@@ -518,7 +517,7 @@
  },
  "town/pembroke-ma-dairy-twist": {
   "w": 800,
-  "h": 800,
+  "h": 628,
   "widths": [
    400,
    800
@@ -527,7 +526,7 @@
  },
  "town/pembroke-ma-herring-run-historical-park": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -536,7 +535,7 @@
  },
  "town/pembroke-ma-hidden-hollow-farm": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -545,7 +544,7 @@
  },
  "town/pembroke-ma-town-landing-playground": {
   "w": 800,
-  "h": 800,
+  "h": 656,
   "widths": [
    400,
    800
@@ -554,7 +553,7 @@
  },
  "town/plymouth-ma-brewster-gardens": {
   "w": 800,
-  "h": 800,
+  "h": 632,
   "widths": [
    400,
    800
@@ -563,7 +562,7 @@
  },
  "town/plymouth-ma-pilgrim-hall-museum": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -572,7 +571,7 @@
  },
  "town/plymouth-ma-plimoth-patuxet-museums": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -581,7 +580,7 @@
  },
  "town/plymouth-ma-plymouth-rock": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -590,7 +589,7 @@
  },
  "town/quincy-ma-historical-society-museum": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -599,7 +598,7 @@
  },
  "town/quincy-ma-quarries-reservation": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -608,7 +607,7 @@
  },
  "town/quincy-ma-the-old-house-at-peacefield-adams-national-historical-park": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -617,7 +616,7 @@
  },
  "town/quincy-ma-united-states-naval-shipbuilding-museum-uss-salem": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -626,7 +625,7 @@
  },
  "town/randolph-ma-belcher-park": {
   "w": 800,
-  "h": 800,
+  "h": 682,
   "widths": [
    400,
    800
@@ -635,7 +634,7 @@
  },
  "town/randolph-ma-bloom-thai-massage": {
   "w": 800,
-  "h": 800,
+  "h": 724,
   "widths": [
    400,
    800
@@ -644,7 +643,7 @@
  },
  "town/randolph-ma-central-rock-gym": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -653,7 +652,7 @@
  },
  "town/randolph-ma-lindwood-memorial-park": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -662,7 +661,7 @@
  },
  "town/rockland-ma-harmon-golf-fitness-club": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -671,7 +670,7 @@
  },
  "town/rockland-ma-magoos-ice-cream": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -680,7 +679,7 @@
  },
  "town/rockland-ma-rockland-golf-course": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -689,7 +688,7 @@
  },
  "town/rockland-ma-town-forest-and-conservation-land": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -698,7 +697,7 @@
  },
  "town/scituate-ma-cole-pkwy": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -707,7 +706,7 @@
  },
  "town/scituate-ma-humarock-beach": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -715,17 +714,17 @@
   "fallback": "jpg"
  },
  "town/scituate-ma-lawson-tower": {
-  "w": 800,
-  "h": 800,
+  "w": 796,
+  "h": 728,
   "widths": [
    400,
-   800
+   796
   ],
   "fallback": "jpg"
  },
  "town/scituate-ma-scituate-lighthouse": {
   "w": 800,
-  "h": 800,
+  "h": 632,
   "widths": [
    400,
    800
@@ -734,7 +733,7 @@
  },
  "town/weymouth-ma-cameo-theater": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -743,7 +742,7 @@
  },
  "town/weymouth-ma-osprey-overlook-park": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -752,7 +751,7 @@
  },
  "town/weymouth-ma-union-point-sports-complex": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -761,7 +760,7 @@
  },
  "town/weymouth-ma-webb-memorial-state-park": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -770,7 +769,7 @@
  },
  "town/whitman-ma-hobart-pond": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -779,7 +778,7 @@
  },
  "town/whitman-ma-on-stage-school-of-performing-arts": {
   "w": 800,
-  "h": 800,
+  "h": 708,
   "widths": [
    400,
    800
@@ -788,7 +787,7 @@
  },
  "town/whitman-ma-whitman-town-park": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
@@ -797,7 +796,7 @@
  },
  "town/whitman-ma-bikebarn": {
   "w": 800,
-  "h": 800,
+  "h": 728,
   "widths": [
    400,
    800
