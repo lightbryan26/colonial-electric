@@ -114,17 +114,17 @@
   },
   "page-about-colonial-electric": {
    "status": "critiquing",
-   "round": 4,
-   "note": "Won blind, but the stitched Dribbble reference had a duplicated carousel strip (now fixed). Re-judging against the corrected reference.",
-   "updated": "2026-10-12T10:44:37.801Z",
+   "round": 5,
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T10:49:26.428Z",
    "shot": "shots/page-about-colonial-electric-r4.jpg"
   },
   "page-services": {
-   "status": "critiquing",
+   "status": "won",
    "round": 6,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T10:44:58.872Z",
-   "shot": "shots/page-services-r2.png"
+   "note": "Critic picked ours blind (clear). Remaining gap: The copy is too small and too dense to read. The three service blocks on navy (Repairs, Installation, Upgrades) and the guarantee section are long paragraphs of roughly 12px grey-on-navy text, plus many tiny uppercase labels ('EXPLORE', 'THIS COULD INCLUDE', '",
+   "updated": "2026-10-12T10:49:25.692Z",
+   "shot": "shots/page-services-r6.jpg"
   },
   "page-service-area": {
    "status": "won",
@@ -177,6 +177,21 @@
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T10:49:26.428Z",
+   "piece": "page-about-colonial-electric",
+   "status": "critiquing",
+   "round": 5,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T10:49:25.692Z",
+   "piece": "page-services",
+   "status": "won",
+   "round": 6,
+   "note": "Critic picked ours blind (clear). Remaining gap: The copy is too small and too dense to read. The three service blocks on navy (Repairs, Installation, Upgrades) and the guarantee section are long paragraphs of roughly 12px grey-on-navy text, plus many tiny uppercase labels ('EXPLORE', 'THIS COULD INCLUDE', '",
+   "shot": "shots/page-services-r6.jpg"
+  },
   {
    "t": "2026-10-12T10:47:32.552Z",
    "piece": "page-contact-us",
@@ -1633,5 +1648,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T10:47:32.552Z"
+ "updated": "2026-10-12T10:49:26.428Z"
 }
