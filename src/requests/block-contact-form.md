@@ -1,10 +1,11 @@
-# Requests from block-contact-form
+# Requests from block-contact-form (round 2)
 
-## 1. src/css/blocks.css — remove dead contact-form rules
-- File: src/css/blocks.css, the `/* contact form */` group (`.cform`, `.cform__grid`, `.field*`, `.cform .btn`, `.cform__status*`).
-- Change: delete those rules.
-- Why: the shared form block now renders cf-* classes only (styled in src/css/block-contact-form.css), so those selectors no longer match anything and are dead weight in site.css.
+1. tools/shot.mjs — element screenshots of sections taller than the viewport capture the sticky
+   `.site-header` and `.callbar` painted over the middle/top of the element (Playwright centres the
+   element, the sticky bars stay at the viewport top/bottom). Critics read this as a layout bug.
+   Exact change: before `el.screenshot(...)` add
+   `await p.addStyleTag({ content: '.site-header,.callbar{visibility:hidden!important}' });`
+   (only in the selector branch). Why: section crops should show the section, not the fixed chrome.
 
-## 2. src/data/images.json (optional) — register the new crop
-- New real-photo crop (from source/images/owner-van.jpg, no AI): src/assets/img/cf-scott-van-{420,580}.{webp,jpg}, 580x840.
-- The block builds its own <picture> today; registering it as key `cf-scott-van` (w 580, h 840, widths [420,580], fallback jpg) would let it use picture() instead. Not required.
+2. tools/blind.py — NameError: `H` is only defined inside the `elif` branch. Move
+   `H = max(A.height, B.height) + 80` onto its own line after the if/elif (as in shots/blind_fixed.py).

@@ -22,10 +22,10 @@
    "shot": "shots/home-safety-r1.png"
   },
   "home-services": {
-   "status": "building",
+   "status": "critiquing",
    "round": 2,
-   "note": "Add real job photos as 16:10 card thumbnails + photo-led lighting band, tighten card rhythm, sentence-case titles, 15px body",
-   "updated": "2026-10-12T08:51:00.102Z",
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T08:58:34.504Z",
    "shot": "shots/home-services-r1.png"
   },
   "home-why": {
@@ -57,38 +57,38 @@
    "shot": "shots/home-about-r1.png"
   },
   "home-membership": {
-   "status": "critiquing",
+   "status": "won",
    "round": 2,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:53:38.711Z",
-   "shot": "shots/home-membership-r1.png"
+   "note": "Critic picked ours blind (clear). Remaining gap: Craft execution in the header and hero. The logo and the 'CALL US TODAY' label are cropped by the header bar, the nav type is tiny, and no primary CTA is visible inside the hero. A strong system ships",
+   "updated": "2026-10-12T08:56:48.693Z",
+   "shot": "shots/home-membership-r2.png"
   },
   "home-process": {
-   "status": "critiquing",
+   "status": "won",
    "round": 2,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:54:38.990Z",
-   "shot": "shots/home-process-r1.png"
+   "note": "Critic picked ours blind (clear). Remaining gap: The composition is unbalanced and has no imagery. A big empty white void sits right of the headline, with the 01-04 progress indicator stranded at the far edge, and no photography of real crews or wor",
+   "updated": "2026-10-12T08:57:07.325Z",
+   "shot": "shots/home-process-r2.png"
   },
   "block-guarantee": {
-   "status": "building",
-   "round": 2,
-   "note": "Fix nav overlap in capture, add real crew photo split, tighten card/H1, full red call CTA, 01 marker, eager seal logo, mobile tag gap",
-   "updated": "2026-10-12T08:51:05.191Z",
-   "shot": "shots/block-guarantee-r1.png"
-  },
-  "block-contact-cta": {
    "status": "critiquing",
    "round": 2,
    "note": "screenshots + QA",
-   "updated": "2026-10-12T08:56:04.884Z",
-   "shot": "shots/block-contact-cta-r1.png"
+   "updated": "2026-10-12T08:58:11.963Z",
+   "shot": "shots/block-guarantee-r2.png"
+  },
+  "block-contact-cta": {
+   "status": "won",
+   "round": 2,
+   "note": "Critic picked ours blind (clear). Remaining gap: The content block is broken and generic. The body copy starts mid-sentence in lowercase and collides with the header rule. The headline 'CONTACT US TODAY' is filler, and it's oversized to the point th",
+   "updated": "2026-10-12T08:57:57.972Z",
+   "shot": "shots/block-contact-cta-r2.png"
   },
   "block-contact-form": {
-   "status": "building",
+   "status": "critiquing",
    "round": 2,
-   "note": "Fix nav overlap (scroll-margin/padding), eager photo + visible-by-default reveal, contact stack in aside, bordered 48px inputs, trust strip + full-width red submit",
-   "updated": "2026-10-12T08:51:55.758Z",
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T08:58:27.658Z",
    "shot": "shots/block-contact-form-r1.png"
   },
   "footer": {
@@ -99,32 +99,32 @@
    "shot": "shots/footer-r1.png"
   },
   "tpl-service": {
-   "status": "building",
+   "status": "won",
    "round": 2,
-   "note": "Force guarantee block to full contrast on service pages via tpl-service.css override, fix pillar numbering, file request to blocks owner",
-   "updated": "2026-10-12T08:55:54.396Z",
-   "shot": "shots/tpl-service-r1.png"
+   "note": "Critic picked ours blind (clear). Remaining gap: The long-form body typography is broken. A 20px drop-cap paragraph of generic boilerplate outweighs the section headings, while the reasons-grid body sits at about 11px light gray, so the page's lower",
+   "updated": "2026-10-12T08:58:31.185Z",
+   "shot": "shots/tpl-service-r2.png"
   },
   "tpl-town": {
-   "status": "critiquing",
+   "status": "won",
    "round": 2,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:55:08.750Z",
-   "shot": "shots/tpl-town-r1.png"
+   "note": "Critic picked ours blind (clear). Remaining gap: The body of the page loses momentum. After a strong hero, the founder section turns into a dense gray text wall (three paragraphs at about 13px, light gray, two narrow columns) under shouting all-caps",
+   "updated": "2026-10-12T08:57:10.631Z",
+   "shot": "shots/tpl-town-r2.png"
   },
   "page-about-colonial-electric": {
-   "status": "critiquing",
-   "round": 2,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:55:37.774Z",
-   "shot": "shots/page-about-colonial-electric-r1.png"
+   "status": "building",
+   "round": 3,
+   "note": "Add Scott Hays bio two-column with van photo, service-area heading, verify intro period",
+   "updated": "2026-10-12T08:58:03.636Z",
+   "shot": "shots/page-about-colonial-electric-r2.png"
   },
   "page-services": {
-   "status": "critiquing",
+   "status": "won",
    "round": 2,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:56:29.548Z",
-   "shot": "shots/page-services-r1.png"
+   "note": "Critic picked ours blind (clear). Remaining gap: The page opens weakly and loses density as it goes. A short, image-less navy SERVICES hero leads into a narrow centered wall of grey body copy, and the page ends in a monotonous eight-card grid of tin",
+   "updated": "2026-10-12T08:57:51.483Z",
+   "shot": "shots/page-services-r2.png"
   },
   "page-service-area": {
    "status": "won",
@@ -134,17 +134,17 @@
    "shot": "shots/page-service-area-r1.png"
   },
   "page-contact-us": {
-   "status": "done",
+   "status": "won",
    "round": 2,
-   "note": "Form forced visible on page; routing request filed (pages.mjs still points to contact.mjs)",
-   "updated": "2026-10-12T08:55:55.902Z",
-   "shot": "shots/page-contact-us-r1.png"
+   "note": "Critic picked ours blind (clear). Remaining gap: The pacing and density are poor. The intro sits as a narrow column next to a large empty area, the info-card band is padded far beyond its content, and the form's tiny letter-spaced capital labels mak",
+   "updated": "2026-10-12T08:58:13.362Z",
+   "shot": "shots/page-contact-us-r2.png"
   },
   "page-premium-membership": {
-   "status": "lost",
-   "round": 1,
-   "note": "Critic picked the reference. Biggest gap: Everything below the hero is unfinished. The guarantee section renders washed out at about 25% opacity, so it looks broken. The intro is a thin, image-free wall of tiny text. And a membership page never shows what the membership includes or costs.",
-   "updated": "2026-10-12T08:56:03.647Z",
+   "status": "building",
+   "round": 2,
+   "note": "Two-col photo hero, plan/join block (no price), verbatim benefit cards w/ photo, fix guarantee visibility locally, bigger body type",
+   "updated": "2026-10-12T08:56:58.742Z",
    "shot": "shots/page-premium-membership-r1.png"
   },
   "page-we-offer-financing": {
@@ -156,10 +156,10 @@
   },
   "page-leave-us-a-review": {
    "status": "building",
-   "round": 2,
-   "note": "Fix button overflow/pinning, h2 gap, add real crew photo hero + lead intro, give town list heading",
-   "updated": "2026-10-12T08:54:15.798Z",
-   "shot": "shots/page-leave-us-a-review-r1.png"
+   "round": 3,
+   "note": "Fix CTA overflow, h2 spacing, mobile call-bar padding, add real job photo split with intro, give town list context",
+   "updated": "2026-10-12T08:58:26.461Z",
+   "shot": "shots/page-leave-us-a-review-r2.png"
   },
   "page-calendar": {
    "status": "won",
@@ -169,13 +169,186 @@
    "shot": "shots/page-calendar-r1.png"
   },
   "page-terms": {
-   "status": "critiquing",
+   "status": "won",
    "round": 1,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:53:03.581Z"
+   "note": "Critic picked ours blind (clear). Remaining gap: A broken two-column grid. The narrow table of contents and the large empty gutter push the text into a cramped, off-center column of hard-to-read light-gray text, with no call to action after the head",
+   "updated": "2026-10-12T08:56:41.987Z",
+   "shot": "shots/page-terms-r1.png"
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T08:58:34.504Z",
+   "piece": "home-services",
+   "status": "critiquing",
+   "round": 2,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:58:31.185Z",
+   "piece": "tpl-service",
+   "status": "won",
+   "round": 2,
+   "note": "Critic picked ours blind (clear). Remaining gap: The long-form body typography is broken. A 20px drop-cap paragraph of generic boilerplate outweighs the section headings, while the reasons-grid body sits at about 11px light gray, so the page's lower",
+   "shot": "shots/tpl-service-r2.png"
+  },
+  {
+   "t": "2026-10-12T08:58:27.658Z",
+   "piece": "block-contact-form",
+   "status": "critiquing",
+   "round": 2,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:58:26.461Z",
+   "piece": "page-leave-us-a-review",
+   "status": "building",
+   "round": 3,
+   "note": "Fix CTA overflow, h2 spacing, mobile call-bar padding, add real job photo split with intro, give town list context"
+  },
+  {
+   "t": "2026-10-12T08:58:16.316Z",
+   "piece": "page-leave-us-a-review",
+   "status": "lost",
+   "round": 2,
+   "note": "Won blind but failed QA: At 1440, the platform card CTAs overflow and get clipped. 'LEAVE A FACEBOOK REVIEW' runs past the card edge and 'RECOMMEND US ON NEXTDOOR' is cut off at the card border. Fix in the page's own CSS: give the card button max-width:100%, white-space:normal (or reduce letter-spac",
+   "shot": "shots/page-leave-us-a-review-r2.png"
+  },
+  {
+   "t": "2026-10-12T08:58:13.475Z",
+   "piece": "home-services",
+   "status": "done",
+   "round": 2,
+   "note": "Photo cards (12 real Colonial service photos, frame cropped), photo-led outdoor lighting crest, phone-first CTA, proof row, sentence-case 20px titles, 15px body"
+  },
+  {
+   "t": "2026-10-12T08:58:13.362Z",
+   "piece": "page-contact-us",
+   "status": "won",
+   "round": 2,
+   "note": "Critic picked ours blind (clear). Remaining gap: The pacing and density are poor. The intro sits as a narrow column next to a large empty area, the info-card band is padded far beyond its content, and the form's tiny letter-spaced capital labels mak",
+   "shot": "shots/page-contact-us-r2.png"
+  },
+  {
+   "t": "2026-10-12T08:58:11.963Z",
+   "piece": "block-guarantee",
+   "status": "critiquing",
+   "round": 2,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:58:04.274Z",
+   "piece": "block-contact-form",
+   "status": "done",
+   "round": 2,
+   "note": "Nav overlap cleared, photo-led contact aside, bordered 48px fields, trust line + full-width red submit"
+  },
+  {
+   "t": "2026-10-12T08:58:03.636Z",
+   "piece": "page-about-colonial-electric",
+   "status": "building",
+   "round": 3,
+   "note": "Add Scott Hays bio two-column with van photo, service-area heading, verify intro period"
+  },
+  {
+   "t": "2026-10-12T08:57:57.972Z",
+   "piece": "block-contact-cta",
+   "status": "won",
+   "round": 2,
+   "note": "Critic picked ours blind (clear). Remaining gap: The content block is broken and generic. The body copy starts mid-sentence in lowercase and collides with the header rule. The headline 'CONTACT US TODAY' is filler, and it's oversized to the point th",
+   "shot": "shots/block-contact-cta-r2.png"
+  },
+  {
+   "t": "2026-10-12T08:57:51.483Z",
+   "piece": "page-services",
+   "status": "won",
+   "round": 2,
+   "note": "Critic picked ours blind (clear). Remaining gap: The page opens weakly and loses density as it goes. A short, image-less navy SERVICES hero leads into a narrow centered wall of grey body copy, and the page ends in a monotonous eight-card grid of tin",
+   "shot": "shots/page-services-r2.png"
+  },
+  {
+   "t": "2026-10-12T08:57:50.779Z",
+   "piece": "block-guarantee",
+   "status": "verifying",
+   "round": 2,
+   "note": "Compact photo|document certificate (748px at 1440), real founder photo, full red call CTA, 01-03 numbering, eager seal",
+   "shot": "shots/block-guarantee-r2.png"
+  },
+  {
+   "t": "2026-10-12T08:57:44.939Z",
+   "piece": "page-about-colonial-electric",
+   "status": "lost",
+   "round": 2,
+   "note": "Won blind but failed QA: The 'Scott Hays' subsection from source/pages/about-colonial-electric.md is missing. The 'Meet the man behind the magic' section shows only its intro paragraph. Fix: in the about page template (src/pages/about*.mjs), add an h3 'Scott Hays' after the intro, followed by the th",
+   "shot": "shots/page-about-colonial-electric-r2.png"
+  },
+  {
+   "t": "2026-10-12T08:57:29.649Z",
+   "piece": "tpl-service",
+   "status": "critiquing",
+   "round": 2,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:57:10.631Z",
+   "piece": "tpl-town",
+   "status": "won",
+   "round": 2,
+   "note": "Critic picked ours blind (clear). Remaining gap: The body of the page loses momentum. After a strong hero, the founder section turns into a dense gray text wall (three paragraphs at about 13px, light gray, two narrow columns) under shouting all-caps",
+   "shot": "shots/tpl-town-r2.png"
+  },
+  {
+   "t": "2026-10-12T08:57:07.325Z",
+   "piece": "home-process",
+   "status": "won",
+   "round": 2,
+   "note": "Critic picked ours blind (clear). Remaining gap: The composition is unbalanced and has no imagery. A big empty white void sits right of the headline, with the 01-04 progress indicator stranded at the far edge, and no photography of real crews or wor",
+   "shot": "shots/home-process-r2.png"
+  },
+  {
+   "t": "2026-10-12T08:57:02.399Z",
+   "piece": "page-leave-us-a-review",
+   "status": "critiquing",
+   "round": 2,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:56:59.451Z",
+   "piece": "page-contact-us",
+   "status": "critiquing",
+   "round": 2,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:56:58.742Z",
+   "piece": "page-premium-membership",
+   "status": "building",
+   "round": 2,
+   "note": "Two-col photo hero, plan/join block (no price), verbatim benefit cards w/ photo, fix guarantee visibility locally, bigger body type"
+  },
+  {
+   "t": "2026-10-12T08:56:54.378Z",
+   "piece": "tpl-service",
+   "status": "done",
+   "round": 2,
+   "note": "Guarantee verified full-contrast 01-03 on service pages; defensive opacity guard in tpl-service.css; blind.py fix requested"
+  },
+  {
+   "t": "2026-10-12T08:56:48.693Z",
+   "piece": "home-membership",
+   "status": "won",
+   "round": 2,
+   "note": "Critic picked ours blind (clear). Remaining gap: Craft execution in the header and hero. The logo and the 'CALL US TODAY' label are cropped by the header bar, the nav type is tiny, and no primary CTA is visible inside the hero. A strong system ships",
+   "shot": "shots/home-membership-r2.png"
+  },
+  {
+   "t": "2026-10-12T08:56:41.987Z",
+   "piece": "page-terms",
+   "status": "won",
+   "round": 1,
+   "note": "Critic picked ours blind (clear). Remaining gap: A broken two-column grid. The narrow table of contents and the large empty gutter push the text into a cramped, off-center column of hard-to-read light-gray text, with no call to action after the head",
+   "shot": "shots/page-terms-r1.png"
+  },
   {
    "t": "2026-10-12T08:56:29.548Z",
    "piece": "page-services",
@@ -955,5 +1128,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T08:56:29.548Z"
+ "updated": "2026-10-12T08:58:34.504Z"
 }

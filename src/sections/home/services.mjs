@@ -108,7 +108,7 @@ export function render(ctx) {
       <div class="hsvc__feat-media">
         <picture>
           <source type="image/webp" srcset="${r('pol-permanent-640.webp')} 640w, ${r('pol-permanent-960.webp')} 912w" sizes="(min-width: 960px) 46vw, 100vw">
-          <img src="${r('pol-permanent-960.jpg')}" srcset="${r('pol-permanent-640.jpg')} 640w, ${r('pol-permanent-960.jpg')} 912w" sizes="(min-width: 960px) 46vw, 100vw" width="912" height="942" alt="Two-story home at dusk with permanent warm-white lights along every roofline" loading="lazy" decoding="async">
+          <img src="${r('pol-permanent-960.jpg')}" srcset="${r('pol-permanent-640.jpg')} 640w, ${r('pol-permanent-960.jpg')} 912w" sizes="(min-width: 960px) 46vw, 100vw" width="912" height="942" alt="Two-story home at dusk with permanent warm-white lights along every roofline" loading="eager" fetchpriority="low" decoding="async">
         </picture>
         <p class="hsvc__feat-cap" aria-hidden="true">${icon('sparkle', { size: 14 })}Permanent Lighting</p>
       </div>
@@ -121,7 +121,7 @@ export function render(ctx) {
           <li class="hsvc__kind">
             <picture>
               <source type="image/webp" srcset="${r(key + '-480.webp')}">
-              <img src="${r(key + '-480.jpg')}" width="480" height="480" alt="${esc(alt)}" loading="lazy" decoding="async">
+              <img src="${r(key + '-480.jpg')}" width="480" height="480" alt="${esc(alt)}" loading="eager" fetchpriority="low" decoding="async">
             </picture>
             <span>${esc(label)}</span>
           </li>`).join('')}

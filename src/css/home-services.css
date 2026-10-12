@@ -23,7 +23,7 @@
 .hsvc__h-b { color: var(--red); }
 .hsvc__lead { font-size: var(--fs-lead); line-height: 1.6; color: var(--ink-2); max-width: 52ch; text-wrap: pretty; }
 
-.hsvc__proof {
+.hsvc .hsvc__proof {
   display: grid; gap: .6rem; margin: 1.5rem 0 0; padding: 1.25rem 0 0; list-style: none;
   border-top: 1px solid var(--line);
 }
@@ -200,7 +200,7 @@
 .hsvc__feat-sub { margin-top: .9rem; font: 600 var(--fs-lead)/1.35 var(--f-body); color: var(--white); max-width: 34ch; }
 .hsvc__feat-p { margin-top: .9rem; color: var(--on-dark-2); max-width: 54ch; line-height: 1.6; text-wrap: pretty; }
 
-.hsvc__kinds {
+.hsvc .hsvc__kinds {
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .6rem;
   margin: 1.75rem 0 0; padding: 0; list-style: none;
 }
@@ -247,3 +247,7 @@
   from { transform: translateY(28px); }
   to { transform: none; }
 }
+
+/* outline button: base chamfer clip-path slices the inset keyline at the corners (see src/requests/home-services.md) */
+.hsvc__actions .btn--outline { clip-path: none; min-height: 3.5rem; }
+@media (max-width: 959.98px) { .hsvc__feat-media img { object-position: 50% 30%; } }
