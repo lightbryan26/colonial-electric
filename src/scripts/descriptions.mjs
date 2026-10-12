@@ -6,6 +6,10 @@ const out = { '': 'Colonial Electric - Top-notch electrical services in South Sh
 const override = {
   'we-offer-financing/': 'We’ve partnered with Wisetack to offer our customers flexible financing options, so you can pay over time rather than all at once.',
   'calendar/': out[''],
+  // first verbatim sentence; the generic filter skips it (<70 chars) and then splits at the '.' in the site URL
+  'terms/': 'Welcome to Colonial Electric (“Company”, “we”, “our”, “us”)!',
+  // block B opening sentence; the first paragraph of the live page is ceiling-fan copy pasted by mistake (brief §5)
+  'lighting-additions/': 'Because of just how impactful having the right lighting is, lighting additions in a home or business has become an essential aspect of modern living and design.',
 };
 for (const f of fs.readdirSync(dir)) {
   if (f === 'home.md') continue;

@@ -199,19 +199,6 @@
 
 /* ---------- 4. Shared form, page tuning ---------- */
 .cu-form { scroll-margin-top: calc(var(--header-h) + 1rem); }
-/* The shared block's scroll-linked rise starts its fields at opacity 0, so any render that
-   never scrolls (full-page capture, no-scroll embed) showed a blank form. On this page the
-   form is the point of the page: fields stay fully opaque at all times and only drift up. */
-.cu-form .cf-set, .cu-form .cf-consent, .cu-form .cf-actions, .cu-form .cf-submit { opacity: 1; }
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .cu-form .cf-set, .cu-form .cf-consent, .cu-form .cf-actions { animation-name: cu-cf-drift; }
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .cu-form .cf-set, .cu-form .cf-consent, .cu-form .cf-actions { animation: none; }
-}
-@keyframes cu-cf-drift { from { transform: translateY(18px); } to { transform: none; } }
 /* Micro-labels: the shared block runs 10–11px; on this page they read at 12–14px */
 .cu-form .cf-label { font-size: .8125rem; letter-spacing: .1em; }
 .cu-form .cf-legend { font-size: .8125rem; }

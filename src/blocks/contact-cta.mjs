@@ -25,7 +25,7 @@ function photo(ctx, t, i, { first = false } = {}) {
   const base = ctx.asset('img/' + s.img);
   const set = ext => im.widths.map(w => `${base}-${w}.${ext} ${w}w`).join(', ');
   const sizes = '(min-width: 1024px) 34vw, (min-width: 640px) 60vw, 92vw';
-  return `<picture class="cc__img${first ? ' is-on' : ''}"><source type="image/webp" srcset="${set('webp')}" sizes="${sizes}"><img src="${base}-${im.widths.at(-1)}.${im.fallback}" srcset="${set(im.fallback)}" sizes="${sizes}" width="${im.w}" height="${im.h}" alt="${esc(s.name)}, ${esc(t.name)} MA" loading="eager" fetchpriority="low" decoding="async"></picture>`;
+  return `<picture class="cc__img${first ? ' is-on' : ''}"><source type="image/webp" srcset="${set('webp')}" sizes="${sizes}"><img src="${base}-${im.widths.at(-1)}.${im.fallback}" srcset="${set(im.fallback)}" sizes="${sizes}" width="${im.w}" height="${im.h}" alt="${esc(s.name)}, ${esc(t.name)} MA" loading="eager" fetchpriority="low" decoding="sync"></picture>`;
 }
 
 function serviceArea(ctx, id) {

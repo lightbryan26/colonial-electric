@@ -8,7 +8,7 @@ const p = await b.newPage({ viewport: { width: +w, height: +w < 600 ? 812 : 900 
 const errors=[]; p.on('pageerror',e=>errors.push(e.message)); p.on('requestfailed',r=>errors.push('FAILED '+r.url()));
 p.on('response',r=>{ if(r.status()>=400) errors.push(r.status()+' '+r.url()) });
 await p.goto(url, { waitUntil: 'networkidle', timeout: 60000 });
-await p.evaluate(async()=>{ for(let y=0;y<document.body.scrollHeight;y+=600){scrollTo(0,y);await new Promise(r=>setTimeout(r,60))} scrollTo(0,0) });
+await p.evaluate(async()=>{ for(let y=0;y<document.body.scrollHeight;y+=600){scrollTo({top:y,behavior:'instant'});await new Promise(r=>setTimeout(r,60))} scrollTo({top:0,behavior:'instant'}) });
 await p.waitForTimeout(800);
 if (target==='full') await p.screenshot({ path: out, fullPage: true });
 else if (target==='viewport') await p.screenshot({ path: out });

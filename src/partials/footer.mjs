@@ -17,7 +17,7 @@ export function footer(ctx) {
 
   <div class="container site-footer__mast">
     <a class="site-footer__logo" href="${ctx.r('')}" aria-label="Colonial Electric, home">
-      <picture><source type="image/webp" srcset="${ctx.asset('img/logo-lockup-320.webp')} 320w, ${ctx.asset('img/logo-lockup-621.webp')} 621w" sizes="(min-width: 1080px) 176px, 136px"><img src="${ctx.asset('img/logo-lockup-320.png')}" width="320" height="332" alt="Colonial Electric" loading="lazy" decoding="async"></picture>
+      <picture><source type="image/webp" srcset="${ctx.asset('img/logo-lockup-320.webp')} 320w, ${ctx.asset('img/logo-lockup-621.webp')} 621w" sizes="(min-width: 1080px) 176px, 136px"><img src="${ctx.asset('img/logo-lockup-320.png')}" width="320" height="332" alt="Colonial Electric" loading="eager" fetchpriority="low" decoding="sync"></picture>
     </a>
     <div class="site-footer__call">
       <p class="site-footer__eyebrow">Call Us Today!</p>

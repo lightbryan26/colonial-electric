@@ -87,12 +87,23 @@ for (const page of pages) {
 
 // 4. 404 — served by GitHub Pages from any depth: detect the base path, then resolve everything from the site root.
 {
+  // The browser's preload scanner reads the raw markup before the <base> below is written, so any static
+  // relative asset (stylesheet, script, eager image) would be fetched against the bad URL first (stray 404s).
+  // So site.css and site.js are written by script after <base>, and eager images are made lazy (the scanner skips lazy ones).
   const page = { slug: '404.html', title: 'Page Not Found', h1: 'Page Not Found', template: '404', description: site.homeDescription };
-  const baseTag = `<script>(function(){var s=location.pathname.split('/')[1],b=(s==='colonial-electric'||s==='docs')?'/'+s+'/':'/';document.write('<base href="'+b+'">')})()</script>\n`;
+  const baseTag = `<script>(function(){var s=location.pathname.split('/')[1],b=(s==='colonial-electric'||s==='docs')?'/'+s+'/':'/';document.write('<base href="'+b+'"><link rel="stylesheet" href="'+b+'assets/site.css?v=${version}">')})()</script>\n<noscript><link rel="stylesheet" href="/colonial-electric/assets/site.css?v=${version}"></noscript>\n`;
   const ctx = makeCtx(page, { depth: 0, baseTag });
   const { render } = await import('./pages/notfound.mjs'); // branded 404 (brief §7); hrefs via ctx.r() resolve through baseTag
   const main = await render(ctx);
-  writeAtomic(OUT + '404.html', layout(ctx, main).replace('<meta name="description"', '<meta name="robots" content="noindex">\n<meta name="description"'));
+  const swap = (html, from, to) => { if (!html.includes(from)) throw new Error('404: expected markup not found: ' + from); return html.replace(from, to); };
+  let html = layout(ctx, main);
+  html = swap(html, '<meta name="description"', '<meta name="robots" content="noindex">\n<meta name="description"');
+  html = swap(html, `<link rel="stylesheet" href="${ctx.asset('site.css')}?v=${version}">\n`, '');
+  // In-page fragment links would resolve against <base> (the home page), so point them at this URL; then load site.js.
+  html = swap(html, `<script src="${ctx.asset('site.js')}?v=${version}" defer></script>`,
+    `<script>(function(){var u=location.href.split('#')[0];[].forEach.call(document.querySelectorAll('a[href^="#"]'),function(a){a.href=u+a.getAttribute('href')});document.write('<script src="assets/site.js?v=${version}"><\\/script>')})()</script>`);
+  html = html.replace(/<img (?![^>]*\bloading=)/g, '<img loading="lazy" ').replace(/(<img [^>]*\bloading=)"eager"/g, '$1"lazy"');
+  writeAtomic(OUT + '404.html', html);
 }
 
 // 5. SEO files
