@@ -169,14 +169,29 @@
    "shot": "shots/page-calendar-r1.png"
   },
   "page-terms": {
-   "status": "building",
+   "status": "critiquing",
    "round": 5,
-   "note": "Fix terms meta description in my page module (or request), add sticky founder card + TOC, darker 16-17px body text at ~68ch, closing CTA band",
-   "updated": "2026-10-12T10:53:36.730Z",
-   "shot": "shots/page-terms-r4.jpg"
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T11:03:17.841Z",
+   "shot": "shots/page-terms-r5.jpg"
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T11:03:17.841Z",
+   "piece": "page-terms",
+   "status": "critiquing",
+   "round": 5,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T11:03:00.785Z",
+   "piece": "page-terms",
+   "status": "done",
+   "round": 5,
+   "note": "Terms meta description now the first verbatim sentence (set in terms.mjs, data fix filed as request); desktop rail: TOC + call card with Request Service are sticky, section numbers hang as large margin numerals on the spine, measure ~68ch",
+   "shot": "shots/page-terms-r5.jpg"
+  },
   {
    "t": "2026-10-12T11:01:57.933Z",
    "piece": "page-we-offer-financing",
@@ -1733,5 +1748,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T11:01:57.933Z"
+ "updated": "2026-10-12T11:03:17.841Z"
 }
