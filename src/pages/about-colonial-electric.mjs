@@ -34,10 +34,10 @@ const founder = {
 // Fact strip: only the bio facts brief §7 lists (master electrician, over a decade, started at 18, lineman, local college).
 // Values/labels are fragments of the verbatim bio; no new facts, no counts.
 const facts = [
-  { v: 'Master Electrician', l: 'At the helm of Colonial Electric' },
-  { v: 'Over a Decade', l: 'Of experience' },
-  { v: 'Started at 18', l: 'In the dynamic world of electrical work' },
-  { v: 'Lineman & Educator', l: 'Electrical substations & a local college' },
+  { v: ['Master', 'Electrician'], l: 'At the helm of Colonial Electric' },
+  { v: ['Over a', 'Decade'], l: 'Of experience' },
+  { v: ['Started', 'at 18'], l: 'In the dynamic world of electrical work' },
+  { v: ['Lineman &', 'Educator'], l: 'Electrical substations & a local college' },
 ];
 // Pull quote: a verbatim sentence fragment from bio paragraph 3 (aria-hidden; the paragraph itself stays intact).
 const pull = 'Scott’s passion for the craft is palpable in every connection made.';
@@ -107,12 +107,14 @@ function introSection() {
     </div>
     <div class="ab-facts">
       <ul class="ab-facts__list" role="list" aria-label="Scott Hays at a glance">${facts.map(f => `
-        <li class="ab-fact">${icon('bolt', { size: 16 })}<span class="ab-fact__v">${esc(f.v)}</span><span class="ab-fact__l">${esc(f.l)}</span></li>`).join('')}
+        <li class="ab-fact">${icon('bolt', { size: 16 })}<span class="ab-fact__v">${f.v.map(esc).join('<br>')}</span><span class="ab-fact__l">${esc(f.l)}</span></li>`).join('')}
       </ul>
     </div>
   </div>
 </section>`;
 }
+
+const pullQuote = where => `<p class="ab-pull ab-pull--${where}" aria-hidden="true">${icon('bolt', { size: 22 })}<span>${esc(pull)}</span></p>`;
 
 function founderSection(ctx) {
   return `<section class="ab-founder on-dark" id="ab-founder" aria-labelledby="ab-meet-h">
@@ -123,14 +125,17 @@ function founderSection(ctx) {
       <p class="ab-meet__p">${esc(meet.body)}</p>
     </header>
     <div class="ab-founder__grid">
+      <div class="ab-founder__aside">
       <figure class="ab-portrait">
         <div class="ab-portrait__frame">${picture(ctx, 'scott-portrait', { alt: 'Portrait of Scott Hays, founder of Colonial Electric, in a Colonial Electric polo', sizes: '(min-width: 1440px) 520px, (min-width: 960px) 38vw, 92vw' })}</div>
         <figcaption class="ab-portrait__cap"><span class="label-wide">${esc(founder.eyebrow)}</span><span class="ab-portrait__name">${esc(founder.name)}</span></figcaption>
       </figure>
+      ${pullQuote('side')}
+      </div>
       <div class="ab-bio">
         <p class="eyebrow">${esc(founder.eyebrow)}</p>
         <h2 class="ab-bio__name">${esc(founder.name)}</h2>
-        <div class="ab-bio__text">${founder.bio.map((p, i) => `<p${i === 0 ? ' class="ab-bio__first"' : ''}>${esc(p)}</p>${i === 1 ? `<p class="ab-pull" aria-hidden="true">${icon('bolt', { size: 22 })}<span>${esc(pull)}</span></p>` : ''}`).join('')}</div>
+        <div class="ab-bio__text">${founder.bio.map((p, i) => `<p${i === 0 ? ' class="ab-bio__first"' : ''}>${esc(p)}</p>${i === 1 ? `${pullQuote('inline')}` : ''}`).join('')}</div>
         <ul class="ab-sectors" role="list" aria-label="Sectors served">${['Residential', 'Commercial', 'Utility'].map(s => `<li>${icon('bolt', { size: 14 })}${s}</li>`).join('')}</ul>
       </div>
     </div>
@@ -183,7 +188,7 @@ function beyondSection(ctx) {
       const sizes = '(min-width: 1440px) 310px, (min-width: 900px) 23vw, 46vw';
       return `
       <li><a class="ab-work__tile" href="${ctx.r(w.slug)}">
-        <span class="ab-work__ph"><picture><source type="image/webp" srcset="${set('webp')}" sizes="${sizes}"><img src="${r('-480.jpg')}" srcset="${set('jpg')}" sizes="${sizes}" width="${w.max}" height="${w.h}" alt="${esc(w.alt)}" loading="lazy" decoding="async"></picture></span>
+        <span class="ab-work__ph"><picture><source type="image/webp" srcset="${set('webp')}" sizes="${sizes}"><img src="${r('-480.jpg')}" srcset="${set('jpg')}" sizes="${sizes}" width="${w.max}" height="${w.h}" alt="${esc(w.alt)}" loading="eager" fetchpriority="low" decoding="async"></picture></span>
         <span class="ab-work__t">${esc(w.t)}${icon('arrow-right', { size: 16 })}</span>
       </a></li>`;
     }).join('')}
