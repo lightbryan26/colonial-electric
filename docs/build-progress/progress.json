@@ -120,10 +120,10 @@
    "shot": "shots/page-about-colonial-electric-r2.png"
   },
   "page-services": {
-   "status": "building",
+   "status": "critiquing",
    "round": 5,
-   "note": "Render booking steps as Call/Share/Schedule/Relax in services.mjs; raise body size and contrast on dark category columns and guarantee card; solid numerals",
-   "updated": "2026-10-12T10:24:16.943Z",
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T10:28:52.262Z",
    "shot": "shots/page-services-r2.png"
   },
   "page-service-area": {
@@ -177,6 +177,20 @@
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T10:28:52.262Z",
+   "piece": "page-services",
+   "status": "critiquing",
+   "round": 5,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T10:28:38.371Z",
+   "piece": "page-services",
+   "status": "done",
+   "round": 5,
+   "note": "Booking steps now Call/Share/Schedule/Relax (own block in services.mjs); categories reset as readable rows with 17-18px light text and solid red numerals; larger, darker body copy in guarantee, cards, hero, FAQ; solid card numerals"
+  },
   {
    "t": "2026-10-12T10:24:16.943Z",
    "piece": "page-services",
@@ -1439,5 +1453,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T10:24:16.943Z"
+ "updated": "2026-10-12T10:28:52.262Z"
 }

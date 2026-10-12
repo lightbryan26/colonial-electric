@@ -4064,12 +4064,12 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 /* Stage: bolt artboard (400×600) on the left, every benefit title on the right; each row is one tab:
    numbered node on the bolt, a leader wire, the title. */
 .pm-stage {
-  --bw: 11rem; --dot: 2.5rem; --nt: 1.0625rem; --bx: .155; /* bx = the artboard's empty left margin, pulled outside the column */
+  --bw: 11rem; --dot: 2.5rem; --nt: 1.0625rem; --bx: .155; /* bw = width of the 400-unit artboard; the SVG viewBox crops its empty sides (x 62–338), bx = the cropped left margin */
   position: relative; container-type: inline-size; width: 100%; max-width: 36rem; height: calc(var(--bw) * 1.5); justify-self: center;
 }
 @media (min-width: 600px) { .pm-stage { --bw: 15rem; --dot: 3rem; --nt: 1.375rem; } }
 @media (min-width: 1024px) { .pm-stage { --bw: 21rem; --dot: 3.25rem; --nt: 1.5rem; max-width: none; } }
-.pm-stage__bolt { position: absolute; left: calc(var(--bw) * var(--bx) * -1); top: 0; width: var(--bw); height: 100%; }
+.pm-stage__bolt { position: absolute; left: 0; top: 0; width: calc(var(--bw) * .69); height: 100%; }
 .pm-stage__svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .pm-stage__halo { fill: var(--red); filter: blur(28px); transition: opacity .6s var(--ease-out); }
 .pm-stage__halo { opacity: calc(.12 + var(--lvl) * .22); }
@@ -4137,11 +4137,14 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 @media (min-width: 600px) { .pm-card__media { aspect-ratio: 5 / 2; } }
 .pm-card__media picture, .pm-card__media img { position: absolute; inset: 0; width: 100%; height: 100%; }
 .pm-card__media img { object-fit: cover; }
+.pm-card__media::before { /* scrim under the big numeral */
+  content: ""; position: absolute; inset: 45% 0 0; z-index: 1; pointer-events: none; background: linear-gradient(180deg, rgba(8, 16, 32, 0), rgba(8, 16, 32, .6));
+}
 .pm-card__media::after { /* red flag-stripe seam between photo and copy */
   content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 5px; background: repeating-linear-gradient(180deg, var(--red) 0 2px, var(--white) 2px 3px, var(--red) 3px 5px);
 }
 .pm-card__n {
-  position: absolute; right: clamp(1rem, .5rem + 1.5vw, 1.75rem); bottom: .9rem;
+  position: absolute; z-index: 2; right: clamp(1rem, .5rem + 1.5vw, 1.75rem); bottom: .9rem;
   font: 900 clamp(4.5rem, 3rem + 4vw, 7.5rem)/.8 var(--f-display); color: var(--white);
   text-shadow: 0 4px 24px rgba(8, 16, 32, .55);
 }

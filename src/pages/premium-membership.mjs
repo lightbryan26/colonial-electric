@@ -172,7 +172,7 @@ function boltSection(ctx) {
       <p class="pm-bolt__hint"><span class="pm-bolt__hint-ic" aria-hidden="true">${icon('bolt', { size: 20 })}</span><span>${esc(bolt.hint)}</span></p>
       <div class="pm-stage" data-pm-stage style="--lvl:${benefits[0].lvl}">
         <div class="pm-stage__bolt">
-          <svg class="pm-stage__svg" viewBox="0 0 400 600" aria-hidden="true" focusable="false">
+          <svg class="pm-stage__svg" viewBox="62 0 276 600" aria-hidden="true" focusable="false">
             <defs>
               <clipPath id="pm-bolt-clip"><polygon points="${BOLT_PTS}"/></clipPath>
               <pattern id="pm-pin" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="1.4" fill="rgba(255,255,255,.07)"/></pattern>
