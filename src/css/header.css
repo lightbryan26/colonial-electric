@@ -174,7 +174,8 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 /* ---------- Sticky mobile call bar ---------- */
 .callbar { display: none; }
 @media (max-width: 767px) {
-  body { padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px)); }
+  /* room for the fixed bar is reserved inside the (navy) footer, so no white strip shows under it while the bar is hidden */
+  .site-footer { padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px)); }
   html { scroll-padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px) + .75rem); } /* keep tabbed focus clear of the fixed bar */
   .callbar {
     position: fixed; left: 0; right: 0; bottom: 0; z-index: 90;

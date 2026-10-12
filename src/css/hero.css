@@ -95,7 +95,6 @@
   display: flex; gap: 1rem; align-items: baseline;
   font: 800 clamp(1.35rem, 1.1rem + .75vw, 1.6875rem)/1.1 var(--f-display); letter-spacing: .005em; text-wrap: balance; /* §3 headings face */
 }
-.hero__sub::before { content: ""; flex: none; width: 1.75rem; height: 2px; background: var(--red-flag); transform: translateY(-.35em); }
 .hero__body { margin-top: 1rem; max-width: 62ch; color: var(--on-dark-2); font-size: 1rem; line-height: 1.65; text-wrap: pretty; }
 .hero__ctas { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
 .hero__meta {

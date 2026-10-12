@@ -165,8 +165,11 @@
 /* CTA beside the quote, inside the band */
 .proc__cta { position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; }
 .proc__lic { font: 700 var(--fs-eyebrow)/1.4 var(--f-wide); font-stretch: 125%; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
-.proc__lic span { margin-inline: .6em; color: var(--red); }
-.proc__lic b { font-weight: inherit; white-space: nowrap; }
+/* separator rides on the 2nd item: on one line it sits between them; when the pair wraps, it falls into the clipped gutter so no dot dangles */
+.proc__lic { overflow: hidden; }
+.proc__lic-in { display: flex; flex-wrap: wrap; row-gap: .15em; margin-left: -1.6em; }
+.proc__lic b { font-weight: inherit; white-space: nowrap; margin-left: 1.6em; position: relative; }
+.proc__lic b + b::before { content: "·"; content: "·" / ""; position: absolute; right: 100%; width: 1.6em; text-align: center; color: var(--red); }
 @media (min-width: 1100px) {
   .proc__feature { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); align-items: end; column-gap: clamp(2rem, 4vw, 5rem); }
   .proc__cta { flex-direction: column; align-items: flex-start; padding: .25rem 0 .25rem clamp(1rem, 2vw, 2rem); border-left: 2px solid var(--red); }

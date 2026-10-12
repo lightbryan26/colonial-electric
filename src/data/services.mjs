@@ -947,7 +947,7 @@ export const services = [
     a: {
       h2: "Why Hiring a Professional For Generators Is a Must",
       body: [
-        "In our world today, generators have served as invaluable assets, providing backup power during emergencies, ensuring continuity of operations in critical facilities, and offering peace of mind to homeowners and businesses alike. However, ensuring that your generator operates reliably and efficiently requires more than just purchasing and installing the equipment—it requires professional expertise and maintenance.",
+        "In our world today, generators have served as invaluable assets, providing backup power during emergencies, ensuring continuity of operations in critical facilities, and offering peace of mind to homeowners and businesses alike. However, ensuring that your generator operates reliably and efficiently requires more than just purchasing and installing the equipment; it requires professional expertise and maintenance.",
         {
           list: [
             {

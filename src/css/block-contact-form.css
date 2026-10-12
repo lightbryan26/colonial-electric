@@ -204,7 +204,6 @@
   display: grid; gap: .35rem;
 }
 .cf-photo__role { display: flex; align-items: center; gap: .5rem; font: 700 var(--fs-label)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; color: var(--on-dark-2); }
-.cf-photo__role::before { content: ""; width: 1.1rem; height: 2px; background: var(--red-flag); }
 .cf-photo__name { font: 900 1.75rem/.9 var(--f-display); text-transform: uppercase; color: var(--white); letter-spacing: .01em; }
 
 .cf-direct { padding: 1.25rem clamp(1.25rem, .9rem + 1vw, 2rem) clamp(1.5rem, 1.1rem + 1vw, 2rem); }
@@ -212,7 +211,6 @@
   display: flex; align-items: center; gap: .6rem; margin: 0;
   font: 700 var(--fs-label)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; color: var(--on-dark-2);
 }
-.cf-direct__k::before { content: ""; width: 1.5rem; height: 2px; background: var(--red-flag); }
 .cf-direct__tel {
   display: inline-flex; align-items: center; gap: .8rem; margin-top: .75rem;
   font: 700 clamp(1.5rem, 1.1rem + 1.6vw, 2.375rem)/1 var(--f-wide); font-stretch: 125%; letter-spacing: var(--tel-track-lg);

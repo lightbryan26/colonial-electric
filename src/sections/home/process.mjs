@@ -46,7 +46,7 @@ export function render(ctx) {
       </blockquote>
       <div class="proc__cta">
         <a class="btn btn--red btn--lg" href="${telHref}">${icon('phone', { size: 18 })}<span>Call Now</span></a>
-        <p class="proc__lic"><b>Licensed &amp; Insured</b><span aria-hidden="true">·</span><wbr><b>MA Lic# 8720-A1</b></p>
+        <p class="proc__lic"><span class="proc__lic-in"><b>Licensed &amp; Insured</b><b>MA Lic# 8720-A1</b></span></p>
       </div>
     </figure>
   </div>

@@ -31,7 +31,7 @@ export function render(ctx) {
 
     <ol class="safety__points" role="list">
       ${points.map((p, i) => `<li class="safety__point" style="--i:${i}">
-        <span class="safety__n" aria-hidden="true">${String(i + 2).padStart(2, '0')}</span>
+        <span class="safety__n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>
         <p>${esc(p)}</p>
       </li>`).join('\n      ')}
     </ol>

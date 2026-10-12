@@ -183,14 +183,73 @@
    "shot": "shots/integrate-r2.png"
   },
   "homepage": {
-   "status": "critiquing",
+   "status": "won",
+   "round": 2,
+   "note": "Critic picked ours blind (clear). Remaining gap: Body copy across the whole page is too small and low-contrast, and there is too much of it. It starts with the six-line generic hero paragraph (\"Colonial Electric understands how important safety, quality, and reliability are...\") set in roughly 13px grey on n",
+   "updated": "2026-10-12T17:42:47.286Z",
+   "shot": "shots/homepage-r2.jpg"
+  },
+  "verify": {
+   "status": "verifying",
    "round": 1,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T17:20:14.815Z",
-   "shot": "shots/homepage-r1.png"
+   "note": "Crawling all 45 slugs at subpath and root",
+   "updated": "2026-10-12T17:42:53.060Z"
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T17:42:53.060Z",
+   "piece": "verify",
+   "status": "verifying",
+   "round": 1,
+   "note": "Crawling all 45 slugs at subpath and root"
+  },
+  {
+   "t": "2026-10-12T17:42:47.286Z",
+   "piece": "homepage",
+   "status": "won",
+   "round": 2,
+   "note": "Critic picked ours blind (clear). Remaining gap: Body copy across the whole page is too small and low-contrast, and there is too much of it. It starts with the six-line generic hero paragraph (\"Colonial Electric understands how important safety, quality, and reliability are...\") set in roughly 13px grey on n",
+   "shot": "shots/homepage-r2.jpg"
+  },
+  {
+   "t": "2026-10-12T17:41:53.096Z",
+   "piece": "homepage",
+   "status": "critiquing",
+   "round": 2,
+   "note": "capture + QA done: 1440/768/375 clean, no h-scroll, no errors, 1.07 MB at 375; blind composites ready",
+   "shot": "shots/homepage-r2.png"
+  },
+  {
+   "t": "2026-10-12T17:33:25.445Z",
+   "piece": "homepage",
+   "status": "critiquing",
+   "round": 2,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T17:33:11.638Z",
+   "piece": "homepage",
+   "status": "done",
+   "round": 2,
+   "note": "Hero sizes now 95rem so 1440 fetches owner-van-1600 (crisp, preload matches, single download); safety points renumbered 01-03; no dangling dot in licence line; lighting index single-line at 375; callbar space moved into navy footer (no white strip)",
+   "shot": "shots/homepage-r2.png"
+  },
+  {
+   "t": "2026-10-12T17:28:09.242Z",
+   "piece": "homepage",
+   "status": "building",
+   "round": 2,
+   "note": "Fix hero image sizes so 1440 fetches the 1600w source, then re-shoot 1440/768/375 and polish"
+  },
+  {
+   "t": "2026-10-12T17:28:09.188Z",
+   "piece": "homepage",
+   "status": "lost",
+   "round": 1,
+   "note": "Won blind but failed QA: The hero photo is upscaled and looks soft at 1440 (the face, flag stars and van lettering are blurred next to a correctly sized render). Files: src/sections/home/hero.mjs line 27 (the picture() sizes option) and src/pages/home.mjs line 5 (ctx.preloadSizes). Both strings are ’(min-width: 1200px) 48vw",
+   "shot": "shots/homepage-r1.jpg"
+  },
   {
    "t": "2026-10-12T17:20:14.815Z",
    "piece": "homepage",
@@ -1886,5 +1945,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T17:20:14.815Z"
+ "updated": "2026-10-12T17:42:53.060Z"
 }

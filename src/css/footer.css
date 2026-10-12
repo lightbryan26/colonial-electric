@@ -43,7 +43,6 @@
   font: 700 var(--fs-eyebrow)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase;
   color: var(--on-dark-2); margin-bottom: .85rem;
 }
-.site-footer__eyebrow::before { content: ""; width: 1.75rem; height: 3px; background: linear-gradient(90deg, var(--red) 0 60%, var(--white) 60% 72%, var(--blue-bright) 72%); }
 .site-footer__phone {
   position: relative; display: inline-flex; align-items: flex-start; gap: .35rem;
   font: 700 min(7vw, 3.65rem)/1 var(--f-wide); font-stretch: 125%; letter-spacing: var(--tel-track-lg); /* §3 phone face */
@@ -115,12 +114,7 @@
   position: relative; display: inline-block; color: var(--on-dark-2); text-decoration: none; line-height: 1.35;
   transition: color .25s, transform .35s var(--ease-out);
 }
-.site-footer__col li a::before { /* red tick slides in on hover */
-  content: ""; position: absolute; left: -.9rem; top: .62em; width: .5rem; height: 2px; background: var(--red-flag);
-  transform: scaleX(0); transform-origin: right; transition: transform .35s var(--ease-out);
-}
 .site-footer__col li a:hover, .site-footer__col li a:focus-visible { color: var(--white); transform: translateX(.35rem); }
-.site-footer__col li a:hover::before, .site-footer__col li a:focus-visible::before { transform: scaleX(1); }
 .site-footer__col a[aria-current="page"] { color: var(--white); }
 .site-footer__col a[aria-current="page"]::before { transform: scaleX(1); }
 

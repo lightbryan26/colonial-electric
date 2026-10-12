@@ -155,7 +155,6 @@
 .tw-towns__head { display: grid; gap: 1rem; margin-bottom: clamp(2rem, 1rem + 3vw, 3.5rem); }
 @media (min-width: 800px) { .tw-towns__head { grid-template-columns: 1fr auto; align-items: end; } .tw-towns__head .eyebrow { grid-column: 1 / -1; } }
 .tw-towns .eyebrow { color: var(--on-dark-2); }
-.tw-towns .eyebrow::before { background: var(--red); }
 .tw-towns__h { font: 900 var(--fs-h2)/.95 var(--f-display); text-transform: uppercase; }
 .tw-towns .tw-link { color: var(--white); margin-top: 0; justify-self: start; }
 .tw-towns .tw-link:hover { color: var(--on-dark-2); }
@@ -199,7 +198,6 @@
 @media (min-width: 1200px) { .tpl-town .tw-townlist { grid-template-columns: repeat(7, 1fr); column-gap: 1.25rem; } }
 /* the form panel is white inside a dark section: restore light-ground colours */
 .tpl-town .tw-form .eyebrow { color: var(--red); }
-.tpl-town .tw-form .eyebrow::before { background: currentColor; }
 .tw-about__h { text-wrap: balance; }
 @media (max-width: 599px) {
   .tw-about__h { font-size: clamp(2.6rem, 1.4rem + 6vw, 3.4rem); }

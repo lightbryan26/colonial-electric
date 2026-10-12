@@ -41,7 +41,6 @@
 }
 .hfaq__call-in::before { opacity: .06; }
 .hfaq__call-k { color: var(--on-dark-2); display: flex; align-items: center; gap: .6em; }
-.hfaq__call-k::before { content: ""; width: 1.25rem; height: 2px; background: var(--red); }
 .hfaq__tel {
   display: inline-flex; align-items: center; gap: .65rem; width: fit-content;
   font: 700 clamp(1.35rem, 1.15rem + .7vw, 1.75rem)/1 var(--f-wide); font-stretch: 125%; letter-spacing: var(--tel-track-lg);

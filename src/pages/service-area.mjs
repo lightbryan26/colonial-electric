@@ -71,7 +71,7 @@ function hero(ctx) {
     <div class="sa-hero__copy">
       <nav class="crumbs" aria-label="Breadcrumb"><ol role="list"><li><a href="${ctx.r('')}">Home</a></li><li><span aria-current="page">Service Area</span></li></ol></nav>
       <p class="eyebrow sa-hero__eyebrow">Service Area</p>
-      <h1 class="sa-hero__h1" id="sa-h1"><span class="sa-hero__brand">Colonial Electric <span class="sa-hero__dash">—</span></span> <span class="sa-hero__big">Your <span class="nw">One-stop</span> Solution</span> <span class="sa-hero__red">For All Things Electrical!</span></h1>
+      <h1 class="sa-hero__h1" id="sa-h1"><span class="sa-hero__brand">Colonial Electric</span> <span class="sa-hero__big">Your <span class="nw">One-stop</span> Solution</span> <span class="sa-hero__red">For All Things Electrical!</span></h1>
       <p class="sa-hero__lead">Don’t let electrical issues disrupt your life. We provide fast, reliable electrical services to keep your home or business running smoothly. From troubleshooting electrical problems to installing new fixtures, we’re your one-stop shop for all your electrical needs.</p>
       <p class="btn-row sa-hero__ctas"><a class="btn btn--red btn--lg" href="${site.tel}">${icon('phone', { size: 18 })}<span>${site.phone}</span></a><a class="btn btn--ghost btn--lg" href="#sa-towns">Find Your Town</a></p>
       <p class="sa-hero__lic label-wide">${icon('shield', { size: 16 })}<span>${site.license}</span></p>
