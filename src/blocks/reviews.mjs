@@ -3,7 +3,7 @@ import { icon } from '../partials/icons.mjs';
 import { esc } from '../lib/html.mjs';
 // Shared reviews block (brief §4 "Shared blocks"). Real Google reviews only, verbatim.
 // No aggregate rating, no review count, initials avatars only (no hotlinked photos).
-// Layout: editorial header → featured story (navy) → masonry of the rest (rail on phones).
+// Layout: editorial header → featured story (navy) → masonry of the rest (stacked on phones).
 // Styles: src/css/block-reviews.css (all classes prefixed .rv to stay independent of blocks.css).
 
 export const initials = n => n.split(/\s+/).map(w => w[0]).slice(0, 2).join('').toUpperCase();
@@ -59,10 +59,9 @@ export function reviews(ctx, { id = '', cls = '', includeOptional = false } = {}
       </figcaption>
     </figure>` : ''}
     <div class="rv-wall">
-      <ul class="rv-list" role="list" tabindex="0" aria-label="More customer reviews">
+      <ul class="rv-list" role="list" aria-label="More customer reviews">
       ${rest.map(card).join('\n      ')}
       </ul>
-      <div class="rv-progress" aria-hidden="true"><span></span></div>
     </div>
   </div>
 </section>`;

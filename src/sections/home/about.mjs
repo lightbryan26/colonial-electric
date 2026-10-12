@@ -35,9 +35,12 @@ export function render(ctx) {
         <p>${esc(p2)}</p>
         <p>${esc(p3)}</p>
       </div>
+    </div>
+
+    <div class="habout__foot">
       ${closing ? `<p class="habout__close"><span class="habout__bolt" aria-hidden="true">${icon('bolt', { size: 22 })}</span><span>${esc(closing)}</span></p>` : ''}
       <div class="habout__actions">
-        <a class="btn btn--red" href="${ctx.r('about-colonial-electric/')}">About Us${icon('arrow-right', { size: 18 })}</a>
+        <a class="btn btn--red btn--lg" href="${ctx.r('about-colonial-electric/')}">About Us${icon('arrow-right', { size: 18 })}</a>
         <a class="habout__tel" href="${telHref}">${icon('phone', { size: 18 })}<span>(781) 287-8729</span></a>
       </div>
     </div>

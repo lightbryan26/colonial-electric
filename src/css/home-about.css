@@ -1,0 +1,125 @@
+/* =====================================================================
+   Homepage §5 — About / founder (#s-about). Owner: home-about.
+   Dark navy band, real portrait in a chamfered crest with an offset red
+   keyline, name plate, editorial copy with a sign-off line.
+   ===================================================================== */
+#s-about.habout {
+  background: var(--navy-ink);
+  overflow: clip;
+  padding-block: clamp(4.5rem, 2.5rem + 7vw, 9.5rem);
+}
+/* faint pinstripe band behind the portrait column (badge interior) */
+#s-about.habout::after {
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  left: 0; top: 0; bottom: 0; width: min(46%, 44rem);
+  background: repeating-linear-gradient(180deg, rgba(255,255,255,.04) 0 1px, transparent 1px 5px);
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,.6) 55%, transparent 100%);
+          mask-image: linear-gradient(90deg, #000 0%, rgba(0,0,0,.6) 55%, transparent 100%);
+}
+
+.habout__grid {
+  display: grid; gap: clamp(3rem, 2rem + 4vw, 6.5rem);
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .habout__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: start; }
+}
+
+/* ---------- Portrait ---------- */
+.habout__media { position: relative; margin: 0; max-width: 34rem; width: calc(100% - 14px); }
+@media (min-width: 900px) {
+  .habout__media { position: sticky; top: calc(var(--header-h) + 2rem); width: calc(100% - 18px); }
+}
+/* offset red keyline crest behind the photo */
+.habout__media::before {
+  content: ""; position: absolute; inset: 0; transform: translate(14px, 14px);
+  background: var(--red);
+  clip-path: polygon(evenodd, var(--cut-lg) 0, calc(100% - var(--cut-lg)) 0, 100% var(--cut-lg), 100% calc(100% - var(--cut-lg)), calc(100% - var(--cut-lg)) 100%, var(--cut-lg) 100%, 0 calc(100% - var(--cut-lg)), 0 var(--cut-lg),
+    var(--cut-lg) 0, calc(var(--cut-lg) + .6px) 2px, 2px calc(var(--cut-lg) + .6px), 2px calc(100% - var(--cut-lg) - .6px), calc(var(--cut-lg) + .6px) calc(100% - 2px), calc(100% - var(--cut-lg) - .6px) calc(100% - 2px), calc(100% - 2px) calc(100% - var(--cut-lg) - .6px), calc(100% - 2px) calc(var(--cut-lg) + .6px), calc(100% - var(--cut-lg) - .6px) 2px, calc(var(--cut-lg) + .6px) 2px);
+}
+@media (min-width: 900px) { .habout__media::before { transform: translate(18px, 18px); } }
+
+.habout__frame {
+  position: relative; isolation: isolate;
+  clip-path: var(--crest-lg);
+  background: var(--navy-2);
+  aspect-ratio: 4 / 5;
+}
+@media (min-width: 900px) { .habout__frame { aspect-ratio: 1831 / 2560; } }
+.habout__pic, .habout__pic img { display: block; width: 100%; height: 100%; }
+.habout__pic img { object-fit: cover; object-position: 50% 18%; }
+/* subtle tonal grade to seat the light backdrop into the navy band */
+.habout__frame::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(8,16,32,0) 55%, rgba(8,16,32,.55) 100%);
+}
+
+/* name plate — chamfered crest, white inner border, navy keyline (badge language) */
+.habout__plate {
+  position: absolute; left: clamp(-.75rem, -2vw, 0rem); bottom: clamp(1.25rem, 3vw, 2rem); z-index: 2;
+  display: grid; gap: .35rem;
+  padding: .95rem 1.4rem 1rem 1.25rem;
+  background: var(--white); color: var(--navy);
+  clip-path: var(--crest);
+  background-image: linear-gradient(90deg, var(--red) 0 6px, transparent 6px);
+  padding-left: calc(1.25rem + 6px);
+}
+.habout__role { font: 700 .6875rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; color: var(--red); }
+.habout__name { font: 900 clamp(1.6rem, 1.3rem + 1vw, 2.15rem)/.9 var(--f-display); text-transform: uppercase; letter-spacing: .005em; }
+
+/* ---------- Copy ---------- */
+.habout__body { max-width: 46rem; }
+@media (min-width: 900px) { .habout__body { padding-top: clamp(0rem, -2rem + 3vw, 2.5rem); } }
+.habout__h { margin-top: 1.25rem; font-size: clamp(2.35rem, 1.3rem + 3.6vw, 4.6rem); line-height: .92; max-width: 17ch; color: var(--white); }
+.habout__lead {
+  margin-top: clamp(1.75rem, 1.2rem + 1.5vw, 2.75rem);
+  font: 500 clamp(1.125rem, 1rem + .5vw, 1.4rem)/1.55 var(--f-body);
+  color: var(--white); text-wrap: pretty; max-width: 40em;
+  padding-top: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  border-top: 1px solid var(--line-dark-strong);
+  position: relative;
+}
+.habout__lead::before { /* flag-stripe tab on the rule */
+  content: ""; position: absolute; left: 0; top: -3px; width: 4.5rem; height: 6px;
+  background: repeating-linear-gradient(180deg, var(--red) 0 2px, var(--white) 2px 4px);
+}
+.habout__cols { margin-top: 1.5rem; display: grid; gap: 1.1rem; color: var(--on-dark-2); }
+.habout__cols p { text-wrap: pretty; }
+@media (min-width: 1180px) {
+  .habout__cols { grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-top: 2rem; }
+}
+
+.habout__close {
+  margin-top: clamp(2rem, 1.5rem + 1.5vw, 3rem);
+  display: grid; grid-template-columns: auto 1fr; gap: 1rem; align-items: start;
+  font: 800 clamp(1.45rem, 1.05rem + 1.5vw, 2.25rem)/1.05 var(--f-display);
+  text-transform: uppercase; letter-spacing: .005em; color: var(--white);
+  text-wrap: balance;
+}
+.habout__bolt {
+  display: grid; place-items: center; width: 2.6rem; height: 2.6rem; margin-top: .05em;
+  background: var(--red); color: var(--white); clip-path: var(--crest);
+  --cut: 8px;
+}
+
+.habout__actions { margin-top: clamp(2rem, 1.5rem + 1.5vw, 2.75rem); display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2rem; }
+.habout__tel {
+  display: inline-flex; align-items: center; gap: .6rem; color: var(--white); text-decoration: none;
+  font: 700 1rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .04em;
+  padding-block: .5rem; border-bottom: 1px solid var(--line-dark-strong);
+  transition: border-color var(--dur) var(--ease-out), color var(--dur) var(--ease-out);
+}
+.habout__tel .icon { color: var(--red-flag); }
+.habout__tel:hover { border-color: var(--white); }
+
+/* ---------- Motion: scroll-linked, transform-only (never hides content) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .habout__pic img { animation: habout-settle linear both; animation-timeline: view(); animation-range: cover 0% cover 100%; }
+    .habout__media::before { animation: habout-offset linear both; animation-timeline: view(); animation-range: entry 0% cover 45%; }
+    .habout__plate { animation: habout-plate linear both; animation-timeline: view(); animation-range: entry 20% cover 50%; }
+  }
+}
+@keyframes habout-settle { from { transform: scale(1.1) translateY(-3%); } to { transform: scale(1.02) translateY(1.5%); } }
+@keyframes habout-offset { from { transform: translate(0, 0); } }
+@keyframes habout-plate { from { transform: translateX(-28px); } }

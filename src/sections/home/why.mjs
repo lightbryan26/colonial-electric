@@ -1,7 +1,7 @@
 // Homepage §4.6 "Why Choose Us?" — navy editorial index: sticky headline column + four numbered pillars.
 import { why } from '../../data/home.mjs';
 import { whyIntro } from '../../data/shared.mjs';
-import { esc, picture, telHref } from '../../lib/html.mjs';
+import { esc, telHref } from '../../lib/html.mjs';
 
 // One consistent stroke icon set (Lucide-style, 24px grid, 1.75 stroke).
 const ICONS = [
@@ -40,13 +40,11 @@ export function render(ctx) {
         <div class="why__cta">
           <a class="btn btn--red" href="${telHref}">Call (781) 287-8729</a>
         </div>
-        <div class="why__mark" aria-hidden="true">${picture(ctx, 'emblem', { alt: '', sizes: '200px', imgCls: 'why__emblem' })}</div>
       </div>
     </header>
-    <ol class="why__list" role="list" data-why-list>
+    <ol class="why__list" role="list">
       ${items}
     </ol>
   </div>
-  <script>(function(){var l=document.querySelector('[data-why-list]');if(!l||!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;l.classList.add('is-armed');var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -12% 0px'});l.querySelectorAll('.why__item').forEach(function(it){io.observe(it);});})();</script>
 </section>`;
 }

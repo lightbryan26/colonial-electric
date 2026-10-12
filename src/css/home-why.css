@@ -31,30 +31,29 @@
   font-size: var(--fs-lead); line-height: 1.6; color: var(--on-dark-2); text-wrap: pretty;
 }
 .why__cta { margin-top: clamp(1.75rem, 1.25rem + 1vw, 2.5rem); display: flex; flex-wrap: wrap; gap: .75rem; }
-.why__mark { display: none; }
 
 /* ---------- Pillars ---------- */
 .why__list { counter-reset: why; border-top: 1px solid var(--line-dark-strong); }
 .why__item {
-  position: relative;
-  display: grid; grid-template-columns: auto 1fr; gap: 1rem 1.25rem; align-items: start;
+  position: relative; --rule: .22;
+  display: block;
   padding-block: clamp(1.75rem, 1.25rem + 1.6vw, 2.75rem);
   border-bottom: 1px solid var(--line-dark-strong);
 }
 /* red rule that draws across each row's bottom edge on hover / reveal */
 .why__item::after {
   content: ""; position: absolute; left: 0; bottom: -1px; height: 2px; width: 100%;
-  background: var(--red); transform: scaleX(0); transform-origin: left;
+  background: var(--red); transform: scaleX(var(--rule, .14)); transform-origin: left;
   transition: transform .9s var(--ease-out);
 }
 .why__item:hover::after { transform: scaleX(1); }
 
 .why__num {
-  font: 700 clamp(.8125rem, .78rem + .15vw, .9375rem)/1 var(--f-wide); font-stretch: 125%;
-  letter-spacing: .12em; color: var(--red-flag);
-  padding-top: .55rem; min-width: 2.25rem;
+  position: absolute; right: 0; top: clamp(1.75rem, 1.25rem + 1.6vw, 2.75rem);
+  font: 900 2.75rem/.8 var(--f-display); color: transparent; -webkit-text-stroke: 1px var(--red-flag);
   font-variant-numeric: tabular-nums;
 }
+.why__title-row { padding-right: 3.75rem; }
 .why__title-row { display: flex; align-items: center; gap: 1rem; }
 .why__icon {
   --cut: 9px; flex: none; display: grid; place-items: center;
@@ -62,7 +61,7 @@
   background: var(--navy-3); color: var(--white);
   transition: background var(--dur) var(--ease-out), color var(--dur) var(--ease-out);
 }
-.why__icon svg { width: 1.5rem; height: 1.5rem; }
+.why__icon svg { width: 1.625rem; height: 1.625rem; }
 .why__item:hover .why__icon { background: var(--red); }
 .why__title {
   font: 800 clamp(1.625rem, 1.2rem + 1.6vw, 2.625rem)/1 var(--f-display);
@@ -70,17 +69,23 @@
 }
 .why__text { margin-top: 1rem; max-width: 40rem; color: var(--on-dark-2); line-height: 1.7; text-wrap: pretty; }
 
-/* ---------- Reveal (only armed when JS runs and motion is allowed) ---------- */
-.why__list.is-armed .why__item > * { opacity: 0; transform: translateY(18px); transition: opacity .8s var(--ease-out), transform .8s var(--ease-out); }
-.why__list.is-armed .why__item .why__body { transition-delay: .08s; }
-.why__list.is-armed .why__item.is-in > * { opacity: 1; transform: none; }
-.why__list.is-armed .why__item.is-in::after { animation: why-rule 1.4s var(--ease-in-out) .15s both; }
-@keyframes why-rule { 0% { transform: scaleX(0); transform-origin: left; } 50% { transform: scaleX(1); transform-origin: left; } 50.01% { transform-origin: right; } 100% { transform: scaleX(0); transform-origin: right; } }
+/* ---------- Reveal: scroll-driven, CSS only (no JS; static where unsupported or reduced motion) ---------- */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .why__item > * { animation: why-rise linear both; animation-timeline: view(); animation-range: entry 0% entry 70%; }
+    .why__item .why__body { animation-range: entry 8% entry 80%; }
+    .why__item:not(:hover)::after { animation: why-rule linear both; animation-timeline: view(); animation-range: entry 40% entry 100%; }
+    .why__h2 { animation: why-rise linear both; animation-timeline: view(); animation-range: entry 0% entry 60%; }
+  }
+}
+@keyframes why-rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+@keyframes why-rule { from { transform: scaleX(0); } to { transform: scaleX(var(--rule, .14)); } }
 
 /* ---------- ≥ 768 ---------- */
 @media (min-width: 768px) {
-  .why__item { grid-template-columns: 4.5rem 1fr; gap: 1.5rem; }
-  .why__num { font: 900 3.25rem/.8 var(--f-display); font-stretch: normal; letter-spacing: 0; padding-top: .1rem; color: transparent; -webkit-text-stroke: 1.25px var(--red-flag); }
+  .why__item { display: grid; grid-template-columns: 5rem 1fr; gap: 1.5rem; align-items: start; --rule: .1; }
+  .why__num { position: static; font-size: 3.5rem; padding-top: .1rem; -webkit-text-stroke-width: 1.25px; }
+  .why__title-row { padding-right: 0; }
   .why__icon { width: 3.25rem; height: 3.25rem; }
 }
 
@@ -89,11 +94,9 @@
   .why__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(3rem, 1rem + 4vw, 7rem); align-items: start; }
   .why__sticky { position: sticky; top: calc(var(--header-h) + 2.5rem); }
   .why__h2 br { display: inline; }
-  .why__mark { display: block; margin-top: clamp(2.5rem, 1rem + 3vw, 4.5rem); width: 7.5rem; opacity: .9; }
-  .why__mark img { width: 100%; height: auto; }
   .why__list { border-top: 0; }
   .why__item:first-child { padding-top: 0; }
-  .why__item { grid-template-columns: 6rem 1fr; padding-block: 2.75rem; }
+  .why__item { grid-template-columns: 6rem 1fr; padding-block: 2.75rem; --rule: .136; }
   .why__item:first-child .why__num { padding-top: .1rem; }
   .why__num { font-size: 4.25rem; }
 }

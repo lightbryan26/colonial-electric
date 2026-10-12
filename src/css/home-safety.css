@@ -1,0 +1,195 @@
+/* =====================================================================
+   Homepage §4.3 — Safety & Satisfaction Guaranteed  (#s-safety)
+   Owner: home-safety. Editorial split on paper: oversized two-line
+   headline, lead + crest call card, numbered points with hairlines.
+   ===================================================================== */
+
+.safety {
+  position: relative;
+  padding-block: var(--section);
+  background: var(--paper);
+  overflow: clip;
+}
+/* fine pinstripe band behind the headline — the badge's inner texture, navy on paper */
+.safety::before {
+  content: ""; position: absolute; inset: 0 0 auto 0; height: 62%;
+  background-image: repeating-linear-gradient(180deg, rgba(18, 35, 62, .045) 0 1px, transparent 1px 5px);
+  -webkit-mask-image: linear-gradient(180deg, #000, transparent);
+          mask-image: linear-gradient(180deg, #000, transparent);
+  pointer-events: none;
+}
+
+.safety__grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(2.5rem, 1.5rem + 3vw, 4.5rem);
+}
+
+/* ---------- Headline ---------- */
+.safety__eyebrow {
+  display: inline-flex; align-items: center; gap: .65rem;
+  font: 700 var(--fs-eyebrow)/1.2 var(--f-wide); font-stretch: 125%;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--red);
+}
+.safety__eyebrow .icon { flex: none; }
+.safety__eyebrow::after { content: none; width: 2.5rem; height: 2px; background: currentColor; opacity: .5; }
+
+.safety__title {
+  margin-top: clamp(1rem, .6rem + 1vw, 1.75rem);
+  font-family: var(--f-display); font-weight: 900;
+  font-size: clamp(2.75rem, .9rem + 7.2vw, 8rem);
+  line-height: .86; letter-spacing: -.01em;
+  text-transform: uppercase; color: var(--navy);
+}
+.safety__line { display: block; }
+.safety__em { font-style: normal; color: var(--red); position: relative; white-space: nowrap; }
+/* bolt-cut underline under "Colonial!" */
+.safety__em::after {
+  content: ""; position: absolute; left: .04em; right: .3em; bottom: -.08em; height: .085em;
+  background: var(--navy);
+  clip-path: polygon(.12em 0, 100% 0, calc(100% - .12em) 100%, 0 100%);
+  transform-origin: left center;
+}
+
+/* ---------- Lead ---------- */
+.safety__intro { display: grid; gap: 1.5rem; align-content: start; }
+.safety__rule {
+  display: block; width: 4.5rem; height: 6px;
+  background: linear-gradient(180deg, var(--red) 0 33.4%, var(--white) 33.4% 66.6%, var(--navy) 66.6%);
+  box-shadow: 0 0 0 1px rgba(18, 35, 62, .08);
+}
+.safety__lead {
+  font: 500 clamp(1.25rem, 1.05rem + .75vw, 1.625rem)/1.45 var(--f-body);
+  color: var(--ink); letter-spacing: -.005em; text-wrap: pretty; max-width: 34ch;
+}
+
+/* ---------- Numbered points ---------- */
+.safety__points { list-style: none; margin: 0; padding: 0; counter-reset: none; }
+.safety__point {
+  display: grid; grid-template-columns: clamp(2.75rem, 2rem + 2.4vw, 4.5rem) minmax(0, 1fr);
+  gap: clamp(.75rem, .25rem + 1.6vw, 1.75rem); align-items: start;
+  padding-block: clamp(1.5rem, 1.1rem + 1.2vw, 2.25rem);
+  border-top: 1px solid var(--line-strong);
+  position: relative;
+}
+.safety__point:last-child { border-bottom: 1px solid var(--line-strong); }
+.safety__point::before { /* red tick that grows along the hairline on hover */
+  content: ""; position: absolute; left: 0; top: -1px; height: 2px; width: 2.75rem;
+  background: var(--red); transform-origin: left; transition: width .5s var(--ease-out);
+}
+.safety__point:hover::before { width: 100%; }
+.safety__n {
+  font: 900 clamp(2.5rem, 2rem + 1.6vw, 3.75rem)/.8 var(--f-display);
+  color: transparent; -webkit-text-stroke: 1.25px var(--navy);
+  padding-top: .12em;
+  transition: color var(--dur) var(--ease-out);
+}
+.safety__point:hover .safety__n { color: var(--navy); }
+.safety__point p { color: var(--ink-2); font-size: clamp(1.0625rem, 1rem + .2vw, 1.1875rem); line-height: 1.65; text-wrap: pretty; max-width: 56ch; }
+
+/* ---------- Call card (crest) ---------- */
+.safety__call {
+  --c: var(--cut-lg);
+  container-type: inline-size;
+  position: relative; isolation: isolate;
+  clip-path: polygon(var(--c) 0, calc(100% - var(--c)) 0, 100% var(--c), 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, var(--c) 100%, 0 calc(100% - var(--c)), 0 var(--c));
+  background: var(--navy);
+  color: var(--white);
+  box-shadow: var(--shadow-lg);
+  align-self: start;
+}
+/* inner keyline crest: white hairline → star-field navy */
+.safety__call::before, .safety__call::after {
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  clip-path: polygon(var(--k) 0, calc(100% - var(--k)) 0, 100% var(--k), 100% calc(100% - var(--k)), calc(100% - var(--k)) 100%, var(--k) 100%, 0 calc(100% - var(--k)), 0 var(--k));
+}
+.safety__call::before { --k: 16px; inset: 9px; background: rgba(255, 255, 255, .28); }
+.safety__call::after {
+  --k: 15.6px; inset: 10px;
+  background-color: var(--navy-ink);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='104' viewBox='0 0 120 104'%3E%3Cg fill='%23ffffff' fill-opacity='.05'%3E%3Cpath d='M20 10l2.9 6 6.6.9-4.8 4.6 1.2 6.5L20 25l-5.9 3 1.2-6.5-4.8-4.6 6.6-.9z'/%3E%3Cpath d='M80 62l2.9 6 6.6.9-4.8 4.6 1.2 6.5L80 77l-5.9 3 1.2-6.5-4.8-4.6 6.6-.9z'/%3E%3C/g%3E%3C/svg%3E"),
+    repeating-linear-gradient(180deg, rgba(255, 255, 255, .025) 0 1px, transparent 1px 4px);
+  background-size: 120px 104px, auto;
+}
+.safety__call-in {
+  display: grid; gap: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+  padding: clamp(2rem, 1.4rem + 2vw, 3rem) clamp(1.75rem, 1.2rem + 2vw, 2.75rem);
+}
+.safety__call-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1.25rem; }
+.safety__call-line {
+  font: 800 clamp(1.5rem, 1.2rem + 1vw, 2rem)/1 var(--f-display);
+  text-transform: uppercase; letter-spacing: .005em; color: var(--white);
+  max-width: 14ch; text-wrap: balance;
+}
+.safety__call-mark {
+  flex: none; width: 3.75rem; height: 3.75rem; padding: .35rem;
+  background: var(--white);
+  clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px), 0 10px);
+}
+.safety__tel {
+  display: flex; align-items: center; gap: .9rem;
+  padding-block: 1.1rem; border-block: 1px solid var(--line-dark-strong);
+  color: var(--white); text-decoration: none;
+}
+.safety__tel-ico {
+  flex: none; display: grid; place-items: center; width: 3rem; height: 3rem;
+  background: var(--red);
+  clip-path: polygon(8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px), 0 8px);
+  transition: background-color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+}
+.safety__tel-num {
+  font: 700 clamp(1.25rem, 7.4cqi, 2.25rem)/1 var(--f-wide); font-stretch: 125%;
+  letter-spacing: .01em; white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+.safety__tel:hover .safety__tel-ico { background: var(--red-flag); transform: rotate(-8deg); }
+.safety__tel:hover .safety__tel-num { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .2em; }
+.safety__tel:focus-visible { outline-color: var(--white); }
+.safety__cta { width: 100%; white-space: normal; text-align: center; line-height: 1.25; }
+.safety__cta:focus-visible { outline-color: var(--white); }
+
+/* ---------- Tablet (768+) ---------- */
+@media (min-width: 48em) {
+  .safety__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: clamp(1.5rem, 1rem + 2vw, 3rem); }
+  .safety__head { grid-column: 1 / -1; }
+  .safety__intro { grid-column: 1 / -1; grid-template-columns: auto minmax(0, 1fr); column-gap: 2rem; align-items: start; }
+  .safety__rule { margin-top: .75em; }
+  .safety__lead { max-width: 40ch; }
+  .safety__points { grid-column: 1 / -1; }
+  .safety__call { grid-column: 2 / span 10; }
+}
+
+/* ---------- Desktop (1024+) ---------- */
+@media (min-width: 64em) {
+  .safety__line--2 { padding-left: calc((100% / 12) * 2); }
+  .safety__intro { grid-column: 1 / span 5; grid-row: 2; grid-template-columns: minmax(0, 1fr); }
+  .safety__rule { margin-top: 0; }
+  .safety__points { grid-column: 7 / -1; grid-row: 2; align-self: start; }
+  .safety__call { grid-column: 1 / -1; grid-row: 3; }
+  .safety__call-in {
+    grid-template-columns: auto minmax(0, 1.1fr) auto minmax(0, .9fr);
+    align-items: center; column-gap: clamp(1.5rem, 1rem + 1.5vw, 3rem);
+    padding: clamp(2rem, 1.5rem + 1vw, 2.75rem) clamp(2.25rem, 1.5rem + 2vw, 3.5rem);
+  }
+  .safety__call-top { display: contents; }
+  .safety__call-mark { order: -1; width: 5rem; height: 5rem; }
+  .safety__call-line { max-width: 13ch; }
+  .safety__tel { border-block: 0; border-inline: 1px solid var(--line-dark-strong); padding: .5rem clamp(1.5rem, 1rem + 1.5vw, 3rem); }
+  .safety__tel-num { font-size: clamp(1.5rem, .8rem + 1.3vw, 2.25rem); }
+  .safety__lead { max-width: 30ch; }
+}
+
+/* ---------- Motion (scroll-driven, no JS) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .safety__line { animation: safetyRise linear both; animation-timeline: view(); animation-range: entry 0% entry 70%; }
+    .safety__line--2 { animation-range: entry 10% entry 85%; }
+    .safety__em::after { animation: safetyDraw linear both; animation-timeline: view(); animation-range: entry 40% cover 35%; }
+    .safety__point { animation: safetyRise linear both; animation-timeline: view(); animation-range: entry 5% entry 80%; }
+    .safety__call { animation: safetyLift linear both; animation-timeline: view(); animation-range: entry 0% entry 60%; }
+  }
+}
+@keyframes safetyRise { from { transform: translateY(1.75rem); } to { transform: none; } }
+@keyframes safetyDraw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes safetyLift { from { transform: translateY(2.5rem) scale(.97); } to { transform: none; } }

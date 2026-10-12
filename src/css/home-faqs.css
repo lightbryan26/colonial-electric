@@ -3,9 +3,7 @@
    Editorial split: oversized masthead + sticky call crest, exclusive accordion.
    ===================================================================== */
 #s-faqs.hfaq {
-  background:
-    linear-gradient(90deg, transparent calc(50% - .5px), var(--line) calc(50% - .5px), var(--line) calc(50% + .5px), transparent calc(50% + .5px)) 0 0 / 100% 0 no-repeat,
-    var(--white);
+  background: var(--white);
   overflow: clip;
 }
 
@@ -27,7 +25,6 @@
 .hfaq__title::after {
   content: ""; position: absolute; left: .04em; bottom: 0; width: 1.15em; height: 6px;
   background: linear-gradient(180deg, var(--red) 0 33.3%, var(--white) 33.3% 66.6%, var(--red) 66.6%);
-  box-shadow: 0 0 0 0 transparent;
 }
 .hfaq__count { margin-top: 1.5rem; display: inline-flex; align-items: baseline; gap: .55em; color: var(--ink-3); }
 .hfaq__count span { color: var(--navy); }
