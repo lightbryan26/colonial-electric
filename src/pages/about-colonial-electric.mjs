@@ -120,7 +120,7 @@ function mvSection(ctx) {
     ${index(3, 'What Drives Us')}
     <div class="ab-mv__grid">
       ${mv.map((m, i) => `<article class="ab-mv__card ab-mv__card--${i ? 'vision' : 'mission'}" aria-labelledby="ab-mv-${i}">
-        ${i ? '' : `<img class="ab-mv__mark" src="${ctx.asset('img/emblem-512.png')}" width="512" height="512" alt="" loading="lazy" decoding="async">`}
+        ${i ? '' : `<img class="ab-mv__mark" src="${ctx.asset('img/logo-lockup-320.png')}" width="320" height="332" alt="" loading="lazy" decoding="async">`}
         <p class="ab-mv__k" aria-hidden="true">${pad(i + 1)}</p>
         <h2 class="ab-mv__h" id="ab-mv-${i}">${esc(m.h2)}</h2>
         <span class="flag-rule" aria-hidden="true"></span>

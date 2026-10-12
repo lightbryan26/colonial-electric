@@ -155,7 +155,7 @@ function categoriesBlock(ctx) {
 }
 
 function catalog(ctx) {
-  const outdoor = services.find(s => s.variant);
+  const outdoor = services.find(s => s.slug === 'permanent-outdoor-lighting');
   return `<section class="block sv-cat-grid" id="sv-catalog" aria-labelledby="sv-catalog-h">
   <div class="container">
     <header class="sv-cg__head">

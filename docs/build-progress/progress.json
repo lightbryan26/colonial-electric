@@ -124,9 +124,35 @@
    "round": 1,
    "note": "Contact page: photo-led hero, direct-line panel, form block, service area + hours, reviews",
    "updated": "2026-10-12T08:39:41.379Z"
+  },
+  "page-premium-membership": {
+   "status": "building",
+   "round": 1,
+   "note": "Flash Pass page: hero w/ real photo, benefits, how-it-works, CTA; no price",
+   "updated": "2026-10-12T08:41:41.750Z"
+  },
+  "page-we-offer-financing": {
+   "status": "building",
+   "round": 1,
+   "note": "Financing page: photo hero, verbatim brief §7 text, how-it-works steps, CTA + shared blocks",
+   "updated": "2026-10-12T08:42:00.641Z"
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T08:42:00.641Z",
+   "piece": "page-we-offer-financing",
+   "status": "building",
+   "round": 1,
+   "note": "Financing page: photo hero, verbatim brief §7 text, how-it-works steps, CTA + shared blocks"
+  },
+  {
+   "t": "2026-10-12T08:41:41.750Z",
+   "piece": "page-premium-membership",
+   "status": "building",
+   "round": 1,
+   "note": "Flash Pass page: hero w/ real photo, benefits, how-it-works, CTA; no price"
+  },
   {
    "t": "2026-10-12T08:39:41.379Z",
    "piece": "page-contact-us",
@@ -358,5 +384,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T08:39:41.379Z"
+ "updated": "2026-10-12T08:42:00.641Z"
 }

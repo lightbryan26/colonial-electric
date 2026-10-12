@@ -94,6 +94,7 @@ function callAndForm(ctx, t) {
   <div class="container tw-call__grid">
     <div class="tw-call__box">
       <div class="tw-call__crest">
+        <picture class="tw-call__badge"><source type="image/webp" srcset="${ctx.asset('img/logo-badge-250.webp')}"><img src="${ctx.asset('img/logo-badge-250.png')}" width="250" height="150" alt="Colonial Electric" loading="lazy" decoding="async"></picture>
         <p class="tw-call__line label-wide">${esc(safety.callBox.line)}</p>
         <a class="tw-call__tel" href="${site.tel}"><span class="sr-only">Call </span>${site.phone}</a>
         ${t.callBoxLine ? `<p class="tw-call__town">${esc(t.callBoxLine)}</p>` : ''}
@@ -109,14 +110,14 @@ function callAndForm(ctx, t) {
 }
 
 function townsBlock(ctx, t) {
-  return `<section class="tw-towns block" aria-labelledby="tw-towns-h">
+  return `<section class="tw-towns block on-dark stars-bg" aria-labelledby="tw-towns-h">
   <div class="container">
     <header class="tw-towns__head">
       <p class="eyebrow">Service Area</p>
       <h2 class="tw-towns__h" id="tw-towns-h">Towns We Serve</h2>
       <a class="tw-link" href="${ctx.r('service-area/')}"><span>View the service area</span>${icon('arrow-right', { size: 18 })}</a>
     </header>
-    ${townList(ctx, { current: t.slug, cls: 'tw-townlist', label: 'Towns we serve' })}
+    ${townList(ctx, { current: t.slug, cls: 'town-list--grid tw-townlist', label: 'Towns we serve' })}
   </div>
 </section>`;
 }
@@ -132,7 +133,7 @@ function about(ctx, t) {
     <ol class="tw-sites" role="list">
       ${t.topSites.map((s, i) => `<li class="tw-site" style="--i:${i}">
         <figure>
-          <div class="tw-site__img">${picture(ctx, s.img, { alt: `${s.name}, ${T}, MA`, sizes: '(min-width: 1200px) 300px, (min-width: 768px) 45vw, 46vw' })}</div>
+          <div class="tw-site__img">${picture(ctx, s.img, { alt: `${s.name}, ${T}, MA`, sizes: '(min-width: 1200px) 300px, (min-width: 768px) 45vw, 46vw', loading: 'eager' })}</div>
           <figcaption><span class="tw-site__n" aria-hidden="true">${pad(i + 1)}</span><span class="tw-site__name">${esc(s.name)}</span></figcaption>
         </figure>
       </li>`).join('\n      ')}

@@ -87,9 +87,10 @@
 .cc__frame {
   --c: var(--cut-lg);
   position: relative; margin: 0; min-height: 0;
-  aspect-ratio: 4 / 3; background: var(--navy-2);
+  aspect-ratio: 5 / 4; background: var(--navy-2);
   clip-path: polygon(var(--c) 0, calc(100% - var(--c)) 0, 100% var(--c), 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, var(--c) 100%, 0 calc(100% - var(--c)), 0 var(--c));
 }
+@media (min-width: 540px) and (max-width: 899px) { .cc__frame { aspect-ratio: 16 / 9; } }
 @media (min-width: 900px) { .cc__frame { aspect-ratio: auto; min-height: 30rem; } }
 .cc__stage { position: absolute; inset: 0; overflow: hidden; }
 .cc__img { position: absolute; inset: 0; opacity: 0; transition: opacity .6s var(--ease-out); }
@@ -175,10 +176,14 @@
 
 /* ---------- Trust strip (.ts) ---------- */
 .ts { position: relative; background: var(--navy); color: var(--white); }
-.ts::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: linear-gradient(90deg, var(--red) 0 25%, transparent 25%); }
 .ts__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .ts__item { display: flex; align-items: center; gap: .85rem; padding: 1.25rem .75rem 1.25rem 0; min-width: 0; }
 .ts__item:nth-child(n+3) { border-top: 1px solid var(--line-dark); }
+@media (max-width: 479px) {
+  .ts__list { grid-template-columns: 1fr; }
+  .ts__item { padding-block: .85rem; }
+  .ts__item + .ts__item { border-top: 1px solid var(--line-dark); }
+}
 .ts__glyph {
   flex: none; display: grid; place-items: center; width: 2.6rem; height: 2.6rem; color: var(--white); background: var(--red);
   clip-path: polygon(8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px), 0 8px);
@@ -186,8 +191,8 @@
 .ts__label { font: 700 .6875rem/1.35 var(--f-wide); font-stretch: 125%; letter-spacing: .1em; text-transform: uppercase; }
 @media (min-width: 900px) {
   .ts__list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .ts__item { padding: 1.6rem 1.25rem; justify-content: center; }
-  .ts__item:first-child { padding-left: 0; justify-content: flex-start; }
+  .ts__item { padding: 1.6rem 1.25rem 1.6rem clamp(1.25rem, .5rem + 1.5vw, 2rem); }
+  .ts__item:first-child { padding-left: 0; }
   .ts__item:last-child { padding-right: 0; }
   .ts__item:nth-child(n+3) { border-top: 0; }
   .ts__item + .ts__item { border-left: 1px solid var(--line-dark); }

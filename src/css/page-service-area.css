@@ -1,0 +1,129 @@
+/* =====================================================================
+   /service-area/ index — owned by page-service-area. Every class is .sa-*
+   ===================================================================== */
+
+/* ---------- Hero: copy + schematic South Shore map ---------- */
+.sa-hero { background: var(--navy-ink); color: var(--white); overflow: hidden; padding-top: clamp(2.5rem, 1.5rem + 3.5vw, 5rem); }
+.sa-hero::after { /* soft navy glow behind the map; texture only, no photo stand-in */
+  content: ""; position: absolute; z-index: -1; right: -10%; top: -10%; width: 70%; height: 120%;
+  background: radial-gradient(closest-side, rgba(30, 68, 121, .55), transparent 70%); pointer-events: none;
+}
+.sa-hero__grid { display: grid; gap: clamp(2rem, 1rem + 3vw, 4rem); align-items: center; padding-bottom: clamp(2.5rem, 1.5rem + 3vw, 4.5rem); }
+@media (min-width: 960px) { .sa-hero__grid { grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr); } }
+
+.sa-hero__eyebrow { margin-top: clamp(1.5rem, 1rem + 2vw, 2.75rem); }
+.sa-hero__h1 { margin-top: 1.1rem; font-family: var(--f-display); text-transform: uppercase; line-height: .9; letter-spacing: -.005em; }
+.sa-hero__h1 > span { display: block; }
+.sa-hero__brand { font: 700 clamp(.8rem, .7rem + .35vw, 1rem)/1.2 var(--f-wide); font-stretch: 125%; letter-spacing: .16em; color: var(--on-dark-2); margin-bottom: .9rem; }
+.sa-hero__dash { color: var(--red-flag); }
+.sa-hero__big { font-size: clamp(2.9rem, 1.2rem + 6.4vw, 6.4rem); font-weight: 900; text-wrap: balance; }
+.sa-hero__red { font-size: clamp(1.9rem, .9rem + 3.6vw, 3.6rem); font-weight: 800; color: var(--white); margin-top: .35rem;
+  display: inline-block !important; padding: .08em .2em .02em; margin-left: -.2em;
+  background: linear-gradient(transparent 58%, var(--red) 58%, var(--red) 92%, transparent 92%);
+}
+.sa-hero__lead { margin-top: 1.6rem; max-width: 52ch; font-size: var(--fs-lead); line-height: 1.6; color: var(--on-dark-2); text-wrap: pretty; }
+.sa-hero__ctas { margin-top: 2rem; }
+.sa-hero__lic { margin-top: 1.5rem; display: inline-flex; align-items: center; gap: .55rem; color: var(--on-dark-3); }
+.sa-hero__lic .icon { color: var(--red-flag); }
+
+/* Map */
+.sa-map { position: relative; width: 100%; max-width: 40rem; justify-self: center; }
+.sa-map__svg { display: block; width: 100%; height: auto; overflow: visible; }
+.sa-map__grid { stroke: rgba(255, 255, 255, .11); stroke-width: 1; fill: none; }
+.sa-map__wires path { fill: none; stroke: rgba(199, 49, 54, .55); stroke-width: 1.25; stroke-dasharray: 1; stroke-dashoffset: 0; }
+.sa-map__town { cursor: pointer; text-decoration: none; }
+.sa-map__town text { font: 700 19px/1 var(--f-display); letter-spacing: .04em; text-transform: uppercase; fill: rgba(255, 255, 255, .78); transition: fill var(--dur); paint-order: stroke; stroke: var(--navy-ink); stroke-width: 5px; stroke-linejoin: round; }
+.sa-map__dot { fill: var(--white); stroke: var(--navy-ink); stroke-width: 2.5; transition: fill var(--dur), r var(--dur); }
+.sa-map__halo { fill: rgba(255, 255, 255, .0); stroke: rgba(255, 255, 255, .22); stroke-width: 1; transition: stroke var(--dur), fill var(--dur); }
+.sa-map__town:hover .sa-map__dot, .sa-map__town.is-active .sa-map__dot { fill: var(--red-flag); }
+.sa-map__town:hover .sa-map__halo, .sa-map__town.is-active .sa-map__halo { stroke: var(--red-flag); fill: rgba(199, 49, 54, .18); }
+.sa-map__town:hover text, .sa-map__town.is-active text { fill: var(--white); }
+.sa-map.is-peek .sa-map__town:not(.is-active) text { fill: rgba(255, 255, 255, .45); }
+.sa-map__town.is-hq .sa-map__dot { fill: var(--red); stroke: var(--white); stroke-width: 3; }
+.sa-map__town.is-hq .sa-map__halo { stroke: rgba(199, 49, 54, .7); }
+.sa-map__town.is-hq text { fill: var(--white); font-size: 23px; }
+
+.sa-map__key { display: flex; flex-wrap: wrap; align-items: center; gap: .55rem; margin-top: .75rem; justify-content: center; color: var(--on-dark-3); font-size: .6875rem; }
+.sa-map__key-hq, .sa-map__key-dot { width: .7rem; height: .7rem; border-radius: 50%; background: var(--red); box-shadow: 0 0 0 2px var(--white); }
+.sa-map__key-dot { background: var(--white); box-shadow: 0 0 0 1px rgba(255,255,255,.4); width: .55rem; height: .55rem; }
+.sa-map__key-sep { width: 1.5rem; height: 1px; background: var(--line-dark-strong); margin-inline: .35rem; }
+
+/* Landmark photo peek (desktop hover) */
+.sa-map__peek { position: absolute; left: var(--x, 50%); top: var(--y, 50%); width: 11.5rem; z-index: 2; pointer-events: none;
+  transform: translate(1.4rem, -50%) scale(.94); opacity: 0; transition: opacity .22s, transform .32s var(--ease-out);
+  background: var(--white); padding: .4rem .4rem .7rem; box-shadow: var(--shadow-lg); clip-path: polygon(var(--cut-sm) 0, calc(100% - var(--cut-sm)) 0, 100% var(--cut-sm), 100% calc(100% - var(--cut-sm)), calc(100% - var(--cut-sm)) 100%, var(--cut-sm) 100%, 0 calc(100% - var(--cut-sm)), 0 var(--cut-sm)); }
+.sa-map__peek.is-left { transform: translate(calc(-100% - 1.4rem), -50%) scale(.94); }
+.sa-map__peek.is-on { opacity: 1; transform: translate(1.4rem, -50%); }
+.sa-map__peek.is-left.is-on { transform: translate(calc(-100% - 1.4rem), -50%); }
+.sa-map__peek img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.sa-map__peek figcaption { display: grid; gap: .2rem; padding: .55rem .3rem 0; }
+.sa-map__peek-k { font: 700 .625rem/1.2 var(--f-wide); font-stretch: 125%; letter-spacing: .12em; text-transform: uppercase; color: var(--red); }
+.sa-map__peek-n { font: 700 1rem/1.1 var(--f-display); text-transform: uppercase; color: var(--navy); }
+
+/* wires draw in, dots pop in */
+@media (prefers-reduced-motion: no-preference) {
+  .sa-map__wires path { stroke-dashoffset: 1; animation: sa-wire 1.1s var(--ease-out) forwards; animation-delay: calc(.35s + var(--i) * 45ms); }
+  .sa-map__town { opacity: 0; animation: sa-pop .5s var(--ease-out) forwards; animation-delay: calc(.2s + var(--i) * 45ms); }
+  .sa-map__town.is-hq { animation-delay: .1s; }
+  .sa-map__town.is-hq .sa-map__halo { transform-box: fill-box; transform-origin: center; animation: sa-pulse 2.6s 1.6s ease-out infinite; }
+}
+@keyframes sa-wire { to { stroke-dashoffset: 0; } }
+@keyframes sa-pop { to { opacity: 1; } }
+@keyframes sa-pulse { 0% { transform: scale(1); opacity: 1; } 70%, 100% { transform: scale(1.9); opacity: 0; } }
+
+/* ---------- Towns grid ---------- */
+.sa-towns { padding-block: var(--section); background: var(--paper); }
+.sa-towns__head { display: grid; gap: 1.25rem 3rem; align-items: end; margin-bottom: clamp(2rem, 1.2rem + 2.5vw, 3.5rem); }
+@media (min-width: 900px) { .sa-towns__head { grid-template-columns: 1fr minmax(0, 26rem); } }
+.sa-towns__h { margin-top: 1rem; font: 900 clamp(2.75rem, 1.4rem + 5.2vw, 6rem)/.88 var(--f-display); text-transform: uppercase; color: var(--navy); }
+.sa-towns__aside { color: var(--ink-2); font-size: var(--fs-small); line-height: 1.6; padding-left: 1.1rem; border-left: 3px solid var(--red); text-wrap: pretty; }
+
+.sa-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .625rem; list-style: none; padding: 0; margin: 0; counter-reset: none; }
+@media (min-width: 640px) { .sa-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .875rem; } .sa-card--call { display: none; } }
+@media (min-width: 1200px) { .sa-grid { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: .75rem; } }
+
+.sa-card { position: relative; }
+.sa-card__link { position: relative; display: block; aspect-ratio: 4 / 5; overflow: hidden; color: var(--white); text-decoration: none; background: var(--navy);
+  clip-path: polygon(var(--cut) 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%, 0 var(--cut)); isolation: isolate; }
+@media (min-width: 1200px) { .sa-card__link { aspect-ratio: 3 / 4.3; } }
+.sa-card__img, .sa-card__img picture, .sa-card__img img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.sa-card__img img { object-fit: cover; transition: transform .8s var(--ease-out), filter .5s; filter: saturate(.85); }
+/* legibility scrim over the real photo (not a photo substitute) */
+.sa-card__img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,16,32,.45) 0%, rgba(8,16,32,0) 30%, rgba(8,16,32,.15) 50%, rgba(8,16,32,.92) 100%); transition: background .4s; }
+.sa-card__n { position: absolute; top: .8rem; left: .9rem; font: 700 .6875rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .12em; color: rgba(255,255,255,.85); z-index: 1; }
+.sa-card__go { position: absolute; top: .6rem; right: .6rem; z-index: 1; width: 2rem; height: 2rem; padding: .45rem; border-radius: 50%; background: var(--red); color: var(--white);
+  opacity: 0; transform: translate(-.3rem, .3rem) scale(.8); transition: opacity var(--dur), transform var(--dur) var(--ease-out); }
+.sa-card__body { position: absolute; inset: auto 0 0 0; z-index: 1; padding: .9rem .9rem 1rem; display: grid; gap: .35rem; }
+.sa-card__name { font: 800 clamp(1.45rem, 1.1rem + 1.1vw, 1.75rem)/.95 var(--f-display); text-transform: uppercase; letter-spacing: .01em; }
+.sa-card__ma { color: var(--red-flag); font-size: .62em; letter-spacing: .08em; vertical-align: .18em; margin-left: .1em; text-shadow: 0 1px 0 rgba(255,255,255,.0); }
+.sa-card__ma { color: #FF6B72; }
+.sa-card__site { font-size: .75rem; line-height: 1.3; color: rgba(255,255,255,.8); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  max-height: 0; opacity: 0; transition: max-height .4s var(--ease-out), opacity .3s; }
+.sa-card__body::before { content: ""; width: 1.5rem; height: 3px; background: var(--red); margin-bottom: .2rem; transition: width .4s var(--ease-out); }
+
+.sa-card__link:hover .sa-card__img img, .sa-card__link:focus-visible .sa-card__img img { transform: scale(1.07); filter: saturate(1.05); }
+.sa-card__link:hover .sa-card__go, .sa-card__link:focus-visible .sa-card__go { opacity: 1; transform: none; }
+.sa-card__link:hover .sa-card__site, .sa-card__link:focus-visible .sa-card__site { max-height: 2.8em; opacity: 1; }
+.sa-card__link:hover .sa-card__body::before, .sa-card__link:focus-visible .sa-card__body::before { width: 3rem; }
+.sa-card__link:focus-visible { outline: none; }
+.sa-card:has(.sa-card__link:focus-visible) { outline: 3px solid var(--red); outline-offset: 3px; }
+@media (hover: none) { .sa-card__site { max-height: 2.8em; opacity: 1; } }
+
+/* Weymouth — home base: keyline in red */
+.sa-card.is-hq .sa-card__link { box-shadow: inset 0 0 0 3px var(--red); }
+.sa-card.is-hq .sa-card__n { background: var(--red); padding: .35rem .5rem; margin: -.35rem -.5rem; }
+
+/* Mobile-only call tile (fills the 22nd slot of the 2-column grid) */
+.sa-card--call .sa-card__link { background: var(--red); display: flex; flex-direction: column; justify-content: flex-end; gap: .4rem; padding: 1rem .9rem; }
+.sa-card__call-k { color: rgba(255,255,255,.85); font-size: .625rem; }
+.sa-card__call-n { font: 800 1.45rem/1 var(--f-display); letter-spacing: .01em; }
+.sa-card__call-i { position: absolute; top: .8rem; right: .8rem; }
+
+/* stagger in */
+@media (prefers-reduced-motion: no-preference) {
+  .sa-grid.is-armed .sa-card { opacity: 0; transform: translateY(18px); }
+  .sa-grid.is-in .sa-card { opacity: 1; transform: none; transition: opacity .6s var(--ease-out), transform .7s var(--ease-out); transition-delay: calc(var(--i, 21) * 35ms); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sa-card__img img, .sa-card__go, .sa-card__site { transition: none; }
+}

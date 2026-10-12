@@ -113,7 +113,7 @@
 .tw-call__grid { display: grid; gap: clamp(2rem, 1rem + 3vw, 4rem); align-items: start; }
 @media (min-width: 1000px) { .tw-call__grid { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); } .tw-call__box { position: sticky; top: calc(var(--header-h) + 2rem); } }
 .tw-call__crest {
-  --cut: 26px; position: relative; display: grid; justify-items: start; gap: 1.1rem;
+  --cut: 26px; position: relative; container-type: inline-size; display: grid; justify-items: start; gap: 1.1rem;
   padding: clamp(1.75rem, 1rem + 3vw, 3.25rem);
   background: var(--navy); clip-path: var(--crest);
   background-image: repeating-linear-gradient(180deg, rgba(255,255,255,.04) 0 1px, transparent 1px 5px);
@@ -124,22 +124,26 @@
   clip-path: polygon(17px 0, calc(100% - 17px) 0, 100% 17px, 100% calc(100% - 17px), calc(100% - 17px) 100%, 17px 100%, 0 calc(100% - 17px), 0 17px);
 }
 .tw-call__crest::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 6px; background: var(--red); }
-.tw-call__line { color: var(--on-dark-2); max-width: 26ch; line-height: 1.5; }
+.tw-call__line { color: var(--on-dark-2); max-width: 34ch; line-height: 1.5; }
 .tw-call__tel {
-  font: 800 clamp(2.4rem, 1rem + 5.4vw, 4.4rem)/1 var(--f-wide); font-stretch: 112%; letter-spacing: -.01em;
+  font: 800 min(10.6cqi, 4.2rem)/1 var(--f-wide); font-stretch: 112%; letter-spacing: -.01em;
   color: var(--white); text-decoration: none; white-space: nowrap;
 }
 .tw-call__tel:hover { color: var(--white); text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 3px; }
 .tw-call__town { font: 600 var(--fs-lead)/1.4 var(--f-body); color: var(--on-dark-2); }
 .tw-call__btn { margin-top: .5rem; }
+.tw-call__badge img { width: clamp(6.5rem, 5rem + 4vw, 8.5rem); height: auto; margin-bottom: .5rem; filter: drop-shadow(0 6px 18px rgba(0,0,0,.35)); }
 .tw-call__meta { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .75rem; margin-top: 1.25rem; color: var(--on-dark-3); font-size: .625rem; }
 .tw-call__sep { width: 4px; height: 4px; background: var(--red); }
 
 .tw-call__form { background: var(--white); color: var(--ink); clip-path: var(--crest); --cut: 18px; }
-.tpl-town .tw-form { padding: clamp(1.5rem, 1rem + 2.5vw, 3rem); background: none; }
+/* The shared form block sits inside our panel: our call box replaces its aside, so drop it and go single-column. */
+.tpl-town .tw-form.cf { padding: clamp(1.75rem, 1rem + 2.5vw, 3.25rem); background: none; }
 .tpl-town .tw-form .container { padding: 0; max-width: none; }
-.tpl-town .tw-form .h2 { font: 900 clamp(2rem, 1.4rem + 2.2vw, 3.2rem)/.95 var(--f-display); color: var(--navy); }
-.tpl-town .tw-form .h2::after { content: ""; display: block; width: 3rem; height: 4px; margin-top: 1rem; background: var(--red); }
+.tpl-town .tw-form .cf__wrap { grid-template-columns: minmax(0, 1fr); }
+.tpl-town .tw-form .cf__aside { display: none; }
+.tpl-town .tw-form .cf-set, .tpl-town .tw-form .cf-consent, .tpl-town .tw-form .cf-actions { animation: none; } /* never hide the form until scrolled */
+.tpl-town .tw-form .cf__h { font-size: clamp(2.4rem, 1.5rem + 3vw, 4.1rem); line-height: .88; }
 .tpl-town .tw-call :focus-visible { outline-color: var(--red-flag); }
 .tpl-town .tw-call .tw-call__box :focus-visible { outline-color: var(--white); }
 
@@ -155,28 +159,10 @@
 .tw-towns__h { font: 900 var(--fs-h2)/.95 var(--f-display); text-transform: uppercase; }
 .tw-towns .tw-link { color: var(--white); margin-top: 0; justify-self: start; }
 .tw-towns .tw-link:hover { color: var(--on-dark-2); }
-.tpl-town .tw-townlist { display: flex; flex-wrap: wrap; gap: 0; border-top: 1px solid var(--line-dark-strong); }
-.tpl-town .tw-townlist li { flex: 1 1 auto; }
-.tpl-town .tw-townlist a {
-  position: relative; display: flex; align-items: center; justify-content: space-between; gap: .75rem;
-  padding: clamp(.8rem, .6rem + .6vw, 1.15rem) clamp(.9rem, .6rem + 1vw, 1.5rem) clamp(.8rem, .6rem + .6vw, 1.15rem) 0;
-  border: 0; border-bottom: 1px solid var(--line-dark); clip-path: none; background: none; color: var(--on-dark-2);
-  font: 800 clamp(1.4rem, 1rem + 1.4vw, 2.3rem)/1 var(--f-display); text-transform: uppercase; letter-spacing: .005em;
-  transition: color var(--dur) var(--ease-out);
-}
-.tpl-town .tw-townlist a::after { content: "/"; color: var(--line-dark-strong); font-weight: 400; }
-.tpl-town .tw-townlist a:hover { color: var(--white); background: none; }
-.tpl-town .tw-townlist a[aria-current] { color: var(--white); background: none; }
-.tpl-town .tw-townlist a[aria-current]::before { content: ""; position: absolute; left: 0; right: clamp(.9rem, .6rem + 1vw, 1.5rem); bottom: -1px; height: 3px; background: var(--red); }
-.tpl-town .tw-townlist a[aria-current] { padding-left: 0; }
-.tpl-town .tw-townlist a[aria-current]::after { content: "You’re here"; font: 700 .5625rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .12em; color: var(--white); background: var(--red); padding: .4em .55em; text-transform: uppercase; }
-@media (max-width: 599px) {
-  .tpl-town .tw-townlist { display: grid; grid-template-columns: 1fr 1fr; column-gap: 1rem; }
-  .tpl-town .tw-townlist a { padding-right: 0; }
-  .tpl-town .tw-townlist a::after { content: none; }
-  .tpl-town .tw-townlist a[aria-current]::after { content: "Here"; }
-  .tpl-town .tw-townlist a[aria-current]::before { right: 0; }
-}
+.tpl-town .tw-townlist { grid-template-columns: repeat(auto-fill, minmax(min(100%, 11.5rem), 1fr)); border-top: 1px solid var(--line-dark); }
+.tpl-town .tw-townlist a { min-height: 4.5rem; }
+.tpl-town .tw-townlist .tl__name { font-size: clamp(1.25rem, 1rem + .7vw, 1.6rem); font-weight: 800; }
+@media (max-width: 599px) { .tpl-town .tw-townlist { grid-template-columns: 1fr 1fr; column-gap: 1rem; } .tpl-town .tw-townlist a { min-height: 3.5rem; } }
 
 /* ---------- About / Top Sites ---------- */
 .tw-about { background: var(--white); }
@@ -201,13 +187,6 @@
 .tw-site__n { font: 700 .6875rem/1.6 var(--f-wide); font-stretch: 125%; letter-spacing: .1em; color: var(--red); }
 .tw-site__name { font: 800 clamp(1.1rem, .95rem + .6vw, 1.5rem)/1.05 var(--f-display); text-transform: uppercase; color: var(--navy); text-wrap: balance; }
 
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .tw-site { animation: tw-rise linear both; animation-timeline: view(); animation-range: entry 0% entry 60%; }
-    .tw-safe__h, .tw-intro__h, .tw-about__h { animation: tw-rise linear both; animation-timeline: view(); animation-range: entry 0% entry 50%; }
-  }
-}
-
 /* ---------- Phones ---------- */
 @media (max-width: 599px) {
   .tw-hero__media { padding-left: 0; padding-bottom: 3rem; }
@@ -215,5 +194,6 @@
   .tw-postcard { left: .75rem; width: 9.5rem; }
   .tw-hero__ctas .btn { flex: 1 1 100%; }
   .tw-safe__cap { bottom: 1.25rem; }
-  .tw-call__tel { font-size: clamp(2rem, 1rem + 7vw, 2.6rem); }
 }
+@media (min-width: 600px) and (max-width: 1199px) { .tpl-town .tw-townlist { grid-template-columns: repeat(3, 1fr); column-gap: 1.25rem; } }
+@media (min-width: 1200px) { .tpl-town .tw-townlist { grid-template-columns: repeat(7, 1fr); column-gap: 1.25rem; } }

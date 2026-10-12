@@ -79,10 +79,10 @@ export function contactForm(ctx, { id = '', cls = '', heading = 'Contact Us' } =
 
     <aside class="cf__aside stars-bg" aria-label="Other ways to reach Colonial Electric">
       <figure class="cf-photo">
-        <picture>
+        <div class="cf-photo__frame"><picture>
           <source type="image/webp" srcset="${photo}-420.webp 420w, ${photo}-580.webp 580w" sizes="(min-width: 960px) 30vw, (min-width: 640px) 40vw, 92vw">
           <img src="${photo}-580.jpg" srcset="${photo}-420.jpg 420w, ${photo}-580.jpg 580w" sizes="(min-width: 960px) 30vw, (min-width: 640px) 40vw, 92vw" width="580" height="840" alt="Scott Hays, founder of Colonial Electric, standing in front of the Colonial Electric van" loading="lazy" decoding="async">
-        </picture>
+        </picture></div>
         <figcaption class="cf-photo__cap"><span class="cf-photo__role">Founder</span><span class="cf-photo__name">${esc(site.founder)}</span></figcaption>
       </figure>
 
