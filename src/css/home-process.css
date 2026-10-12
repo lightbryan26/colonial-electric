@@ -72,7 +72,7 @@
 .proc__body p { color: var(--ink-2); font-size: var(--fs-body); line-height: 1.65; text-wrap: pretty; }
 .proc__tel {
   display: inline-flex; align-items: center; gap: .55rem; margin-top: 1rem;
-  font: 700 1.0625rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .02em;
+  font: 700 1.0625rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: var(--tel-track);
   color: var(--navy); text-decoration: none; padding-bottom: .3rem;
   background: linear-gradient(var(--red), var(--red)) left bottom / 100% 2px no-repeat;
   transition: color var(--dur) var(--ease-out), background-size var(--dur) var(--ease-out);
