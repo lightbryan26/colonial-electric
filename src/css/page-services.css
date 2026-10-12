@@ -29,7 +29,7 @@
   font: 800 clamp(1.85rem, 1.3rem + 2vw, 3rem)/1 var(--f-display); text-transform: uppercase; letter-spacing: .005em; max-width: 18ch; text-wrap: balance;
 }
 .sv-hero__h2 em { font-style: normal; color: #E0414A; }
-.sv-hero__lead { margin-top: 1.25rem; max-width: 58ch; color: var(--on-dark-2); font-size: var(--fs-lead); line-height: 1.65; text-wrap: pretty; }
+.sv-hero__lead { margin-top: 1.25rem; max-width: 62ch; color: var(--on-dark-2); font-size: var(--fs-lead); line-height: 1.65; text-wrap: pretty; }
 .sv-hero__ctas { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2.25rem; }
 .sv-hero__ctas .btn--ghost .icon { transition: transform var(--dur) var(--ease-out); }
 .sv-hero__ctas .btn--ghost:hover .icon { transform: translateY(3px) rotate(90deg); }
@@ -85,6 +85,7 @@
 @keyframes sv-pulse { 0% { box-shadow: 0 0 0 0 rgba(199,49,54,.6); } 70%, 100% { box-shadow: 0 0 0 10px rgba(199,49,54,0); } }
 
 /* ---------- Residential: founder photo + 4 checks ---------- */
+.sv-res.block { padding-block: clamp(3.5rem, 2.5rem + 4vw, 6.5rem); }
 .sv-res__grid { display: grid; gap: clamp(3rem, 2rem + 4vw, 6rem); align-items: center; }
 @media (min-width: 1024px) { .sv-res__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); } }
 .sv-res__fig { position: relative; max-width: 30rem; margin-inline: auto; width: 100%; padding: 0 1.25rem 1.25rem 0; }
@@ -257,3 +258,78 @@
   }
 }
 @keyframes sv-zoom { from { transform: scale(1.1); } to { transform: scale(1); } }
+
+/* ---------- Hero rating line (verbatim "5-Star Rated Electrician on Google") ---------- */
+.sv-rating { display: inline-flex; align-items: center; gap: .75rem; margin-top: 1.5rem; padding: .55rem 1rem .55rem .75rem; border: 1px solid var(--line-dark-strong); background: rgba(255,255,255,.04); }
+.sv-rating__stars { display: inline-flex; gap: 2px; color: #F5B323; }
+.sv-rating__stars svg { width: 1rem; height: 1rem; }
+.sv-rating__t { font: 700 .75rem/1.2 var(--f-wide); font-stretch: 125%; letter-spacing: .1em; text-transform: uppercase; color: var(--white); }
+@media (prefers-reduced-motion: no-preference) { .sv-rating { animation: sv-fade-up .8s .5s var(--ease-out) both; } }
+
+/* ---------- Full-bleed photo band: the real Colonial van + founder ---------- */
+.sv-photo { position: relative; background: var(--navy-ink); }
+.sv-photo__fig { position: relative; margin: 0; overflow: hidden; }
+.sv-photo__pic img { display: block; width: 100%; height: clamp(22rem, 12rem + 32vw, 46rem); object-fit: cover; object-position: 58% 62%; }
+.sv-photo__fig::after { /* bottom scrim only, for caption legibility */
+  content: ""; position: absolute; inset: auto 0 0 0; height: 45%; pointer-events: none;
+  background: linear-gradient(180deg, rgba(8,16,32,0), rgba(8,16,32,.55));
+}
+.sv-photo__cap { position: absolute; z-index: 1; left: 0; right: 0; bottom: clamp(1.25rem, .5rem + 2.5vw, 3rem); display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1rem; }
+.sv-photo__card { display: grid; gap: .35rem; padding: 1rem 1.4rem 1.1rem 1.2rem; background: var(--white); border-left: 4px solid var(--red); box-shadow: 0 20px 40px rgba(8,16,32,.25); }
+.sv-photo__k { display: inline-flex; align-items: center; gap: .5rem; font: 700 .6875rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--red); }
+.sv-photo__b { width: .55rem; height: auto; }
+.sv-photo__n { font: 800 clamp(1.4rem, 1.1rem + 1vw, 2rem)/1 var(--f-display); text-transform: uppercase; color: var(--navy); }
+.sv-photo__l { font: 700 .75rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .08em; color: var(--ink-2); }
+.sv-photo__call { --cut: 12px; display: inline-flex; align-items: center; gap: .9rem; padding: 1rem 1.4rem 1rem 1.15rem; background: var(--red); color: var(--white); text-decoration: none; clip-path: var(--crest); transition: background-color .3s; }
+.sv-photo__call:hover { background: var(--navy); }
+.sv-photo__call > span { display: grid; gap: .3rem; }
+.sv-photo__call-k { font: 700 .625rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; opacity: .85; }
+.sv-photo__call-n { font: 700 1.25rem/1 var(--f-wide); font-stretch: 125%; }
+@media (max-width: 639px) {
+  .sv-photo__pic img { height: 26rem; object-position: 60% 60%; }
+  .sv-photo__call { display: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .sv-photo__pic img { animation: sv-zoom linear both; animation-timeline: view(); animation-range: entry 0% exit 0%; }
+  }
+}
+
+/* ---------- Trust bar: equal columns, readable labels, one-line proof ---------- */
+.sv-trust { background: var(--navy); color: var(--white); border-top: 3px solid var(--red); }
+.sv-trust__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; }
+@media (min-width: 640px) { .sv-trust__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .sv-trust__list { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.sv-trust__item { display: flex; align-items: center; gap: 1rem; padding: 1.6rem 1.25rem; min-width: 0; border-top: 1px solid var(--line-dark); }
+.sv-trust__item:first-child { border-top: 0; }
+@media (min-width: 640px) {
+  .sv-trust__item:nth-child(2) { border-top: 0; }
+  .sv-trust__item:nth-child(even) { border-left: 1px solid var(--line-dark); }
+}
+@media (min-width: 1100px) {
+  .sv-trust__item { border-top: 0; }
+  .sv-trust__item + .sv-trust__item { border-left: 1px solid var(--line-dark); }
+  .sv-trust__item:first-child { padding-left: 0; }
+}
+.sv-trust__glyph { flex: none; width: 3rem; height: 3rem; display: grid; place-items: center; background: var(--red); color: var(--white); clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%); }
+.sv-trust__txt { display: grid; gap: .4rem; min-width: 0; }
+.sv-trust__label { font: 700 .8125rem/1.25 var(--f-wide); font-stretch: 125%; letter-spacing: .08em; text-transform: uppercase; }
+.sv-trust__proof { font-size: .9375rem; line-height: 1.3; color: var(--on-dark-2); }
+
+/* ---------- Guarantee on this page: always fully legible, tighter, bigger seal ---------- */
+.sv-gx.block { padding-block: clamp(3.5rem, 2.5rem + 3vw, 5.5rem); }
+.sv-gx .gx__cert { animation: none !important; opacity: 1 !important; transform: none !important; }
+.sv-gx .gx__h { color: #0E1A33; }
+.sv-gx .gx__accent { color: #C8202F; }
+.sv-gx .gx__col p { color: #3A4256; font-size: 1.0625rem; }
+.sv-gx .gx__lead { color: #0E1A33; }
+.sv-gx .gx__cta .btn--red { background: #C8202F; opacity: 1; }
+.sv-gx .gx__meta { margin-bottom: clamp(1.75rem, 1rem + 2vw, 2.75rem); }
+.sv-gx .gx__sign { margin-top: clamp(2rem, 1rem + 3vw, 3.5rem); }
+@media (min-width: 48em) {
+  .sv-gx .gx__top { grid-template-columns: minmax(0, 1fr) 17.5rem; align-items: end; }
+  .sv-gx .gx__seal { --s: 17.5rem; align-self: end; }
+  .sv-gx .gx__lead { grid-column: 1 / -1; max-width: 62ch; }
+  .sv-gx .gx__top { grid-template-areas: "h seal" "lead lead"; }
+  .sv-gx .gx__h { max-width: 16ch; }
+}

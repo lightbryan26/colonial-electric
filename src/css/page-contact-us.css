@@ -189,10 +189,24 @@
     .cu-card { animation: cu-card-in linear both; animation-timeline: view(); animation-range: entry calc(var(--i, 0) * 6%) entry calc(60% + var(--i, 0) * 8%); }
   }
 }
-@keyframes cu-card-in { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+/* transform-only: a card is never invisible, so no-scroll renders (full-page shots, print, no-motion UAs) show it */
+@keyframes cu-card-in { from { transform: translateY(28px); } to { transform: none; } }
 
 /* ---------- 4. Shared form, page tuning ---------- */
 .cu-form { scroll-margin-top: calc(var(--header-h) + 1rem); }
+/* The shared block's scroll-linked rise starts its fields at opacity 0, so any render that
+   never scrolls (full-page capture, no-scroll embed) showed a blank form. On this page the
+   form is the point of the page: fields stay fully opaque at all times and only drift up. */
+.cu-form .cf-set, .cu-form .cf-consent, .cu-form .cf-actions, .cu-form .cf-submit { opacity: 1; }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .cu-form .cf-set, .cu-form .cf-consent, .cu-form .cf-actions { animation-name: cu-cf-drift; }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cu-form .cf-set, .cu-form .cf-consent, .cu-form .cf-actions { animation: none; }
+}
+@keyframes cu-cf-drift { from { transform: translateY(18px); } to { transform: none; } }
 
 /* ---------- 5. Find us / service area ---------- */
 .cu-find { background: var(--navy-ink); padding-block: var(--section); }

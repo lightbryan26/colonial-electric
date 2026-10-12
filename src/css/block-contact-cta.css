@@ -7,16 +7,14 @@
 .cc {
   position: relative; isolation: isolate; overflow: hidden;
   background: var(--navy-ink); color: var(--on-dark);
-  padding-block: clamp(4.5rem, 2.6rem + 6.5vw, 9rem);
+  padding-block: clamp(4rem, 2.6rem + 5vw, 7.5rem);
 }
-/* tone-on-tone star field + pinstripe, both very low contrast */
+/* one big, quiet light: a warm red bloom low-left behind the headline (no texture, nothing that can read as an artifact) */
 .cc::before {
   content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='104' viewBox='0 0 120 104'%3E%3Cg fill='%23ffffff'%3E%3Cpath d='M20 10l2.9 6 6.6.9-4.8 4.6 1.2 6.5L20 25l-5.9 3 1.2-6.5-4.8-4.6 6.6-.9z'/%3E%3Cpath d='M80 62l2.9 6 6.6.9-4.8 4.6 1.2 6.5L80 77l-5.9 3 1.2-6.5-4.8-4.6 6.6-.9z'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: 120px 104px; opacity: .03;
-  -webkit-mask-image: linear-gradient(160deg, #000 0%, transparent 70%);
-          mask-image: linear-gradient(160deg, #000 0%, transparent 70%);
+  background:
+    radial-gradient(60rem 34rem at 8% 0%, rgba(43, 76, 140, .38), transparent 70%),
+    radial-gradient(40rem 26rem at 100% 100%, rgba(200, 16, 46, .10), transparent 70%);
 }
 /* flag-stripe rule along the top edge (red / white / navy, from the van sweep) */
 .cc__rule { position: absolute; inset: 0 0 auto; height: 6px; background: linear-gradient(90deg, var(--red) 0 62%, var(--white) 62% 64%, var(--blue) 64%); }
@@ -74,9 +72,19 @@
 .cc__dial-k { font: 700 .625rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; color: var(--on-dark-3); }
 .cc__dial-n { font: 700 clamp(1.2rem, 1.05rem + .5vw, 1.45rem)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .01em; white-space: nowrap; }
 
-.cc .cc__meta { display: flex; flex-wrap: wrap; gap: .6rem 1.75rem; margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid var(--line-dark); }
-.cc__meta li { display: inline-flex; align-items: center; gap: .55rem; font: 700 .6875rem/1.2 var(--f-wide); font-stretch: 125%; letter-spacing: .12em; text-transform: uppercase; color: var(--on-dark-2); }
+.cc .cc__meta { /* dots lead every item; the list is pulled left by one separator and clipped, so no wrapped line starts with a dot */
+  --sep: calc(1.9rem + .5rem); /* dot margins + dot + the li gap */
+  display: flex; flex-wrap: wrap; align-items: center; gap: .7rem 0; margin: 2rem 0 0 calc(var(--sep) * -1); padding: 1.35rem 0 0; list-style: none;
+  border-top: 1px solid var(--line-dark); clip-path: inset(0 0 0 var(--sep));
+}
+.cc__meta li { display: inline-flex; align-items: center; gap: .5rem; font: 700 .75rem/1.25 var(--f-wide); font-stretch: 125%; letter-spacing: .12em; text-transform: uppercase; color: var(--on-dark-2); }
+.cc__meta li::before { /* red-dot motif as the separator */
+  content: ""; flex: none; width: .4rem; height: .4rem; margin-inline: .75rem; background: var(--red-flag);
+  clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
+}
+.cc__meta li:first-child { color: var(--white); }
 .cc__meta .icon { color: var(--red-flag); }
+.cc__hours { color: var(--white) !important; }
 
 /* ---------- Service area: photo frame + town index ---------- */
 .cc__area { display: grid; gap: clamp(1.75rem, 1rem + 2.5vw, 3.5rem); margin-top: clamp(1rem, .5rem + 2vw, 2.5rem); }
@@ -121,15 +129,14 @@
 .cc__index-all:hover { color: var(--white); }
 .cc__index-all:hover .icon { transform: translateX(3px); }
 
-/* entrance (armed only when JS + IntersectionObserver are present) */
-.cc.is-armed .cc__line > span { transform: translateY(105%); transition: transform 1s var(--ease-out); }
-.cc.is-armed .cc__line + .cc__line > span { transition-delay: .09s; }
-.cc.is-armed .cc__body, .cc.is-armed .cc__area { opacity: 0; transform: translateY(24px); transition: opacity .9s var(--ease-out) .2s, transform .9s var(--ease-out) .2s; }
-.cc.is-armed .cc__area { transition-delay: .32s; }
-.cc.is-armed.is-in .cc__line > span, .cc.is-armed.is-in .cc__body, .cc.is-armed.is-in .cc__area { transform: none; opacity: 1; }
+/* motion is enhancement only: every element is fully visible by default (no JS, no IO, mid-scroll screenshot).
+   .is-in (added when the head enters view) only pulses the red dot; nothing is ever hidden or offset. */
+@media (prefers-reduced-motion: no-preference) {
+  .cc.is-in .cc__dot { animation: cc-pulse 2.4s var(--ease-out) .2s 2; }
+}
+@keyframes cc-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(199, 49, 54, .55); } 60% { box-shadow: 0 0 0 .55rem rgba(199, 49, 54, 0); } }
 @media (prefers-reduced-motion: reduce) {
-  .cc.is-armed .cc__line > span, .cc.is-armed .cc__body, .cc.is-armed .cc__area { transform: none; opacity: 1; }
-  .cc__img img, .cc__img.is-on img { transform: none; }
+  .cc__img, .cc__img img, .cc__img.is-on img { transition: none; transform: none; }
 }
 
 /* ---------- Town list (.tl) — shared by every page ---------- */

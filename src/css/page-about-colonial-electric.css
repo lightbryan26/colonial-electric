@@ -186,3 +186,21 @@
   .ab-hero .btn-row .btn { flex: 1 1 100%; }
 }
 @media (max-width: 959px) { .ab-portrait { max-width: 28rem; } }
+
+/* ---------- Sticky call bar: hidden while the hero is on screen (workaround; site-wide fix requested in src/requests/page-about-colonial-electric.md) ---------- */
+@keyframes ab-callbar-in { from { transform: translateY(110%); visibility: hidden; } to { transform: translateY(0); visibility: visible; } }
+@media (max-width: 767px) {
+  body:is(.tpl-about-colonial-electric, .tpl-about) .callbar { transform: translateY(110%); visibility: hidden; }
+  @supports (animation-timeline: scroll()) {
+    body:is(.tpl-about-colonial-electric, .tpl-about) .callbar {
+      animation: ab-callbar-in linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 85vh 105vh;
+    }
+  }
+}
+@media (max-width: 767px) and (prefers-reduced-motion: reduce) {
+  @supports (animation-timeline: scroll()) {
+    body:is(.tpl-about-colonial-electric, .tpl-about) .callbar { animation-timing-function: steps(1, end); }
+  }
+}

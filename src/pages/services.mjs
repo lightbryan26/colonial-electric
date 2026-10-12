@@ -5,8 +5,8 @@
 // Styles: src/css/page-services.css (all classes prefixed .sv-). No prices, no invented claims.
 import { site } from '../data/site.mjs';
 import { services, serviceCards, servicesIntro } from '../data/services.mjs';
-import { bookingH2 } from '../data/shared.mjs';
-import { trustStrip } from '../blocks/trust-strip.mjs';
+import { bookingH2, trustItems } from '../data/shared.mjs';
+import { hero as homeHero } from '../data/home.mjs';
 import { guarantee } from '../blocks/guarantee.mjs';
 import { contactCta } from '../blocks/contact-cta.mjs';
 import { process, quoteBlock } from '../blocks/process.mjs';
@@ -97,6 +97,7 @@ function hero(ctx) {
         <a class="btn btn--red btn--lg" href="${site.tel}">${icon('phone', { size: 18 })}<span>Call ${site.phone}</span></a>
         <a class="btn btn--ghost btn--lg" href="#sv-catalog-h"><span>Browse Services</span>${icon('arrow-right', { size: 16 })}</a>
       </div>
+      <p class="sv-rating"><span class="sv-rating__stars" aria-hidden="true">${'<svg viewBox="0 0 20 20" focusable="false"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6L10 15l-5.4 3 1.2-6L1.3 7.8l6.1-.7L10 1.5z" fill="currentColor"/></svg>'.repeat(5)}</span><span class="sv-rating__t">${esc(homeHero.eyebrow)}</span></p>
     </div>
     <nav class="sv-panel" aria-label="All services">
       <div class="sv-panel__frame">
@@ -114,6 +115,29 @@ function hero(ctx) {
   </div>
   <div class="sweep" aria-hidden="true"></div>
 </section>`;
+}
+
+function photoBand(ctx) {
+  return `<section class="sv-photo" aria-label="Colonial Electric on the road">
+  <figure class="sv-photo__fig">
+    ${picture(ctx, 'owner-van', { alt: 'Scott Hays, founder of Colonial Electric, standing beside the wrapped Colonial Electric service van outside a South Shore home', sizes: '100vw', cls: 'sv-photo__pic' })}
+    <figcaption class="sv-photo__cap container">
+      <span class="sv-photo__card">
+        <span class="sv-photo__k">${boltSvg('sv-photo__b')}Colonial Electric · Weymouth, MA</span>
+        <span class="sv-photo__n">Scott Hays, Founder</span>
+        <span class="sv-photo__l">${esc(site.license)}</span>
+      </span>
+      <a class="sv-photo__call" href="${site.tel}">${icon('phone', { size: 18 })}<span><span class="sv-photo__call-k">Call Us Today!</span><span class="sv-photo__call-n">${site.phone}</span></span></a>
+    </figcaption>
+  </figure>
+</section>`;
+}
+
+// Trust bar: the 4 verbatim shared items, each with a one-line proof drawn from real site facts.
+function trustBar() {
+  const glyphs = ['pin', 'shield', 'check', 'remodel'];
+  const proofs = ['Weymouth, MA · South Shore', site.license, site.financing.line, `Founded by ${site.founder}`];
+  return `<section class="sv-trust" aria-label="Why homeowners trust us"><div class="container"><ul class="sv-trust__list" role="list">${trustItems.map((t, i) => `<li class="sv-trust__item"><span class="sv-trust__glyph">${icon(glyphs[i], { size: 22 })}</span><span class="sv-trust__txt"><span class="sv-trust__label">${esc(t)}</span><span class="sv-trust__proof">${esc(proofs[i])}</span></span></li>`).join('')}</ul></div></section>`;
 }
 
 function residentialBlock(ctx) {
@@ -217,10 +241,11 @@ function faqBlock(ctx) {
 export function render(ctx) {
   return [
     hero(ctx),
+    photoBand(ctx),
     residentialBlock(ctx),
     categoriesBlock(ctx),
-    trustStrip(ctx),
-    guarantee(ctx),
+    trustBar(),
+    guarantee(ctx, { cls: 'sv-gx' }),
     catalog(ctx),
     contactCta(ctx),
     process(ctx, { h2: bookingH2, withBodies: true }),

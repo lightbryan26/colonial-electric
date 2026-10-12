@@ -1,42 +1,88 @@
 /* =====================================================================
    Block: Lifetime Craftsmanship Guarantee (shared) — owner: block-guarantee
-   A keylined crest "certificate" on a paper ground: navy keyline → white
-   border → hairline inner frame (the badge's own construction), the real
-   logo lockup as the seal, verbatim copy set like a warranty document.
+   A navy-keylined, chamfered certificate split photo | document:
+   real founder-at-the-van photo (signed, with the call CTA on it) and the
+   verbatim guarantee set as numbered clauses. Seal = real logo lockup.
+   Compact by design: the whole certificate fits one desktop screen.
    ===================================================================== */
-.gx { background: var(--paper); color: var(--ink); overflow: clip; }
+.gx { background: var(--paper); color: var(--ink); overflow: clip; padding-block: clamp(2.5rem, 1.5rem + 3vw, 4.5rem); }
 .gx::before { /* faint pinstripe band behind the certificate (badge texture, navy on paper) */
-  content: ""; position: absolute; inset: 22% 0 22% 0; pointer-events: none;
-  background-image: repeating-linear-gradient(180deg, rgba(18, 35, 62, .045) 0 1px, transparent 1px 5px);
+  content: ""; position: absolute; inset: 30% 0 30% 0; pointer-events: none;
+  background-image: repeating-linear-gradient(180deg, rgba(18, 35, 62, .05) 0 1px, transparent 1px 5px);
 }
 
 /* Certificate shell: navy keyline (outer clip) → white paper (inner clip) */
 .gx__cert {
-  --cut-o: clamp(18px, 2.4vw, 34px);
+  --cut-o: clamp(16px, 2vw, 28px);
   position: relative; padding: 2px; background: var(--navy);
   clip-path: polygon(var(--cut-o) 0, calc(100% - var(--cut-o)) 0, 100% var(--cut-o), 100% calc(100% - var(--cut-o)), calc(100% - var(--cut-o)) 100%, var(--cut-o) 100%, 0 calc(100% - var(--cut-o)), 0 var(--cut-o));
-  filter: drop-shadow(0 30px 50px rgba(8, 16, 32, .12));
 }
 .gx__paper {
   --c: calc(var(--cut-o) - 1px);
-  --pad: clamp(1.5rem, .6rem + 4.2vw, 5rem);
   position: relative; isolation: isolate; background: var(--white);
-  padding: var(--pad);
+  display: grid; grid-template-columns: 1fr;
   clip-path: polygon(var(--c) 0, calc(100% - var(--c)) 0, 100% var(--c), 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, var(--c) 100%, 0 calc(100% - var(--c)), 0 var(--c));
 }
-/* Hairline inner frame, chamfered to match (line layer + white cover inset by 1px) */
-.gx__paper::before, .gx__paper::after {
-  --i: clamp(8px, 1vw, 14px); --ci: calc(var(--c) - var(--i) * .41);
-  content: ""; position: absolute; z-index: -1; pointer-events: none;
-  clip-path: polygon(var(--ci) 0, calc(100% - var(--ci)) 0, 100% var(--ci), 100% calc(100% - var(--ci)), calc(100% - var(--ci)) 100%, var(--ci) 100%, 0 calc(100% - var(--ci)), 0 var(--ci));
-}
-.gx__paper::before { inset: var(--i); background: var(--line-strong); }
-.gx__paper::after { inset: calc(var(--i) + 1px); background: var(--white); }
 
-/* Meta strip: document header */
+/* ---------- Photo column ---------- */
+.gx__media { position: relative; margin: 0; min-height: 26rem; background: var(--navy-ink); color: var(--white); overflow: hidden; }
+.gx__pic, .gx__pic img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.gx__pic img { object-fit: cover; object-position: 22% 40%; }
+.gx__media::after { /* legibility scrim for the signature row (sits over real asphalt, not a faked photo) */
+  content: ""; position: absolute; inset: 45% 0 0 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(8, 16, 32, 0) 0%, rgba(8, 16, 32, .55) 45%, rgba(8, 16, 32, .92) 100%);
+}
+.gx__media::before { /* flag stripe down the seam */
+  content: ""; position: absolute; z-index: 3; top: 0; bottom: 0; right: 0; width: 6px;
+  background: linear-gradient(180deg, var(--red) 0 33.3%, var(--white) 33.3% 66.6%, var(--navy) 66.6%);
+}
+
+.gx__sign {
+  position: absolute; z-index: 2; left: 0; right: 0; bottom: 0;
+  padding: clamp(1.25rem, .8rem + 1.6vw, 2rem); padding-right: calc(clamp(1.25rem, .8rem + 1.6vw, 2rem) + 6px);
+  display: grid; gap: 1.1rem;
+}
+.gx__sig { display: grid; gap: .35rem; padding-top: .75rem; border-top: 2px solid rgba(255, 255, 255, .85); max-width: 16rem; }
+.gx__sig-name { font: 800 1.75rem/1 var(--f-display); text-transform: uppercase; letter-spacing: .01em; color: var(--white); }
+.gx__sig-role { font: 700 .6875rem/1.3 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: rgba(255, 255, 255, .78); }
+
+/* Primary call button: full red tile, number set big */
+.gx__call {
+  display: flex; align-items: center; gap: .9rem; width: 100%;
+  padding: .7rem 1.25rem .7rem .7rem; background: var(--red); color: var(--white); text-decoration: none;
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  transition: background-color .25s var(--ease-out);
+}
+.gx__call:hover { background: var(--red-deep); }
+.gx__call:focus-visible { outline: 3px solid var(--white); outline-offset: -6px; }
+.gx__call-ic { flex: none; display: grid; place-items: center; width: 3rem; height: 3rem; background: rgba(255, 255, 255, .14); }
+.gx__call-t { display: grid; gap: .3rem; }
+.gx__call-k { font: 700 .6875rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; opacity: .85; }
+.gx__call-n { font: 800 clamp(1.25rem, 1rem + .7vw, 1.6rem)/1 var(--f-wide); font-stretch: 110%; letter-spacing: .01em; font-variant-numeric: tabular-nums; }
+
+/* Seal: real logo lockup in a turning type ring, riding the top-right of the photo */
+.gx__seal {
+  --s: clamp(7.5rem, 5rem + 5vw, 10.5rem);
+  position: absolute; z-index: 2; top: clamp(1rem, .6rem + 1.2vw, 1.75rem); right: clamp(1rem, .6rem + 1.2vw, 1.75rem);
+  width: var(--s); aspect-ratio: 1; display: grid; place-items: center;
+  background: var(--white); border-radius: 50%; box-shadow: 0 14px 34px rgba(8, 16, 32, .35);
+}
+.gx__ring { position: absolute; inset: 6%; width: 88%; height: 88%; overflow: visible; }
+.gx__ring-o { fill: none; stroke: var(--navy); stroke-width: 2; }
+.gx__ring-i { fill: none; stroke: var(--line-strong); stroke-width: 1; stroke-dasharray: 2 3; }
+.gx__ring text { font: 700 12px/1 var(--f-wide); font-stretch: 125%; letter-spacing: .1em; text-transform: uppercase; fill: var(--navy); }
+.gx__logo { position: relative; width: 50%; height: auto; display: block; }
+
+/* ---------- Document column ---------- */
+.gx__body { position: relative; padding: clamp(1.5rem, .8rem + 3vw, 3.25rem); }
+.gx__body::before { /* hairline inner frame (chamfered top-right / bottom-right to echo the cert) */
+  content: ""; position: absolute; inset: clamp(8px, 1vw, 12px); pointer-events: none; z-index: -1;
+  border: 1px solid var(--line);
+}
+
 .gx__meta {
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem 1.5rem;
-  padding-bottom: 1.1rem; margin-bottom: clamp(2rem, 1rem + 3vw, 3.75rem);
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem 1.5rem;
+  padding-bottom: .9rem; margin-bottom: clamp(1.25rem, .9rem + 1vw, 1.75rem);
   border-bottom: 1px solid var(--line);
   font: 700 var(--fs-eyebrow)/1.2 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase;
   position: relative;
@@ -45,78 +91,56 @@
   content: ""; position: absolute; left: 0; bottom: -3px; width: 4.5rem; height: 6px;
   background: repeating-linear-gradient(180deg, var(--red) 0 2px, var(--white) 2px 4px); box-shadow: inset 0 0 0 1px var(--red);
 }
-.gx__tag { display: inline-flex; align-items: center; gap: .6rem; color: var(--red); }
+.gx__tag { display: inline-flex; align-items: center; gap: .55rem; color: var(--red); }
 .gx__tag .icon { flex: none; }
 .gx__lic { color: var(--ink-3); }
 
-/* Headline + seal */
-.gx__top { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "h seal" "lead seal"; column-gap: clamp(1.5rem, 5vw, 6rem); align-items: center; }
-.gx__h { grid-area: h; }
-.gx__seal { grid-area: seal; }
-.gx__lead { grid-area: lead; }
 .gx__h {
-  font-size: clamp(2.35rem, 1.2rem + 4.6vw, 5.5rem); line-height: .9; letter-spacing: -.01em;
-  color: var(--navy); max-width: 13ch; text-wrap: balance;
+  font-size: clamp(2.6rem, 1.6rem + 3.4vw, 4.6rem); line-height: .92; letter-spacing: -.005em;
+  color: var(--navy); text-wrap: balance; max-width: 16ch;
 }
-.gx__accent { color: var(--red); display: inline; }
+.gx__accent { color: var(--red); }
 
-.gx__seal { --s: clamp(8.5rem, 4rem + 17vw, 22rem); position: relative; width: var(--s); aspect-ratio: 1; flex: none; display: grid; place-items: center; }
-.gx__ring { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.gx__ring-o { fill: none; stroke: var(--navy); stroke-width: 1.5; }
-.gx__ring-i { fill: none; stroke: var(--line-strong); stroke-width: 1; stroke-dasharray: 2 3; }
-.gx__ring text { font: 700 11.5px/1 var(--f-wide); font-stretch: 125%; letter-spacing: .12em; text-transform: uppercase; fill: var(--navy); }
-.gx__logo { position: relative; width: 62%; }
-.gx__logo img { width: 100%; height: auto; display: block; }
-
-/* Body: lead paragraph, then two numbered clauses */
-.gx__lead {
-  margin-top: clamp(2rem, 1rem + 3vw, 3.5rem); max-width: 54ch;
-  font: 500 clamp(1.125rem, 1rem + .55vw, 1.4rem)/1.55 var(--f-body); color: var(--ink); text-wrap: pretty;
-  padding-left: clamp(1rem, .5rem + 1.5vw, 1.75rem); border-left: 3px solid var(--red);
-}
-.gx__cols { display: grid; gap: 2rem clamp(2rem, 4vw, 4.5rem); margin-top: clamp(2.5rem, 1.5rem + 3vw, 4rem); }
-.gx__col { padding-top: 1.1rem; border-top: 1px solid var(--line-strong); }
-.gx__col p { color: var(--ink-2); font-size: var(--fs-body); line-height: 1.7; text-wrap: pretty; margin-top: .85rem; }
-.gx__num { display: inline-flex; align-items: center; gap: .4rem; font: 700 var(--fs-eyebrow)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; color: var(--navy); }
+.gx__num { display: inline-flex; align-items: center; gap: .35rem; font: 700 var(--fs-eyebrow)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; color: var(--navy); }
 .gx__num .icon { color: var(--red); }
 
-/* Sign-off row */
-.gx__sign {
-  display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 2rem;
-  margin-top: clamp(2.75rem, 1.5rem + 4vw, 5rem); padding-top: clamp(1.75rem, 1rem + 2vw, 2.5rem);
-  border-top: 1px solid var(--line);
-}
-.gx__sig { display: grid; gap: .35rem; min-width: min(100%, 16rem); }
-.gx__sig-line { display: block; height: 2px; background: var(--navy); margin-bottom: .6rem; width: 100%; transform-origin: left; }
-.gx__sig-name { font: 800 1.6rem/1 var(--f-display); text-transform: uppercase; color: var(--navy); letter-spacing: .01em; }
-.gx__sig-role { font: 700 .6875rem/1.3 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
-.gx__cta { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.5rem; }
-.gx__tel { color: var(--navy); }
-.gx__tel:hover { color: var(--red); }
+.gx__lead { margin-top: clamp(1.25rem, .9rem + 1vw, 1.75rem); display: grid; gap: .6rem; padding-left: 1.1rem; border-left: 3px solid var(--red); }
+.gx__lead p { font: 500 clamp(1.05rem, .98rem + .3vw, 1.2rem)/1.5 var(--f-body); color: var(--ink); text-wrap: pretty; max-width: 62ch; }
+
+.gx__cols { display: grid; gap: 1.25rem clamp(1.5rem, 3vw, 2.75rem); margin-top: clamp(1.25rem, .9rem + 1vw, 1.75rem); }
+.gx__col { padding-top: .9rem; border-top: 1px solid var(--line-strong); }
+.gx__col p { color: var(--ink-2); font-size: .9375rem; line-height: 1.6; text-wrap: pretty; margin-top: .6rem; }
 
 /* ---------- Breakpoints ---------- */
-@media (min-width: 48em) {
+@media (min-width: 40em) {
   .gx__cols { grid-template-columns: 1fr 1fr; }
 }
-@media (max-width: 47.99em) {
-  .gx__top { grid-template-columns: 1fr; grid-template-areas: "seal" "h" "lead"; }
-  .gx__seal { --s: 8.5rem; margin-bottom: .5rem; }
-  .gx__h { max-width: none; }
-  .gx__sign { flex-direction: column; align-items: stretch; }
-  .gx__cta .btn { flex: 1 1 100%; }
-  .gx__cta { justify-content: center; }
+@media (min-width: 56em) {
+  .gx__paper { grid-template-columns: minmax(0, 5fr) minmax(0, 8fr); }
+  .gx__media { min-height: 100%; }
+}
+@media (max-width: 55.99em) {
+  .gx__media { aspect-ratio: 4 / 4.2; min-height: 0; }
+  .gx__media::before { top: auto; left: 0; width: auto; height: 6px;
+    background: linear-gradient(90deg, var(--red) 0 33.3%, var(--white) 33.3% 66.6%, var(--navy) 66.6%); }
+  .gx__sign { padding-right: clamp(1.25rem, .8rem + 1.6vw, 2rem); padding-bottom: calc(clamp(1.25rem, .8rem + 1.6vw, 2rem) + 6px); }
+}
+@media (max-width: 30em) {
+  .gx__meta { flex-direction: column; align-items: flex-start; gap: .55rem; letter-spacing: .08em; }
+  .gx__seal { --s: 6.5rem; }
+  .gx__h { font-size: clamp(2.3rem, 1.2rem + 6vw, 2.8rem); }
 }
 
 /* ---------- Motion (scroll-linked, progressive; off for reduced motion) ---------- */
 @media (prefers-reduced-motion: no-preference) {
-  .gx__seal { transition: transform .6s var(--ease-out); }
-  .gx__seal:hover { transform: scale(1.03); }
+  .gx__call-ic { transition: transform .3s var(--ease-out); }
+  .gx__call:hover .gx__call-ic { transform: rotate(-12deg) scale(1.06); }
+  .gx__pic img { transition: transform 1.2s var(--ease-out); }
+  .gx__media:hover .gx__pic img { transform: scale(1.03); }
   @supports (animation-timeline: view()) {
     .gx__ring { animation: gx-turn linear both; animation-timeline: view(); }
-    .gx__cert { animation: gx-rise linear both; animation-timeline: view(); animation-range: entry 0% cover 30%; }
-    .gx__meta::after { animation: gx-draw linear both; animation-timeline: view(); animation-range: entry 0% entry 60%; transform-origin: left; }
+    .gx__meta::after { animation: gx-draw linear both; animation-timeline: view(); animation-range: entry 10% entry 80%; transform-origin: left; }
   }
 }
-@keyframes gx-turn { from { transform: rotate(-60deg); } to { transform: rotate(60deg); } }
-@keyframes gx-rise { from { transform: translateY(3rem); opacity: .2; } to { transform: none; opacity: 1; } }
+@keyframes gx-turn { from { transform: rotate(-70deg); } to { transform: rotate(70deg); } }
 @keyframes gx-draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }

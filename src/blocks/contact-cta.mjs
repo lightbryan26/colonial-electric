@@ -1,4 +1,4 @@
-import { contactCta as c } from '../data/shared.mjs';
+import { contactCta as c, trustItems } from '../data/shared.mjs';
 import { site } from '../data/site.mjs';
 import { towns } from '../data/towns.mjs';
 import { icon } from '../partials/icons.mjs';
@@ -25,7 +25,7 @@ function photo(ctx, t, i, { first = false } = {}) {
   const base = ctx.asset('img/' + s.img);
   const set = ext => im.widths.map(w => `${base}-${w}.${ext} ${w}w`).join(', ');
   const sizes = '(min-width: 1024px) 34vw, (min-width: 640px) 60vw, 92vw';
-  return `<picture class="cc__img${first ? ' is-on' : ''}"><source type="image/webp" srcset="${set('webp')}" sizes="${sizes}"><img src="${base}-${im.widths.at(-1)}.${im.fallback}" srcset="${set(im.fallback)}" sizes="${sizes}" width="${im.w}" height="${im.h}" alt="${esc(s.name)}, ${esc(t.name)} MA" loading="lazy" decoding="async"></picture>`;
+  return `<picture class="cc__img${first ? ' is-on' : ''}"><source type="image/webp" srcset="${set('webp')}" sizes="${sizes}"><img src="${base}-${im.widths.at(-1)}.${im.fallback}" srcset="${set(im.fallback)}" sizes="${sizes}" width="${im.w}" height="${im.h}" alt="${esc(s.name)}, ${esc(t.name)} MA" loading="eager" fetchpriority="low" decoding="async"></picture>`;
 }
 
 function serviceArea(ctx, id) {
@@ -69,7 +69,8 @@ img.decode?img.decode().then(go,go):(img.onload=go)}
 r.querySelectorAll('[data-cc-town]').forEach(function(a){if(a.tagName!=='A')return;
 a.addEventListener('pointerenter',function(){clearTimeout(tm);tm=setTimeout(function(){show(a)},70)});
 a.addEventListener('pointerleave',function(){clearTimeout(tm)});a.addEventListener('focus',function(){show(a)})});
-if('IntersectionObserver' in window){r.classList.add('is-armed');var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){r.classList.add('is-in');io.disconnect()}},{threshold:.25,rootMargin:'0px 0px -8% 0px'});io.observe(r.querySelector('.cc__head'))}})();</script>`;
+var hd=r.querySelector('.cc__head');function inV(){var b=hd.getBoundingClientRect();return b.top<innerHeight*.9&&b.bottom>0}
+if(matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window)||inV()){r.classList.add('is-in')}else{var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){r.classList.add('is-in');io.disconnect()}},{threshold:0,rootMargin:'0px 0px -10% 0px'});io.observe(hd)}})();</script>`;
 
 export function contactCta(ctx, { id = '', cls = '', withTowns = false, button = c.button } = {}) {
   const hid = (id || 'cta') + '-h';
@@ -87,9 +88,9 @@ export function contactCta(ctx, { id = '', cls = '', withTowns = false, button =
         <a class="btn btn--red btn--lg cc__btn" href="${site.tel}">${icon('phone', { size: 18 })}${esc(button)}</a>
         <a class="cc__dial" href="${site.tel}" aria-label="Call Us Today! ${site.phone}"><span class="cc__dial-k">Call Us Today!</span><span class="cc__dial-n">${site.phone}</span></a>
       </div>
-      <ul class="cc__meta" role="list">
-        <li>${icon('clock', { size: 16 })}<span>${esc(site.hours)}</span></li>
-        <li>${icon('shield', { size: 16 })}<span>${esc(site.license)}</span></li>
+      <ul class="cc__meta" role="list" aria-label="Why homeowners trust us">
+        ${[trustItems[1], site.license, trustItems[0], trustItems[3]].map(t => `<li>${esc(t)}</li>`).join('')}
+        <li class="cc__hours">${icon('clock', { size: 15 })}<span>${esc(site.hours)}</span></li>
       </ul>
     </div>
     ${withTowns ? serviceArea(ctx, id || 'cta') : ''}
