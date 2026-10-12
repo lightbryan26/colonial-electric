@@ -183,10 +183,11 @@ function boltSection() {
     document.querySelectorAll('[data-pm-jump]').forEach(function (a) {
       a.addEventListener('click', function () { set(+a.getAttribute('data-pm-jump')); });
     });
-    if ('IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function (es) { es.forEach(function (en) { if (en.isIntersecting) { s.classList.add('pm-live'); io.disconnect(); } }); }, { threshold: .15 });
+    // Replay the charge when the bolt scrolls into view (the resting state is already charged, so it never hides content).
+    if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      var io = new IntersectionObserver(function (es) { es.forEach(function (en) { if (en.isIntersecting) { io.disconnect(); stage.classList.add('pm-reset'); void stage.offsetWidth; requestAnimationFrame(function () { stage.classList.remove('pm-reset'); }); } }); }, { threshold: .3 });
       io.observe(stage);
-    } else s.classList.add('pm-live');
+    }
   })();
   </script>
 </section>`;

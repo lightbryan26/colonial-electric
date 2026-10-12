@@ -52,7 +52,7 @@ function inline(ctx, s, name) {
   o = o.replace(/([a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,})/gi, '<a href="mailto:$1">$1</a>');
   o = o.replace(/http:\/\/colonial-electric\.com\//g, `<a href="${ctx.r('')}">http://colonial-electric.com/</a>`);
   o = o.replace(/www\.allaboutcookies\.org/g, '<a href="https://www.allaboutcookies.org" rel="noopener" target="_blank">www.allaboutcookies.org</a>');
-  if (name === 'terms') o = o.replace(/our Privacy Policy/g, `our <a href="${ctx.r('privacy/')}">Privacy Policy</a>`);
+  if (name === 'terms') o = o.replace(/our([ \u00a0])Privacy Policy/g, `our$1<a href="${ctx.r('privacy/')}">Privacy Policy</a>`);
   o = o.replace(/\b(STOP|HELP)\b/g, '<b class="lg-kw">$1</b>');
   return o;
 }

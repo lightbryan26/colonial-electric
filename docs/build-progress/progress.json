@@ -21,29 +21,32 @@
    "updated": "2026-10-12T08:46:45.450Z"
   },
   "home-services": {
-   "status": "critiquing",
+   "status": "lost",
    "round": 1,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:46:02.632Z",
+   "note": "Critic picked the reference. Biggest gap: A sticky nav bar that collides with and covers the service grid mid-viewport, a visible shipped bug. On top of that there is zero photography, so the page reads as a cold, empty template grid instead of a trusted local crew.",
+   "updated": "2026-10-12T08:50:22.916Z",
    "shot": "shots/home-services-r1.png"
   },
   "home-why": {
-   "status": "critiquing",
+   "status": "won",
    "round": 1,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:45:14.763Z"
+   "note": "Critic picked ours blind (clear). Remaining gap: Craft and layering. The header has no backdrop and covers the first numbered item (the '01' and its icon are cut off under the nav). With no photography, the section depends on type alone, so any coll",
+   "updated": "2026-10-12T08:50:07.406Z",
+   "shot": "shots/home-why-r1.png"
   },
   "block-reviews": {
-   "status": "critiquing",
+   "status": "won",
    "round": 1,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:45:45.259Z"
+   "note": "Critic picked ours blind (clear). Remaining gap: The block gives no conversion path. The best social proof on the page, a featured quote whose opening is also hidden under the sticky nav, ends in a lopsided masonry wall with no 'Call (781) 287-8729 ",
+   "updated": "2026-10-12T08:50:16.746Z",
+   "shot": "shots/block-reviews-r1.png"
   },
   "home-faqs": {
-   "status": "critiquing",
+   "status": "won",
    "round": 1,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:46:11.516Z"
+   "note": "Critic picked ours blind (clear). Remaining gap: The fixed/sticky nav bar overlaps the first FAQ item and cuts its question title off mid-word. On a trust-driven page, that reads as a broken site.",
+   "updated": "2026-10-12T08:50:29.130Z",
+   "shot": "shots/home-faqs-r1.png"
   },
   "home-about": {
    "status": "critiquing",
@@ -52,10 +55,10 @@
    "updated": "2026-10-12T08:46:19.433Z"
   },
   "home-membership": {
-   "status": "critiquing",
+   "status": "lost",
    "round": 1,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:45:53.480Z",
+   "note": "Won blind but failed QA: The perk labels on the Flash Pass card are not verbatim copy. 'Front-of-the-Line Pass', 'After-Hours Emergency Assistance', 'Waived Diagnostic & Service Fees' and 'Annual Whole Home Electrical Safety Inspections' do not appear in source/pages/premium-membership.md or in brie",
+   "updated": "2026-10-12T08:50:27.250Z",
    "shot": "shots/home-membership-r1.png"
   },
   "home-process": {
@@ -90,10 +93,11 @@
    "shot": "shots/footer-r1.png"
   },
   "tpl-service": {
-   "status": "building",
+   "status": "critiquing",
    "round": 1,
-   "note": "Data-driven service template: photo hero, verbatim sections, sticky aside, FAQ, CTA for all 13 services",
-   "updated": "2026-10-12T08:35:38.462Z"
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T08:50:15.020Z",
+   "shot": "shots/tpl-service-r1.png"
   },
   "tpl-town": {
    "status": "critiquing",
@@ -132,22 +136,22 @@
    "updated": "2026-10-12T08:41:41.750Z"
   },
   "page-we-offer-financing": {
-   "status": "building",
+   "status": "critiquing",
    "round": 1,
-   "note": "Financing page: photo hero, verbatim brief §7 text, how-it-works steps, CTA + shared blocks",
-   "updated": "2026-10-12T08:42:00.641Z"
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T08:48:45.626Z"
   },
   "page-leave-us-a-review": {
-   "status": "building",
+   "status": "critiquing",
    "round": 1,
-   "note": "Build review page: photo hero, platform cards (Google/Yelp/Facebook etc. from live page), verbatim copy, brand styling",
-   "updated": "2026-10-12T08:42:35.914Z"
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T08:49:07.656Z"
   },
   "page-calendar": {
-   "status": "done",
+   "status": "critiquing",
    "round": 1,
-   "note": "Calendar page: display hero + van photo, lifted crest booking panel with live GHL widget, founder aside, noscript/JS-failure fallback",
-   "updated": "2026-10-12T08:45:46.679Z"
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T08:48:31.216Z"
   },
   "page-terms": {
    "status": "building",
@@ -157,6 +161,82 @@
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T08:50:29.130Z",
+   "piece": "home-faqs",
+   "status": "won",
+   "round": 1,
+   "note": "Critic picked ours blind (clear). Remaining gap: The fixed/sticky nav bar overlaps the first FAQ item and cuts its question title off mid-word. On a trust-driven page, that reads as a broken site.",
+   "shot": "shots/home-faqs-r1.png"
+  },
+  {
+   "t": "2026-10-12T08:50:27.250Z",
+   "piece": "home-membership",
+   "status": "lost",
+   "round": 1,
+   "note": "Won blind but failed QA: The perk labels on the Flash Pass card are not verbatim copy. 'Front-of-the-Line Pass', 'After-Hours Emergency Assistance', 'Waived Diagnostic & Service Fees' and 'Annual Whole Home Electrical Safety Inspections' do not appear in source/pages/premium-membership.md or in brie",
+   "shot": "shots/home-membership-r1.png"
+  },
+  {
+   "t": "2026-10-12T08:50:22.916Z",
+   "piece": "home-services",
+   "status": "lost",
+   "round": 1,
+   "note": "Critic picked the reference. Biggest gap: A sticky nav bar that collides with and covers the service grid mid-viewport, a visible shipped bug. On top of that there is zero photography, so the page reads as a cold, empty template grid instead of a trusted local crew.",
+   "shot": "shots/home-services-r1.png"
+  },
+  {
+   "t": "2026-10-12T08:50:16.746Z",
+   "piece": "block-reviews",
+   "status": "won",
+   "round": 1,
+   "note": "Critic picked ours blind (clear). Remaining gap: The block gives no conversion path. The best social proof on the page, a featured quote whose opening is also hidden under the sticky nav, ends in a lopsided masonry wall with no 'Call (781) 287-8729 ",
+   "shot": "shots/block-reviews-r1.png"
+  },
+  {
+   "t": "2026-10-12T08:50:15.020Z",
+   "piece": "tpl-service",
+   "status": "critiquing",
+   "round": 1,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:50:07.406Z",
+   "piece": "home-why",
+   "status": "won",
+   "round": 1,
+   "note": "Critic picked ours blind (clear). Remaining gap: Craft and layering. The header has no backdrop and covers the first numbered item (the '01' and its icon are cut off under the nav). With no photography, the section depends on type alone, so any coll",
+   "shot": "shots/home-why-r1.png"
+  },
+  {
+   "t": "2026-10-12T08:49:07.656Z",
+   "piece": "page-leave-us-a-review",
+   "status": "critiquing",
+   "round": 1,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:48:45.626Z",
+   "piece": "page-we-offer-financing",
+   "status": "critiquing",
+   "round": 1,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:48:39.082Z",
+   "piece": "tpl-service",
+   "status": "critiquing",
+   "round": 1,
+   "note": "Built all 13 service pages incl. outdoor variant: portrait crest hero, sticky ToC rail + drop-cap intro, numbered reason grid, van-photo Colonial block w/ step timeline, own trust/why/process/quote+towns/FAQ; 375/768/1440 checked",
+   "shot": "shots/tpl-service-r1.png"
+  },
+  {
+   "t": "2026-10-12T08:48:31.216Z",
+   "piece": "page-calendar",
+   "status": "critiquing",
+   "round": 1,
+   "note": "screenshots + QA"
+  },
   {
    "t": "2026-10-12T08:48:08.041Z",
    "piece": "page-contact-us",
@@ -563,5 +643,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T08:48:08.041Z"
+ "updated": "2026-10-12T08:50:29.130Z"
 }

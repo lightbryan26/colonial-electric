@@ -2,7 +2,7 @@
 // <base> tag, so every href from ctx.r() resolves from the site root at any depth. Styles: src/css/page-terms.css (.nf-*).
 import { site, mainNav } from '../data/site.mjs';
 import { icon } from '../partials/icons.mjs';
-import { esc, picture } from '../lib/html.mjs';
+import { esc } from '../lib/html.mjs';
 
 export function render(ctx) {
   const links = mainNav.filter(l => l.href);
@@ -17,7 +17,6 @@ export function render(ctx) {
     </div>
     <div class="nf__art" aria-hidden="true">
       <span class="nf__num">4<span class="nf__bolt">${icon('bolt', { size: 120 })}</span>4</span>
-      <div class="nf__seal">${picture(ctx, 'emblem', { alt: '', sizes: '160px', loading: 'eager' })}</div>
     </div>
   </div>
   <div class="sweep" aria-hidden="true"></div>
