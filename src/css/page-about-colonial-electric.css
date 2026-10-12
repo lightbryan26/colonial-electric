@@ -28,6 +28,16 @@
 }
 .ab-hero__h1 span { display: block; color: transparent; -webkit-text-stroke: 2px var(--white); paint-order: stroke fill; }
 @supports not (-webkit-text-stroke: 1px #000) { .ab-hero__h1 span { color: var(--white); } }
+/* The full rider lockup (brief §3: hero, footer and about) in its true colours: upright, uncropped, never wider than 320px.
+   Phone/tablet: beside the H1, bottom-aligned with "US". Desktop: a stamp at the top of the photo column. */
+.ab-hero__title { position: relative; }
+.ab-hero__mark { position: absolute; right: 0; bottom: 0; z-index: 2; width: min(30vw, 12rem); line-height: 0; pointer-events: none; }
+.ab-hero__mark img { display: block; width: 100%; height: auto; } /* no filter, blend or recolour on logo art */
+@media (min-width: 960px) {
+  .ab-hero__grid { position: relative; }
+  .ab-hero__title { position: static; }
+  .ab-hero__mark { top: 0; bottom: auto; right: var(--gutter); width: clamp(10rem, 2rem + 11vw, 15rem); }
+}
 .ab-hero__lic { display: inline-flex; align-items: center; gap: .55rem; margin-top: clamp(1.25rem, 1rem + 1vw, 2rem); color: var(--on-dark-2); }
 .ab-hero__lic .icon { color: var(--red-flag); }
 .ab-hero .btn-row { margin-top: clamp(1.5rem, 1rem + 1.5vw, 2.25rem); }
@@ -58,6 +68,7 @@
   .ab-hero__h1 { animation: ab-rise .9s var(--ease-out) both; }
   .ab-hero__h1 span { animation: ab-rise .9s var(--ease-out) .12s both; }
   .ab-tag { animation: ab-fade .6s var(--ease-out) .9s both; }
+  .ab-hero__mark { animation: ab-fade .7s var(--ease-out) .5s both; }
 }
 @keyframes ab-wipe { from { clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); } to { clip-path: var(--crest-lg); } }
 @keyframes ab-rise { from { opacity: 0; transform: translateY(.25em); } to { opacity: 1; transform: none; } }
@@ -163,7 +174,6 @@
 .ab-mv__card--mission { background: var(--navy-ink); color: var(--white); }
 .ab-mv__card--vision { background: var(--navy); color: var(--ink); }
 .ab-mv__card--vision::before { content: ""; position: absolute; inset: 2px; z-index: -1; background: var(--white); clip-path: polygon(calc(var(--cut-lg) - 1px) 0, calc(100% - var(--cut-lg) + 1px) 0, 100% calc(var(--cut-lg) - 1px), 100% calc(100% - var(--cut-lg) + 1px), calc(100% - var(--cut-lg) + 1px) 100%, calc(var(--cut-lg) - 1px) 100%, 0 calc(100% - var(--cut-lg) + 1px), 0 calc(var(--cut-lg) - 1px)); }
-.ab-mv__mark { position: absolute; right: -2.5rem; bottom: -3rem; width: min(60%, 320px); z-index: -1; opacity: .08; filter: grayscale(1) brightness(1.8); pointer-events: none; transform: rotate(-8deg); }
 .ab-mv__k { font: 700 var(--fs-eyebrow)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; color: var(--red-flag); }
 .ab-mv__card--vision .ab-mv__k { color: var(--red); }
 .ab-mv__card--mission .ab-mv__k { color: var(--red-on-dark); } /* 5.65:1 on navy-ink */

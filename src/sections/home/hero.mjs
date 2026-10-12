@@ -5,6 +5,7 @@ import { esc, picture } from '../../lib/html.mjs';
 
 // Homepage hero (brief §4.2). Copy verbatim; photo = real owner + wrapped van.
 // Motifs: van-wrap diagonal sweep (red → white → photo), red "ELECTRIC"-style banner, tone-on-tone star field.
+// Logo: the full rider lockup (brief §3 hero/footer/about) signs the founder caption card, in true colour on its white ground.
 export function render(ctx) {
   const [contact, services] = hero.ctas;
   return `<section id="s-hero" class="hero on-dark" aria-labelledby="s-hero-h">
@@ -26,7 +27,7 @@ export function render(ctx) {
         ${picture(ctx, 'owner-van', { alt: 'Founder Scott Hays standing in front of the red, white and blue Colonial Electric van', sizes: '(min-width: 1200px) 48vw, 100vw', priority: true, imgCls: 'hero__img' })}
       </div>
       <figcaption class="hero__cap">
-        <img class="hero__cap-mark" src="${ctx.asset('img/emblem-256.png')}" width="256" height="256" alt="" loading="lazy" decoding="async">
+        ${picture(ctx, 'logo-lockup', { cls: 'hero__cap-mark', alt: '', sizes: '(min-width: 1200px) 7.5rem, (min-width: 640px) 6rem, 4.75rem', loading: 'eager' })}
         <span class="hero__cap-txt"><span class="hero__cap-name">${esc(site.founder)}</span><span class="hero__cap-role">Founder, Colonial Electric</span></span>
       </figcaption>
     </figure>

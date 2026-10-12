@@ -155,13 +155,15 @@
   clip-path: var(--crest); --cut: 10px;
   box-shadow: var(--shadow);
 }
-.hero__cap-mark { width: 2.75rem; height: 2.75rem; flex: none; }
+/* the full rider lockup, true colour on the card's white ground (no filter, no crop, ≤320px) */
+.hero__cap-mark { display: block; width: 6rem; flex: none; line-height: 0; }
+.hero__cap-mark img { display: block; width: 100%; height: auto; }
 .hero__cap-txt { display: flex; flex-direction: column; gap: .3rem; }
 .hero__cap-name { font: 800 1.25rem/1 var(--f-display); text-transform: uppercase; letter-spacing: .01em; }
 .hero__cap-role { font: 700 .5625rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
 @media (min-width: 1200px) {
   .hero__cap { right: auto; left: calc(var(--sw-red) + var(--sw-white) + 2.5rem); bottom: 2.5rem; padding: .75rem 1.4rem .75rem .75rem; }
-  .hero__cap-mark { width: 3.25rem; height: 3.25rem; }
+  .hero__cap-mark { width: 7.5rem; }
   .hero__cap-name { font-size: 1.5rem; }
   .hero__cap-role { font-size: .625rem; }
 }
@@ -171,7 +173,7 @@
   .hero__eyebrow > span:last-child { padding-left: 0; border-left: 0; }
   .hero__ctas .btn { flex: 1 1 100%; }
   .hero__cap { padding: .45rem .9rem .45rem .45rem; bottom: .9rem; }
-  .hero__cap-mark { width: 2.25rem; height: 2.25rem; }
+  .hero__cap-mark { width: 4.75rem; }
   .hero__cap-name { font-size: 1.05rem; }
   .hero__cap-role { font-size: .5rem; }
 }

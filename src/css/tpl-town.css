@@ -132,7 +132,7 @@
 .tw-call__tel:hover { color: var(--white); text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 3px; }
 .tw-call__town { font: 600 var(--fs-lead)/1.4 var(--f-body); color: var(--on-dark-2); }
 .tw-call__btn { margin-top: .5rem; }
-.tw-call__badge img { width: clamp(6.5rem, 5rem + 4vw, 8.5rem); height: auto; margin-bottom: .5rem; filter: drop-shadow(0 6px 18px rgba(0,0,0,.35)); }
+.tw-call__badge img { width: clamp(6.5rem, 5rem + 4vw, 8.5rem); height: auto; margin-bottom: .5rem; } /* logo art: no filter (brief §3) */
 .tw-call__meta { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .75rem; margin-top: 1.25rem; color: var(--on-dark-3); font-size: .625rem; }
 .tw-call__sep { width: 4px; height: 4px; background: var(--red); }
 
