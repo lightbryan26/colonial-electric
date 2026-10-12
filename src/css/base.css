@@ -17,6 +17,11 @@
   --white: #FFFFFF;
   --paper: #F6F7F9;
 
+  /* The one red for TEXT/ICONS on dark grounds (brand-red hue 354°/75%, lifted to L64%).
+     5.65:1 on navy-ink, 5.17:1 on navy-2, 4.68:1 on navy, 3.95:1 on navy-3 (large/icons only there).
+     --red / --red-flag stay as fills (chips, rules, banners) on dark; never as small text there. */
+  --red-on-dark: #E85E6C;
+
   /* Derived neutrals (navy-tinted) */
   --navy-2: #0D1A30;            /* between ink and navy */
   --navy-3: #1A3050;            /* raised surface on navy */

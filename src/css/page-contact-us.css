@@ -8,7 +8,7 @@
 .cu-index__n { color: var(--red); font-variant-numeric: tabular-nums; }
 .cu-index__n::after { content: ""; display: inline-block; vertical-align: middle; width: 2.5rem; height: 1px; margin-left: .9rem; background: currentColor; opacity: .6; }
 .on-dark .cu-index { color: var(--on-dark-2); }
-.on-dark .cu-index__n { color: #FF6B6F; } /* 6.86:1 on --navy-ink (red-flag was 3.55:1) */
+.on-dark .cu-index__n { color: var(--red-on-dark); } /* 5.65:1 on --navy-ink (red-flag is 3.55:1) */
 
 /* Micro-labels on this page read at 12–13px minimum */
 .cu-hero .crumbs ol { font-size: .75rem; }

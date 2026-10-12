@@ -178,11 +178,25 @@
   "integrate": {
    "status": "building",
    "round": 1,
-   "note": "Pass 1.1: Leftover requests, stub cleanup, 404, header a11y",
-   "updated": "2026-10-12T11:16:27.181Z"
+   "note": "Pass 1.2: Brand: palette, logo art, typefaces",
+   "updated": "2026-10-12T11:30:14.152Z"
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T11:30:14.152Z",
+   "piece": "integrate",
+   "status": "building",
+   "round": 1,
+   "note": "Pass 1.2: Brand: palette, logo art, typefaces"
+  },
+  {
+   "t": "2026-10-12T11:29:49.224Z",
+   "piece": "integrate",
+   "status": "done",
+   "round": 1,
+   "note": "Pass 1.1 done: 7 request files closed (1 rejected: brief typo), 8 stub templates deleted and permanent-outdoor-lighting routed to service, dead blocks.css removed, 404 makes no stray requests, home 21-towns count removed, header call link named at 375, outdoor-lighting tabs fit at 375"
+  },
   {
    "t": "2026-10-12T11:16:27.181Z",
    "piece": "integrate",
@@ -1769,5 +1783,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T11:16:27.181Z"
+ "updated": "2026-10-12T11:30:14.152Z"
 }

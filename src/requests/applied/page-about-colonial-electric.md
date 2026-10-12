@@ -1,3 +1,15 @@
+<!-- integrator pass 1.1 2026-10-12 -->
+> **Integrator pass 1.1 2026-10-12**
+> - ALREADY DONE: round 4 #1. tools/progress.mjs already runs `fs.mkdirSync(dir + 'shots', { recursive: true })` before `copyFileSync`.
+> - ALREADY DONE: the page's own sticky-bar workaround is gone from src/css/page-about-colonial-electric.css (no `.callbar` rule left in the file or in docs/assets/site.css). Updated only the header comment. Checked at 375: the bar is hidden over the hero, visible after scrolling to y=1600, and hidden again back at the top.
+> - APPLIED: deleted the unused stub src/pages/about.mjs, which was a re-export of about-colonial-electric.mjs. src/data/pages.mjs routes to `about-colonial-electric`.
+
+# Requests from page-about-colonial-electric (round 4)
+
+1. **tools/progress.mjs / docs/build-progress/shots/** — the `shots/` folder under `docs/build-progress/` no longer exists, so `node tools/progress.mjs <piece> <status> <round> "<note>" <image>` crashes with ENOENT on `copyFileSync` and records nothing. Change: have progress.mjs `fs.mkdirSync(dir + 'shots', { recursive: true })` before copying (or recreate the folder). Why: builders cannot attach their blind composites to the progress page. Workaround used: posted this piece's statuses without the image argument.
+
+---
+<!-- earlier applied requests from this piece -->
 <!-- integrator pass 2026-10-12 -->
 > **Integrator pass 2026-10-12**
 > - ALREADY DONE: #1, src/data/pages.mjs routes about-colonial-electric/ to the about-colonial-electric template.

@@ -1,3 +1,10 @@
+<!-- integrator pass 1.1 2026-10-12 -->
+> **Integrator pass 1.1 2026-10-12**
+> - ALREADY DONE: #0 routing and #2 tools/blind.py `H`.
+> - ALREADY DONE: #1. src/css/block-contact-form.css has no `cf-rise` or view() timeline on .cf-set/.cf-consent/.cf-actions. APPLIED as follow-up: deleted the now-dead page workaround (`.cu-form .cf-set … { opacity:1 }`, `animation-name: cu-cf-drift`, the reduced-motion reset and `@keyframes cu-cf-drift`) from src/css/page-contact-us.css. Fields render at full opacity in full-page captures at 1440 and 375.
+> - ALREADY DONE: #3. `.cf-photo picture` is styled and `.cf-trust` has `list-style: none` with inline icons. "24/7" appears in the built site only in docs/index.html (homepage FAQ 7 copy and its FAQPage JSON-LD).
+> - APPLIED: #4. In src/css/footer.css, `.site-footer__fact dt`, `.site-footer__h` and `.site-footer__all` changed from .6875rem to .75rem (12px), with letter-spacing set to .12em. Checked at 1440 and 375.
+
 <!-- integrator pass 2026-10-12 -->
 > **Integrator pass 2026-10-12 (file stays in src/requests/: has SKIPPED items)**
 > - ALREADY DONE: #0, src/data/pages.mjs routes contact-us/ to the contact-us template.

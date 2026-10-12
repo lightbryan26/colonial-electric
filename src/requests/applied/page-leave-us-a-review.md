@@ -1,3 +1,9 @@
+<!-- integrator pass 1.1 2026-10-12 -->
+> **Integrator pass 1.1 2026-10-12**
+> - APPLIED: deleted the stub src/pages/review.mjs. Nothing in src/data/pages.mjs or src/ referenced it.
+> - ALREADY DONE: tools/blind.py `H` sits on its own line after the if/elif.
+> - NO CHANGE: the client flag (§11 item 6, Facebook review URL) is a note, not a code request.
+
 # Requests from page-leave-us-a-review
 
 ## RESOLVED (round 3)

@@ -8,7 +8,7 @@
 .pm-index__n { color: var(--red); display: inline-flex; align-items: center; }
 .pm-index__n::after { content: ""; width: 2.5rem; height: 1px; margin-left: .9rem; background: currentColor; opacity: .6; }
 .pm-index--dark { color: var(--on-dark-3); }
-.pm-index--dark .pm-index__n { color: #E8545A; } /* 5.3:1 on navy-ink (red-flag is only 3.55:1 at this size) */
+.pm-index--dark .pm-index__n { color: var(--red-on-dark); } /* 5.65:1 on navy-ink (red-flag is only 3.55:1 at this size) */
 
 /* ---------- 1. Hero ---------- */
 .pm-hero { position: relative; overflow: hidden; padding-top: clamp(2.25rem, 1.25rem + 3vw, 4.5rem); padding-bottom: clamp(7rem, 5rem + 6vw, 10rem); background: var(--navy-ink); }
@@ -222,10 +222,10 @@
 }
 .pm-node:hover .pm-node__dot { transform: scale(1.08); }
 .pm-node:hover .pm-node__t { color: var(--white); }
-.pm-node.is-done .pm-node__dot { background: var(--white); color: #A51726; box-shadow: 0 0 0 1.5px var(--white), 0 0 0 6px rgba(8, 16, 32, .35); }
+.pm-node.is-done .pm-node__dot { background: var(--white); color: var(--red-deep); box-shadow: 0 0 0 1.5px var(--white), 0 0 0 6px rgba(8, 16, 32, .35); }
 .pm-node[aria-selected="true"] .pm-node__dot { background: var(--white); color: var(--navy); transform: scale(1.12); box-shadow: 0 0 0 1.5px var(--white), 0 0 0 7px rgba(191, 27, 44, .55); }
 .pm-node[aria-selected="true"] .pm-node__lead { background: var(--white); }
-.pm-node[aria-selected="true"] .pm-node__lead::after { background: #E8545A; opacity: 1; }
+.pm-node[aria-selected="true"] .pm-node__lead::after { background: var(--red-on-dark); opacity: 1; }
 .pm-node[aria-selected="true"] .pm-node__t { color: var(--white); }
 .pm-node:focus-visible { outline: none; }
 .pm-node:focus-visible .pm-node__dot { outline: 3px solid var(--white); outline-offset: 6px; }
@@ -276,7 +276,7 @@
 .pm-card__lead { display: block; margin-bottom: .35rem; font: 500 clamp(1.25rem, 1.1rem + .5vw, 1.5rem)/1.4 var(--f-body); color: var(--white); }
 /* the rest of the verbatim paragraph, one sentence per row (same <p>, same words) */
 .pm-card__pt { display: grid; grid-template-columns: 1.5rem minmax(0, 1fr); gap: .85rem; align-items: start; padding-top: .8rem; margin-top: .8rem; border-top: 1px solid var(--line-dark); }
-.pm-card__tick { display: grid; place-items: center; width: 1.5rem; height: 1.5rem; margin-top: .15rem; border-radius: 50%; background: rgba(232, 84, 90, .16); color: #F07C80; }
+.pm-card__tick { display: grid; place-items: center; width: 1.5rem; height: 1.5rem; margin-top: .15rem; border-radius: 50%; background: rgba(191, 27, 44, .18); color: var(--red-on-dark); }
 .pm-card__nav { display: none; margin-top: auto; padding: 0 clamp(1.25rem, .75rem + 2vw, 2.75rem) clamp(1.25rem, 1rem + 1vw, 2rem); }
 .pm-js .pm-card__nav { display: block; }
 .pm-card__next {
@@ -285,7 +285,7 @@
 }
 .pm-card__next .label-wide { color: var(--on-dark-2); font-size: .6875rem; }
 .pm-card__next-t { flex: 1 1 12rem; font: 800 1.25rem/1.05 var(--f-display); text-transform: uppercase; letter-spacing: .01em; }
-.pm-card__next .icon { flex: none; color: #E8545A; transition: transform var(--dur) var(--ease-out); }
+.pm-card__next .icon { flex: none; color: var(--red-on-dark); transition: transform var(--dur) var(--ease-out); }
 .pm-card__next:hover .icon { transform: translateX(4px); }
 .pm-card__next:hover .pm-card__next-t { text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: 2px; }
 .pm-card__next:focus-visible { outline: 3px solid var(--white); outline-offset: 4px; }
@@ -294,7 +294,7 @@
 /* Join row under the bolt (desktop: bottom of the left column) */
 .pm-bolt__join { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line-dark-strong); align-self: end; }
 .pm-bolt__tel { display: inline-flex; align-items: center; gap: .6rem; font: 700 1.375rem/1 var(--f-wide); font-stretch: 112%; color: var(--white); text-decoration: none; }
-.pm-bolt__tel .icon { color: #E8545A; }
+.pm-bolt__tel .icon { color: var(--red-on-dark); }
 .pm-bolt__tel:hover { text-decoration: underline; text-underline-offset: .2em; }
 
 /* ---------- 3b. Shared guarantee block, on this page only (#pm-guarantee): one readable column

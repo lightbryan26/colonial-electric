@@ -34,7 +34,7 @@
   margin-top: clamp(1.1rem, .9rem + .8vw, 1.5rem);
   font: 800 clamp(1.85rem, 1.3rem + 2vw, 3.1rem)/1 var(--f-display); text-transform: uppercase; letter-spacing: .005em; max-width: 22ch; text-wrap: balance;
 }
-.sv-hero__h2 em { font-style: normal; color: #E0414A; }
+.sv-hero__h2 em { font-style: normal; color: var(--red-on-dark); }
 .sv-hero__lead { max-width: 60ch; color: rgba(255, 255, 255, .9); font-size: clamp(1.0625rem, 1rem + .2vw, 1.125rem); line-height: 1.65; text-wrap: pretty; }
 .sv-hero__lead-1 { display: block; margin-bottom: .7rem; color: var(--white); font-size: var(--fs-lead); font-weight: 500; line-height: 1.45; }
 .sv-hero__ctas { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
@@ -177,7 +177,7 @@
 .sv-cat__inc--s .sv-cat__ul { margin-top: 0; }
 .sv-cat__ul li { display: flex; gap: .75rem; align-items: baseline; padding: .7rem 0; border-bottom: 1px solid var(--line-dark); font-size: clamp(1.0625rem, 1.02rem + .15vw, 1.125rem); line-height: 1.5; color: rgba(255, 255, 255, .94); text-wrap: pretty; }
 .sv-cat__ul li:first-child { border-top: 1px solid var(--line-dark); }
-.sv-cat__b { flex: none; width: .6rem; height: auto; color: #FF6B72; transform: translateY(.1em); }
+.sv-cat__b { flex: none; width: .6rem; height: auto; color: var(--red-on-dark); transform: translateY(.1em); }
 @media (min-width: 1200px) {
   .sv-cat:first-child .sv-cat__ul { grid-template-columns: 1fr 1fr; column-gap: 2rem; }
   .sv-cat:first-child .sv-cat__ul li:nth-child(2) { border-top: 1px solid var(--line-dark); }
@@ -192,8 +192,8 @@
 .sv-cat__links { border-bottom: 1px solid var(--line-dark); }
 .sv-cat__links li { border-top: 1px solid var(--line-dark); }
 .sv-cat__links a { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: .95rem 0; text-decoration: none; font: 700 .8125rem/1.25 var(--f-wide); font-stretch: 125%; letter-spacing: .08em; text-transform: uppercase; color: var(--white); transition: color .2s, padding .3s var(--ease-out); }
-.sv-cat__links .icon { flex: none; color: #FF6B72; transition: transform .3s var(--ease-out); }
-.sv-cat__links a:hover { color: #FF8A90; padding-left: .4rem; }
+.sv-cat__links .icon { flex: none; color: var(--red-on-dark); transition: transform .3s var(--ease-out); }
+.sv-cat__links a:hover { color: var(--white); padding-left: .4rem; text-decoration: underline; text-decoration-color: var(--red-on-dark); text-decoration-thickness: 2px; text-underline-offset: .25em; }
 .sv-cat__links a:hover .icon { transform: translate(3px, -3px); }
 
 /* ---------- Catalogue (12 cards + Permanent Outdoor Lighting) ---------- */
@@ -221,7 +221,7 @@
 .sv-card a:hover::before, .sv-card a:focus-visible::before { transform: none; }
 .sv-card a:hover::after, .sv-card a:focus-visible::after { transform: none; }
 .sv-card a:hover .sv-card__ic, .sv-card a:focus-visible .sv-card__ic { background: var(--red); }
-.sv-card a:hover .sv-card__n, .sv-card a:focus-visible .sv-card__n { color: #FF6B72; }
+.sv-card a:hover .sv-card__n, .sv-card a:focus-visible .sv-card__n { color: var(--red-on-dark); }
 .sv-card a:hover .sv-card__t, .sv-card a:focus-visible .sv-card__t { color: var(--white); }
 .sv-card a:hover .sv-card__p, .sv-card a:focus-visible .sv-card__p { color: rgba(255, 255, 255, .88); }
 .sv-card a:hover .sv-card__go, .sv-card a:focus-visible .sv-card__go { color: var(--white); }
@@ -309,7 +309,7 @@
 
 /* ---------- Hero rating line (verbatim "5-Star Rated Electrician on Google") ---------- */
 .sv-rating { display: inline-flex; align-items: center; gap: .75rem; margin-top: 1.5rem; padding: .55rem 1rem .55rem .75rem; border: 1px solid var(--line-dark-strong); background: rgba(255,255,255,.04); }
-.sv-rating__stars { display: inline-flex; gap: 2px; color: #F5B323; }
+.sv-rating__stars { display: inline-flex; gap: 2px; color: var(--white); } /* white on navy, matching .hero__stars; §3: no yellow/gold */
 .sv-rating__stars svg { width: 1rem; height: 1rem; }
 .sv-rating__t { font: 700 .75rem/1.2 var(--f-wide); font-stretch: 125%; letter-spacing: .1em; text-transform: uppercase; color: var(--white); }
 

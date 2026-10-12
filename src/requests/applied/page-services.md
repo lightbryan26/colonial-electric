@@ -1,3 +1,19 @@
+<!-- integrator pass 1.1 2026-10-12 -->
+> **Integrator pass 1.1 2026-10-12**
+> - APPLIED: src/blocks/process.mjs prints `s.short` (Call / Share / Schedule / Relax) when `withBodies` is set. After this pass deleted the stubs outdoor-lighting.mjs and services-index.mjs, no page calls process(). services.mjs only imports quoteBlock, so this change has no visible effect today.
+
+# Request from page-services (round 5)
+
+File: src/blocks/process.mjs, line 8
+Change: `<h3 class="step__t">${esc(s.title)}</h3>`  ->  `<h3 class="step__t">${esc(withBodies ? s.short : s.title)}</h3>`
+Why: QA round 4 found the shared block prints the homepage step titles (Give Us a Call / Share Your Concerns /
+Schedule An Appointment / Sit Back & Relax) wherever it is called with withBodies. services.md and brief 5.9 name the
+steps Call / Share / Schedule / Relax. /services/ no longer uses this block (src/pages/services.mjs renders its own
+booking section with s.short), but src/pages/outdoor-lighting.mjs and src/pages/services-index.mjs still call
+process(ctx, { withBodies: true }) and would show the wrong titles if routed.
+
+---
+<!-- earlier applied requests from this piece -->
 <!-- integrator pass 2026-10-12 -->
 > **Integrator pass 2026-10-12**
 > - ALREADY DONE: src/data/pages.mjs routes services/ to the services template.
