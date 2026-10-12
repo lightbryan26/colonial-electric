@@ -85,10 +85,10 @@
    "shot": "shots/block-contact-cta-r2.png"
   },
   "block-contact-form": {
-   "status": "done",
+   "status": "critiquing",
    "round": 3,
-   "note": "24/7 Emergency support row confirmed gone (FAQ 7 is the only 24/7 on the page). Photo now decodes sync so it paints in full-page captures, not a blank navy panel. Tablet aside is now a 3:2 photo over the full-width direct line so facts stop wrapping. Photo sizes fixed for tablet.",
-   "updated": "2026-10-12T09:54:41.595Z",
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T10:01:21.345Z",
    "shot": "shots/block-contact-form-r2.png"
   },
   "footer": {
@@ -113,10 +113,10 @@
    "shot": "shots/tpl-town-r2.png"
   },
   "page-about-colonial-electric": {
-   "status": "critiquing",
-   "round": 3,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T09:48:42.860Z",
+   "status": "building",
+   "round": 4,
+   "note": "Remove callbar workaround, fix on-dark index contrast and pillar numeral column, raise body text to 17px darker ink, tighten bio with pull quote, add real job photo row",
+   "updated": "2026-10-12T10:01:57.538Z",
    "shot": "shots/page-about-colonial-electric-r2.png"
   },
   "page-services": {
@@ -177,6 +177,27 @@
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T10:01:57.538Z",
+   "piece": "page-about-colonial-electric",
+   "status": "building",
+   "round": 4,
+   "note": "Remove callbar workaround, fix on-dark index contrast and pillar numeral column, raise body text to 17px darker ink, tighten bio with pull quote, add real job photo row"
+  },
+  {
+   "t": "2026-10-12T10:01:57.460Z",
+   "piece": "page-about-colonial-electric",
+   "status": "lost",
+   "round": 3,
+   "note": "Won blind but failed QA: [BLOCKER, brief §9 click-to-call sticky bar on every page and §9 consistency] File: src/css/page-about-colonial-electric.css, lines 192-208, the ’sticky-bar workaround’. Line 195 always hides .callbar at 767px and below (transform: translateY(110%); visibility: hidden). Only the @supports (animation)"
+  },
+  {
+   "t": "2026-10-12T10:01:21.345Z",
+   "piece": "block-contact-form",
+   "status": "critiquing",
+   "round": 3,
+   "note": "screenshots + QA"
+  },
   {
    "t": "2026-10-12T09:59:44.136Z",
    "piece": "page-we-offer-financing",
@@ -1264,5 +1285,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T09:59:44.136Z"
+ "updated": "2026-10-12T10:01:57.538Z"
 }
