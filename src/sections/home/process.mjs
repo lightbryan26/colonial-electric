@@ -31,7 +31,6 @@ export function render(ctx) {
         <p class="eyebrow">How It Works</p>
         <h2 class="h2 proc__h" id="s-process-h">A Booking Process That Feels Like a&nbsp;Breeze</h2>
       </div>
-      <p class="proc__count" aria-hidden="true"><span>01</span><i></i><span>04</span></p>
     </header>
     <ol class="proc__steps" role="list">${steps}
     </ol>

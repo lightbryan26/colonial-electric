@@ -18,12 +18,6 @@
   padding-bottom: clamp(1.25rem, .8rem + 1.2vw, 2rem);
 }
 .proc__h { margin-top: 1rem; max-width: 16ch; color: var(--white); font-size: var(--fs-h2-lg); font-weight: 900; line-height: .9; letter-spacing: -.01em; }
-.proc__count { padding-bottom: .35rem;
-  display: inline-flex; align-items: center; gap: .75rem;
-  font: 700 var(--fs-eyebrow)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; color: var(--on-dark-3);
-}
-.proc__count i { display: block; width: clamp(3rem, 2rem + 4vw, 7rem); height: 2px; background: linear-gradient(90deg, var(--red) 0 25%, var(--line-dark-strong) 25%); }
-.proc__count span:first-child { color: var(--white); }
 
 /* ---------- Step rows ---------- */
 .proc__steps { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--line-dark-strong); }

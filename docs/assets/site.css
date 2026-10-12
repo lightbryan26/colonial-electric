@@ -1436,16 +1436,13 @@ main:focus { outline: none; }
 
 /* ---- map (Google Business Profile embed) ----
    Phones/tablets: full width under the facts. 1280+: a third masthead column beside the phone + facts (facts go 2×2).
-   Frame = the badge crest: hairline keyline → navy mat → chamfered map, with a short red bar on the top edge.
+   Frame = the badge crest: hairline keyline → navy mat → chamfered map.
    The iframe's box is fixed by CSS (aspect-ratio, or the grid row at 1280+), so the lazy embed never shifts layout. */
 .site-footer__map { grid-column: 1 / -1; min-width: 0; }
 .site-footer__map .site-footer__h { margin-bottom: 1rem; }
 .site-footer__map-frame {
   --cut: 20px; position: relative; clip-path: var(--crest);
   padding: 1px; background: var(--line-dark-strong);
-}
-.site-footer__map-frame::after { /* red accent on the top edge, like the call box crest */
-  content: ""; position: absolute; top: 0; left: var(--cut); width: min(38%, 9rem); height: 3px; background: var(--red);
 }
 .site-footer__map-mat { --cut: 19px; position: relative; clip-path: var(--crest); padding: 6px; background: var(--navy); }
 .site-footer__map-mat iframe {
@@ -1887,6 +1884,9 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   .hero__photo        { left: calc(var(--sw-red) + var(--sw-white)); }
   .hero__sweep--red, .hero__sweep--white, .hero__photo { clip-path: polygon(var(--diag) 0, 100% 0, 100% 100%, 0 100%); }
   .hero__img { object-position: 84% 50%; }
+}
+@media (min-width: 1400px) and (max-width: 1540px) { /* keeps the van's web-address lettering fully out of frame, no stray fragment */
+  .hero__img { object-position: 92% 50%; }
 }
 
 /* caption — crest card */
@@ -2519,12 +2519,6 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   padding-bottom: clamp(1.25rem, .8rem + 1.2vw, 2rem);
 }
 .proc__h { margin-top: 1rem; max-width: 16ch; color: var(--white); font-size: var(--fs-h2-lg); font-weight: 900; line-height: .9; letter-spacing: -.01em; }
-.proc__count { padding-bottom: .35rem;
-  display: inline-flex; align-items: center; gap: .75rem;
-  font: 700 var(--fs-eyebrow)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; color: var(--on-dark-3);
-}
-.proc__count i { display: block; width: clamp(3rem, 2rem + 4vw, 7rem); height: 2px; background: linear-gradient(90deg, var(--red) 0 25%, var(--line-dark-strong) 25%); }
-.proc__count span:first-child { color: var(--white); }
 
 /* ---------- Step rows ---------- */
 .proc__steps { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--line-dark-strong); }

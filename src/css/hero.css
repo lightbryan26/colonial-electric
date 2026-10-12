@@ -145,6 +145,9 @@
   .hero__sweep--red, .hero__sweep--white, .hero__photo { clip-path: polygon(var(--diag) 0, 100% 0, 100% 100%, 0 100%); }
   .hero__img { object-position: 84% 50%; }
 }
+@media (min-width: 1400px) and (max-width: 1540px) { /* keeps the van's web-address lettering fully out of frame, no stray fragment */
+  .hero__img { object-position: 92% 50%; }
+}
 
 /* caption — crest card */
 .hero__cap {

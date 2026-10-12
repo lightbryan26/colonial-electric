@@ -89,16 +89,13 @@
 
 /* ---- map (Google Business Profile embed) ----
    Phones/tablets: full width under the facts. 1280+: a third masthead column beside the phone + facts (facts go 2×2).
-   Frame = the badge crest: hairline keyline → navy mat → chamfered map, with a short red bar on the top edge.
+   Frame = the badge crest: hairline keyline → navy mat → chamfered map.
    The iframe's box is fixed by CSS (aspect-ratio, or the grid row at 1280+), so the lazy embed never shifts layout. */
 .site-footer__map { grid-column: 1 / -1; min-width: 0; }
 .site-footer__map .site-footer__h { margin-bottom: 1rem; }
 .site-footer__map-frame {
   --cut: 20px; position: relative; clip-path: var(--crest);
   padding: 1px; background: var(--line-dark-strong);
-}
-.site-footer__map-frame::after { /* red accent on the top edge, like the call box crest */
-  content: ""; position: absolute; top: 0; left: var(--cut); width: min(38%, 9rem); height: 3px; background: var(--red);
 }
 .site-footer__map-mat { --cut: 19px; position: relative; clip-path: var(--crest); padding: 6px; background: var(--navy); }
 .site-footer__map-mat iframe {

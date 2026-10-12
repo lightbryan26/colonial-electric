@@ -957,5 +957,27 @@
    480
   ],
   "fallback": "jpg"
+ },
+ "services/permanent-outdoor-lighting": {
+  "w": 1536,
+  "h": 2048,
+  "widths": [
+   640,
+   960,
+   1280,
+   1536
+  ],
+  "fallback": "jpg"
+ },
+ "services/whole-house-wiring-or-rewiring": {
+  "w": 1536,
+  "h": 2048,
+  "widths": [
+   640,
+   960,
+   1280,
+   1536
+  ],
+  "fallback": "jpg"
  }
 }

@@ -65,3 +65,12 @@ These services have no real job photo yet and keep their drawn hero: permanent-o
 
 - The electrical-panel-upgrade, recessed-lighting and whole-home-battery-back-up heroes can each appear once more, as their homepage grid card.
 - The other homepage cards use the library photos above, so no hero photo repeats on the homepage.
+
+## Google Business Profile photos
+
+Two more real job photos come from Colonial's own Google Business Profile ("Colonial Electric inc", Weymouth MA, maps.google.com/?cid=16886290494525312563), downloaded at 1536x2048 from the profile's photo viewer (owner uploads, Aug 2026). No crop; EXIF orientation applied.
+
+| File | Shows | Use |
+|---|---|---|
+| services/permanent-outdoor-lighting.jpg | LED step lights set into the risers of a white deck stair | /permanent-outdoor-lighting/ hero |
+| services/whole-house-wiring-or-rewiring.jpg | New cable runs dropped into a breaker panel on a diamond-plate backboard | /whole-house-wiring-or-rewiring/ hero |

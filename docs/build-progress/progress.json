@@ -99,11 +99,11 @@
    "shot": "shots/footer-r1.png"
   },
   "tpl-service": {
-   "status": "critiquing",
+   "status": "won",
    "round": 10,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T19:41:57.924Z",
-   "shot": "shots/tpl-service-r11.png"
+   "note": "Critic picked ours blind (clear). Remaining gap: Below a strong hero, the page turns into walls of tiny, low-contrast grey text. The four-reason grid, the six-step process list and the intro paragraphs all use roughly 9-10px light body copy under very heavy condensed h",
+   "updated": "2026-10-12T19:52:39.410Z",
+   "shot": "shots/tpl-service-r10.jpg"
   },
   "tpl-town": {
    "status": "won",
@@ -183,10 +183,10 @@
    "shot": "shots/integrate-r2.png"
   },
   "homepage": {
-   "status": "critiquing",
-   "round": 3,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T19:41:59.546Z",
+   "status": "building",
+   "round": 4,
+   "note": "Remove Process fake pager (.proc__count markup+CSS), drop footer map-frame red accent ::after, add 1400-1540 hero object-position 92% to hide clipped livery lettering; rebuild and verify 1440/768/375",
+   "updated": "2026-10-12T19:54:44.881Z",
    "shot": "shots/homepage-r2.jpg"
   },
   "verify": {
@@ -211,6 +211,21 @@
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T19:54:44.881Z",
+   "piece": "homepage",
+   "status": "building",
+   "round": 4,
+   "note": "Remove Process fake pager (.proc__count markup+CSS), drop footer map-frame red accent ::after, add 1400-1540 hero object-position 92% to hide clipped livery lettering; rebuild and verify 1440/768/375"
+  },
+  {
+   "t": "2026-10-12T19:52:39.410Z",
+   "piece": "tpl-service",
+   "status": "won",
+   "round": 10,
+   "note": "Critic picked ours blind (clear). Remaining gap: Below a strong hero, the page turns into walls of tiny, low-contrast grey text. The four-reason grid, the six-step process list and the intro paragraphs all use roughly 9-10px light body copy under very heavy condensed h",
+   "shot": "shots/tpl-service-r10.jpg"
+  },
   {
    "t": "2026-10-12T19:41:59.546Z",
    "piece": "homepage",
@@ -2115,5 +2130,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T19:41:59.546Z"
+ "updated": "2026-10-12T19:54:44.881Z"
 }
