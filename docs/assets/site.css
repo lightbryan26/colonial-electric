@@ -4886,7 +4886,8 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 .lg-mtoc .lg-toc__list a { padding: .5rem 0; color: var(--ink-2); }
 
 /* ---------- Article ---------- */
-.lg-article { max-width: 43rem; min-width: 0; } /* ~68ch at the 18px desktop body size */
+.lg-article { max-width: 48rem; min-width: 0; }
+@media (min-width: 1100px) { .lg-article { max-width: 43rem; } } /* ~68ch at the 18px desktop body size */
 .lg-sec { --sec-pt: clamp(2rem, 1.4rem + 2vw, 3.25rem); position: relative; padding-block: var(--sec-pt) clamp(2rem, 1.4rem + 2vw, 3.25rem); border-top: 1px solid var(--line); scroll-margin-top: calc(var(--header-h) + 1rem); }
 .lg-sec:first-child { --sec-pt: 0px; border-top: 0; }
 .lg-sec:first-child .lg-sec__h { margin-top: 0; }

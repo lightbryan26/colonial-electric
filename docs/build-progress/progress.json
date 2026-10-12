@@ -148,11 +148,11 @@
    "shot": "shots/page-premium-membership-r4.jpg"
   },
   "page-we-offer-financing": {
-   "status": "critiquing",
+   "status": "won",
    "round": 5,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T10:58:35.299Z",
-   "shot": "shots/page-we-offer-financing-r5.png"
+   "note": "Critic picked ours blind (clear). Remaining gap: The hero's real photo is undersized. The Colonial truck/owner shot is a small tile in the right column, and the \"3 to 120 months\" financing card covers half of it, so the page's strongest trust image reads as a cramped collage. The microcopy is also very small",
+   "updated": "2026-10-12T11:01:57.933Z",
+   "shot": "shots/page-we-offer-financing-r5.jpg"
   },
   "page-leave-us-a-review": {
    "status": "won",
@@ -177,6 +177,14 @@
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T11:01:57.933Z",
+   "piece": "page-we-offer-financing",
+   "status": "won",
+   "round": 5,
+   "note": "Critic picked ours blind (clear). Remaining gap: The hero's real photo is undersized. The Colonial truck/owner shot is a small tile in the right column, and the \"3 to 120 months\" financing card covers half of it, so the page's strongest trust image reads as a cramped collage. The microcopy is also very small",
+   "shot": "shots/page-we-offer-financing-r5.jpg"
+  },
   {
    "t": "2026-10-12T10:58:35.299Z",
    "piece": "page-we-offer-financing",
@@ -1725,5 +1733,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T10:58:35.299Z"
+ "updated": "2026-10-12T11:01:57.933Z"
 }
