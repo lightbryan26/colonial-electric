@@ -6,6 +6,7 @@
 import { guarantee as g } from '../data/shared.mjs';
 import { icon } from '../partials/icons.mjs';
 import { esc, telHref } from '../lib/html.mjs';
+import { starRing } from '../lib/ring.mjs';
 
 // Split the verbatim H2 so the guarantee name can carry the accent; the text itself is unchanged.
 function headline(h2) {
@@ -15,13 +16,12 @@ function headline(h2) {
 }
 
 function seal(ctx, uid) {
-  const ring = 'Lifetime Craftsmanship Guarantee ★ Colonial Electric ★ ';
   return `<div class="gx__seal" aria-hidden="true">
         <svg class="gx__ring" viewBox="0 0 200 200" focusable="false">
           <defs><path id="${uid}-arc" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs>
           <circle cx="100" cy="100" r="98" class="gx__ring-o"/>
           <circle cx="100" cy="100" r="64" class="gx__ring-i"/>
-          <text><textPath href="#${uid}-arc" textLength="500" lengthAdjust="spacing">${esc(ring)}</textPath></text>
+          ${starRing({ href: `${uid}-arc`, cx: 100, cy: 100, r: 80, length: 500, phrases: ['Lifetime Craftsmanship Guarantee', 'Colonial Electric'], size: 4.2, lift: 4.3 })}
         </svg>
         <img class="gx__logo" src="${ctx.asset('img/logo-lockup-320.png')}" width="320" height="332" alt="" loading="eager" decoding="async">
       </div>`;

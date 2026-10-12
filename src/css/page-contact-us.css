@@ -43,7 +43,7 @@
   transition: background-color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
 }
 .cu-dial__digits {
-  font: 700 clamp(1.75rem, .95rem + 3.6vw, 3.6rem)/1 var(--f-wide); font-stretch: 125%; letter-spacing: -.005em;
+  font: 700 clamp(1.75rem, .95rem + 3.6vw, 3.6rem)/1 var(--f-wide); font-stretch: 125%; letter-spacing: var(--tel-track-lg);
   font-variant-numeric: tabular-nums; white-space: nowrap;
   background: linear-gradient(currentColor, currentColor) 0 100% / 0 2px no-repeat; padding-bottom: .12em;
   transition: background-size .5s var(--ease-out);
@@ -164,6 +164,7 @@
 .cu-card__v { margin-top: .75rem; font: 500 1.0625rem/1.55 var(--f-body); font-style: normal; color: var(--ink-2); overflow-wrap: anywhere; }
 .cu-card__v--email { color: var(--navy); }
 .cu-card__v--tel a, .cu-card__v--hours { font: 700 1.25rem/1.3 var(--f-wide); font-stretch: 125%; letter-spacing: .01em; color: var(--navy); text-decoration: none; }
+.cu-card__v--tel a { letter-spacing: var(--tel-track); white-space: nowrap; }
 .cu-card__v--tel a:hover { color: var(--red); }
 .cu-card__act {
   display: inline-flex; align-items: center; gap: .5rem; margin-top: auto; padding-top: 1.25rem;

@@ -102,7 +102,7 @@
 @keyframes ring { 0%, 86%, 100% { transform: rotate(0); } 88% { transform: rotate(-14deg); } 90% { transform: rotate(12deg); } 92% { transform: rotate(-10deg); } 94% { transform: rotate(6deg); } }
 .hcall__txt { display: flex; flex-direction: column; gap: .3rem; }
 .hcall__label { font: 700 .625rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--on-dark-3); }
-.hcall__num { font: 700 1.0625rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .02em; white-space: nowrap; }
+.hcall__num { font: 700 1.0625rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: var(--tel-track); white-space: nowrap; }
 .hcall:hover .hcall__num { text-decoration: underline; text-decoration-color: var(--red-flag); text-underline-offset: .25em; }
 .hflash .icon { color: var(--red-flag); }
 
@@ -185,7 +185,7 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   .callbar__call:active { background: var(--red-deep); }
   .callbar__ic { display: grid; place-items: center; width: 2.4rem; height: 2.4rem; background: rgba(255,255,255,.16); clip-path: polygon(7px 0, calc(100% - 7px) 0, 100% 7px, 100% calc(100% - 7px), calc(100% - 7px) 100%, 7px 100%, 0 calc(100% - 7px), 0 7px); }
   .callbar__label { display: block; font: 700 .625rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; opacity: .85; }
-  .callbar__num { display: block; margin-top: .3rem; white-space: nowrap; font: 700 1rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .02em; }
+  .callbar__num { display: block; margin-top: .3rem; white-space: nowrap; font: 700 1rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: var(--tel-track); }
   .callbar__alt { padding: 0 1.25rem; font: 700 .6875rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .1em; text-transform: uppercase; border-left: 1px solid var(--line-dark); }
   html.menu-open .callbar { display: none; }
 }

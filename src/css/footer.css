@@ -46,7 +46,7 @@
 .site-footer__eyebrow::before { content: ""; width: 1.75rem; height: 3px; background: linear-gradient(90deg, var(--red) 0 60%, var(--white) 60% 72%, var(--blue-bright) 72%); }
 .site-footer__phone {
   position: relative; display: inline-flex; align-items: flex-start; gap: .35rem;
-  font: 900 min(12vw, 6.25rem)/.86 var(--f-display); letter-spacing: -.005em;
+  font: 700 min(7vw, 3.65rem)/1 var(--f-wide); font-stretch: 125%; letter-spacing: var(--tel-track-lg); /* §3 phone face */
   color: var(--white); text-decoration: none; white-space: nowrap; font-variant-numeric: tabular-nums;
   padding-bottom: .12em;
 }
@@ -78,7 +78,7 @@
 .site-footer__fact a { color: var(--white); text-decoration: underline; text-decoration-color: var(--line-dark-strong); text-underline-offset: .3em; transition: text-decoration-color var(--dur); }
 .site-footer__fact a:hover { text-decoration-color: var(--red-flag); }
 
-@media (min-width: 560px) { .site-footer__mast { grid-template-columns: auto 1fr; } .site-footer__phone { font-size: min(9.5vw, 6.25rem); } }
+@media (min-width: 560px) { .site-footer__mast { grid-template-columns: auto 1fr; } .site-footer__phone { font-size: min(5.5vw, 3.65rem); } }
 @media (min-width: 640px) {
   .site-footer__facts { grid-template-columns: 1fr 1fr; column-gap: 2rem; }
 }

@@ -47,9 +47,13 @@ function parse(name) {
   return sections;
 }
 
+/** U+2011 (non-breaking hyphen, in the source's "Opt‑In"/"Opt‑Out") is not in Barlow/Archivo and falls back to a system
+ *  font. Show it as an ordinary hyphen and keep the word unbroken, which is what the character was for. Takes escaped HTML. */
+const nbh = html => html.replace(/[^\s<>"]*\u2011[^\s<>"]*/g, w => `<span class="nowrap">${w.replace(/\u2011/g, '-')}</span>`);
+
 /** Escape + add links/emphasis on words that are already there. */
 function inline(ctx, s, name) {
-  let o = esc(s);
+  let o = nbh(esc(s));
   o = o.replace(/([a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,})/gi, '<a href="mailto:$1">$1</a>');
   o = o.replace(/http:\/\/colonial-electric\.com\//g, `<a href="${ctx.r('')}">http://colonial-electric.com/</a>`);
   o = o.replace(/www\.allaboutcookies\.org/g, '<a href="https://www.allaboutcookies.org" rel="noopener" target="_blank">www.allaboutcookies.org</a>');
@@ -61,17 +65,17 @@ function inline(ctx, s, name) {
 /** "Lead phrase. rest" / "Lead: rest" list items get a bold lead-in (privacy §2, §4). */
 function listItem(ctx, s, name) {
   const m = s.match(/^([A-Z][^.:]{2,48}[.:])\s(.+)$/);
-  if (m && /^[A-Z]/.test(m[2])) return `<li><strong>${esc(m[1])}</strong> ${inline(ctx, m[2], name)}</li>`;
+  if (m && /^[A-Z]/.test(m[2])) return `<li><strong>${nbh(esc(m[1]))}</strong> ${inline(ctx, m[2], name)}</li>`;
   return `<li>${inline(ctx, s, name)}</li>`;
 }
 
 function block(ctx, b, name) {
   switch (b.t) {
     case 'p': return `<p>${inline(ctx, b.text, name)}</p>`;
-    case 'h3': return `<h3 class="lg-h3">${esc(b.text)}</h3>`;
+    case 'h3': return `<h3 class="lg-h3">${nbh(esc(b.text))}</h3>`;
     case 'ul': return `<ul class="lg-list" role="list">${b.items.map(i => listItem(ctx, i, name)).join('')}</ul>`;
-    case 'dl': return `<dl class="lg-defs">${b.items.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${inline(ctx, v, name)}</dd></div>`).join('')}</dl>`;
-    case 'note': return `<aside class="lg-note"><span class="lg-note__icon">${icon('shield', { size: 20 })}</span><p><strong>${esc(b.k)}</strong> ${inline(ctx, b.v, name)}</p></aside>`;
+    case 'dl': return `<dl class="lg-defs">${b.items.map(([k, v]) => `<div><dt>${nbh(esc(k))}</dt><dd>${inline(ctx, v, name)}</dd></div>`).join('')}</dl>`;
+    case 'note': return `<aside class="lg-note"><span class="lg-note__icon">${icon('shield', { size: 20 })}</span><p><strong>${nbh(esc(b.k))}</strong> ${inline(ctx, b.v, name)}</p></aside>`;
   }
   return '';
 }
@@ -96,7 +100,7 @@ export function legalPage(ctx, name) {
     { '@type': 'ListItem', position: 2, name: doc.label, item: site.origin + '/' + doc.href },
   ] }];
 
-  const tocItems = sections.map(s => `<li><a href="#${s.id}" data-lg-link><span class="lg-toc__n">${pad(s.n)}</span><span class="lg-toc__t">${esc(s.title)}</span></a></li>`).join('');
+  const tocItems = sections.map(s => `<li><a href="#${s.id}" data-lg-link><span class="lg-toc__n">${pad(s.n)}</span><span class="lg-toc__t">${nbh(esc(s.title))}</span></a></li>`).join('');
 
   const hero = `<section class="lg-hero on-dark stars-bg">
   <div class="container lg-hero__grid">
@@ -126,7 +130,7 @@ export function legalPage(ctx, name) {
 </section>`;
 
   const body = sections.map(s => `<section class="lg-sec" id="${s.id}" aria-labelledby="${s.id}-h" data-lg-sec>
-  <h2 class="lg-sec__h" id="${s.id}-h"><span class="lg-sec__n" aria-hidden="true"><span class="lg-sec__nn">${pad(s.n)}</span></span><span class="sr-only">${s.n}. </span><span class="lg-sec__t">${esc(s.title)}</span></h2>
+  <h2 class="lg-sec__h" id="${s.id}-h"><span class="lg-sec__n" aria-hidden="true"><span class="lg-sec__nn">${pad(s.n)}</span></span><span class="sr-only">${s.n}. </span><span class="lg-sec__t">${nbh(esc(s.title))}</span></h2>
   <div class="lg-sec__body">
     ${s.blocks.map(b => block(ctx, b, name)).join('\n    ')}
     ${s.address ? `<address class="lg-address">${icon('pin', { size: 20 })}<span>${s.address.map(esc).join('<br>')}</span></address>` : ''}

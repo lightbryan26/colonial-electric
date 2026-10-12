@@ -175,7 +175,7 @@
   background-image: repeating-linear-gradient(180deg, rgba(255,255,255,.035) 0 1px, transparent 1px 4px);
 }
 .svp-callcard__k { font: 700 .6875rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--on-dark-2); }
-.svp-callcard__tel { display: block; margin: .7rem 0 1.25rem; font: 800 2.1rem/1 var(--f-display); color: var(--white); text-decoration: none; letter-spacing: .01em; }
+.svp-callcard__tel { display: block; margin: .7rem 0 1.25rem; font: 700 1.3125rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: var(--tel-track); white-space: nowrap; color: var(--white); text-decoration: none; }
 .svp-callcard__tel:hover { text-decoration: underline; text-decoration-color: var(--red-flag); text-decoration-thickness: 2px; }
 .svp-callcard__lic { display: flex; align-items: center; gap: .5rem; margin-top: 1rem; font-size: .8125rem; color: var(--on-dark-2); }
 .svp-callcard__lic .icon { color: var(--red-flag); flex: none; }

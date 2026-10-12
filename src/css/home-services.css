@@ -38,7 +38,7 @@
 .hsvc__actions { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; margin-top: 1.75rem; }
 .hsvc__call {
   gap: .6rem;
-  font: 700 1.1875rem/1 var(--f-body); letter-spacing: .01em; text-transform: none;
+  font: 700 1rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: var(--tel-track); text-transform: none; /* §3 phone face */
   min-height: 3.5rem; padding-inline: 1.6rem;
 }
 .hsvc__call .icon { width: 20px; height: 20px; }
@@ -116,7 +116,7 @@
   grid-column: 1 / -1; grid-row: 2;
   margin-top: .9rem;
   display: flex; align-items: baseline; justify-content: space-between; gap: .75rem;
-  font: 600 1.25rem/1.2 var(--f-body); letter-spacing: -.005em; text-transform: none;
+  font: 800 1.5rem/1.05 var(--f-display); letter-spacing: .005em; text-transform: uppercase; /* matches .svc-card__t on the templates */
   color: var(--navy);
   text-wrap: balance;
   transition: color .35s var(--ease-out);
@@ -155,7 +155,7 @@
   .hsvc__num { top: .5rem; left: .5rem; min-width: 1.9rem; height: 1.4rem; padding-inline: .4rem; font-size: .625rem; }
   .hsvc__body { padding: 1rem 1rem 1.1rem; }
   .hsvc__ic { display: none; }
-  .hsvc__t { grid-row: 1; margin-top: 0; font-size: 1.125rem; }
+  .hsvc__t { grid-row: 1; margin-top: 0; font-size: 1.3rem; }
   .hsvc__p { grid-row: 2; margin-top: .35rem; font-size: .9375rem; }
   .hsvc__arr { display: none; }
 }

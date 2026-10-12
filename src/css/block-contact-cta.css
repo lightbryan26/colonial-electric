@@ -70,7 +70,7 @@
 .cc__dial:hover::before { background: var(--navy-3); }
 .cc__dial:focus-visible { clip-path: none; outline-offset: 4px; }
 .cc__dial-k { font: 700 .625rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; color: var(--on-dark-3); }
-.cc__dial-n { font: 700 clamp(1.2rem, 1.05rem + .5vw, 1.45rem)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .01em; white-space: nowrap; }
+.cc__dial-n { font: 700 clamp(1.2rem, 1.05rem + .5vw, 1.45rem)/1 var(--f-wide); font-stretch: 125%; letter-spacing: var(--tel-track); white-space: nowrap; }
 
 .cc .cc__meta { /* dots lead every item; the list is pulled left by one separator and clipped, so no wrapped line starts with a dot */
   --sep: calc(1.9rem + .5rem); /* dot margins + dot + the li gap */

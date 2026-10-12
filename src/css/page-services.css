@@ -276,7 +276,7 @@
 .sv-faq__call > span { display: grid; gap: .35rem; }
 .sv-faq__call-k { font: 700 .625rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .16em; text-transform: uppercase; color: var(--on-dark-3); }
 .sv-faq__call:hover .sv-faq__call-k { color: var(--on-dark-2); }
-.sv-faq__call-n { font: 700 1.3rem/1 var(--f-wide); font-stretch: 125%; }
+.sv-faq__call-n { font: 700 1.3rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: var(--tel-track-lg); }
 .sv-faq__list { border-top: 2px solid var(--navy); }
 .sv-faq__item { border-bottom: 1px solid var(--line-strong); }
 .sv-faq__item summary { display: grid; grid-template-columns: auto 1fr auto; gap: 1.25rem; align-items: center; padding: 1.6rem 0; cursor: pointer; list-style: none; }

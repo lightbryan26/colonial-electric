@@ -72,6 +72,7 @@
 .safety__seal-disc { fill: var(--white); stroke: var(--red); stroke-width: 3; }
 .safety__seal-ring { transform-origin: 120px 120px; }
 .safety__seal text { fill: var(--white); font: 700 15.5px var(--f-wide); font-stretch: 125%; }
+.safety__seal .ring-star { fill: var(--white); } /* drawn star (the ★ glyph is not in Archivo) */
 @media (prefers-reduced-motion: no-preference) {
   .safety__seal-ring { animation: safetySpin 40s linear infinite; }
   .safety__seal:hover .safety__seal-ring { animation-duration: 12s; }
@@ -155,7 +156,7 @@
 }
 .safety__tel-num {
   font: 700 clamp(1.25rem, 7.4cqi, 2.25rem)/1 var(--f-wide); font-stretch: 125%;
-  letter-spacing: .01em; white-space: nowrap; font-variant-numeric: tabular-nums;
+  letter-spacing: var(--tel-track-lg); white-space: nowrap; font-variant-numeric: tabular-nums;
 }
 .safety__tel:hover .safety__tel-ico { background: var(--red-flag); transform: rotate(-8deg); }
 .safety__tel:hover .safety__tel-num { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .2em; }

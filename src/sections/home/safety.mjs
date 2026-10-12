@@ -3,6 +3,7 @@ import { safetyParas } from '../../data/home.mjs';
 import { site } from '../../data/site.mjs';
 import { icon } from '../../partials/icons.mjs';
 import { esc } from '../../lib/html.mjs';
+import { starRing } from '../../lib/ring.mjs';
 
 // Homepage §4.3 "Safety & Satisfaction Guaranteed". Copy verbatim from the live page.
 // Composition: oversized two-line headline → editorial split (lead + crest call card | numbered points).
@@ -51,7 +52,6 @@ export function render(ctx) {
 
 // Octagonal crest seal: the eyebrow set on a ring around the real minuteman emblem. Decorative (copy is already in the eyebrow).
 function seal(ctx) {
-  const t = `${safety.eyebrow} \u2605 `;
   const oct = Array.from({ length: 8 }, (_, i) => {
     const a = (Math.PI / 8) + (i * Math.PI / 4), r = 118 / Math.cos(Math.PI / 8);
     return `${(120 + r * Math.cos(a)).toFixed(2)},${(120 + r * Math.sin(a)).toFixed(2)}`;
@@ -61,7 +61,7 @@ function seal(ctx) {
           <defs><path id="safety-ring" d="M120,120 m-93,0 a93,93 0 1,1 186,0 a93,93 0 1,1 -186,0"/></defs>
           <polygon points="${oct}" class="safety__seal-oct"/>
           <polygon points="${oct}" class="safety__seal-key" transform="translate(120 120) scale(.93) translate(-120 -120)"/>
-          <g class="safety__seal-ring"><text><textPath href="#safety-ring" textLength="580" lengthAdjust="spacing">${esc(t.toUpperCase())}</textPath></text></g>
+          <g class="safety__seal-ring">${starRing({ href: 'safety-ring', cx: 120, cy: 120, r: 93, length: 580, phrases: [safety.eyebrow.toUpperCase()], size: 5.2, lift: 5.6 })}</g>
           <circle cx="120" cy="120" r="74" class="safety__seal-disc"/>
           <image href="${ctx.asset('img/emblem-256.png')}" x="66" y="66" width="108" height="108"/>
         </svg>

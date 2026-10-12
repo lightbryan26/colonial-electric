@@ -22,6 +22,11 @@
      --red / --red-flag stay as fills (chips, rules, banners) on dark; never as small text there. */
   --red-on-dark: #E85E6C;
 
+  /* Phone number type (§3: Archivo expanded wdth 125 at 700, tracked 0.08–0.15em).
+     --tel-track for text sizes; --tel-track-lg only for display sizes where .08em would overrun. */
+  --tel-track: .08em;
+  --tel-track-lg: .04em;
+
   /* Derived neutrals (navy-tinted) */
   --navy-2: #0D1A30;            /* between ink and navy */
   --navy-3: #1A3050;            /* raised surface on navy */
@@ -208,7 +213,7 @@ main:focus { outline: none; }
 .btn-row { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; margin-top: 2rem; }
 .btn-row--center { justify-content: center; }
 
-.tel-lg { display: inline-flex; align-items: center; gap: .6rem; font: 700 clamp(1.25rem, 1.1rem + .6vw, 1.6rem)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .02em; text-decoration: none; color: inherit; }
+.tel-lg { display: inline-flex; align-items: center; gap: .6rem; font: 700 clamp(1.25rem, 1.1rem + .6vw, 1.6rem)/1 var(--f-wide); font-stretch: 125%; letter-spacing: var(--tel-track); text-decoration: none; color: inherit; }
 .tel-lg:hover { color: var(--red-flag); }
 .on-dark .tel-lg:hover { color: var(--white); text-decoration: underline; }
 

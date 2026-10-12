@@ -126,7 +126,7 @@
 .tw-call__crest::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 6px; background: var(--red); }
 .tw-call__line { color: var(--on-dark-2); max-width: 34ch; line-height: 1.5; }
 .tw-call__tel {
-  font: 800 min(10.6cqi, 4.2rem)/1 var(--f-wide); font-stretch: 112%; letter-spacing: -.01em;
+  font: 700 min(9.9cqi, 3.9rem)/1 var(--f-wide); font-stretch: 125%; letter-spacing: var(--tel-track-lg);
   color: var(--white); text-decoration: none; white-space: nowrap;
 }
 .tw-call__tel:hover { color: var(--white); text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 3px; }

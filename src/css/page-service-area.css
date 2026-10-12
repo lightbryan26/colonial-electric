@@ -115,7 +115,7 @@
 /* Mobile-only call tile (fills the 22nd slot of the 2-column grid) */
 .sa-card--call .sa-card__link { background: var(--red); display: flex; flex-direction: column; justify-content: flex-end; gap: .4rem; padding: 1rem .9rem; }
 .sa-card__call-k { color: rgba(255,255,255,.85); font-size: .625rem; }
-.sa-card__call-n { font: 800 1.45rem/1 var(--f-display); letter-spacing: .01em; }
+.sa-card__call-n { font: 700 min(3.5vw, .9375rem)/1 var(--f-wide); font-stretch: 125%; letter-spacing: var(--tel-track); white-space: nowrap; }
 .sa-card__call-i { position: absolute; top: .8rem; right: .8rem; }
 
 /* scroll-driven rise-in (no JS; content is never hidden where unsupported) */
