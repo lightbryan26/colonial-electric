@@ -85,11 +85,11 @@
    "shot": "shots/block-contact-cta-r2.png"
   },
   "block-contact-form": {
-   "status": "critiquing",
+   "status": "won",
    "round": 3,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T10:01:21.345Z",
-   "shot": "shots/block-contact-form-r2.png"
+   "note": "Critic picked ours blind (clear). Remaining gap: The form's small type is too faint and too small. The tracked uppercase field labels (NAME, EMAIL, PHONE, SUBJECT, MESSAGE), the \"Fields marked * are required\" note and the 0/180 counter look about 9-10px and light grey. The inputs have ver",
+   "updated": "2026-10-12T10:44:37.584Z",
+   "shot": "shots/block-contact-form-r3.jpg"
   },
   "footer": {
    "status": "won",
@@ -115,15 +115,15 @@
   "page-about-colonial-electric": {
    "status": "critiquing",
    "round": 4,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T10:13:11.831Z",
-   "shot": "shots/page-about-colonial-electric-r2.png"
+   "note": "Won blind, but the stitched Dribbble reference had a duplicated carousel strip (now fixed). Re-judging against the corrected reference.",
+   "updated": "2026-10-12T10:44:37.801Z",
+   "shot": "shots/page-about-colonial-electric-r4.jpg"
   },
   "page-services": {
-   "status": "building",
+   "status": "critiquing",
    "round": 6,
-   "note": "Fix mobile feature sweep clip; add job-site photos to the three service rows, shorten their copy to short bullets, lift body text to 17px high-contrast on navy; trim hero and guarantee density",
-   "updated": "2026-10-12T10:36:21.178Z",
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T10:44:58.872Z",
    "shot": "shots/page-services-r2.png"
   },
   "page-service-area": {
@@ -136,30 +136,30 @@
   "page-contact-us": {
    "status": "critiquing",
    "round": 4,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T10:13:31.344Z",
-   "shot": "shots/page-contact-us-r2.png"
+   "note": "Won blind, but the stitched Dribbble reference had a duplicated carousel strip (now fixed). Re-judging against the corrected reference.",
+   "updated": "2026-10-12T10:44:37.741Z",
+   "shot": "shots/page-contact-us-r4.jpg"
   },
   "page-premium-membership": {
-   "status": "building",
+   "status": "done",
    "round": 4,
-   "note": "Make outgoing bolt panels inert so focus never lands on a fading card; tighten intro and benefit copy into a short lead plus bullets at 17px; fix copy typos",
-   "updated": "2026-10-12T10:37:38.727Z",
+   "note": "Bolt panels go inert the moment they are deselected and the incoming panel is visible at once, so a quick Arrow+Tab always lands on the active panel at every width (Playwright verified); intro and benefit copy set one sentence per row at 17-18px with a big lead and a sign-up band, guarantee clauses in one readable column on this page; all copy still verbatim; 45/45 build, no h-scroll at 375/768/1440",
+   "updated": "2026-10-12T10:44:51.238Z",
    "shot": "shots/page-premium-membership-r1.png"
   },
   "page-we-offer-financing": {
    "status": "critiquing",
-   "round": 3,
+   "round": 4,
    "note": "screenshots + QA",
-   "updated": "2026-10-12T10:16:24.015Z",
-   "shot": "shots/page-we-offer-financing-r1.png"
+   "updated": "2026-10-12T10:45:00.175Z",
+   "shot": "shots/page-we-offer-financing-r3.jpg"
   },
   "page-leave-us-a-review": {
    "status": "critiquing",
-   "round": 3,
+   "round": 4,
    "note": "screenshots + QA",
-   "updated": "2026-10-12T09:58:33.064Z",
-   "shot": "shots/page-leave-us-a-review-r2.png"
+   "updated": "2026-10-12T10:45:00.359Z",
+   "shot": "shots/page-leave-us-a-review-r3.jpg"
   },
   "page-calendar": {
    "status": "won",
@@ -177,6 +177,81 @@
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T10:45:00.359Z",
+   "piece": "page-leave-us-a-review",
+   "status": "critiquing",
+   "round": 4,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T10:45:00.175Z",
+   "piece": "page-we-offer-financing",
+   "status": "critiquing",
+   "round": 4,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T10:44:58.872Z",
+   "piece": "page-services",
+   "status": "critiquing",
+   "round": 6,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T10:44:51.238Z",
+   "piece": "page-premium-membership",
+   "status": "done",
+   "round": 4,
+   "note": "Bolt panels go inert the moment they are deselected and the incoming panel is visible at once, so a quick Arrow+Tab always lands on the active panel at every width (Playwright verified); intro and benefit copy set one sentence per row at 17-18px with a big lead and a sign-up band, guarantee clauses in one readable column on this page; all copy still verbatim; 45/45 build, no h-scroll at 375/768/1440"
+  },
+  {
+   "t": "2026-10-12T10:44:44.880Z",
+   "piece": "page-services",
+   "status": "done",
+   "round": 6,
+   "note": "Fixed mobile outdoor-lighting sweep (3 bands inside card at 375-719). Repairs/Installation/Upgrades rows now carry real service photos in crest frames with numeral tags, zig-zag layout, verbatim copy set as lead sentence plus run-in bullet list plus note at 17-22px near-white; hero body contrast raised. 45/45 built, no h-scroll or errors at 1440/768/375."
+  },
+  {
+   "t": "2026-10-12T10:44:37.801Z",
+   "piece": "page-about-colonial-electric",
+   "status": "critiquing",
+   "round": 4,
+   "note": "Won blind, but the stitched Dribbble reference had a duplicated carousel strip (now fixed). Re-judging against the corrected reference.",
+   "shot": "shots/page-about-colonial-electric-r4.jpg"
+  },
+  {
+   "t": "2026-10-12T10:44:37.741Z",
+   "piece": "page-contact-us",
+   "status": "critiquing",
+   "round": 4,
+   "note": "Won blind, but the stitched Dribbble reference had a duplicated carousel strip (now fixed). Re-judging against the corrected reference.",
+   "shot": "shots/page-contact-us-r4.jpg"
+  },
+  {
+   "t": "2026-10-12T10:44:37.697Z",
+   "piece": "page-leave-us-a-review",
+   "status": "critiquing",
+   "round": 3,
+   "note": "Won blind, but the stitched Dribbble reference had a duplicated carousel strip (now fixed). Re-judging against the corrected reference.",
+   "shot": "shots/page-leave-us-a-review-r3.jpg"
+  },
+  {
+   "t": "2026-10-12T10:44:37.640Z",
+   "piece": "page-we-offer-financing",
+   "status": "critiquing",
+   "round": 3,
+   "note": "Won blind, but the stitched Dribbble reference had a duplicated carousel strip (now fixed). Re-judging against the corrected reference.",
+   "shot": "shots/page-we-offer-financing-r3.jpg"
+  },
+  {
+   "t": "2026-10-12T10:44:37.584Z",
+   "piece": "block-contact-form",
+   "status": "won",
+   "round": 3,
+   "note": "Critic picked ours blind (clear). Remaining gap: The form's small type is too faint and too small. The tracked uppercase field labels (NAME, EMAIL, PHONE, SUBJECT, MESSAGE), the \"Fields marked * are required\" note and the 0/180 counter look about 9-10px and light grey. The inputs have ver",
+   "shot": "shots/block-contact-form-r3.jpg"
+  },
   {
    "t": "2026-10-12T10:38:46.576Z",
    "piece": "page-terms",
@@ -1530,5 +1605,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T10:38:46.576Z"
+ "updated": "2026-10-12T10:45:00.359Z"
 }

@@ -178,7 +178,7 @@
 .sv-cat__ul li { display: flex; gap: .75rem; align-items: baseline; padding: .7rem 0; border-bottom: 1px solid var(--line-dark); font-size: clamp(1.0625rem, 1.02rem + .15vw, 1.125rem); line-height: 1.5; color: rgba(255, 255, 255, .94); text-wrap: pretty; }
 .sv-cat__ul li:first-child { border-top: 1px solid var(--line-dark); }
 .sv-cat__b { flex: none; width: .6rem; height: auto; color: #FF6B72; transform: translateY(.1em); }
-@media (min-width: 1024px) {
+@media (min-width: 1200px) {
   .sv-cat:first-child .sv-cat__ul { grid-template-columns: 1fr 1fr; column-gap: 2rem; }
   .sv-cat:first-child .sv-cat__ul li:nth-child(2) { border-top: 1px solid var(--line-dark); }
   .sv-cat:first-child .sv-cat__ul li:last-child { grid-column: 1 / -1; }

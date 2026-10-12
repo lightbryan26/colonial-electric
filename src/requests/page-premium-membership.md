@@ -8,3 +8,8 @@
 # Round 3 request from page-premium-membership
 3. File: tools/progress.mjs (line 11): add `fs.mkdirSync(dir + 'shots', { recursive: true });` before `fs.copyFileSync(img, dir+shot)`.
    Why: docs/build-progress/shots/ no longer exists, so every progress call that passes an image path crashes with ENOENT (copyfile) and the update is not written. page-premium-membership posted its round 2 "lost" and round 3 updates without the image as a workaround.
+
+# Round 4 requests from page-premium-membership
+4. File: colonial-electric-rebuild-prompt.md §7 /premium-membership/ (brief owner / orchestrator): add "thats" -> "that's" to the allowed typo fixes for intro paragraph 1 ("...we mean it, and thats exactly what sets us apart from the rest."), and to §11 if it should be raised with the client.
+   Why: the round 3 critic called out "thats" as a visible copy error that undercuts the premium feel, but the brief allows only the listed typo fixes, so the page still carries it verbatim (also in the page's meta/OG description, which comes from src/data/pages.mjs). Once approved, it is a one-word change in src/pages/premium-membership.mjs (intro.paras[0]) plus the description in src/data/pages.mjs.
+5. Still open (same as request 3): tools/progress.mjs crashes with ENOENT when an image path is passed because docs/build-progress/shots/ does not exist. Round 4 "lost" update was posted without the blind-r3.jpg image.

@@ -8,7 +8,7 @@ for (let i=0;i<200;i++){ try{ fs.mkdirSync(lock); break }catch{ await new Promis
 try {
   const d = fs.existsSync(file) ? JSON.parse(fs.readFileSync(file,'utf8')) : { pieces:{}, events:[] };
   let shot;
-  if (img && fs.existsSync(img)) { shot = `shots/${piece.replace(/[^a-z0-9-]/gi,'_')}-r${round}${path.extname(img)}`; fs.copyFileSync(img, dir+shot); }
+  if (img && fs.existsSync(img)) { fs.mkdirSync(dir + 'shots', { recursive: true }); shot = `shots/${piece.replace(/[^a-z0-9-]/gi,'_')}-r${round}${path.extname(img)}`; fs.copyFileSync(img, dir+shot); }
   const now = new Date().toISOString();
   d.pieces[piece] = { ...(d.pieces[piece]||{}), status, round:+round, note, updated: now, ...(shot?{shot}:{}) };
   d.events.unshift({ t: now, piece, status, round:+round, note, ...(shot?{shot}:{}) }); d.events = d.events.slice(0,300);
