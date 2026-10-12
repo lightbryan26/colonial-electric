@@ -6,9 +6,22 @@
    "note": "Repo created, Pages enabled, Dribbble reference captured (headless), brief written",
    "updated": "2026-10-12T08:00:48.407Z",
    "shot": "shots/setup-r0.png"
+  },
+  "foundation-hero": {
+   "status": "building",
+   "round": 1,
+   "note": "Build generator, base design system, partials, real images, 45 stubs, home sections, then craft header+hero",
+   "updated": "2026-10-12T08:03:30.066Z"
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T08:03:30.066Z",
+   "piece": "foundation-hero",
+   "status": "building",
+   "round": 1,
+   "note": "Build generator, base design system, partials, real images, 45 stubs, home sections, then craft header+hero"
+  },
   {
    "t": "2026-10-12T08:00:48.407Z",
    "piece": "setup",
@@ -18,5 +31,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T08:00:48.407Z"
+ "updated": "2026-10-12T08:03:30.066Z"
 }
