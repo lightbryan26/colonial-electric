@@ -39,7 +39,7 @@
     #main .why__h2, #main .why__item > *,
     #s-reviews .rv-feature, #s-reviews .rv-card,
     #main .proc__main, #main .proc__body,
-    #s-guarantee .gx__ring, #s-guarantee .gx__meta::after,
+    #s-guarantee .gx__ring,
     #main .mship__card, #main .mship__ghost,
     #s-contact-form .cf-photo img { animation-fill-mode: forwards; }
 
@@ -48,7 +48,6 @@
     #main .hsvc__cell { animation-range: entry 0% entry calc(70% + var(--i, 0) * 6%); }
     #main .habout__plate { animation-range: entry 0% cover 50%; }
     #s-reviews .rv-feature, #s-reviews .rv-card { animation-range: entry 0% cover 28%; }
-    #s-guarantee .gx__meta::after { animation-range: entry 0% entry 80%; }
   }
 }
 

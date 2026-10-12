@@ -99,10 +99,10 @@
    "shot": "shots/footer-r1.png"
   },
   "tpl-service": {
-   "status": "critiquing",
-   "round": 9,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T18:50:26.755Z",
+   "status": "building",
+   "round": 10,
+   "note": "Remove decorative flag-stripe bar under guarantee eyebrow (block-guarantee.css + home-composition.css) and red bar under CONTACT US heading (block-contact-form.css); rebuild 45/45; verify service pages, a town page and homepage at 1440/768/375.",
+   "updated": "2026-10-12T19:01:32.831Z",
    "shot": "shots/tpl-service-r9.png"
   },
   "tpl-town": {
@@ -205,6 +205,13 @@
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T19:01:32.831Z",
+   "piece": "tpl-service",
+   "status": "building",
+   "round": 10,
+   "note": "Remove decorative flag-stripe bar under guarantee eyebrow (block-guarantee.css + home-composition.css) and red bar under CONTACT US heading (block-contact-form.css); rebuild 45/45; verify service pages, a town page and homepage at 1440/768/375."
+  },
   {
    "t": "2026-10-12T18:50:26.755Z",
    "piece": "tpl-service",
@@ -2042,5 +2049,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T18:50:26.755Z"
+ "updated": "2026-10-12T19:01:32.831Z"
 }

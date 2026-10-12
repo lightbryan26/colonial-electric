@@ -96,7 +96,6 @@ export function contactForm(ctx, { id = '', cls = '', heading = 'Contact Us' } =
         <figcaption class="cf-photo__cap"><span class="cf-photo__role">Founder</span><span class="cf-photo__name">${esc(site.founder)}</span></figcaption>
       </figure>` : `<div class="cf-crest">
         <picture class="cf-crest__logo"><source type="image/webp" srcset="${lockup}-320.webp 320w, ${lockup}-621.webp 621w" sizes="15rem"><img src="${lockup}-320.png" srcset="${lockup}-320.png 320w, ${lockup}-621.png 621w" sizes="15rem" width="320" height="332" alt="Colonial Electric" loading="lazy" decoding="async"></picture>
-        <span class="cf-crest__rule" aria-hidden="true"></span>
       </div>`}
 
       <div class="cf-direct">
