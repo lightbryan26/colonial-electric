@@ -141,10 +141,10 @@
    "shot": "shots/page-contact-us-r2.png"
   },
   "page-premium-membership": {
-   "status": "critiquing",
-   "round": 2,
-   "note": "capture and QA done - 2 small fixes found: benefits index 02 contrast, 375 hero frame gutter",
-   "updated": "2026-10-12T10:09:54.436Z",
+   "status": "building",
+   "round": 3,
+   "note": "Fix 02 index contrast and 375 gutters; rebuild the bolt as a labelled numbered bolt list with one large readable benefit panel and a repeated Join Flash Pass CTA; larger, higher-contrast body copy",
+   "updated": "2026-10-12T10:20:37.821Z",
    "shot": "shots/page-premium-membership-r1.png"
   },
   "page-we-offer-financing": {
@@ -177,6 +177,20 @@
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T10:20:37.821Z",
+   "piece": "page-premium-membership",
+   "status": "building",
+   "round": 3,
+   "note": "Fix 02 index contrast and 375 gutters; rebuild the bolt as a labelled numbered bolt list with one large readable benefit panel and a repeated Join Flash Pass CTA; larger, higher-contrast body copy"
+  },
+  {
+   "t": "2026-10-12T10:20:37.779Z",
+   "piece": "page-premium-membership",
+   "status": "lost",
+   "round": 2,
+   "note": "Won blind but failed QA: AA contrast failure (brief section 9): the section index numeral 02 above The Benefits renders in --red-flag #C73136 (rgb 199,49,54) on the bolt section #081020 background at 12px. That is 3.55:1 against the 4.5:1 needed for small text, at 375 and 1440. The 01 and 03 indexes sit on white a)"
+  },
   {
    "t": "2026-10-12T10:16:53.118Z",
    "piece": "page-terms",
@@ -1411,5 +1425,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T10:16:53.118Z"
+ "updated": "2026-10-12T10:20:37.821Z"
 }
