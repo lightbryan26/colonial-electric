@@ -1,6 +1,6 @@
 /* =====================================================================
    Shared block: Reviews (.rv)  — owner: block-reviews
-   Editorial header → featured story on navy → masonry wall (rail on phones).
+   Editorial header → featured story on navy → masonry wall (stacked on phones).
    All selectors are .rv-prefixed so legacy .review/.avatar rules in
    blocks.css cannot collide.
    ===================================================================== */
@@ -140,7 +140,6 @@
 
 /* ---------- Wall ---------- */
 .rv-wall { margin-top: var(--rv-gap); }
-.rv-list:focus-visible { outline-offset: 6px; }
 
 .rv-card { break-inside: avoid; }
 .rv-card__fig {

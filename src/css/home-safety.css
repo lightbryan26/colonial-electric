@@ -42,7 +42,7 @@
   line-height: .86; letter-spacing: -.01em;
   text-transform: uppercase; color: var(--navy);
 }
-.safety__line { display: block; }
+.safety__line { display: block; text-wrap: balance; }
 .safety__em { font-style: normal; color: var(--red); position: relative; white-space: nowrap; }
 /* bolt-cut underline under "Colonial!" */
 .safety__em::after {
@@ -63,6 +63,20 @@
   font: 500 clamp(1.25rem, 1.05rem + .75vw, 1.625rem)/1.45 var(--f-body);
   color: var(--ink); letter-spacing: -.005em; text-wrap: pretty; max-width: 34ch;
 }
+
+/* ---------- Crest seal (desktop only) ---------- */
+.safety__seal { display: none; }
+.safety__seal svg { width: 100%; height: auto; overflow: visible; }
+.safety__seal-oct { fill: var(--navy); }
+.safety__seal-key { fill: none; stroke: rgba(255, 255, 255, .35); stroke-width: 1.5; }
+.safety__seal-disc { fill: var(--white); stroke: var(--red); stroke-width: 3; }
+.safety__seal-ring { transform-origin: 120px 120px; }
+.safety__seal text { fill: var(--white); font: 700 15.5px var(--f-wide); font-stretch: 125%; }
+@media (prefers-reduced-motion: no-preference) {
+  .safety__seal-ring { animation: safetySpin 40s linear infinite; }
+  .safety__seal:hover .safety__seal-ring { animation-duration: 12s; }
+}
+@keyframes safetySpin { to { transform: rotate(360deg); } }
 
 /* ---------- Numbered points ---------- */
 .safety__points { list-style: none; margin: 0; padding: 0; counter-reset: none; }
@@ -158,6 +172,7 @@
   .safety__lead { max-width: 40ch; }
   .safety__points { grid-column: 1 / -1; }
   .safety__call { grid-column: 2 / span 10; }
+  .safety__call-line { max-width: 22ch; }
 }
 
 /* ---------- Desktop (1024+) ---------- */
@@ -178,6 +193,11 @@
   .safety__tel { border-block: 0; border-inline: 1px solid var(--line-dark-strong); padding: .5rem clamp(1.5rem, 1rem + 1.5vw, 3rem); }
   .safety__tel-num { font-size: clamp(1.5rem, .8rem + 1.3vw, 2.25rem); }
   .safety__lead { max-width: 30ch; }
+  .safety__seal { display: block; width: clamp(12rem, 6rem + 8vw, 16.5rem); margin-top: clamp(1rem, 2vw, 2.5rem); }
+  .safety__call-in { grid-template-columns: minmax(0, 1fr) auto auto; }
+  .safety__call-mark { display: none; }
+  .safety__call-line { max-width: 18ch; font-size: clamp(1.5rem, 1rem + 1vw, 2.125rem); }
+  .safety__cta { width: auto; white-space: nowrap; }
 }
 
 /* ---------- Motion (scroll-driven, no JS) ---------- */

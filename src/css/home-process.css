@@ -123,8 +123,8 @@
   font: 900 clamp(5rem, 3.5rem + 5vw, 9rem)/1 var(--f-display); color: var(--red);
 }
 .proc__q1 {
-  font: 800 clamp(1.75rem, 1.05rem + 2.7vw, 3.4rem)/.98 var(--f-display);
-  text-transform: uppercase; letter-spacing: -.003em; text-wrap: balance; max-width: 20ch;
+  font: 800 clamp(1.75rem, 1.1rem + 2.3vw, 3.1rem)/.98 var(--f-display);
+  text-transform: uppercase; letter-spacing: -.003em; text-wrap: balance; max-width: 22ch;
 }
 .proc__q2 {
   margin-top: clamp(1rem, .7rem + 1vw, 1.5rem); max-width: 44ch;
@@ -146,7 +146,7 @@
   .proc__img { object-position: 42% 58%; }
   .proc__feature { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); }
   .proc__photo { grid-column: 1 / -1; grid-row: 1; }
-  .proc__quote { grid-column: 1 / span 7; grid-row: 2; width: auto; margin: -9rem 0 0 clamp(2rem, 3vw, 3.5rem); }
+  .proc__quote { grid-column: 1 / span 6; grid-row: 2; width: auto; margin: -8rem 0 0 clamp(2rem, 3vw, 3.5rem); }
 }
 
 /* ---------- Scroll-linked motion (progressive; off for reduced motion) ---------- */
@@ -160,7 +160,6 @@
     .proc__main, .proc__body { animation: proc-rise linear both; animation-timeline: --proc-step; animation-range: entry 0% entry 90%; }
     .proc__body { animation-range: entry 10% entry 100%; }
     .proc__img { animation: proc-settle linear both; animation-timeline: view(); animation-range: entry 0% cover 55%; }
-    .proc__quote { animation: proc-lift linear both; animation-timeline: view(); animation-range: entry 0% entry 80%; }
   }
 }
 @keyframes proc-draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
@@ -170,4 +169,13 @@
 }
 @keyframes proc-rise { from { opacity: 0; transform: translateY(1.5rem); } to { opacity: 1; transform: none; } }
 @keyframes proc-settle { from { transform: scale(1.12); } to { transform: scale(1); } }
-@keyframes proc-lift { from { transform: translateY(3rem); } to { transform: none; } }
+
+/* CTA beside the overhanging card */
+.proc__cta { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; margin-top: clamp(2rem, 1.5rem + 2vw, 3rem); padding-inline: .75rem; }
+.proc__lic { font: 700 var(--fs-eyebrow)/1.4 var(--f-wide); font-stretch: 125%; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+.proc__lic span { margin-inline: .6em; color: var(--red); }
+.proc__lic b { font-weight: inherit; white-space: nowrap; }
+@media (min-width: 768px) { .proc__cta { padding-inline: clamp(1.5rem, 4vw, 4rem) 0; } }
+@media (min-width: 1200px) {
+  .proc__cta { grid-column: 8 / -1; grid-row: 2; align-self: start; flex-direction: column; align-items: flex-start; padding: 0 0 0 clamp(1rem, 2vw, 2rem); margin: clamp(2.5rem, 3vw, 3.5rem) 0 0; border-left: 2px solid var(--red); }
+}

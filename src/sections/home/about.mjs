@@ -19,7 +19,7 @@ export function render(ctx) {
   <div class="container habout__grid">
     <figure class="habout__media">
       <div class="habout__frame">
-        ${picture(ctx, 'scott-portrait', { alt: 'Scott Hays, founder of Colonial Electric, in a Colonial Electric polo', sizes: '(min-width: 1280px) 520px, (min-width: 900px) 42vw, 92vw', cls: 'habout__pic' })}
+        ${picture(ctx, 'scott-portrait', { alt: 'Scott Hays, founder of Colonial Electric, in a Colonial Electric polo', sizes: '(min-width: 1280px) 520px, (min-width: 900px) 42vw, 92vw', cls: 'habout__pic', loading: 'eager' })}
       </div>
       <figcaption class="habout__plate">
         <span class="habout__role">Founder</span>
@@ -27,9 +27,12 @@ export function render(ctx) {
       </figcaption>
     </figure>
 
-    <div class="habout__body">
+    <header class="habout__head">
       <p class="eyebrow">About Us</p>
       <h2 class="h2 habout__h" id="s-about-h">${esc(about.h2)}</h2>
+    </header>
+
+    <div class="habout__body">
       <p class="habout__lead">${esc(p1)}</p>
       <div class="habout__cols">
         <p>${esc(p2)}</p>

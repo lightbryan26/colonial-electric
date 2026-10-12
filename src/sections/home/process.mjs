@@ -35,7 +35,7 @@ export function render(ctx) {
 
     <figure class="proc__feature">
       <div class="proc__photo">
-        ${picture(ctx, 'owner-van', { alt: 'The Colonial Electric van parked on a tree-lined residential street, with founder Scott Hays standing beside it', sizes: '(min-width: 1360px) 1280px, 100vw', imgCls: 'proc__img' })}
+        ${picture(ctx, 'owner-van', { alt: 'The Colonial Electric van parked on a tree-lined residential street, with founder Scott Hays standing beside it', sizes: '(min-width: 1360px) 1280px, 100vw', imgCls: 'proc__img', loading: 'eager' })}
       </div>
       <blockquote class="proc__quote">
         <span class="proc__mark" aria-hidden="true">“</span>
@@ -43,6 +43,10 @@ export function render(ctx) {
         <p class="proc__q2">${qRest.map(esc).join(' ')}”</p>
         <span class="proc__flag" aria-hidden="true"></span>
       </blockquote>
+      <div class="proc__cta">
+        <a class="btn btn--red btn--lg" href="${telHref}">${icon('phone', { size: 18 })}<span>Call Now</span></a>
+        <p class="proc__lic">Licensed &amp; Insured<span aria-hidden="true">·</span><b>MA Lic# 8720-A1</b></p>
+      </div>
     </figure>
   </div>
 </section>`;

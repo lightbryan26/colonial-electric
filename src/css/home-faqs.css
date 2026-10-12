@@ -17,26 +17,25 @@
 .hfaq__head { display: flex; flex-direction: column; align-items: flex-start; }
 .hfaq__title {
   margin-top: 1.1rem;
-  font: 900 clamp(5.25rem, 3rem + 10vw, 11.5rem)/.8 var(--f-display);
+  font: 900 clamp(5.25rem, 3rem + 10vw, 13rem)/.8 var(--f-display);
   text-transform: uppercase; letter-spacing: -.02em; color: var(--navy);
   position: relative; padding-bottom: .12em;
 }
 /* flag-stripe rule under the title */
 .hfaq__title::after {
-  content: ""; position: absolute; left: .04em; bottom: 0; width: 1.15em; height: 6px;
-  background: linear-gradient(180deg, var(--red) 0 33.3%, var(--white) 33.3% 66.6%, var(--red) 66.6%);
+  content: ""; position: absolute; left: .045em; bottom: 0; width: .9em; height: clamp(5px, .06em, 9px);
+  background: var(--red);
 }
 .hfaq__count { margin-top: 1.5rem; display: inline-flex; align-items: baseline; gap: .55em; color: var(--ink-3); }
 .hfaq__count span { color: var(--navy); }
 
 /* Call crest: navy keyline → white inner border → navy-ink field (the badge) */
 .hfaq__call {
-  --cut: 18px; margin-top: clamp(2rem, 1rem + 3vw, 3.5rem); width: 100%; max-width: 26rem;
-  clip-path: var(--crest); background: var(--navy); padding: 2px;
+  --cut: 16px; margin-top: clamp(2rem, 1rem + 3vw, 3.5rem); width: 100%; max-width: 26rem;
+  clip-path: var(--crest); background: var(--navy-ink);
 }
 .hfaq__call-in {
-  --cut: 17px; clip-path: var(--crest); background: var(--navy-ink); color: var(--on-dark);
-  box-shadow: inset 0 0 0 3px var(--white), inset 0 0 0 4px var(--navy);
+  color: var(--on-dark); border-top: 4px solid var(--red);
   padding: clamp(1.5rem, 1.1rem + 1.2vw, 2rem) clamp(1.5rem, 1.1rem + 1.2vw, 2.1rem);
   display: grid; gap: .9rem;
 }
@@ -148,7 +147,6 @@
   font: 700 .75rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .04em;
   color: var(--white); background: var(--navy); --cut: 6px; clip-path: var(--crest);
 }
-.hfaq__steps li:nth-child(3) .hfaq__step-n, .hfaq__steps li:nth-child(6) .hfaq__step-n { background: var(--red); }
 .hfaq__steps p { margin: 0; padding-top: .2rem; }
 
 /* Smooth open/close where supported (Chromium 131+); instant elsewhere */

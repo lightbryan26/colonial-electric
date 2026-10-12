@@ -198,8 +198,8 @@
   .hsvc__feat { grid-template-columns: 1fr 1.05fr; gap: clamp(2.5rem, 1rem + 4vw, 6rem); align-items: center; padding-right: clamp(10rem, 4rem + 12vw, 18rem); }
 }
 @media (max-width: 959.98px) {
-  .hsvc__feat-sweep { top: -55%; right: -22%; width: 9rem; height: 120%; opacity: .9; }
-  .hsvc__feat-a { padding-right: 4.5rem; }
+  .hsvc__feat-sweep { top: -5rem; right: -3.5rem; width: 7.5rem; height: 15rem; opacity: .95; }
+  .hsvc__feat-a { padding-right: 3rem; }
 }
 @media (max-width: 420px) {
   .hsvc__feat-cta { width: 100%; }
@@ -220,3 +220,8 @@
   from { transform: translateY(22px); }
   to { transform: none; }
 }
+
+/* keep the feature crest inside narrow viewports */
+.hsvc__feat { grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 960px) { .hsvc__feat { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); } }
+@media (max-width: 420px) { .hsvc__feat-cta, .hsvc__actions .btn { white-space: normal; text-align: center; } }

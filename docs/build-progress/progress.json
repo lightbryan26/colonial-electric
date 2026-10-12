@@ -15,16 +15,17 @@
    "shot": "shots/foundation-hero-r1.png"
   },
   "home-safety": {
-   "status": "building",
+   "status": "done",
    "round": 1,
-   "note": "Editorial split: real photo + verbatim safety copy, numbered guarantee points, brand CTA",
-   "updated": "2026-10-12T08:30:20.548Z"
+   "note": "Editorial headline, lead + crest seal, numbered points, crest call band; verified 375/768/1440",
+   "updated": "2026-10-12T08:35:44.923Z"
   },
   "home-services": {
-   "status": "building",
+   "status": "critiquing",
    "round": 1,
-   "note": "Editorial services grid: 12 photo-led service cards + permanent outdoor lighting feature, Colonial brand",
-   "updated": "2026-10-12T08:30:20.561Z"
+   "note": "Round 1 built: paper-ground crest ledger of 12 linked service cells + navy Permanent Outdoor Lighting feature crest",
+   "updated": "2026-10-12T08:34:47.329Z",
+   "shot": "shots/home-services-r1.png"
   },
   "home-why": {
    "status": "done",
@@ -33,16 +34,16 @@
    "updated": "2026-10-12T08:33:46.507Z"
   },
   "block-reviews": {
-   "status": "building",
+   "status": "done",
    "round": 1,
-   "note": "Verbatim reviews block: editorial pull-quote lead + card rail, Colonial brand",
-   "updated": "2026-10-12T08:30:20.815Z"
+   "note": "Editorial reviews block: header, navy featured story, masonry wall; 375/768/1440 checked",
+   "updated": "2026-10-12T08:34:25.496Z"
   },
   "home-faqs": {
-   "status": "building",
+   "status": "done",
    "round": 1,
-   "note": "Editorial split FAQ: sticky heading+call card left, native details/summary accordion right, verbatim live FAQ content",
-   "updated": "2026-10-12T08:30:20.902Z"
+   "note": "Editorial split FAQ shipped: sticky masthead+call crest, exclusive animated details accordion, verbatim content, FAQPage JSON-LD",
+   "updated": "2026-10-12T08:35:20.387Z"
   },
   "home-about": {
    "status": "building",
@@ -51,10 +52,11 @@
    "updated": "2026-10-12T08:30:29.404Z"
   },
   "home-membership": {
-   "status": "building",
+   "status": "critiquing",
    "round": 1,
-   "note": "Flash Pass teaser: navy crest-framed band with live photo, 4 verified perk titles, Learn More CTA, no price",
-   "updated": "2026-10-12T08:30:35.608Z"
+   "note": "Built: split band, giant 2-tone H2 + Flash Pass card object on navy crest stage, 4 verified perks, scroll-driven deal-in",
+   "updated": "2026-10-12T08:34:37.951Z",
+   "shot": "shots/home-membership-r1.png"
   },
   "home-process": {
    "status": "building",
@@ -67,9 +69,124 @@
    "round": 1,
    "note": "Lifetime Craftsmanship Guarantee band: real photo, oversized type, verbatim guarantee copy, CTA",
    "updated": "2026-10-12T08:34:10.008Z"
+  },
+  "block-contact-cta": {
+   "status": "building",
+   "round": 1,
+   "note": "Photo-backed dark CTA band: big headline, phone + estimate CTAs, trust strip, full service-area town list",
+   "updated": "2026-10-12T08:34:45.753Z"
+  },
+  "block-contact-form": {
+   "status": "building",
+   "round": 1,
+   "note": "Two-column contact form block: brand intro + photo panel, accessible validated form with success state",
+   "updated": "2026-10-12T08:34:57.785Z"
+  },
+  "footer": {
+   "status": "building",
+   "round": 1,
+   "note": "Dark navy footer: logo lockup + big call CTA, 4-col grid (contact/hours/license, services, company links, towns), IG, legal bar",
+   "updated": "2026-10-12T08:35:07.985Z"
+  },
+  "tpl-service": {
+   "status": "building",
+   "round": 1,
+   "note": "Data-driven service template: photo hero, verbatim sections, sticky aside, FAQ, CTA for all 13 services",
+   "updated": "2026-10-12T08:35:38.462Z"
+  },
+  "tpl-town": {
+   "status": "building",
+   "round": 1,
+   "note": "All 21 towns verbatim in data; editorial town template w/ landmark photos",
+   "updated": "2026-10-12T08:35:57.838Z"
+  },
+  "page-about-colonial-electric": {
+   "status": "building",
+   "round": 1,
+   "note": "Build About Us page: verbatim live content, real photos, editorial layout",
+   "updated": "2026-10-12T08:36:06.614Z"
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T08:36:06.614Z",
+   "piece": "page-about-colonial-electric",
+   "status": "building",
+   "round": 1,
+   "note": "Build About Us page: verbatim live content, real photos, editorial layout"
+  },
+  {
+   "t": "2026-10-12T08:35:57.838Z",
+   "piece": "tpl-town",
+   "status": "building",
+   "round": 1,
+   "note": "All 21 towns verbatim in data; editorial town template w/ landmark photos"
+  },
+  {
+   "t": "2026-10-12T08:35:44.923Z",
+   "piece": "home-safety",
+   "status": "done",
+   "round": 1,
+   "note": "Editorial headline, lead + crest seal, numbered points, crest call band; verified 375/768/1440"
+  },
+  {
+   "t": "2026-10-12T08:35:38.462Z",
+   "piece": "tpl-service",
+   "status": "building",
+   "round": 1,
+   "note": "Data-driven service template: photo hero, verbatim sections, sticky aside, FAQ, CTA for all 13 services"
+  },
+  {
+   "t": "2026-10-12T08:35:20.387Z",
+   "piece": "home-faqs",
+   "status": "done",
+   "round": 1,
+   "note": "Editorial split FAQ shipped: sticky masthead+call crest, exclusive animated details accordion, verbatim content, FAQPage JSON-LD"
+  },
+  {
+   "t": "2026-10-12T08:35:07.985Z",
+   "piece": "footer",
+   "status": "building",
+   "round": 1,
+   "note": "Dark navy footer: logo lockup + big call CTA, 4-col grid (contact/hours/license, services, company links, towns), IG, legal bar"
+  },
+  {
+   "t": "2026-10-12T08:34:57.785Z",
+   "piece": "block-contact-form",
+   "status": "building",
+   "round": 1,
+   "note": "Two-column contact form block: brand intro + photo panel, accessible validated form with success state"
+  },
+  {
+   "t": "2026-10-12T08:34:47.329Z",
+   "piece": "home-services",
+   "status": "critiquing",
+   "round": 1,
+   "note": "Round 1 built: paper-ground crest ledger of 12 linked service cells + navy Permanent Outdoor Lighting feature crest",
+   "shot": "shots/home-services-r1.png"
+  },
+  {
+   "t": "2026-10-12T08:34:45.753Z",
+   "piece": "block-contact-cta",
+   "status": "building",
+   "round": 1,
+   "note": "Photo-backed dark CTA band: big headline, phone + estimate CTAs, trust strip, full service-area town list"
+  },
+  {
+   "t": "2026-10-12T08:34:37.951Z",
+   "piece": "home-membership",
+   "status": "critiquing",
+   "round": 1,
+   "note": "Built: split band, giant 2-tone H2 + Flash Pass card object on navy crest stage, 4 verified perks, scroll-driven deal-in",
+   "shot": "shots/home-membership-r1.png"
+  },
+  {
+   "t": "2026-10-12T08:34:25.496Z",
+   "piece": "block-reviews",
+   "status": "done",
+   "round": 1,
+   "note": "Editorial reviews block: header, navy featured story, masonry wall; 375/768/1440 checked"
+  },
   {
    "t": "2026-10-12T08:34:10.008Z",
    "piece": "block-guarantee",
@@ -193,5 +310,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T08:34:10.008Z"
+ "updated": "2026-10-12T08:36:06.614Z"
 }
