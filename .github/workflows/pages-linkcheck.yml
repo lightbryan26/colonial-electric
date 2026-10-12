@@ -1,0 +1,32 @@
+name: Pages link check
+# After every GitHub Pages deploy: all 45 sitemap slugs must return 200 on the Pages URL, and a full crawl
+# (tools/linkcheck.mjs) must find zero broken pages, assets or links.
+on:
+  workflow_run:
+    workflows: ["pages build and deployment"]
+    types: [completed]
+  workflow_dispatch:
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    env:
+      BASE: https://lightbryan26.github.io/colonial-electric/
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Playwright
+        working-directory: tools
+        run: npm ci && npx playwright install --with-deps chromium
+      - name: Every sitemap slug returns 200 on GitHub Pages
+        run: |
+          fail=0; n=0
+          for slug in $(grep -o '<loc>[^<]*' docs/sitemap.xml | sed 's#<loc>https://colonial-electric.com/##'); do
+            n=$((n+1)); code=$(curl -s -o /dev/null -w '%{http_code}' "$BASE$slug")
+            echo "$code $BASE$slug"; [ "$code" = 200 ] || fail=1
+          done
+          echo "$n slugs checked"; exit $fail
+      - name: Crawl for broken links
+        run: node tools/linkcheck.mjs "$BASE"

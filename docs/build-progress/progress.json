@@ -113,11 +113,11 @@
    "shot": "shots/tpl-town-r2.png"
   },
   "page-about-colonial-electric": {
-   "status": "critiquing",
+   "status": "won",
    "round": 5,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T10:49:26.428Z",
-   "shot": "shots/page-about-colonial-electric-r4.jpg"
+   "note": "Critic picked ours blind (clear). Remaining gap: Long-form copy is dense and hard to read. The two-column intro under 'The Dependable Source' and especially the Scott Hays bio, about 400 words in a narrow column, are walls of small body text at roughly 12-13px with tight leading. On an otherwise strong, bold",
+   "updated": "2026-10-12T10:53:07.871Z",
+   "shot": "shots/page-about-colonial-electric-r5.jpg"
   },
   "page-services": {
    "status": "won",
@@ -134,32 +134,32 @@
    "shot": "shots/page-service-area-r1.png"
   },
   "page-contact-us": {
-   "status": "critiquing",
+   "status": "won",
    "round": 5,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T10:47:32.552Z",
-   "shot": "shots/page-contact-us-r4.jpg"
+   "note": "Critic picked ours blind (clear). Remaining gap: The contact form, which is the main conversion element, is underweighted. Its inputs are thin and short, the labels are tiny, the Name/Email/Phone row is cramped and the message box is small. Meanwhile the founder/van card next to it draws more attention. Make",
+   "updated": "2026-10-12T10:52:39.249Z",
+   "shot": "shots/page-contact-us-r5.jpg"
   },
   "page-premium-membership": {
-   "status": "critiquing",
+   "status": "won",
    "round": 4,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T10:45:07.587Z",
-   "shot": "shots/page-premium-membership-r1.png"
+   "note": "Critic picked ours blind (clear). Remaining gap: The type scale is too small and the copy too dense below the headlines. The eyebrow labels, the benefit list inside the floating hero card, the bullet points in the Platinum Privileges section and the benefit-detail text all render as tiny, low-contrast grey t",
+   "updated": "2026-10-12T10:51:31.008Z",
+   "shot": "shots/page-premium-membership-r4.jpg"
   },
   "page-we-offer-financing": {
-   "status": "critiquing",
-   "round": 4,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T10:45:00.175Z",
-   "shot": "shots/page-we-offer-financing-r3.jpg"
+   "status": "building",
+   "round": 5,
+   "note": "Fix empty header call-link name at 599px and below, add a real Colonial photo to the hero, set the term as 3-120 with a readable dash",
+   "updated": "2026-10-12T10:52:32.170Z",
+   "shot": "shots/page-we-offer-financing-r4.jpg"
   },
   "page-leave-us-a-review": {
-   "status": "critiquing",
+   "status": "won",
    "round": 4,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T10:45:00.359Z",
-   "shot": "shots/page-leave-us-a-review-r3.jpg"
+   "note": "Critic picked ours blind (clear). Remaining gap: The supporting text is too small and too low-contrast against the strong display type. This includes the platform-row descriptions, the eyebrow labels, the hero platform chips, the 21-town grid, the contact strip and the footer columns. They render at roughly",
+   "updated": "2026-10-12T10:52:11.073Z",
+   "shot": "shots/page-leave-us-a-review-r4.jpg"
   },
   "page-calendar": {
    "status": "won",
@@ -177,6 +177,53 @@
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T10:53:07.871Z",
+   "piece": "page-about-colonial-electric",
+   "status": "won",
+   "round": 5,
+   "note": "Critic picked ours blind (clear). Remaining gap: Long-form copy is dense and hard to read. The two-column intro under 'The Dependable Source' and especially the Scott Hays bio, about 400 words in a narrow column, are walls of small body text at roughly 12-13px with tight leading. On an otherwise strong, bold",
+   "shot": "shots/page-about-colonial-electric-r5.jpg"
+  },
+  {
+   "t": "2026-10-12T10:52:39.249Z",
+   "piece": "page-contact-us",
+   "status": "won",
+   "round": 5,
+   "note": "Critic picked ours blind (clear). Remaining gap: The contact form, which is the main conversion element, is underweighted. Its inputs are thin and short, the labels are tiny, the Name/Email/Phone row is cramped and the message box is small. Meanwhile the founder/van card next to it draws more attention. Make",
+   "shot": "shots/page-contact-us-r5.jpg"
+  },
+  {
+   "t": "2026-10-12T10:52:32.170Z",
+   "piece": "page-we-offer-financing",
+   "status": "building",
+   "round": 5,
+   "note": "Fix empty header call-link name at 599px and below, add a real Colonial photo to the hero, set the term as 3-120 with a readable dash"
+  },
+  {
+   "t": "2026-10-12T10:52:32.095Z",
+   "piece": "page-we-offer-financing",
+   "status": "lost",
+   "round": 4,
+   "note": "Won blind but failed QA: Accessibility defect that breaks the brief’s §9 ’Accessible’ requirement and its Lighthouse a11y 90+ target (WCAG 2.4.4 / 4.1.2). At widths of 599px and below, the header click-to-call link <a class=\"hcall\" href=\"tel:+17812878729\"> has an EMPTY accessible name. This was confirmed with the Chromium A",
+   "shot": "shots/page-we-offer-financing-r4.jpg"
+  },
+  {
+   "t": "2026-10-12T10:52:11.073Z",
+   "piece": "page-leave-us-a-review",
+   "status": "won",
+   "round": 4,
+   "note": "Critic picked ours blind (clear). Remaining gap: The supporting text is too small and too low-contrast against the strong display type. This includes the platform-row descriptions, the eyebrow labels, the hero platform chips, the 21-town grid, the contact strip and the footer columns. They render at roughly",
+   "shot": "shots/page-leave-us-a-review-r4.jpg"
+  },
+  {
+   "t": "2026-10-12T10:51:31.008Z",
+   "piece": "page-premium-membership",
+   "status": "won",
+   "round": 4,
+   "note": "Critic picked ours blind (clear). Remaining gap: The type scale is too small and the copy too dense below the headlines. The eyebrow labels, the benefit list inside the floating hero card, the bullet points in the Platinum Privileges section and the benefit-detail text all render as tiny, low-contrast grey t",
+   "shot": "shots/page-premium-membership-r4.jpg"
+  },
   {
    "t": "2026-10-12T10:49:26.428Z",
    "piece": "page-about-colonial-electric",
@@ -1648,5 +1695,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T10:49:26.428Z"
+ "updated": "2026-10-12T10:53:07.871Z"
 }
