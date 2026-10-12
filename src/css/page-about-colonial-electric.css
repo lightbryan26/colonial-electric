@@ -36,7 +36,7 @@
 @media (min-width: 960px) {
   .ab-hero__grid { position: relative; }
   .ab-hero__title { position: static; }
-  .ab-hero__mark { top: 0; bottom: auto; right: var(--gutter); width: clamp(10rem, 2rem + 11vw, 15rem); }
+  .ab-hero__mark { top: 0; bottom: auto; right: var(--gutter); width: clamp(10rem, 2rem + 11vw, 12rem); }
 }
 .ab-hero__lic { display: inline-flex; align-items: center; gap: .55rem; margin-top: clamp(1.25rem, 1rem + 1vw, 2rem); color: var(--on-dark-2); }
 .ab-hero__lic .icon { color: var(--red-flag); }

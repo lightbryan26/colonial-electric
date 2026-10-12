@@ -85,7 +85,7 @@ function hero(ctx) {
       <p class="eyebrow ab-hero__eyebrow">${esc(site.name)}</p>
       <div class="ab-hero__title">
         <h1 class="ab-hero__h1" id="ab-h1">About <span>Us</span></h1>
-        ${picture(ctx, 'logo-lockup', { cls: 'ab-hero__mark', alt: '', sizes: '(min-width: 960px) 15rem, 12rem', loading: 'eager' })}
+        ${picture(ctx, 'logo-lockup', { cls: 'ab-hero__mark', alt: '', sizes: '12rem', loading: 'eager' })}
       </div>
       <p class="ab-hero__lic label-wide">${icon('bolt', { size: 14 })}${esc(site.license)}</p>
       <p class="btn-row"><a class="btn btn--red btn--lg" href="${site.tel}">${icon('phone', { size: 18 })}${site.phone}</a><a class="btn btn--ghost btn--lg" href="#ab-founder">Meet Scott${icon('arrow-right', { size: 16 })}</a></p>

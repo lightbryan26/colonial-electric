@@ -161,6 +161,10 @@
 .hero__cap-txt { display: flex; flex-direction: column; gap: .3rem; }
 .hero__cap-name { font: 800 1.25rem/1 var(--f-display); text-transform: uppercase; letter-spacing: .01em; }
 .hero__cap-role { font: 700 .5625rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+/* tablet: the card signs the open lawn on the left, clear of Scott */
+@media (min-width: 640px) and (max-width: 1199px) {
+  .hero__cap { right: auto; left: var(--gutter); }
+}
 @media (min-width: 1200px) {
   .hero__cap { right: auto; left: calc(var(--sw-red) + var(--sw-white) + 2.5rem); bottom: 2.5rem; padding: .75rem 1.4rem .75rem .75rem; }
   .hero__cap-mark { width: 7.5rem; }
@@ -172,7 +176,8 @@
   .hero__eyebrow { flex-direction: column; align-items: flex-start; gap: .55rem; }
   .hero__eyebrow > span:last-child { padding-left: 0; border-left: 0; }
   .hero__ctas .btn { flex: 1 1 100%; }
-  .hero__cap { padding: .45rem .9rem .45rem .45rem; bottom: .9rem; }
+  .hero__cap { padding: .45rem .9rem .45rem .45rem; bottom: -2.5rem; } /* hangs over the photo's lower edge so Scott stays in view */
+  .hero__copy { padding-top: 4.5rem; }
   .hero__cap-mark { width: 4.75rem; }
   .hero__cap-name { font-size: 1.05rem; }
   .hero__cap-role { font-size: .5rem; }
