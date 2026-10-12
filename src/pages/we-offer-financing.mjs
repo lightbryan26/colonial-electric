@@ -65,6 +65,10 @@ function hero(ctx) {
       { '@type': 'ListItem', position: 2, name: copy.h1, item: site.origin + '/' + ctx.page.slug },
     ],
   }];
+  // Real Colonial photo beside the terms card (brief §8): the site's own tight crop of the owner + wrapped-van shot.
+  const ph = ctx.asset('img/cf-van');
+  const photoSizes = '(min-width: 1440px) 34rem, (min-width: 1024px) 38vw, (min-width: 640px) 88vw, 92vw';
+  const photo = `<picture><source type="image/webp" srcset="${ph}-640.webp 640w, ${ph}-1000.webp 1000w" sizes="${photoSizes}"><img class="fin-hero__img" src="${ph}-1000.jpg" srcset="${ph}-640.jpg 640w, ${ph}-1000.jpg 1000w" sizes="${photoSizes}" width="1000" height="900" alt="Founder Scott Hays standing in front of the red, white and blue Colonial Electric van" loading="eager" fetchpriority="high" decoding="async"></picture>`;
   return `<section class="fin-hero on-dark stars-bg" aria-labelledby="fin-h1">
   <div class="container fin-hero__grid">
     <div class="fin-hero__copy">
@@ -73,23 +77,30 @@ function hero(ctx) {
       <h1 class="fin-hero__h1" id="fin-h1"><span>We Offer</span> <span class="fin-hero__h1-em">Financing</span></h1>
       <p class="fin-hero__lead">${esc(copy.intro)}</p>
       <p class="btn-row">${preBtn()}<a class="btn btn--ghost btn--lg" href="${site.tel}">${icon('phone', { size: 18 })}${esc(site.phone)}</a></p>
+    </div>
+    <div class="fin-hero__visual">
+      <figure class="fin-hero__photo">
+        ${photo}
+      </figure>
+      <aside class="fin-card" aria-label="Financing at a glance">
+        <div class="fin-card__inner pinstripe">
+          <p class="fin-card__label label-wide">${icon('bolt', { size: 14 })}Financing with Wisetack</p>
+          <ul class="fin-card__list" role="list">
+            <li class="fin-term">
+              <span class="sr-only">${esc(copy.bullets[1])}</span>
+              <span class="fin-term__pre" aria-hidden="true">Terms from</span>
+              <span class="fin-term__num" aria-hidden="true"><span>3</span><span class="fin-term__to">to</span><span>120</span></span>
+              <span class="fin-term__unit" aria-hidden="true">months<sup>*</sup></span>
+              ${scale()}
+            </li>
+            <li class="fin-fee"><span class="fin-fee__ic">${icon('shield', { size: 22 })}</span><span>${esc(copy.bullets[0])}</span></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+    <div class="fin-hero__proof">
       ${quote('Charlie Robinson', 'hero')}
     </div>
-    <aside class="fin-card" aria-label="Financing at a glance">
-      <div class="fin-card__inner pinstripe">
-        <p class="fin-card__label label-wide">${icon('bolt', { size: 14 })}Financing with Wisetack</p>
-        <ul class="fin-card__list" role="list">
-          <li class="fin-term">
-            <span class="sr-only">${esc(copy.bullets[1])}</span>
-            <span class="fin-term__pre" aria-hidden="true">Terms from</span>
-            <span class="fin-term__num" aria-hidden="true">3<span class="fin-term__to">to</span>120</span>
-            <span class="fin-term__unit" aria-hidden="true">months<sup>*</sup></span>
-            ${scale()}
-          </li>
-          <li class="fin-fee"><span class="fin-fee__ic">${icon('shield', { size: 22 })}</span><span>${esc(copy.bullets[0])}</span></li>
-        </ul>
-      </div>
-    </aside>
   </div>
   <div class="sweep" aria-hidden="true"></div>
 </section>`;
