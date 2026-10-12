@@ -3,6 +3,18 @@
   'use strict';
   var doc = document, root = doc.documentElement;
 
+  /* ---------- Sticky mobile call bar: tucked away while the page hero is on screen ----------
+     Markup starts with .is-hidden (no flash over hero/intro copy on first paint); header.css shows it when scripting is off. */
+  var callbar = doc.querySelector('[data-callbar]');
+  if (callbar) {
+    var hero = doc.querySelector('main > section');
+    if (hero && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) { callbar.classList.toggle('is-hidden', entries[entries.length - 1].isIntersecting); }).observe(hero);
+    } else {
+      callbar.classList.remove('is-hidden');
+    }
+  }
+
   /* ---------- Header scrolled state ---------- */
   var header = doc.querySelector('[data-header]');
   if (header) {

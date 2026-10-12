@@ -9,3 +9,10 @@
 
 2. tools/blind.py — NameError: `H` is only defined inside the `elif` branch. Move
    `H = max(A.height, B.height) + 80` onto its own line after the if/elif (as in shots/blind_fixed.py).
+
+# Requests from block-contact-form (round 3)
+
+3. tools/progress.mjs: `fs.copyFileSync(img, dir+shot)` throws ENOENT because docs/build-progress/shots/
+   no longer exists (the build appears to clear it). Exact change: add
+   `fs.mkdirSync(dir + 'shots', { recursive: true });` right before the copyFileSync call.
+   Why: piece screenshots can't be attached to the live progress page; round 3 was posted without its image.

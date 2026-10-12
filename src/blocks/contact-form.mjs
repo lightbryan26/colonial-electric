@@ -27,7 +27,7 @@ export function contactForm(ctx, { id = '', cls = '', heading = 'Contact Us' } =
           </div>`;
 
   const photo = ctx.asset('img/cf-van');
-  const sizes = '(min-width: 1200px) 520px, (min-width: 960px) 40vw, (min-width: 640px) 45vw, 92vw';
+  const sizes = '(min-width: 1200px) 520px, (min-width: 960px) 40vw, 92vw';
 
   return `<section class="block cf ${cls}"${id ? ` id="${id}"` : ''} aria-labelledby="${u}-h">
   <div class="container cf__wrap">

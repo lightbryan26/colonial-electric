@@ -238,9 +238,9 @@
 .cf-fact a:hover { text-decoration: underline; text-decoration-color: var(--red-flag); }
 
 @media (min-width: 640px) and (max-width: 959px) {
-  /* tablet: wide photo banner over a full-width direct line, so the 2x2 facts never wrap mid-address */
+  /* tablet: 3:2 photo banner over a full-width direct line, so the 2x2 facts never wrap mid-address */
   .cf-photo { flex: none; min-height: 0; }
-  .cf-photo img { position: static; aspect-ratio: 16 / 9; height: auto; object-position: 50% 68%; }
+  .cf-photo img { position: static; aspect-ratio: 3 / 2; height: auto; object-position: 50% 50%; }
   .cf-direct { padding: 1.5rem 2rem 2rem; }
   .cf-facts { gap: 0 2rem; }
 }

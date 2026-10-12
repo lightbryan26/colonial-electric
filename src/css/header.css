@@ -175,9 +175,10 @@ html.menu-open, html.menu-open body { overflow: hidden; }
     display: grid; grid-template-columns: 1fr auto;
     padding-bottom: env(safe-area-inset-bottom, 0px);
     background: var(--navy-ink); box-shadow: 0 -8px 24px rgba(8, 16, 32, .25);
-    transform: translateY(0); transition: transform .35s var(--ease-out);
+    transform: translateY(0); transition: transform .35s var(--ease-out), visibility 0s;
   }
-  .callbar.is-hidden { transform: translateY(110%); }
+  /* hidden while the hero is on screen (toggled by base.js); visibility drops the off-screen links from the tab order */
+  .callbar.is-hidden { transform: translateY(110%); visibility: hidden; transition: transform .35s var(--ease-out), visibility 0s linear .35s; }
   .callbar a { display: flex; align-items: center; gap: .7rem; min-height: 4rem; text-decoration: none; color: var(--white); }
   .callbar__call { background: var(--red); padding: 0 1.25rem; }
   .callbar__call:active { background: var(--red-deep); }
@@ -187,3 +188,4 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   .callbar__alt { padding: 0 1.25rem; font: 700 .6875rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .1em; text-transform: uppercase; border-left: 1px solid var(--line-dark); }
   html.menu-open .callbar { display: none; }
 }
+@media (max-width: 767px) and (scripting: none) { .callbar.is-hidden { transform: none; visibility: visible; } }

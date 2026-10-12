@@ -86,12 +86,14 @@ function platformsSection() {
 
 function towns(ctx) {
   return `<section class="lr-towns" aria-labelledby="lr-towns-h">
-  <div class="container lr-towns__grid">
-    <div class="lr-towns__head">
-      <p class="lr-towns__k label-wide">${icon('pin', { size: 16 })}<span>Colonial Electric</span></p>
-      <h2 class="lr-towns__h" id="lr-towns-h">Towns We Serve</h2>
+  <div class="container">
+    <header class="lr-towns__head">
+      <div class="lr-towns__title">
+        <p class="lr-towns__k label-wide">${icon('pin', { size: 16 })}<span>Colonial Electric</span></p>
+        <h2 class="lr-towns__h" id="lr-towns-h">Towns We Serve</h2>
+      </div>
       <a class="lr-towns__more label-wide" href="${ctx.r('service-area/')}"><span>Service Area</span>${icon('arrow-right', { size: 16 })}</a>
-    </div>
+    </header>
     ${townList(ctx)}
   </div>
 </section>`;

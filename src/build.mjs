@@ -90,13 +90,8 @@ for (const page of pages) {
   const page = { slug: '404.html', title: 'Page Not Found', h1: 'Page Not Found', template: '404', description: site.homeDescription };
   const baseTag = `<script>(function(){var s=location.pathname.split('/')[1],b=(s==='colonial-electric'||s==='docs')?'/'+s+'/':'/';document.write('<base href="'+b+'">')})()</script>\n`;
   const ctx = makeCtx(page, { depth: 0, baseTag });
-  const { icon } = await import('./partials/icons.mjs');
-  const main = `<section class="page-hero page-hero--404 on-dark stars-bg"><div class="container">
-  <p class="eyebrow">Error 404</p>
-  <h1 class="h1">Page Not Found</h1>
-  <p class="lead">The page you’re looking for has moved or no longer exists. Head back home, or give us a call.</p>
-  <p class="btn-row"><a class="btn btn--red" href="${site.tel}">${icon('phone', { size: 18 })}Call Now</a><a class="btn btn--ghost" href="./">Back to Home</a></p>
-</div><div class="sweep" aria-hidden="true"></div></section>`;
+  const { render } = await import('./pages/notfound.mjs'); // branded 404 (brief §7); hrefs via ctx.r() resolve through baseTag
+  const main = await render(ctx);
   writeAtomic(OUT + '404.html', layout(ctx, main).replace('<meta name="description"', '<meta name="robots" content="noindex">\n<meta name="description"'));
 }
 

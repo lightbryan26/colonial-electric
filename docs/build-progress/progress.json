@@ -85,10 +85,10 @@
    "shot": "shots/block-contact-cta-r2.png"
   },
   "block-contact-form": {
-   "status": "building",
+   "status": "done",
    "round": 3,
-   "note": "Verify 24/7 Emergency support row is gone from info card, rebuild, QA at 1440/768/375 plus shared pages",
-   "updated": "2026-10-12T09:48:29.892Z",
+   "note": "24/7 Emergency support row confirmed gone (FAQ 7 is the only 24/7 on the page). Photo now decodes sync so it paints in full-page captures, not a blank navy panel. Tablet aside is now a 3:2 photo over the full-width direct line so facts stop wrapping. Photo sizes fixed for tablet.",
+   "updated": "2026-10-12T09:54:41.595Z",
    "shot": "shots/block-contact-form-r2.png"
   },
   "footer": {
@@ -120,10 +120,10 @@
    "shot": "shots/page-about-colonial-electric-r2.png"
   },
   "page-services": {
-   "status": "won",
-   "round": 2,
-   "note": "Critic picked ours blind (clear). Remaining gap: The page opens weakly and loses density as it goes. A short, image-less navy SERVICES hero leads into a narrow centered wall of grey body copy, and the page ends in a monotonous eight-card grid of tin",
-   "updated": "2026-10-12T08:57:51.483Z",
+   "status": "critiquing",
+   "round": 3,
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T09:54:54.035Z",
    "shot": "shots/page-services-r2.png"
   },
   "page-service-area": {
@@ -134,10 +134,10 @@
    "shot": "shots/page-service-area-r1.png"
   },
   "page-contact-us": {
-   "status": "won",
-   "round": 2,
-   "note": "Critic picked ours blind (clear). Remaining gap: The pacing and density are poor. The intro sits as a narrow column next to a large empty area, the info-card band is padded far beyond its content, and the form's tiny letter-spaced capital labels mak",
-   "updated": "2026-10-12T08:58:13.362Z",
+   "status": "critiquing",
+   "round": 3,
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T09:53:53.604Z",
    "shot": "shots/page-contact-us-r2.png"
   },
   "page-premium-membership": {
@@ -177,6 +177,27 @@
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T09:54:54.035Z",
+   "piece": "page-services",
+   "status": "critiquing",
+   "round": 3,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T09:54:41.595Z",
+   "piece": "block-contact-form",
+   "status": "done",
+   "round": 3,
+   "note": "24/7 Emergency support row confirmed gone (FAQ 7 is the only 24/7 on the page). Photo now decodes sync so it paints in full-page captures, not a blank navy panel. Tablet aside is now a 3:2 photo over the full-width direct line so facts stop wrapping. Photo sizes fixed for tablet."
+  },
+  {
+   "t": "2026-10-12T09:53:53.604Z",
+   "piece": "page-contact-us",
+   "status": "critiquing",
+   "round": 3,
+   "note": "screenshots + QA"
+  },
   {
    "t": "2026-10-12T09:48:57.942Z",
    "piece": "page-leave-us-a-review",
@@ -1201,5 +1222,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T09:48:57.942Z"
+ "updated": "2026-10-12T09:54:54.035Z"
 }
