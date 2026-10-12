@@ -8,14 +8,140 @@
    "shot": "shots/setup-r0.png"
   },
   "foundation-hero": {
-   "status": "critiquing",
+   "status": "won",
    "round": 1,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:28:39.533Z",
+   "note": "Critic picked ours blind (clear). Remaining gap: The large block of filler body copy in thin grey sits in the middle of the hierarchy. It dilutes a strong headline and pushes the CTAs and phone number down, which makes the left column feel crowded a",
+   "updated": "2026-10-12T08:30:10.789Z",
    "shot": "shots/foundation-hero-r1.png"
+  },
+  "home-safety": {
+   "status": "building",
+   "round": 1,
+   "note": "Editorial split: real photo + verbatim safety copy, numbered guarantee points, brand CTA",
+   "updated": "2026-10-12T08:30:20.548Z"
+  },
+  "home-services": {
+   "status": "building",
+   "round": 1,
+   "note": "Editorial services grid: 12 photo-led service cards + permanent outdoor lighting feature, Colonial brand",
+   "updated": "2026-10-12T08:30:20.561Z"
+  },
+  "home-why": {
+   "status": "building",
+   "round": 1,
+   "note": "Build Why Choose Us section: verbatim reasons, real photo, editorial numbered grid",
+   "updated": "2026-10-12T08:30:20.641Z"
+  },
+  "block-reviews": {
+   "status": "building",
+   "round": 1,
+   "note": "Verbatim reviews block: editorial pull-quote lead + card rail, Colonial brand",
+   "updated": "2026-10-12T08:30:20.815Z"
+  },
+  "home-faqs": {
+   "status": "building",
+   "round": 1,
+   "note": "Editorial split FAQ: sticky heading+call card left, native details/summary accordion right, verbatim live FAQ content",
+   "updated": "2026-10-12T08:30:20.902Z"
+  },
+  "home-about": {
+   "status": "building",
+   "round": 1,
+   "note": "Founder section: real Scott portrait, verbatim copy, editorial split",
+   "updated": "2026-10-12T08:30:29.404Z"
+  },
+  "home-membership": {
+   "status": "building",
+   "round": 1,
+   "note": "Flash Pass teaser: navy crest-framed band with live photo, 4 verified perk titles, Learn More CTA, no price",
+   "updated": "2026-10-12T08:30:35.608Z"
+  },
+  "home-process": {
+   "status": "building",
+   "round": 1,
+   "note": "Own-render 4-step booking process with real photo, quote + towns band, scroll-drawn timeline",
+   "updated": "2026-10-12T08:30:26.999Z"
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T08:30:35.608Z",
+   "piece": "home-membership",
+   "status": "building",
+   "round": 1,
+   "note": "Flash Pass teaser: navy crest-framed band with live photo, 4 verified perk titles, Learn More CTA, no price"
+  },
+  {
+   "t": "2026-10-12T08:30:29.404Z",
+   "piece": "home-about",
+   "status": "building",
+   "round": 1,
+   "note": "Founder section: real Scott portrait, verbatim copy, editorial split"
+  },
+  {
+   "t": "2026-10-12T08:30:26.999Z",
+   "piece": "home-process",
+   "status": "building",
+   "round": 1,
+   "note": "Own-render 4-step booking process with real photo, quote + towns band, scroll-drawn timeline"
+  },
+  {
+   "t": "2026-10-12T08:30:21.022Z",
+   "piece": "home-membership",
+   "status": "building",
+   "round": 1,
+   "note": "Flash Pass teaser: photo-led split band, benefit list verbatim, CTA to membership page, no price"
+  },
+  {
+   "t": "2026-10-12T08:30:20.922Z",
+   "piece": "home-about",
+   "status": "building",
+   "round": 1,
+   "note": "Founder section: Scott Hays real portrait, verbatim about copy, editorial split layout"
+  },
+  {
+   "t": "2026-10-12T08:30:20.902Z",
+   "piece": "home-faqs",
+   "status": "building",
+   "round": 1,
+   "note": "Editorial split FAQ: sticky heading+call card left, native details/summary accordion right, verbatim live FAQ content"
+  },
+  {
+   "t": "2026-10-12T08:30:20.815Z",
+   "piece": "block-reviews",
+   "status": "building",
+   "round": 1,
+   "note": "Verbatim reviews block: editorial pull-quote lead + card rail, Colonial brand"
+  },
+  {
+   "t": "2026-10-12T08:30:20.641Z",
+   "piece": "home-why",
+   "status": "building",
+   "round": 1,
+   "note": "Build Why Choose Us section: verbatim reasons, real photo, editorial numbered grid"
+  },
+  {
+   "t": "2026-10-12T08:30:20.561Z",
+   "piece": "home-services",
+   "status": "building",
+   "round": 1,
+   "note": "Editorial services grid: 12 photo-led service cards + permanent outdoor lighting feature, Colonial brand"
+  },
+  {
+   "t": "2026-10-12T08:30:20.548Z",
+   "piece": "home-safety",
+   "status": "building",
+   "round": 1,
+   "note": "Editorial split: real photo + verbatim safety copy, numbered guarantee points, brand CTA"
+  },
+  {
+   "t": "2026-10-12T08:30:10.789Z",
+   "piece": "foundation-hero",
+   "status": "won",
+   "round": 1,
+   "note": "Critic picked ours blind (clear). Remaining gap: The large block of filler body copy in thin grey sits in the middle of the hierarchy. It dilutes a strong headline and pushes the CTAs and phone number down, which makes the left column feel crowded a",
+   "shot": "shots/foundation-hero-r1.png"
+  },
   {
    "t": "2026-10-12T08:28:39.533Z",
    "piece": "foundation-hero",
@@ -47,5 +173,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T08:28:39.533Z"
+ "updated": "2026-10-12T08:30:35.608Z"
 }
