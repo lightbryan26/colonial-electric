@@ -278,12 +278,3 @@
   .fin-hero__h1-em::after, .fin-scale__fill, .fin-card, .fin-hero__photo { animation: none; }
 }
 @media (min-width: 640px) and (max-width: 959px) { .fin-pq__media { max-width: 24rem; justify-self: start; } }
-
-/* Header call link: the shared header hides .hcall__txt with display:none below 600px, leaving the link
-   with no accessible name. Keep the text visually hidden but announced on this page (request filed). */
-@media (max-width: 599px) {
-  .tpl-we-offer-financing .hcall__txt {
-    display: flex; position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
-    clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0;
-  }
-}

@@ -1,6 +1,5 @@
 import { serviceCards, servicesIntro, services } from '../../data/services.mjs';
 import { site } from '../../data/site.mjs';
-import { towns } from '../../data/towns.mjs';
 import { icon } from '../../partials/icons.mjs';
 import { esc } from '../../lib/html.mjs';
 
@@ -92,7 +91,7 @@ export function render(ctx) {
         <ul class="hsvc__proof" role="list">
           <li><span class="hsvc__stars" aria-hidden="true">${icon('star', { size: 15 }).repeat(5)}</span><span>5-Star Rated Electrician on Google</span></li>
           <li>${icon('shield', { size: 17 })}<span>Licensed &amp; Insured · ${esc(site.license)}</span></li>
-          <li>${icon('pin', { size: 17 })}<span>Serving ${towns.length} South Shore towns</span></li>
+          <li>${icon('pin', { size: 17 })}<span>Serving the South Shore</span></li>
         </ul>
         <div class="hsvc__actions">
           <a class="btn btn--red hsvc__call" href="${site.tel}">${icon('phone', { size: 20 })}<span>${esc(site.phone)}</span></a>

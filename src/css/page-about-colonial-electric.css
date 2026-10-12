@@ -1,6 +1,6 @@
 /* =====================================================================
    /about-colonial-electric/ — About Us page (owner: page-about-colonial-electric)
-   All selectors scoped to .ab-* or .tpl-about-colonial-electric / .tpl-about.
+   All selectors scoped to .ab-* or .tpl-about-colonial-electric. The sticky call bar uses the sitewide behaviour (header.css + base.js).
    ===================================================================== */
 
 /* ---------- Section index (01 — Our Company) ---------- */

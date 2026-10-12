@@ -15,15 +15,6 @@
 .svc-extra { margin-top: 1.5rem; }
 .svc-extra a { display: inline-flex; gap: .5rem; align-items: center; font-weight: 600; color: var(--navy); }
 
-/* guarantee */
-.seal { display: inline-grid; place-items: center; width: 4.5rem; height: 4.5rem; background: var(--red); color: var(--white); clip-path: var(--crest); margin-bottom: 1.5rem; }
-
-/* call box */
-.callbox { background: var(--navy); color: var(--white); padding: 2rem; clip-path: var(--crest-lg); display: grid; gap: 1rem; }
-.callbox p { color: var(--on-dark-2); }
-.callbox .tel-lg { color: var(--white); }
-.callbox__cta a { font: 700 .75rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .1em; text-transform: uppercase; color: var(--white); }
-
 /* process */
 .steps { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); counter-reset: s; }
 .step { padding: 1.5rem; border-top: 3px solid var(--navy); background: var(--paper); }
@@ -33,7 +24,7 @@
 .pull-quote { margin: clamp(2.5rem, 2rem + 2vw, 4rem) 0 2rem; max-width: 46rem; }
 .pull-quote p { font: 700 italic clamp(1.4rem, 1.1rem + 1.2vw, 2.1rem)/1.25 var(--f-display); color: var(--navy); }
 
-/* FAQs */
+/* FAQs: markup from faqs() in src/blocks/faqs.mjs (exported; no page calls it at present) */
 .faq-list { margin-top: 2rem; border-top: 1px solid var(--line); }
 .faq { border-bottom: 1px solid var(--line); }
 .faq summary { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; padding: 1.25rem 0; cursor: pointer; list-style: none; font-weight: 700; font-size: 1.0625rem; color: var(--ink); }
@@ -46,41 +37,3 @@
 .faq__a > * + * { margin-top: .8rem; }
 .faq__a ul { padding-left: 1.2rem; display: grid; gap: .5rem; }
 .faq__a strong { color: var(--ink); }
-
-/* contact form */
-.cform { margin-top: 2rem; display: grid; gap: 1.25rem; }
-.cform__grid { display: grid; gap: 1.25rem; }
-@media (min-width: 640px) { .cform__grid { grid-template-columns: 1fr 1fr; } }
-.field label { display: block; margin-bottom: .45rem; font: 700 .6875rem/1.2 var(--f-wide); font-stretch: 125%; letter-spacing: .1em; text-transform: uppercase; color: var(--ink); }
-.field label span[aria-hidden] { color: var(--red); }
-.field input:not([type="checkbox"]), .field textarea { width: 100%; padding: .85rem 1rem; border: 1px solid var(--line-strong); background: var(--white); border-radius: 0; font-size: 1rem; transition: border-color .2s, box-shadow .2s; }
-.field input:focus, .field textarea:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(30, 68, 121, .18); }
-.field [aria-invalid="true"] { border-color: var(--red) !important; }
-.field textarea { resize: vertical; min-height: 8rem; }
-.field__err { color: var(--red-deep); font-size: var(--fs-xs); font-weight: 600; margin-top: .35rem; }
-.field__err:empty { display: none; }
-.field__meta { display: flex; justify-content: space-between; gap: 1rem; margin-top: .35rem; }
-.field__meta .field__err { margin-top: 0; }
-.field__count { margin-left: auto; font-size: var(--fs-xs); color: var(--ink-3); font-variant-numeric: tabular-nums; }
-.field--check { display: grid; grid-template-columns: auto 1fr; gap: .25rem .85rem; align-items: start; }
-.field--check input { width: 1.25rem; height: 1.25rem; margin-top: .15rem; accent-color: var(--navy); }
-.field--check label { margin: 0; font: 400 var(--fs-xs)/1.55 var(--f-body); letter-spacing: 0; text-transform: none; color: var(--ink-2); }
-.field__consent-h { display: block; font: 700 .6875rem/1.2 var(--f-wide); font-stretch: 125%; letter-spacing: .1em; text-transform: uppercase; color: var(--ink); margin-bottom: .3rem; }
-.field--check .field__err { grid-column: 2; }
-.cform .btn { justify-self: start; }
-.cform__status { padding: 1.1rem 1.25rem; background: var(--paper); border-left: 4px solid var(--navy); color: var(--ink); font-weight: 600; }
-.cform__status a { color: var(--blue-bright); }
-
-/* info cards, sites, legal, booking */
-.info-card__ic { display: grid; place-items: center; width: 3rem; height: 3rem; background: var(--red); color: var(--white); clip-path: var(--crest); --cut: 8px; margin-bottom: 1rem; }
-.sites { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr)); margin-top: 1.5rem; }
-.site-card img { width: 100%; aspect-ratio: 1; object-fit: cover; clip-path: var(--crest); }
-.site-card p { margin-top: .75rem; font-weight: 700; color: var(--navy); }
-.legal { display: grid; gap: 2.5rem; }
-@media (min-width: 960px) { .legal { grid-template-columns: 17rem minmax(0, 70ch); justify-content: space-between; } .legal__toc { position: sticky; top: calc(var(--header-h) + 1.5rem); align-self: start; max-height: calc(100vh - 8rem); overflow: auto; } }
-.legal__toc ol { margin-top: 1rem; display: grid; gap: .45rem; font-size: var(--fs-small); }
-.legal__toc a { color: var(--ink-2); text-decoration: none; }
-.legal__toc a:hover { color: var(--red); }
-.legal__body { max-width: 70ch; }
-.legal__body h2:first-child { margin-top: 0; }
-.booking-embed { margin-top: 2rem; min-height: 40rem; }
