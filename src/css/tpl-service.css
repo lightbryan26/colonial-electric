@@ -351,7 +351,9 @@
 .svp-ol { padding-block: var(--section); }
 .svp-ol__head { display: grid; gap: 2rem; align-items: end; padding-bottom: 2.5rem; border-bottom: 2px solid var(--navy); }
 @media (min-width: 1024px) { .svp-ol__head { grid-template-columns: 1fr 1.2fr; } }
-.svp-ol__nav ol { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+.svp-ol__head > * { min-width: 0; }
+.svp-ol__nav ol { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; }
+@media (max-width: 479px) { .svp-ol__nav ol { grid-template-columns: minmax(0, 1fr); } } /* two crest tabs need ~370px: one column on phones */
 .svp-ol__nav a {
   display: flex; align-items: center; gap: .75rem; padding: .9rem 1rem; background: var(--paper); color: var(--navy); text-decoration: none;
   font: 700 .75rem/1.2 var(--f-wide); font-stretch: 125%; letter-spacing: .08em; text-transform: uppercase; clip-path: var(--crest);
