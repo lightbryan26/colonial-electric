@@ -35,13 +35,13 @@ const bolt = {
 // img = the live site's own clean service photo for that benefit (assets/img/home-services/, brief §8).
 const benefits = [
   { t: 'Front-of-the-Line Pass', ic: 'bolt', x: 59.25, y: 15, lvl: .24,
-    img: ['outlets', 637, 398, 'Close-up of a duplex electrical outlet being wired into a wall box', '50% 50%'],
+    img: ['panel', 684, 428, 'Open residential electrical panel with breakers and wiring', '50% 45%'],
     p: 'Electrical issues are a part of the daily life, but with our Exclusive Access Pass, waiting in line becomes a thing of the past. Our “Front of the Line Pass” guarantees immediate attention from our expert technicians for all repairs, services, and upgrades. No more long waits, just efficient solutions tailored to your needs.' },
   { t: 'After-Hours Emergency Assistance', ic: 'clock', x: 44.5, y: 35, lvl: .43,
     img: ['lighting', 684, 428, 'Filament bulbs glowing against a dark brick wall', '50% 40%'],
     p: 'Our regular business hours is from 8:00 AM to 4:00 PM, but we understand that electrical issues don’t adhere to schedules. That’s why our exclusive all-access pass extends beyond standard hours to provide emergency support when you need it most. With our after-hours assistance, customers can rest assured knowing that help is available even during critical after-hours moments, ensuring peace of mind and timely resolution to any electrical concerns.' },
   { t: 'Waived Diagnostic & Service Fees', ic: 'shield', x: 57.75, y: 57.5, lvl: .64,
-    img: ['panel', 684, 428, 'Open residential electrical panel with breakers and wiring', '50% 45%'],
+    img: ['outlets', 637, 398, 'Close-up of a duplex electrical outlet being wired into a wall box', '50% 50%'],
     p: 'Unlike many electrical companies that charge customers for service estimates, Colonial Electric takes a customer-first approach. With our exclusive all-access pass, there’s no need for concern about additional fees when requesting an electrician to assess your home for electrical issues. We prioritize transparency and customer satisfaction, ensuring that our visit to identify the cause of a problem or provide a price estimate is a complimentary service for our valued members.' },
   { t: 'Annual Whole Home Electrical Safety Inspections', ic: 'inspect', x: 44, y: 80, lvl: 1,
     img: ['generator', 684, 428, 'Standby generator installed beside a white clapboard home', '50% 60%'],
@@ -148,6 +148,7 @@ function boltSection(ctx) {
   const cards = benefits.map((b, i) => {
     const [key, w, h, alt, pos] = b.img;
     const [lead, rest] = splitLead(b.p);
+    const nxt = (i + 1) % benefits.length;
     return `<article class="pm-card${i === 0 ? ' is-on' : ''}" id="pm-card-${i}" role="tabpanel" aria-labelledby="pm-tab-${i}" tabindex="0">
           <div class="pm-card__media"><picture><source type="image/webp" srcset="${IMG}${key}-480.webp 480w, ${IMG}${key}-800.webp ${w}w" sizes="(min-width: 1440px) 44rem, (min-width: 1024px) 56vw, 92vw"><img src="${IMG}${key}-800.jpg" srcset="${IMG}${key}-480.jpg 480w, ${IMG}${key}-800.jpg ${w}w" sizes="(min-width: 1440px) 44rem, (min-width: 1024px) 56vw, 92vw" width="${w}" height="${h}" alt="${esc(alt)}" loading="eager" fetchpriority="low" decoding="sync" style="object-position:${pos}"></picture><span class="pm-card__n" aria-hidden="true">${pad(i + 1)}</span></div>
           <div class="pm-card__body">
@@ -155,6 +156,7 @@ function boltSection(ctx) {
             <h3 class="pm-card__h">${esc(b.t)}</h3>
             <p class="pm-card__p"><span class="pm-card__lead">${esc(lead)}</span> ${esc(rest)}</p>
           </div>
+          <div class="pm-card__nav"><button class="pm-card__next" type="button" data-go="${nxt}"><span class="label-wide">${i < benefits.length - 1 ? 'Next benefit' : 'Back to the first'}</span><span class="pm-card__next-t">${esc(benefits[nxt].t)}</span>${icon('arrow-right', { size: 18 })}</button></div>
         </article>`;
   }).join('\n        ');
   return `<section class="pm-bolt on-dark stars-bg" id="pm-benefits" aria-labelledby="pm-bolt-h">
@@ -165,9 +167,9 @@ function boltSection(ctx) {
         <p class="eyebrow">${esc(bolt.eyebrow)}</p>
         <h2 class="pm-bolt__h" id="pm-bolt-h">${esc(bolt.h2)}</h2>
       </div>
-      <p class="pm-bolt__hint"><span class="pm-bolt__hint-ic" aria-hidden="true">${icon('bolt', { size: 20 })}</span><span>${esc(bolt.hint)}</span></p>
     </header>
     <div class="pm-bolt__body">
+      <p class="pm-bolt__hint"><span class="pm-bolt__hint-ic" aria-hidden="true">${icon('bolt', { size: 20 })}</span><span>${esc(bolt.hint)}</span></p>
       <div class="pm-stage" data-pm-stage style="--lvl:${benefits[0].lvl}">
         <div class="pm-stage__bolt">
           <svg class="pm-stage__svg" viewBox="0 0 400 600" aria-hidden="true" focusable="false">
@@ -223,6 +225,9 @@ function boltSection(ctx) {
         if (j === undefined) return;
         e.preventDefault(); set((j + n) % n, true);
       });
+    });
+    s.querySelectorAll('.pm-card__next').forEach(function (b) { // step through the benefits (keeps focus on the new panel's button)
+      b.addEventListener('click', function () { var j = +b.getAttribute('data-go'); set(j); cards[j].querySelector('.pm-card__next').focus({ preventScroll: true }); });
     });
     // "Hover over the BOLT": with a mouse, the pointer's height over the bolt picks the benefit.
     stage.addEventListener('pointermove', function (e) {
