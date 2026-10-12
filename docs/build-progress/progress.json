@@ -15,10 +15,10 @@
    "shot": "shots/foundation-hero-r1.png"
   },
   "home-safety": {
-   "status": "done",
+   "status": "critiquing",
    "round": 1,
-   "note": "Editorial headline, lead + crest seal, numbered points, crest call band; verified 375/768/1440",
-   "updated": "2026-10-12T08:35:44.923Z"
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T08:46:45.450Z"
   },
   "home-services": {
    "status": "critiquing",
@@ -59,34 +59,34 @@
    "shot": "shots/home-membership-r1.png"
   },
   "home-process": {
-   "status": "building",
+   "status": "critiquing",
    "round": 1,
-   "note": "Own-render 4-step booking process with real photo, quote + towns band, scroll-drawn timeline",
-   "updated": "2026-10-12T08:30:26.999Z"
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T08:46:45.386Z"
   },
   "block-guarantee": {
-   "status": "building",
+   "status": "critiquing",
    "round": 1,
-   "note": "Lifetime Craftsmanship Guarantee band: real photo, oversized type, verbatim guarantee copy, CTA",
-   "updated": "2026-10-12T08:34:10.008Z"
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T08:46:49.051Z"
   },
   "block-contact-cta": {
-   "status": "building",
+   "status": "critiquing",
    "round": 1,
-   "note": "Photo-backed dark CTA band: big headline, phone + estimate CTAs, trust strip, full service-area town list",
-   "updated": "2026-10-12T08:34:45.753Z"
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T08:47:21.205Z"
   },
   "block-contact-form": {
-   "status": "building",
+   "status": "critiquing",
    "round": 1,
-   "note": "Two-column contact form block: brand intro + photo panel, accessible validated form with success state",
-   "updated": "2026-10-12T08:34:57.785Z"
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T08:47:33.814Z"
   },
   "footer": {
    "status": "critiquing",
    "round": 1,
-   "note": "Footer rebuilt: masthead (lockup + display phone + 4 facts), link grid, crest license card, legal row",
-   "updated": "2026-10-12T08:39:22.787Z",
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T08:46:59.358Z",
    "shot": "shots/footer-r1.png"
   },
   "tpl-service": {
@@ -96,34 +96,34 @@
    "updated": "2026-10-12T08:35:38.462Z"
   },
   "tpl-town": {
-   "status": "done",
+   "status": "critiquing",
    "round": 1,
-   "note": "Town template built: custom hero+postcard, intro, safety w/ founder, crest call box+form, 7-col town index, editorial Top Sites; all 21 render",
-   "updated": "2026-10-12T08:43:00.633Z"
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T08:47:38.248Z"
   },
   "page-about-colonial-electric": {
-   "status": "building",
+   "status": "critiquing",
    "round": 1,
-   "note": "Build About Us page: verbatim live content, real photos, editorial layout",
-   "updated": "2026-10-12T08:36:06.614Z"
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T08:47:01.473Z"
   },
   "page-services": {
-   "status": "done",
+   "status": "critiquing",
    "round": 1,
-   "note": "Services page built in src/pages/services.mjs; routing request filed",
-   "updated": "2026-10-12T08:42:41.355Z"
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T08:47:34.214Z"
   },
   "page-service-area": {
-   "status": "building",
+   "status": "critiquing",
    "round": 1,
-   "note": "Service-area index: hero w/ real photo, region-grouped town directory, map-style coverage, CTA",
-   "updated": "2026-10-12T08:39:04.933Z"
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T08:47:59.019Z"
   },
   "page-contact-us": {
-   "status": "building",
+   "status": "critiquing",
    "round": 1,
-   "note": "Contact page: photo-led hero, direct-line panel, form block, service area + hours, reviews",
-   "updated": "2026-10-12T08:39:41.379Z"
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T08:48:08.041Z"
   },
   "page-premium-membership": {
    "status": "building",
@@ -157,6 +157,83 @@
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T08:48:08.041Z",
+   "piece": "page-contact-us",
+   "status": "critiquing",
+   "round": 1,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:47:59.019Z",
+   "piece": "page-service-area",
+   "status": "critiquing",
+   "round": 1,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:47:38.248Z",
+   "piece": "tpl-town",
+   "status": "critiquing",
+   "round": 1,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:47:34.214Z",
+   "piece": "page-services",
+   "status": "critiquing",
+   "round": 1,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:47:33.814Z",
+   "piece": "block-contact-form",
+   "status": "critiquing",
+   "round": 1,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:47:21.205Z",
+   "piece": "block-contact-cta",
+   "status": "critiquing",
+   "round": 1,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:47:01.473Z",
+   "piece": "page-about-colonial-electric",
+   "status": "critiquing",
+   "round": 1,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:46:59.358Z",
+   "piece": "footer",
+   "status": "critiquing",
+   "round": 1,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:46:49.051Z",
+   "piece": "block-guarantee",
+   "status": "critiquing",
+   "round": 1,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:46:45.450Z",
+   "piece": "home-safety",
+   "status": "critiquing",
+   "round": 1,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:46:45.386Z",
+   "piece": "home-process",
+   "status": "critiquing",
+   "round": 1,
+   "note": "screenshots + QA"
+  },
   {
    "t": "2026-10-12T08:46:19.433Z",
    "piece": "home-about",
@@ -486,5 +563,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T08:46:19.433Z"
+ "updated": "2026-10-12T08:48:08.041Z"
 }

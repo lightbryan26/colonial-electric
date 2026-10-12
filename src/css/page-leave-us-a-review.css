@@ -23,7 +23,6 @@
   display: inline-flex; align-items: center; min-height: 2.75rem; padding: .55rem 1rem;
   font: 700 .6875rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .12em; text-transform: uppercase;
   color: var(--white); text-decoration: none; border: 1px solid var(--line-dark-strong);
-  clip-path: polygon(6px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0 calc(100% - 6px), 0 6px);
   transition: background var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out);
 }
 @media (max-width: 599px) {

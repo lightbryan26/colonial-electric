@@ -135,11 +135,6 @@ export function legalPage(ctx, name) {
         <div class="lg-toc__track"><span class="lg-toc__fill" data-lg-fill></span></div>
         <ol role="list" class="lg-toc__list">${tocItems}</ol>
       </nav>
-      <div class="lg-help">
-        <p class="lg-help__k">Questions about this ${name === 'terms' ? 'agreement' : 'policy'}?</p>
-        <a class="lg-help__line" href="mailto:${email}">${icon('mail', { size: 18 })}<span>${email}</span></a>
-        <a class="lg-help__line" href="${site.tel}">${icon('phone', { size: 18 })}<span>${site.phone}</span></a>
-      </div>
     </aside>
     <article class="lg-article" aria-label="${esc(doc.label)}">
       ${body}

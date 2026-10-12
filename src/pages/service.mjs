@@ -35,7 +35,7 @@ function body(blocks, opts) {
   blocks.forEach((b, i) => {
     if (typeof b === 'string') {
       const next = blocks[i + 1];
-      out += isLead(b) && next && next.list ? `<p class="svp-listlead">${esc(b.replace(/:\s*$/, ''))}</p>` : `<p>${esc(b)}</p>`;
+      out += isLead(b) && next && next.list && !opts?.plainLeads ? `<p class="svp-listlead">${esc(b.replace(/:\s*$/, ''))}</p>` : `<p>${esc(b)}</p>`;
     } else if (b.list) out += points(b.list, opts);
   });
   return out;
@@ -149,14 +149,14 @@ const why = () => `<section class="svp-why" aria-labelledby="svp-why-h">
 const STEP_ICONS = ['phone', 'mail', 'calendar', 'check'];
 const process = () => `<section class="svp-proc on-dark stars-bg" aria-labelledby="svp-proc-h">
   <div class="container">
-    <header class="svp-proc__head"><p class="eyebrow">How It Works</p><h2 class="svp-h2 svp-proc__h" id="svp-proc-h">${esc(bookingH2)}</h2></header>
+    <header class="svp-proc__head"><p class="eyebrow">How It Works</p><h2 class="svp-h2 svp-proc__h" id="svp-proc-h">${esc(bookingH2)}</h2>
+      <p class="svp-proc__cta"><span class="svp-proc__cta-k">Step 01 starts here</span><a class="btn btn--red btn--lg" href="${site.tel}">${icon('phone', { size: 18 })}<span>Call ${site.phone}</span></a></p></header>
     <ol class="svp-proc__list" role="list">${processSteps.map((p, i) => `<li class="svp-proc__step svp-reveal" style="--i:${i}">
         <div class="svp-proc__mark"><span class="svp-proc__ic">${icon(STEP_ICONS[i], { size: 22 })}</span><span class="svp-proc__line" aria-hidden="true"></span></div>
         <p class="svp-proc__n">Step ${pad(p.n)}</p>
         <h3 class="svp-proc__t">${esc(p.short)}</h3>
         <p class="svp-proc__b">${esc(p.body)}</p>
       </li>`).join('')}</ol>
-    <p class="svp-proc__cta"><a class="btn btn--red btn--lg" href="${site.tel}">${icon('phone', { size: 18 })}<span>Call ${site.phone}</span></a></p>
   </div>
 </section>`;
 
@@ -164,7 +164,6 @@ const process = () => `<section class="svp-proc on-dark stars-bg" aria-labelledb
 const quoteTowns = ctx => `<section class="svp-qt" aria-labelledby="svp-qt-h">
   <div class="container svp-qt__grid">
     <figure class="svp-qt__quote">
-      <span class="svp-qt__mark" aria-hidden="true">${icon('quote', { size: 48 })}</span>
       <blockquote><p>${quote.map((q, i) => `<span class="svp-qt__l svp-qt__l--${i + 1}">${esc(i === 0 ? '“' + q : i === quote.length - 1 ? q + '”' : q)}</span>`).join(' ')}</p></blockquote>
       <figcaption class="svp-qt__by"><span class="flag-rule" aria-hidden="true"></span><span>Colonial Electric</span></figcaption>
     </figure>
@@ -194,7 +193,7 @@ function faqs(ctx, s) {
     </header>
     <div class="svp-faq__list">${s.faqs.map((f, i) => `<details class="svp-q" name="svp-faq"${i === 0 ? ' open' : ''}>
         <summary><span class="svp-q__n" aria-hidden="true">${pad(i + 1)}</span><span class="svp-q__t">${esc(f.q)}</span><span class="svp-q__ic" aria-hidden="true"></span></summary>
-        <div class="svp-q__a svp-copy">${body(f.a)}</div>
+        <div class="svp-q__a svp-copy">${body(f.a, { plainLeads: true })}</div>
       </details>`).join('')}</div>
   </div>
 </section>`;
@@ -206,7 +205,7 @@ function outdoorPanels(ctx) {
   return `<section class="svp-ol" aria-labelledby="svp-ol-h">
   <div class="container">
     <header class="svp-ol__head">
-      <h2 class="svp-h2" id="svp-ol-h">${esc(services[0].h1)}</h2>
+      <h2 class="svp-h2" id="svp-ol-h">${esc(outdoor.panels.map(p => p.title.replace(/ Lighting$/, '')).join(', ').replace(/, (?=[^,]*$)/, ' & '))} Lighting</h2>
       <nav class="svp-ol__nav" aria-label="Lighting services"><ol role="list">${outdoor.panels.map((p, i) => `<li><a href="#ol-${p.id}"><span class="svp-ol__navn">${pad(i + 1)}</span><span>${esc(p.title)}</span>${icon('arrow-right', { size: 14 })}</a></li>`).join('')}</ol></nav>
     </header>
     ${outdoor.panels.map((p, i) => `<article class="svp-olp svp-reveal" id="ol-${p.id}" aria-labelledby="ol-${p.id}-h">

@@ -77,9 +77,9 @@ function hero(ctx) {
       </figcaption>
     </figure>
   </div>
-  <ol class="pm-hero__index container" role="list" aria-label="Membership benefits">
+  <div class="container"><ol class="pm-hero__index" role="list" aria-label="Membership benefits">
     ${benefits.map((b, i) => `<li><a href="#pm-tab-${i}" data-pm-jump="${i}"><span class="pm-hero__n" aria-hidden="true">${pad(i + 1)}</span><span>${esc(b.t)}</span></a></li>`).join('')}
-  </ol>
+  </ol></div>
 </section>`;
 }
 
@@ -184,7 +184,7 @@ function boltSection() {
       a.addEventListener('click', function () { set(+a.getAttribute('data-pm-jump')); });
     });
     if ('IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function (es) { es.forEach(function (en) { if (en.isIntersecting) { s.classList.add('pm-live'); io.disconnect(); } }); }, { threshold: .25 });
+      var io = new IntersectionObserver(function (es) { es.forEach(function (en) { if (en.isIntersecting) { s.classList.add('pm-live'); io.disconnect(); } }); }, { threshold: .15 });
       io.observe(stage);
     } else s.classList.add('pm-live');
   })();
@@ -197,6 +197,7 @@ function saveBigSection() {
   return `<section class="pm-save" aria-labelledby="pm-save-h">
   <div class="container">
     <p class="pm-index"><span class="pm-index__n">03</span><span class="pm-index__l">The Payoff</span></p>
+    <div class="pm-save__grid">
     <h2 class="pm-save__h" id="pm-save-h"><span class="pm-save__a">${esc(a)}</span> <span class="pm-save__b">${esc(b)}</span> <span class="pm-save__c">${esc(c)}</span></h2>
     <div class="pm-save__row">
       <span class="flag-rule" aria-hidden="true"></span>
@@ -205,6 +206,7 @@ function saveBigSection() {
         <a class="btn btn--red btn--lg" href="${site.tel}">${icon('phone', { size: 18 })}Call Now</a>
         <a class="tel-lg" href="${site.tel}">${site.phone}</a>
       </div>
+    </div>
     </div>
   </div>
 </section>`;
