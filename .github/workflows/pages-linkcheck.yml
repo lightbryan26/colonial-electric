@@ -34,10 +34,10 @@ jobs:
       - name: Every sitemap slug returns 200 on GitHub Pages
         run: |
           fail=0; n=0
-          for slug in $(grep -o '<loc>[^<]*' docs/sitemap.xml | sed 's#<loc>https://colonial-electric.com/##'); do
-            n=$((n+1)); code=$(curl -s -o /dev/null -w '%{http_code}' "$BASE$slug")
+          while IFS= read -r slug; do   # the homepage's slug is empty, so read lines rather than split words
+            n=$((n+1)); code=$(curl -s -o /dev/null -w '%{http_code}' --retry 3 --retry-all-errors "$BASE$slug")
             echo "$code $BASE$slug"; [ "$code" = 200 ] || fail=1
-          done
-          echo "$n slugs checked"; exit $fail
+          done < <(grep -o '<loc>[^<]*' docs/sitemap.xml | sed 's#<loc>https://colonial-electric.com/##')
+          echo "$n slugs checked"; [ "$n" = 45 ] || fail=1; exit $fail
       - name: Crawl for broken links
         run: node tools/linkcheck.mjs "$BASE"
