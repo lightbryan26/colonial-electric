@@ -141,10 +141,10 @@
    "shot": "shots/page-contact-us-r4.jpg"
   },
   "page-premium-membership": {
-   "status": "done",
+   "status": "critiquing",
    "round": 4,
-   "note": "Bolt panels go inert the moment they are deselected and the incoming panel is visible at once, so a quick Arrow+Tab always lands on the active panel at every width (Playwright verified); intro and benefit copy set one sentence per row at 17-18px with a big lead and a sign-up band, guarantee clauses in one readable column on this page; all copy still verbatim; 45/45 build, no h-scroll at 375/768/1440",
-   "updated": "2026-10-12T10:44:51.238Z",
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T10:45:07.587Z",
    "shot": "shots/page-premium-membership-r1.png"
   },
   "page-we-offer-financing": {
@@ -177,6 +177,13 @@
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T10:45:07.587Z",
+   "piece": "page-premium-membership",
+   "status": "critiquing",
+   "round": 4,
+   "note": "screenshots + QA"
+  },
   {
    "t": "2026-10-12T10:45:00.359Z",
    "piece": "page-leave-us-a-review",
@@ -1605,5 +1612,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T10:45:00.359Z"
+ "updated": "2026-10-12T10:45:07.587Z"
 }
