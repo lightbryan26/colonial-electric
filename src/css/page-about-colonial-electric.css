@@ -206,7 +206,7 @@
 @media (max-width: 599px) { .ab-pillar__n { grid-row: span 2; } }
 
 /* Photo row: the live site's own service photos, linked to their pages */
-.ab-work { margin-top: clamp(3.5rem, 2.5rem + 4vw, 6.5rem); }
+.ab-worksec { padding-block: clamp(3.5rem, 2.5rem + 4vw, 6.5rem); background: var(--white); }
 .ab-work__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 2rem; padding-bottom: 1.25rem; margin-bottom: clamp(1.25rem, 1rem + 1vw, 2rem); border-bottom: 1px solid var(--line-strong); }
 .ab-work__k { display: inline-flex; align-items: center; gap: .55rem; color: var(--navy); }
 .ab-work__k .icon { color: var(--red); }

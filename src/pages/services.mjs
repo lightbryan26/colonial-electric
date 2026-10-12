@@ -1,5 +1,5 @@
 // /services/ — Services index (brief §7). All copy verbatim from source/pages/services.md.
-// Section order (brief §7): hero + "For a Job Done Right" → residential → 3 categories → trust strip →
+// Section order (brief §7): hero (H1, H2 + paragraph, founder/van photo) → residential → 3 categories → trust strip →
 // guarantee → services catalogue (+ Permanent Outdoor Lighting) → Contact CTA → booking process →
 // reviews + quote → town list → contact form → FAQs.
 // Styles: src/css/page-services.css (all classes prefixed .sv-). No prices, no invented claims.
@@ -83,53 +83,39 @@ const boltSvg = cls => `<svg class="${cls}" viewBox="0 0 12 20" aria-hidden="tru
 function hero(ctx) {
   const crumbs = [{ label: 'Home', href: '' }, { label: 'Services' }];
   ctx.jsonld = [...(ctx.jsonld || []), { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.label, item: site.origin + '/' + (c.href ?? ctx.page.slug) })) }];
-  const [a, b] = [services.slice(0, 7), services.slice(7)];
-  const breaker = (s, i) => `<li class="sv-brk" style="--i:${i}"><a href="${ctx.r(s.slug + '/')}"><span class="sv-brk__n">${pad(i + 1)}</span><span class="sv-brk__t">${esc(s.nav)}</span><span class="sv-brk__sw" aria-hidden="true"><span></span></span></a></li>`;
+  // Rendered width runs wider than the frame (object-fit: cover on a tall frame), so sizes reflect the scaled image.
+  const sizes = '(min-width: 1024px) 80vw, (min-width: 640px) 96vw, 120vw';
+  ctx.preloadImage = 'owner-van';
+  ctx.preloadSizes = sizes;
+  // One verbatim paragraph; its first sentence is set as the lead line (same words, same order).
+  const cut = intro.body.indexOf('. ') + 1;
+  const [first, rest] = [intro.body.slice(0, cut), intro.body.slice(cut)];
   return `<section class="sv-hero on-dark stars-bg" aria-labelledby="sv-h1">
   <div class="container sv-hero__grid">
-    <div class="sv-hero__copy">
+    <div class="sv-hero__head">
       <nav class="crumbs" aria-label="Breadcrumb"><ol role="list"><li><a href="${ctx.r('')}">Home</a></li><li><span aria-current="page">Services</span></li></ol></nav>
       <h1 class="sv-hero__h1" id="sv-h1"><span class="sv-hero__h1-in">Services</span></h1>
       <div class="sv-hero__rule" aria-hidden="true"><span></span>${boltSvg('sv-hero__bolt')}<span></span></div>
       <h2 class="sv-hero__h2">For a Job Done Right, Call <em>Colonial!</em></h2>
-      <p class="sv-hero__lead">${esc(intro.body)}</p>
+    </div>
+    <figure class="sv-hero__media">
+      <div class="sv-hero__frame">${picture(ctx, 'owner-van', { alt: 'Scott Hays, founder of Colonial Electric, standing beside the wrapped Colonial Electric service van outside a South Shore home', sizes, priority: true })}</div>
+      <figcaption class="sv-hero__cap">
+        <span class="sv-hero__cap-k">${boltSvg('sv-hero__cap-b')}Colonial Electric · Weymouth, MA</span>
+        <span class="sv-hero__cap-n">Scott Hays, Founder</span>
+        <span class="sv-hero__cap-l">${esc(site.license)}</span>
+      </figcaption>
+    </figure>
+    <div class="sv-hero__body">
+      <p class="sv-hero__lead"><span class="sv-hero__lead-1">${esc(first)}</span>${esc(rest)}</p>
       <div class="sv-hero__ctas">
         <a class="btn btn--red btn--lg" href="${site.tel}">${icon('phone', { size: 18 })}<span>Call ${site.phone}</span></a>
         <a class="btn btn--ghost btn--lg" href="#sv-catalog-h"><span>Browse Services</span>${icon('arrow-right', { size: 16 })}</a>
       </div>
       <p class="sv-rating"><span class="sv-rating__stars" aria-hidden="true">${'<svg viewBox="0 0 20 20" focusable="false"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6L10 15l-5.4 3 1.2-6L1.3 7.8l6.1-.7L10 1.5z" fill="currentColor"/></svg>'.repeat(5)}</span><span class="sv-rating__t">${esc(homeHero.eyebrow)}</span></p>
     </div>
-    <nav class="sv-panel" aria-label="All services">
-      <div class="sv-panel__frame">
-        <header class="sv-panel__head">
-          <span class="sv-panel__k">Service Directory</span>
-          <span class="sv-panel__lic">${esc(site.license)}</span>
-        </header>
-        <div class="sv-panel__cols">
-          <ol class="sv-panel__col" role="list">${a.map((s, i) => breaker(s, i)).join('')}</ol>
-          <ol class="sv-panel__col" role="list" start="8">${b.map((s, i) => breaker(s, i + 7)).join('')}</ol>
-        </div>
-        <footer class="sv-panel__foot"><span class="sv-panel__dot" aria-hidden="true"></span><span>Colonial Electric · Weymouth, MA</span></footer>
-      </div>
-    </nav>
   </div>
   <div class="sweep" aria-hidden="true"></div>
-</section>`;
-}
-
-function photoBand(ctx) {
-  return `<section class="sv-photo" aria-label="Colonial Electric on the road">
-  <figure class="sv-photo__fig">
-    ${picture(ctx, 'owner-van', { alt: 'Scott Hays, founder of Colonial Electric, standing beside the wrapped Colonial Electric service van outside a South Shore home', sizes: '100vw', cls: 'sv-photo__pic' })}
-    <figcaption class="sv-photo__cap container">
-      <span class="sv-photo__card">
-        <span class="sv-photo__k">${boltSvg('sv-photo__b')}Colonial Electric · Weymouth, MA</span>
-        <span class="sv-photo__n">Scott Hays, Founder</span>
-        <span class="sv-photo__l">${esc(site.license)}</span>
-      </span>
-      <a class="sv-photo__call" href="${site.tel}">${icon('phone', { size: 18 })}<span><span class="sv-photo__call-k">Call Us Today!</span><span class="sv-photo__call-n">${site.phone}</span></span></a>
-    </figcaption>
-  </figure>
 </section>`;
 }
 
@@ -241,7 +227,6 @@ function faqBlock(ctx) {
 export function render(ctx) {
   return [
     hero(ctx),
-    photoBand(ctx),
     residentialBlock(ctx),
     categoriesBlock(ctx),
     trustBar(),

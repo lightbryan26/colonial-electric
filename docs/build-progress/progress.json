@@ -113,10 +113,10 @@
    "shot": "shots/tpl-town-r2.png"
   },
   "page-about-colonial-electric": {
-   "status": "building",
+   "status": "critiquing",
    "round": 4,
-   "note": "Remove callbar workaround, fix on-dark index contrast and pillar numeral column, raise body text to 17px darker ink, tighten bio with pull quote, add real job photo row",
-   "updated": "2026-10-12T10:01:57.538Z",
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T10:13:11.831Z",
    "shot": "shots/page-about-colonial-electric-r2.png"
   },
   "page-services": {
@@ -134,10 +134,10 @@
    "shot": "shots/page-service-area-r1.png"
   },
   "page-contact-us": {
-   "status": "building",
+   "status": "done",
    "round": 4,
-   "note": "Fix 03 index contrast to FF6B6F; merge intro into the contact-cards band (copy left, 2x2 cards right) so cards and form follow the hero; raise micro-labels to 12-13px",
-   "updated": "2026-10-12T10:08:17.228Z",
+   "note": "Fixed 03 index contrast (FF6B6F, 6.86:1); merged intro into one band with the 2x2 contact cards so cards and form follow the hero (page 5281 to 4882px at 1440); micro-labels and form labels raised to 12-14px; 45/45 build, no h-scroll or errors at 375/768/1440",
+   "updated": "2026-10-12T10:12:56.160Z",
    "shot": "shots/page-contact-us-r2.png"
   },
   "page-premium-membership": {
@@ -177,6 +177,27 @@
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T10:13:11.831Z",
+   "piece": "page-about-colonial-electric",
+   "status": "critiquing",
+   "round": 4,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T10:12:56.160Z",
+   "piece": "page-contact-us",
+   "status": "done",
+   "round": 4,
+   "note": "Fixed 03 index contrast (FF6B6F, 6.86:1); merged intro into one band with the 2x2 contact cards so cards and form follow the hero (page 5281 to 4882px at 1440); micro-labels and form labels raised to 12-14px; 45/45 build, no h-scroll or errors at 375/768/1440"
+  },
+  {
+   "t": "2026-10-12T10:12:22.187Z",
+   "piece": "page-about-colonial-electric",
+   "status": "done",
+   "round": 4,
+   "note": "Fixed all round-3 QA: removed callbar workaround (shared call bar now shows on About like every page), 02 index and Mission 01 and drop cap now FF6B6B on navy, pillar numerals in fixed 2.75rem column. Body copy 17-19px darker ink, crest fact card from bio facts straddling intro and founder, verbatim pull quote under portrait, row of 4 real live-site service photos linked to service pages"
+  },
   {
    "t": "2026-10-12T10:10:23.923Z",
    "piece": "page-we-offer-financing",
@@ -1341,5 +1362,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T10:10:23.923Z"
+ "updated": "2026-10-12T10:13:11.831Z"
 }

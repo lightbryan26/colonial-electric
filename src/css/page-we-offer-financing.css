@@ -49,9 +49,9 @@
   font-variant-numeric: lining-nums;
   display: flex; align-items: center;
 }
-.fin-term__to { display: inline-block; margin-inline: .14em .1em; font: 700 clamp(.75rem, .6rem + .4vw, 1rem)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--red-flag); }
+.fin-term__to { display: inline-block; margin-inline: .14em .1em; font: 700 clamp(.75rem, .6rem + .4vw, 1rem)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--on-dark-2); }
 .fin-term__unit { margin-top: .35rem; font: 800 clamp(1.5rem, 1.2rem + 1vw, 2.1rem)/1 var(--f-display); text-transform: uppercase; letter-spacing: .02em; color: var(--white); }
-.fin-term__unit sup { color: var(--red-flag); font-size: .6em; }
+.fin-term__unit sup { color: var(--white); font-size: .6em; }
 
 .fin-scale { margin-top: 1.75rem; }
 .fin-scale__track { position: relative; height: 10px; background: rgba(255, 255, 255, .12); }

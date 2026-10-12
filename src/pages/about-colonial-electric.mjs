@@ -177,6 +177,11 @@ function beyondSection(ctx) {
       </li>`).join('')}
     </ol>
   </div>
+</section>`;
+}
+
+function workSection(ctx) {
+  return `<section class="ab-worksec" aria-label="Services">
   <div class="container ab-work">
     <div class="ab-work__head">
       <p class="ab-work__k label-wide">${icon('bolt', { size: 14 })}Services</p>
@@ -218,6 +223,7 @@ export function render(ctx) {
     hero(ctx),
     introSection(),
     founderSection(ctx),
+    workSection(ctx),
     mvSection(ctx),
     beyondSection(ctx),
     contactCta(ctx, { id: 'ab-cta' }),

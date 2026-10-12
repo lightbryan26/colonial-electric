@@ -13,6 +13,7 @@
 /* Micro-labels on this page read at 12–13px minimum */
 .cu-hero .crumbs ol { font-size: .75rem; }
 .cu-hero__eyebrow { font-size: .8125rem; }
+@media (max-width: 479.98px) { .cu-hero__eyebrow { font-size: .75rem; letter-spacing: .08em; white-space: nowrap; } .cu-hero__eyebrow::before { width: 1.25rem; } }
 
 /* ---------- 1. Hero ---------- */
 .cu-hero { background: var(--navy-ink); padding-top: clamp(2.25rem, 1.25rem + 3vw, 4.5rem); overflow: clip; }

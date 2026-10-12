@@ -24,3 +24,10 @@
 ## 3. FYI block-contact-form (observed 2026-10-12 build, mid-edit?)
 - New markup (`.cf-photo > picture`, no `.cf-photo__frame`; trust `<ul>` with icons) does not match the current CSS: the founder photo renders as an empty navy box in full-page captures and the trust list shows default bullets with icons on their own lines.
 - "Emergency support: We provide 24/7 service." — check against source/pages/*.md; the live hours are 8:00 AM – 4:00 PM, so a 24/7 claim may be invented copy.
+
+# Requests from page-contact-us (round 4)
+
+## 4. src/css/footer.css (owner: footer/shared) — raise footer micro-labels to 12px
+- Lines ~74, ~109, ~131: footer labels use `font: 700 .6875rem/1 var(--f-wide)` (11px): `.site-footer__fact dt`, the column headings (`.site-footer__h`) and the bottom-row label link style.
+- Change: `.6875rem` -> `.75rem` on those three rules (keep letter-spacing; optionally drop .16em to .12em so the wider glyphs keep the same line length).
+- Why: the round-3 blind critic flagged "tiny micro-labels (eyebrows, form labels, consent text, footer links)" as hard to read. The page-owned labels and the shared form labels on /contact-us/ are now 12–14px (scoped in src/css/page-contact-us.css); the footer is shared on all 45 pages, so it must change in footer.css, not in a page file.
