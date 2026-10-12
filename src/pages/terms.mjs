@@ -6,6 +6,7 @@
 // Styles: src/css/page-terms.css (all .lg-* scoped).
 import fs from 'fs';
 import { site } from '../data/site.mjs';
+import { contactCta } from '../data/shared.mjs';
 import { icon } from '../partials/icons.mjs';
 import { esc, picture } from '../lib/html.mjs';
 
@@ -14,8 +15,8 @@ const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, 
 const pad = n => String(n).padStart(2, '0');
 
 const DOCS = {
-  terms: { label: 'Terms & Conditions', href: 'terms/' },
-  privacy: { label: 'Privacy Policy', href: 'privacy/' },
+  terms: { label: 'Terms & Conditions', href: 'terms/', ask: 'Questions about these Terms?' },
+  privacy: { label: 'Privacy Policy', href: 'privacy/', ask: 'Questions about this policy?' },
 };
 
 /** Parse the scraped markdown into numbered sections of typed blocks. Text is never altered. */
@@ -130,6 +131,17 @@ export function legalPage(ctx, name) {
       <ol role="list" class="lg-toc__list">${tocItems}</ol>
     </details>
     <aside class="lg-rail">
+      <div class="lg-ask">
+        <div class="lg-ask__pic">${picture(ctx, 'scott-portrait', { alt: 'Scott Hays, founder of Colonial Electric', sizes: '296px', imgCls: 'lg-ask__img' })}</div>
+        <div class="lg-ask__text">
+          <p class="lg-ask__k">${esc(doc.ask)}</p>
+          <p class="lg-ask__name">Scott Hays<span>Founder</span></p>
+          <ul class="lg-ask__links" role="list">
+            <li><a href="mailto:${email}">${icon('mail', { size: 16 })}<span>${email}</span></a></li>
+            <li><a href="${site.tel}">${icon('phone', { size: 16 })}<span>${site.phone}</span></a></li>
+          </ul>
+        </div>
+      </div>
       <nav class="lg-toc" aria-label="On this page">
         <p class="label-wide lg-toc__label">On this page</p>
         <div class="lg-toc__track"><span class="lg-toc__fill" data-lg-fill></span></div>
@@ -150,21 +162,54 @@ export function legalPage(ctx, name) {
   </div>
 </section>`;
 
-  return [hero, doc_, script].join('\n');
+  // Closing contact band: shared "Contact Us Today" copy (verbatim, data/shared.mjs) + the real owner/van photo.
+  const cta = `<section class="lg-cta" aria-labelledby="lg-cta-h">
+  <div class="container">
+    <div class="lg-cta__card on-dark">
+      <div class="lg-cta__rule" aria-hidden="true"></div>
+      <figure class="lg-cta__media">${picture(ctx, 'owner-van', { alt: 'Founder Scott Hays standing in front of the red, white and blue Colonial Electric van', sizes: '(min-width: 1360px) 640px, (min-width: 900px) 50vw, 100vw', imgCls: 'lg-cta__img' })}</figure>
+      <div class="lg-cta__body stars-bg">
+        <p class="eyebrow">Weymouth &amp; the South Shore</p>
+        <h2 class="lg-cta__h" id="lg-cta-h">${esc(contactCta.h2)}</h2>
+        <p class="lg-cta__lead">${esc(contactCta.body)}</p>
+        <div class="lg-cta__actions">
+          <a class="btn btn--red btn--lg" href="${site.tel}">${icon('phone', { size: 18 })}${esc(contactCta.button)}</a>
+          <a class="btn btn--ghost btn--lg" href="${ctx.r('calendar/')}">${icon('calendar', { size: 18 })}Schedule Service</a>
+        </div>
+        <a class="lg-cta__tel" href="${site.tel}"><span class="lg-cta__tel-k">Call Us Today!</span><span class="lg-cta__tel-n">${site.phone}</span></a>
+        <ul class="lg-cta__meta" role="list">
+          <li>${icon('shield', { size: 16 })}<span>${esc(site.license)}</span></li>
+          <li>${icon('clock', { size: 16 })}<span>${esc(site.hours)}</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+  return [hero, doc_, cta, script].join('\n');
 }
 
 // Scroll-spy + progress rail + close mobile contents on pick. Progressive enhancement only.
+// Spy = the LAST section whose top has passed a reading line (40% of the viewport, max 360px). A contents click
+// highlights its target at once and holds it until the (smooth) scroll settles, so the jump never shows a neighbour.
 const script = `<script>
 (function(){
-  var root=document.querySelector('[data-lg]'); if(!root||!('IntersectionObserver' in window)) return;
+  var root=document.querySelector('[data-lg]'); if(!root) return;
   var secs=[].slice.call(root.querySelectorAll('[data-lg-sec]')), links=[].slice.call(root.querySelectorAll('[data-lg-link]')), fill=root.querySelector('[data-lg-fill]'), art=root.querySelector('.lg-article'), md=root.querySelector('.lg-mtoc');
-  var set=function(id){links.forEach(function(a){var on=a.getAttribute('href')==='#'+id;a.classList.toggle('is-active',on);if(on)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});};
-  var vis={};
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){vis[e.target.id]=e.isIntersecting;});for(var i=0;i<secs.length;i++){if(vis[secs[i].id]){set(secs[i].id);break;}}},{rootMargin:'-20% 0px -65% 0px'});
-  secs.forEach(function(s){io.observe(s);});
-  var tick=false, upd=function(){tick=false;var r=art.getBoundingClientRect(),h=r.height-window.innerHeight*.5,p=Math.min(1,Math.max(0,(window.innerHeight*.35-r.top)/h));if(fill)fill.style.transform='scaleY('+p.toFixed(4)+')';};
-  window.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(upd);}},{passive:true}); upd();
-  if(md) md.addEventListener('click',function(e){if(e.target.closest('a'))md.open=false;});
+  if(!secs.length) return;
+  var cur='', lock=false, lockT=0, tick=false;
+  var set=function(id){if(id===cur)return;cur=id;links.forEach(function(a){var on=a.getAttribute('href')==='#'+id;a.classList.toggle('is-active',on);if(on)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});};
+  var spy=function(){var line=Math.min(window.innerHeight*.4,360),id=secs[0].id;for(var i=0;i<secs.length;i++){if(secs[i].getBoundingClientRect().top<=line)id=secs[i].id;else break;}set(id);};
+  var prog=function(){if(!fill||!art)return;var r=art.getBoundingClientRect(),h=Math.max(1,r.height-window.innerHeight*.5),p=Math.min(1,Math.max(0,(window.innerHeight*.35-r.top)/h));fill.style.transform='scaleY('+p.toFixed(4)+')';};
+  var upd=function(){tick=false;prog();if(!lock)spy();};
+  var queue=function(){if(!tick){tick=true;requestAnimationFrame(upd);}};
+  var hold=function(id,ms){lock=true;set(id);clearTimeout(lockT);lockT=setTimeout(function(){lock=false;},ms);};
+  window.addEventListener('scroll',function(){if(lock){clearTimeout(lockT);lockT=setTimeout(function(){lock=false;},180);}queue();},{passive:true});
+  window.addEventListener('resize',queue);
+  links.forEach(function(a){a.addEventListener('click',function(){hold(a.getAttribute('href').slice(1),1200);if(md&&md.contains(a))md.open=false;});});
+  var h=decodeURIComponent(location.hash.slice(1));
+  if(h&&secs.some(function(s){return s.id===h;}))hold(h,1200);else spy();
+  prog();
 })();
 </script>`;
 
