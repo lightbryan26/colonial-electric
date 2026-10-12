@@ -141,10 +141,10 @@
    "shot": "shots/page-contact-us-r2.png"
   },
   "page-premium-membership": {
-   "status": "building",
+   "status": "critiquing",
    "round": 3,
-   "note": "Fix 02 index contrast and 375 gutters; rebuild the bolt as a labelled numbered bolt list with one large readable benefit panel and a repeated Join Flash Pass CTA; larger, higher-contrast body copy",
-   "updated": "2026-10-12T10:20:37.821Z",
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T10:32:18.394Z",
    "shot": "shots/page-premium-membership-r1.png"
   },
   "page-we-offer-financing": {
@@ -169,14 +169,42 @@
    "shot": "shots/page-calendar-r1.png"
   },
   "page-terms": {
-   "status": "building",
+   "status": "critiquing",
    "round": 3,
-   "note": "Fix scroll-spy (reverse scan + click set), seal capture fade, 16px darker body copy, end-of-page branded contact band with photo, phone and Schedule Service",
-   "updated": "2026-10-12T10:16:53.118Z",
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T10:32:10.560Z",
    "shot": "shots/page-terms-r1.png"
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T10:32:18.394Z",
+   "piece": "page-premium-membership",
+   "status": "critiquing",
+   "round": 3,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T10:32:10.560Z",
+   "piece": "page-terms",
+   "status": "critiquing",
+   "round": 3,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T10:32:02.155Z",
+   "piece": "page-premium-membership",
+   "status": "done",
+   "round": 3,
+   "note": "Fixed 02 index contrast (#E8545A, 5.3:1) and 375 hero gutters; bolt rebuilt as a numbered tab list (node, leader, title per benefit) driving one large photo panel with the verbatim first sentence as a lead, 18-24px high-contrast copy, Next benefit stepping and a repeated Join Flash Pass CTA; intro copy 19px with key verbatim phrases bolded"
+  },
+  {
+   "t": "2026-10-12T10:31:53.424Z",
+   "piece": "page-terms",
+   "status": "done",
+   "round": 3,
+   "note": "Scroll-spy rewritten (last section past a reading line; a click highlights its target and holds it until the scroll settles), verified on all 20 Terms and 14 Privacy links at 1440x900, 1280x720 and 1920x1080. Hero seal no longer fades, so it shows in captures. Rail now opens with a real Scott portrait card (doc email and phone) above the sticky contents. Body copy darker (#27334A, 17/18px, 1.7). Closing Contact Us Today band with owner-van photo, Call Now, Schedule Service and the phone number. 375/768/1440: no horizontal scroll, no errors. Footer logo lazy-load fix filed in src/requests/page-terms.md"
+  },
   {
    "t": "2026-10-12T10:28:52.262Z",
    "piece": "page-services",
@@ -1453,5 +1481,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T10:28:52.262Z"
+ "updated": "2026-10-12T10:32:18.394Z"
 }

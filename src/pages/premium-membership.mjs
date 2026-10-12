@@ -4,8 +4,9 @@
 // "Our exclusive access pass isn't just about" in Save Big. Benefit titles = captions baked into the
 // live perk images (verified live copy, brief §7); the perk cards are rebuilt in HTML, not reused images.
 // Styles: src/css/page-premium-membership.css (all classes .pm-*). Interaction: the inline script at the
-// end of the bolt section (all four cards always visible; bolt nodes are buttons — hover, tap, focus or
-// keyboard light the matching card and charge the bolt; no JS = static cards).
+// end of the bolt section. The bolt is a numbered tab list (node + leader + title for each benefit);
+// mouse hover over the bolt, tap, click, arrow keys / Home / End, or a panel's "Next benefit" button pick
+// the benefit, charge the bolt and show its panel. No JS = all four panels shown stacked.
 import { site } from '../data/site.mjs';
 import { guarantee } from '../blocks/guarantee.mjs';
 import { reviews } from '../blocks/reviews.mjs';
