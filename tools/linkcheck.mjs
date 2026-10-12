@@ -1,7 +1,9 @@
 // usage: node linkcheck.mjs <baseUrl ending in />  -> crawls all same-origin pages under base, checks every href/src
 import { chromium } from 'playwright';
 const base = process.argv[2]; const seen=new Set(), bad=[], pages=[]; const queue=[base];
-const b = await chromium.launch(); const ctx = await b.newContext(); const p = await ctx.newPage();
+const fs = await import('fs');
+const exe = process.env.PW_CHROMIUM || (fs.existsSync('/opt/pw-browsers/chromium') ? '/opt/pw-browsers/chromium' : undefined);
+const b = await chromium.launch(exe ? { executablePath: exe } : {}); const ctx = await b.newContext(); const p = await ctx.newPage();
 const checked=new Map();
 async function status(u){ if(checked.has(u)) return checked.get(u); let s; try{ const r=await ctx.request.get(u,{timeout:30000}); s=r.status() }catch(e){ s='ERR '+e.message.slice(0,60) } checked.set(u,s); return s }
 while(queue.length){ const u=queue.shift(); if(seen.has(u)) continue; seen.add(u);

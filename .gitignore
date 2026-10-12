@@ -3,3 +3,6 @@ tools/node_modules/
 .DS_Store
 shots/
 source/pages.json
+
+# blind A/B composites for the live progress page
+!docs/build-progress/shots/
