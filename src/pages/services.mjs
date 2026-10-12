@@ -15,8 +15,9 @@ import { townList } from '../blocks/town-list.mjs';
 import { contactForm } from '../blocks/contact-form.mjs';
 import { faqJsonLd } from '../blocks/faqs.mjs';
 import { icon } from '../partials/icons.mjs';
-import { esc, picture } from '../lib/html.mjs';
+import { esc, picture, images } from '../lib/html.mjs';
 import { plate } from '../blocks/plate.mjs';
+import { cardPhotoFor } from '../data/card-photos.mjs';
 
 const pad = n => String(n).padStart(2, '0');
 
@@ -39,9 +40,10 @@ const residential = {
 // Each category is the verbatim services.md copy, set for scanning without changing a word or its order:
 // lead = the opening sentence; intro + items = the next sentence, broken at its own commas into a run-in list
 // (or, for Installation, its three service sentences); note = the closing paragraph.
-// Media = a brand plate (src/blocks/plate.mjs): crest chip + the category glyph on the badge-blue pinstripe. The live
-// site's service photos are framed stock (brief §8), so none is used; a real Colonial job photo mapped to the plate id
-// in src/data/service-photos.mjs drops into the same frame.
+// Media = a real Colonial job photo where one truthfully shows the category (photo: library key + alt + crop), else a
+// brand plate (src/blocks/plate.mjs: crest chip + the category glyph on the badge-blue pinstripe). Only Electrical
+// Upgrades has one (a new service entrance and meter bank); repairs and installation keep the plate rather than borrow
+// a picture of some other job.
 const categories = [
   {
     h2: 'Electrical Repairs', ic: 'inspect', plate: 'services-electrical-repairs',
@@ -61,6 +63,7 @@ const categories = [
   },
   {
     h2: 'Electrical Upgrades', ic: 'panel', plate: 'services-electrical-upgrades',
+    photo: { key: 'photos/service-entrance-meter-bank', alt: 'Service conduit running down to a new two-meter bank on a blue clapboard wall' },
     lead: 'Electrical upgrades involve enhancing or modernizing an existing electrical system to improve its performance, efficiency, or safety.',
     intro: 'This could include',
     items: [
@@ -158,6 +161,15 @@ function residentialBlock(ctx) {
 </section>`;
 }
 
+// Category frame: the real photo when the category has one (same .plate--photo markup as a mapped plate), else the plate.
+function catMedia(ctx, c) {
+  const sizes = '(min-width: 1024px) 28rem, (min-width: 640px) 17rem, 92vw';
+  if (c.photo && images[c.photo.key]) {
+    return `<span class="plate plate--photo" data-plate="${esc(c.plate)}">${picture(ctx, c.photo.key, { alt: c.photo.alt, sizes, imgCls: 'plate__img' })}</span>`;
+  }
+  return plate(ctx, { id: c.plate, ic: c.ic, tone: 'blue', sizes });
+}
+
 function categoriesBlock(ctx) {
   return `<section class="sv-cats on-dark stars-bg" aria-label="Electrical repairs, installation and upgrades">
   <div class="container">
@@ -165,9 +177,9 @@ function categoriesBlock(ctx) {
       ${categories.map((c, i) => {
         const links = [...c.items, c.note || ''].flatMap(linksIn);
         const id = 'sv-cat-' + (i + 1);
-        return `<li class="sv-cat${i % 2 ? ' sv-cat--flip' : ''}" aria-labelledby="${id}">
+        return `<li class="sv-cat${i % 2 ? ' sv-cat--flip' : ''}${c.photo && images[c.photo.key] ? ' sv-cat--photo' : ''}" aria-labelledby="${id}">
         <figure class="sv-cat__fig">
-          <div class="sv-cat__ph">${plate(ctx, { id: c.plate, ic: c.ic, tone: 'blue', sizes: '(min-width: 1024px) 28rem, (min-width: 640px) 17rem, 92vw' })}</div>
+          <div class="sv-cat__ph">${catMedia(ctx, c)}</div>
           <span class="sv-cat__n" aria-hidden="true">${pad(i + 1)}</span>
         </figure>
         <div class="sv-cat__head">
@@ -194,6 +206,27 @@ function categoriesBlock(ctx) {
 </section>`;
 }
 
+// Catalogue card. Every card has a 16:10 media zone over its copy, so titles line up across each row:
+// a real Colonial job photo where one truthfully shows the service (src/data/card-photos.mjs), otherwise a typographic
+// zone (outlined index numeral + the service glyph). Same verbatim title + blurb either way.
+const cardSizes = '(min-width: 1100px) 430px, (min-width: 640px) 48vw, 38vw';
+function svCard(ctx, s, i) {
+  const n = pad(i + 1);
+  const photo = cardPhotoFor(s.href, images);
+  const media = photo
+    ? `<span class="sv-card__media" style="--pos:${photo.pos};--pos-m:${photo.posM}">${picture(ctx, photo.key, { alt: photo.alt, sizes: cardSizes, imgCls: 'sv-card__img' })}<span class="sv-card__tag" aria-hidden="true">${n}</span></span>`
+    : `<span class="sv-card__media sv-card__media--type" aria-hidden="true"><span class="sv-card__ghost">${icon(s.icon, { size: 240 })}</span><span class="sv-card__big">${n}</span></span>`;
+  return `<li class="sv-card ${photo ? 'sv-card--photo' : 'sv-card--type'}" style="--i:${i}"><a href="${ctx.r(s.href)}">
+        ${media}
+        <span class="sv-card__body">
+          <span class="sv-card__ic" aria-hidden="true">${icon(s.icon, { size: 24 })}</span>
+          <h3 class="sv-card__t">${esc(s.title).replace(/\S+-\S+/g, w => `<span class="sv-nw">${w}</span>`)}</h3>
+          <p class="sv-card__p">${esc(s.blurb)}</p>
+          <span class="sv-card__go"><span>Learn More</span>${icon('arrow-right', { size: 16 })}</span>
+        </span>
+      </a></li>`;
+}
+
 function catalog(ctx) {
   const outdoor = services.find(s => s.slug === 'permanent-outdoor-lighting');
   return `<section class="block sv-cat-grid" id="sv-catalog" aria-labelledby="sv-catalog-h">
@@ -203,12 +236,7 @@ function catalog(ctx) {
       <p class="sv-cg__lead">${esc(servicesIntro.body)}</p>
     </header>
     <ul class="sv-cards" role="list">
-      ${serviceCards.map((s, i) => `<li class="sv-card" style="--i:${i}"><a href="${ctx.r(s.href)}">
-        <span class="sv-card__row"><span class="sv-card__ic">${icon(s.icon, { size: 26 })}</span><span class="sv-card__n" aria-hidden="true">${pad(i + 1)}</span></span>
-        <h3 class="sv-card__t">${esc(s.title)}</h3>
-        <p class="sv-card__p">${esc(s.blurb)}</p>
-        <span class="sv-card__go"><span>Learn More</span>${icon('arrow-right', { size: 16 })}</span>
-      </a></li>`).join('\n      ')}
+      ${serviceCards.map((s, i) => svCard(ctx, s, i)).join('\n      ')}
     </ul>
     <a class="sv-feature" href="${ctx.r(outdoor.slug + '/')}">
       <span class="sv-feature__ic">${icon('sparkle', { size: 28 })}</span>

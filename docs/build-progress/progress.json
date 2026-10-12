@@ -22,11 +22,11 @@
    "shot": "shots/home-safety-r1.png"
   },
   "home-services": {
-   "status": "won",
-   "round": 2,
-   "note": "Critic picked ours blind (slight). Remaining gap: The dark nav bar sits mid-viewport and covers the service card descriptions, a visible layout or sticky-header bug. It is made worse by tiny low-contrast card copy and photography with mismatched colo",
-   "updated": "2026-10-12T08:59:31.569Z",
-   "shot": "shots/home-services-r2.png"
+   "status": "done",
+   "round": 3,
+   "note": "Grids: 7 real Colonial job photos in the services grid (library first, hero fallback), 5 navy typographic tiles for services with no photo; phone = 4:3 thumb media-object cards",
+   "updated": "2026-10-12T19:36:15.974Z",
+   "shot": "shots/home-services-r3.png"
   },
   "home-why": {
    "status": "won",
@@ -99,11 +99,11 @@
    "shot": "shots/footer-r1.png"
   },
   "tpl-service": {
-   "status": "building",
+   "status": "critiquing",
    "round": 10,
-   "note": "Remove decorative flag-stripe bar under guarantee eyebrow (block-guarantee.css + home-composition.css) and red bar under CONTACT US heading (block-contact-form.css); rebuild 45/45; verify service pages, a town page and homepage at 1440/768/375.",
-   "updated": "2026-10-12T19:01:32.831Z",
-   "shot": "shots/tpl-service-r9.png"
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T19:41:57.924Z",
+   "shot": "shots/tpl-service-r11.png"
   },
   "tpl-town": {
    "status": "won",
@@ -120,11 +120,11 @@
    "shot": "shots/page-about-colonial-electric-r5.jpg"
   },
   "page-services": {
-   "status": "won",
-   "round": 6,
-   "note": "Critic picked ours blind (clear). Remaining gap: The copy is too small and too dense to read. The three service blocks on navy (Repairs, Installation, Upgrades) and the guarantee section are long paragraphs of roughly 12px grey-on-navy text, plus many tiny uppercase labels ('EXPLORE', 'THIS COULD INCLUDE', '",
-   "updated": "2026-10-12T10:49:25.692Z",
-   "shot": "shots/page-services-r6.jpg"
+   "status": "done",
+   "round": 3,
+   "note": "Catalogue: same photo/type card system (paper type zone); Electrical Upgrades category now uses the meter-bank photo (16:10, 4:3 at tablet 100% 50%)",
+   "updated": "2026-10-12T19:36:16.025Z",
+   "shot": "shots/page-services-r3.png"
   },
   "page-service-area": {
    "status": "won",
@@ -183,10 +183,10 @@
    "shot": "shots/integrate-r2.png"
   },
   "homepage": {
-   "status": "won",
-   "round": 2,
-   "note": "Critic picked ours blind (clear). Remaining gap: Body copy across the whole page is too small and low-contrast, and there is too much of it. It starts with the six-line generic hero paragraph (\"Colonial Electric understands how important safety, quality, and reliability are...\") set in roughly 13px grey on n",
-   "updated": "2026-10-12T17:42:47.286Z",
+   "status": "critiquing",
+   "round": 3,
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T19:41:59.546Z",
    "shot": "shots/homepage-r2.jpg"
   },
   "verify": {
@@ -202,9 +202,75 @@
    "note": "Footer map (GBP embed, crest frame, 3rd masthead column at 1280+, full width below) on all 45 pages + 404; per-town map in the intro of all 21 town pages; hasMap in JSON-LD",
    "updated": "2026-10-12T18:03:38.035Z",
    "shot": "shots/maps-r1.png"
+  },
+  "photos": {
+   "status": "done",
+   "round": 1,
+   "note": "7 hero photos, 10 library photos processed",
+   "updated": "2026-10-12T19:24:43.360Z"
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T19:41:59.546Z",
+   "piece": "homepage",
+   "status": "critiquing",
+   "round": 3,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T19:41:57.924Z",
+   "piece": "tpl-service",
+   "status": "critiquing",
+   "round": 10,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T19:41:32.041Z",
+   "piece": "tpl-service",
+   "status": "verifying",
+   "round": 11,
+   "note": "Real job photos in 7 service heroes (badge crest frame); typographic service sheets replace SVG clip-art on 6; block B uses truthful library photos; tablet 2-col hero; 45/45, no hscroll",
+   "shot": "shots/tpl-service-r11.png"
+  },
+  {
+   "t": "2026-10-12T19:41:28.401Z",
+   "piece": "tpl-service",
+   "status": "verifying",
+   "round": 1,
+   "note": "Real job photos in 7 service heroes (badge crest frame); typographic service sheets replace SVG clip-art on 6; block B uses truthful library photos; tablet 2-col hero; 45/45, no hscroll",
+   "shot": "shots/tpl-service-r1.png"
+  },
+  {
+   "t": "2026-10-12T19:36:16.025Z",
+   "piece": "page-services",
+   "status": "done",
+   "round": 3,
+   "note": "Catalogue: same photo/type card system (paper type zone); Electrical Upgrades category now uses the meter-bank photo (16:10, 4:3 at tablet 100% 50%)",
+   "shot": "shots/page-services-r3.png"
+  },
+  {
+   "t": "2026-10-12T19:36:15.974Z",
+   "piece": "home-services",
+   "status": "done",
+   "round": 3,
+   "note": "Grids: 7 real Colonial job photos in the services grid (library first, hero fallback), 5 navy typographic tiles for services with no photo; phone = 4:3 thumb media-object cards",
+   "shot": "shots/home-services-r3.png"
+  },
+  {
+   "t": "2026-10-12T19:24:43.360Z",
+   "piece": "photos",
+   "status": "done",
+   "round": 1,
+   "note": "7 hero photos, 10 library photos processed"
+  },
+  {
+   "t": "2026-10-12T19:20:30.192Z",
+   "piece": "photos",
+   "status": "building",
+   "round": 1,
+   "note": "Real job photos: download + resize"
+  },
   {
    "t": "2026-10-12T19:01:32.831Z",
    "piece": "tpl-service",
@@ -2049,5 +2115,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T19:01:32.831Z"
+ "updated": "2026-10-12T19:41:59.546Z"
 }
