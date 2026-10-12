@@ -6,7 +6,8 @@ import { icon } from '../partials/icons.mjs';
 // Behaviour lives in src/js/base.js ([data-cform]): it validates, writes errors into #<field-id>-err,
 // updates [data-count] and, once valid, un-hides + focuses [data-cform-status]. That status must say plainly
 // the message was NOT sent (brief §4, §10). Class names are cf-* so this block owns its look outright.
-// Everything renders visible by default: no lazy photo, no opacity-gated reveals.
+// Everything renders visible by default: no lazy photo, no opacity-gated reveals. The photo decodes
+// synchronously: with decoding="async" Chromium paints it blank in full-page captures taken from the top.
 let n = 0;
 
 // Trust points above the submit button: verbatim from the brief's shared trust strip (§4).
@@ -86,7 +87,7 @@ export function contactForm(ctx, { id = '', cls = '', heading = 'Contact Us' } =
       <figure class="cf-photo">
         <picture>
           <source type="image/webp" srcset="${photo}-640.webp 640w, ${photo}-1000.webp 1000w" sizes="${sizes}">
-          <img src="${photo}-1000.jpg" srcset="${photo}-640.jpg 640w, ${photo}-1000.jpg 1000w" sizes="${sizes}" width="1000" height="900" alt="Scott Hays, founder of Colonial Electric, standing in front of the Colonial Electric van" loading="eager" decoding="async">
+          <img src="${photo}-1000.jpg" srcset="${photo}-640.jpg 640w, ${photo}-1000.jpg 1000w" sizes="${sizes}" width="1000" height="900" alt="Scott Hays, founder of Colonial Electric, standing in front of the Colonial Electric van" loading="eager" decoding="sync">
         </picture>
         <figcaption class="cf-photo__cap"><span class="cf-photo__role">Founder</span><span class="cf-photo__name">${esc(site.founder)}</span></figcaption>
       </figure>
