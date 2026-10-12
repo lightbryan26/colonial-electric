@@ -1,0 +1,22 @@
+{
+ "pieces": {
+  "setup": {
+   "status": "done",
+   "round": 0,
+   "note": "Repo created, Pages enabled, Dribbble reference captured (headless), brief written",
+   "updated": "2026-10-12T08:00:48.407Z",
+   "shot": "shots/setup-r0.png"
+  }
+ },
+ "events": [
+  {
+   "t": "2026-10-12T08:00:48.407Z",
+   "piece": "setup",
+   "status": "done",
+   "round": 0,
+   "note": "Repo created, Pages enabled, Dribbble reference captured (headless), brief written",
+   "shot": "shots/setup-r0.png"
+  }
+ ],
+ "updated": "2026-10-12T08:00:48.407Z"
+}
