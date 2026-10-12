@@ -82,6 +82,15 @@ export function legalPage(ctx, name) {
   const sections = parse(name);
   const email = 'scott@colonial-electric.com';
 
+  // Meta description (brief §9): the page's first verbatim sentence. The shared generator (src/scripts/descriptions.mjs)
+  // drops Terms' 60-char opening line and then cuts the next sentence at the "." inside the URL, so set it here from the
+  // source itself. Privacy's generated entry is already its first sentence and is left alone.
+  if (name === 'terms') {
+    const first = sections[0]?.blocks.find(b => b.t === 'p')?.text || '';
+    const sent = (first.match(/^.+?[.!?](?=\s|$)/) || [first])[0].trim();
+    if (sent) ctx.page.description = sent;
+  }
+
   ctx.jsonld = [...(ctx.jsonld || []), { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: site.origin + '/' },
     { '@type': 'ListItem', position: 2, name: doc.label, item: site.origin + '/' + doc.href },
@@ -142,11 +151,18 @@ export function legalPage(ctx, name) {
           </ul>
         </div>
       </div>
-      <nav class="lg-toc" aria-label="On this page">
-        <p class="label-wide lg-toc__label">On this page</p>
-        <div class="lg-toc__track"><span class="lg-toc__fill" data-lg-fill></span></div>
-        <ol role="list" class="lg-toc__list">${tocItems}</ol>
-      </nav>
+      <div class="lg-rail__stick">
+        <nav class="lg-toc" aria-label="On this page">
+          <p class="label-wide lg-toc__label">On this page</p>
+          <div class="lg-toc__track"><span class="lg-toc__fill" data-lg-fill></span></div>
+          <ol role="list" class="lg-toc__list">${tocItems}</ol>
+        </nav>
+        <div class="lg-rcta on-dark">
+          <p class="lg-rcta__k">Call Us Today!</p>
+          <a class="lg-rcta__tel" href="${site.tel}">${icon('phone', { size: 18 })}<span>${site.phone}</span></a>
+          <a class="btn btn--red lg-rcta__btn" href="${ctx.r('contact-us/')}">Request Service${icon('arrow-right', { size: 18 })}</a>
+        </div>
+      </div>
     </aside>
     <article class="lg-article" aria-label="${esc(doc.label)}">
       ${body}
@@ -197,7 +213,7 @@ const script = `<script>
   var root=document.querySelector('[data-lg]'); if(!root) return;
   var secs=[].slice.call(root.querySelectorAll('[data-lg-sec]')), links=[].slice.call(root.querySelectorAll('[data-lg-link]')), fill=root.querySelector('[data-lg-fill]'), art=root.querySelector('.lg-article'), md=root.querySelector('.lg-mtoc');
   if(!secs.length) return;
-  var cur='', lock=false, lockT=0, tick=false, box=root.querySelector('.lg-rail .lg-toc');
+  var cur='', lock=false, lockT=0, tick=false, box=root.querySelector('.lg-rail .lg-toc__list');
   var set=function(id){if(id===cur)return;cur=id;secs.forEach(function(s){s.classList.toggle('is-current',s.id===id);});links.forEach(function(a){var on=a.getAttribute('href')==='#'+id;a.classList.toggle('is-active',on);if(on)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});
     if(box&&box.scrollHeight>box.clientHeight+1){var on=box.querySelector('a.is-active');if(on)box.scrollTop=Math.max(0,on.offsetTop-box.clientHeight/2);}};
   var spy=function(){var line=Math.min(window.innerHeight*.4,360),id=secs[0].id;for(var i=0;i<secs.length;i++){if(secs[i].getBoundingClientRect().top<=line)id=secs[i].id;else break;}set(id);};
