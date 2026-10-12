@@ -8,7 +8,7 @@
 .ab-index__n { color: var(--red); }
 .ab-index__n::after { content: ""; display: inline-block; vertical-align: middle; width: 2.5rem; height: 1px; margin-left: .9rem; background: currentColor; opacity: .6; }
 .on-dark .ab-index { color: var(--on-dark-3); }
-.on-dark .ab-index__n { color: var(--red-flag); }
+.on-dark .ab-index__n { color: #FF6B6B; } /* 5.7:1 on navy */
 
 /* ---------- 1. Hero ---------- */
 .ab-hero { position: relative; padding-top: clamp(2.5rem, 1.5rem + 3vw, 5rem); padding-bottom: 0; background: var(--navy-ink); }
@@ -134,6 +134,7 @@
 .ab-mv__mark { position: absolute; right: -2.5rem; bottom: -3rem; width: min(60%, 320px); z-index: -1; opacity: .08; filter: grayscale(1) brightness(1.8); pointer-events: none; transform: rotate(-8deg); }
 .ab-mv__k { font: 700 var(--fs-eyebrow)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; color: var(--red-flag); }
 .ab-mv__card--vision .ab-mv__k { color: var(--red); }
+.ab-mv__card--mission .ab-mv__k { color: #FF6B6B; } /* 6.8:1 on navy-ink */
 .ab-mv__h { margin-top: clamp(1.5rem, 1rem + 2vw, 3rem); font: 900 clamp(3.25rem, 1.8rem + 5vw, 7rem)/.82 var(--f-display); text-transform: uppercase; letter-spacing: -.01em; }
 .ab-mv__card--vision .ab-mv__h { color: var(--navy); }
 .ab-mv__card .flag-rule { display: block; margin-block: clamp(1.25rem, 1rem + 1vw, 2rem); }
@@ -157,7 +158,7 @@
 
 .ab-pillars { counter-reset: none; border-top: 1px solid var(--line-strong); }
 .ab-pillar {
-  position: relative; display: grid; grid-template-columns: auto 1fr; gap: .25rem 1.25rem; align-items: start;
+  position: relative; display: grid; grid-template-columns: 2.75rem 1fr; gap: .25rem 1.25rem; align-items: start;
   padding-block: clamp(1.5rem, 1.1rem + 1.2vw, 2.25rem); border-bottom: 1px solid var(--line-strong);
 }
 @media (min-width: 600px) { .ab-pillar { grid-template-columns: 4.5rem 3.25rem 1fr; gap: 1.5rem; } }
@@ -188,21 +189,3 @@
   .ab-hero .btn-row .btn { flex: 1 1 100%; }
 }
 @media (max-width: 959px) { .ab-portrait { max-width: 28rem; } }
-
-/* ---------- Sticky call bar: hidden while the hero is on screen (workaround; site-wide fix requested in src/requests/page-about-colonial-electric.md) ---------- */
-@keyframes ab-callbar-in { from { transform: translateY(110%); visibility: hidden; } to { transform: translateY(0); visibility: visible; } }
-@media (max-width: 767px) {
-  body:is(.tpl-about-colonial-electric, .tpl-about) .callbar { transform: translateY(110%); visibility: hidden; }
-  @supports (animation-timeline: scroll()) {
-    body:is(.tpl-about-colonial-electric, .tpl-about) .callbar {
-      animation: ab-callbar-in linear both;
-      animation-timeline: scroll(root block);
-      animation-range: 85vh 105vh;
-    }
-  }
-}
-@media (max-width: 767px) and (prefers-reduced-motion: reduce) {
-  @supports (animation-timeline: scroll()) {
-    body:is(.tpl-about-colonial-electric, .tpl-about) .callbar { animation-timing-function: steps(1, end); }
-  }
-}

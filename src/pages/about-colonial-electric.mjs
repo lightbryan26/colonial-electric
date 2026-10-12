@@ -31,6 +31,25 @@ const founder = {
   ],
 };
 
+// Fact strip: only the bio facts brief §7 lists (master electrician, over a decade, started at 18, lineman, local college).
+// Values/labels are fragments of the verbatim bio; no new facts, no counts.
+const facts = [
+  { v: 'Master Electrician', l: 'At the helm of Colonial Electric' },
+  { v: 'Over a Decade', l: 'Of experience' },
+  { v: 'Started at 18', l: 'In the dynamic world of electrical work' },
+  { v: 'Lineman & Educator', l: 'Electrical substations & a local college' },
+];
+// Pull quote: a verbatim sentence fragment from bio paragraph 3 (aria-hidden; the paragraph itself stays intact).
+const pull = 'Scott’s passion for the craft is palpable in every connection made.';
+
+// Photo row: the live site's own (clean, un-framed) service photos (brief §8), linked to their service pages.
+const work = [
+  { key: 'inspect', max: 440, h: 275, slug: 'electrical-inspections/', t: 'Electrical Inspections', alt: 'Electrician testing a wall control during an electrical inspection' },
+  { key: 'panel', max: 800, h: 500, slug: 'electrical-panel-upgrade/', t: 'Electrical Panel Upgrade', alt: 'Open residential electrical panel with breakers and wiring' },
+  { key: 'fan', max: 440, h: 275, slug: 'ceiling-fan-installation/', t: 'Ceiling Fan Installation', alt: 'Electrician on a ladder installing a ceiling fan' },
+  { key: 'outlets', max: 800, h: 500, slug: 'electrical-outlets/', t: 'Electrical Outlets', alt: 'Close-up of a duplex electrical outlet being wired into a wall box' },
+];
+
 const mv = [
   { h2: 'Mission', body: 'At Colonial Electric, we enrich homes and businesses with safe, reliable, and innovative electrical solutions. We exceed industry standards through exceptional service, fostering lasting relationships with clients and communities. With dedication to excellence and integrity, we’re your trusted partner for all electrical needs, ensuring peace of mind and satisfaction in every project.' },
   { h2: 'Vision', body: 'Our vision at Colonial Electric is to be the industry leader in providing straightforward, reliable electrical solutions. We aim to set the standard for quality and efficiency, ensuring that homes and businesses have safe and efficient electrical systems they can depend on. By prioritizing transparency, reliability, and customer satisfaction, we strive to make a positive impact in every community we serve.' },
@@ -86,6 +105,11 @@ function introSection() {
       <p class="ab-intro__lead">${esc(lead)}</p>
       <div class="ab-intro__rest">${rest.map(p => `<p>${esc(p)}</p>`).join('')}</div>
     </div>
+    <div class="ab-facts">
+      <ul class="ab-facts__list" role="list" aria-label="Scott Hays at a glance">${facts.map(f => `
+        <li class="ab-fact">${icon('bolt', { size: 16 })}<span class="ab-fact__v">${esc(f.v)}</span><span class="ab-fact__l">${esc(f.l)}</span></li>`).join('')}
+      </ul>
+    </div>
   </div>
 </section>`;
 }
@@ -106,7 +130,7 @@ function founderSection(ctx) {
       <div class="ab-bio">
         <p class="eyebrow">${esc(founder.eyebrow)}</p>
         <h2 class="ab-bio__name">${esc(founder.name)}</h2>
-        <div class="ab-bio__text">${founder.bio.map((p, i) => `<p${i === 0 ? ' class="ab-bio__first"' : ''}>${esc(p)}</p>`).join('')}</div>
+        <div class="ab-bio__text">${founder.bio.map((p, i) => `<p${i === 0 ? ' class="ab-bio__first"' : ''}>${esc(p)}</p>${i === 1 ? `<p class="ab-pull" aria-hidden="true">${icon('bolt', { size: 22 })}<span>${esc(pull)}</span></p>` : ''}`).join('')}</div>
         <ul class="ab-sectors" role="list" aria-label="Sectors served">${['Residential', 'Commercial', 'Utility'].map(s => `<li>${icon('bolt', { size: 14 })}${s}</li>`).join('')}</ul>
       </div>
     </div>
@@ -147,6 +171,23 @@ function beyondSection(ctx) {
         <div class="ab-pillar__body"><h3 class="ab-pillar__t">${esc(p.t)}</h3><p>${esc(p.body)}</p></div>
       </li>`).join('')}
     </ol>
+  </div>
+  <div class="container ab-work">
+    <div class="ab-work__head">
+      <p class="ab-work__k label-wide">${icon('bolt', { size: 14 })}Services</p>
+      <a class="ab-link" href="${ctx.r('services/')}">All Services${icon('arrow-right', { size: 16 })}</a>
+    </div>
+    <ul class="ab-work__grid" role="list">${work.map(w => {
+      const r = f => ctx.r('assets/img/home-services/' + w.key + f);
+      const set = ext => w.max >= 800 ? `${r('-480.' + ext)} 480w, ${r('-800.' + ext)} 800w` : `${r('-480.' + ext)} ${w.max}w`;
+      const sizes = '(min-width: 1440px) 310px, (min-width: 900px) 23vw, 46vw';
+      return `
+      <li><a class="ab-work__tile" href="${ctx.r(w.slug)}">
+        <span class="ab-work__ph"><picture><source type="image/webp" srcset="${set('webp')}" sizes="${sizes}"><img src="${r('-480.jpg')}" srcset="${set('jpg')}" sizes="${sizes}" width="${w.max}" height="${w.h}" alt="${esc(w.alt)}" loading="lazy" decoding="async"></picture></span>
+        <span class="ab-work__t">${esc(w.t)}${icon('arrow-right', { size: 16 })}</span>
+      </a></li>`;
+    }).join('')}
+    </ul>
   </div>
 </section>`;
 }

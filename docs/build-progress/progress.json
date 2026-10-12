@@ -141,10 +141,10 @@
    "shot": "shots/page-contact-us-r2.png"
   },
   "page-premium-membership": {
-   "status": "done",
+   "status": "critiquing",
    "round": 2,
-   "note": "Fixed blank photos in full-page captures (eager load + sync decode), moved the panel photo under the bolt with a hint panel in the header, chamfered join card with real outline and shadow (no price, hours instead of an enrollment claim), two-line intro headline, 18px body type, tablet join layout",
-   "updated": "2026-10-12T09:59:27.613Z",
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T10:03:30.499Z",
    "shot": "shots/page-premium-membership-r1.png"
   },
   "page-we-offer-financing": {
@@ -177,6 +177,13 @@
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T10:03:30.499Z",
+   "piece": "page-premium-membership",
+   "status": "critiquing",
+   "round": 2,
+   "note": "screenshots + QA"
+  },
   {
    "t": "2026-10-12T10:01:57.538Z",
    "piece": "page-about-colonial-electric",
@@ -1285,5 +1292,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T10:01:57.538Z"
+ "updated": "2026-10-12T10:03:30.499Z"
 }
