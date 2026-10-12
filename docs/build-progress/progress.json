@@ -87,8 +87,8 @@
   "block-contact-form": {
    "status": "building",
    "round": 3,
-   "note": "Remove Emergency support 24/7 row from info card, rebuild, verify 1440/375",
-   "updated": "2026-10-12T08:59:40.578Z",
+   "note": "Verify 24/7 Emergency support row is gone from info card, rebuild, QA at 1440/768/375 plus shared pages",
+   "updated": "2026-10-12T09:48:29.892Z",
    "shot": "shots/block-contact-form-r2.png"
   },
   "footer": {
@@ -116,7 +116,7 @@
    "status": "critiquing",
    "round": 3,
    "note": "screenshots + QA",
-   "updated": "2026-10-12T09:00:12.645Z",
+   "updated": "2026-10-12T09:48:42.860Z",
    "shot": "shots/page-about-colonial-electric-r2.png"
   },
   "page-services": {
@@ -143,8 +143,8 @@
   "page-premium-membership": {
    "status": "building",
    "round": 2,
-   "note": "Two-col photo hero, plan/join block (no price), verbatim benefit cards w/ photo, fix guarantee visibility locally, bigger body type",
-   "updated": "2026-10-12T08:56:58.742Z",
+   "note": "Finish round-2 plan: photo hero, no-price join panel, verbatim benefit cards with photo, fix washed-out guarantee locally, bigger body type",
+   "updated": "2026-10-12T09:48:48.322Z",
    "shot": "shots/page-premium-membership-r1.png"
   },
   "page-we-offer-financing": {
@@ -157,8 +157,8 @@
   "page-leave-us-a-review": {
    "status": "building",
    "round": 3,
-   "note": "Fix CTA overflow, h2 spacing, mobile call-bar padding, add real job photo split with intro, give town list context",
-   "updated": "2026-10-12T08:58:26.461Z",
+   "note": "Route is live: drop tpl-review stub CSS, fix card CTA overflow at 1440, h2 spacing, call-bar padding, real job photo beside intro, labelled town list",
+   "updated": "2026-10-12T09:48:57.942Z",
    "shot": "shots/page-leave-us-a-review-r2.png"
   },
   "page-calendar": {
@@ -177,6 +177,34 @@
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T09:48:57.942Z",
+   "piece": "page-leave-us-a-review",
+   "status": "building",
+   "round": 3,
+   "note": "Route is live: drop tpl-review stub CSS, fix card CTA overflow at 1440, h2 spacing, call-bar padding, real job photo beside intro, labelled town list"
+  },
+  {
+   "t": "2026-10-12T09:48:48.322Z",
+   "piece": "page-premium-membership",
+   "status": "building",
+   "round": 2,
+   "note": "Finish round-2 plan: photo hero, no-price join panel, verbatim benefit cards with photo, fix washed-out guarantee locally, bigger body type"
+  },
+  {
+   "t": "2026-10-12T09:48:42.860Z",
+   "piece": "page-about-colonial-electric",
+   "status": "critiquing",
+   "round": 3,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T09:48:29.892Z",
+   "piece": "block-contact-form",
+   "status": "building",
+   "round": 3,
+   "note": "Verify 24/7 Emergency support row is gone from info card, rebuild, QA at 1440/768/375 plus shared pages"
+  },
   {
    "t": "2026-10-12T09:00:12.645Z",
    "piece": "page-about-colonial-electric",
@@ -1173,5 +1201,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T09:00:12.645Z"
+ "updated": "2026-10-12T09:48:57.942Z"
 }
