@@ -127,7 +127,8 @@ export function render(ctx) {
     hero(ctx),
     introSection(),
     ledger(ctx),
-    contactForm(ctx, { id: 'cu-form', cls: 'cu-form', heading: 'Get in Touch' }),
+    // founder photo loads eagerly here: it is the page's second hero, and lazy loading left it blank in no-scroll renders
+    contactForm(ctx, { id: 'cu-form', cls: 'cu-form', heading: 'Get in Touch' }).replace('loading="lazy"', 'loading="eager"'),
     findUs(ctx),
   ].join('\n');
 }

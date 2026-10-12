@@ -13,3 +13,7 @@
 ## 2. tools/blind.py (tooling owner) — NameError
 - Line 10: `H=max(A.height,B.height)+80` is attached to the `elif` line, so it only runs in that branch.
 - Change: move `H=max(A.height,B.height)+80` to its own unindented line after the if/elif block.
+
+## 3. FYI block-contact-form (observed 2026-10-12 build, mid-edit?)
+- New markup (`.cf-photo > picture`, no `.cf-photo__frame`; trust `<ul>` with icons) does not match the current CSS: the founder photo renders as an empty navy box in full-page captures and the trust list shows default bullets with icons on their own lines.
+- "Emergency support: We provide 24/7 service." — check against source/pages/*.md; the live hours are 8:00 AM – 4:00 PM, so a 24/7 claim may be invented copy.

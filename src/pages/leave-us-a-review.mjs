@@ -43,11 +43,14 @@ function hero(ctx) {
 </section>`;
 }
 
-function intro() {
+function intro(ctx) {
   return `<section class="lr-intro" aria-label="Thank you">
   <div class="container lr-intro__grid">
-    <div class="lr-intro__mark" aria-hidden="true">${icon('quote', { size: 56 })}</div>
+    <figure class="lr-intro__media">
+      ${picture(ctx, 'scott-portrait', { alt: 'Scott Hays of Colonial Electric', sizes: '(min-width: 1440px) 460px, (min-width: 960px) 34vw, 100vw', imgCls: 'lr-intro__img' })}
+    </figure>
     <div class="lr-intro__body">
+      <div class="lr-intro__mark" aria-hidden="true">${icon('quote', { size: 56 })}</div>
       <p class="lr-intro__lead">${esc(copy.intro)}</p>
       <p class="lr-intro__ask"><a href="#lr-platforms">${esc(copy.ask)}${icon('arrow-right', { size: 18 })}</a></p>
     </div>
@@ -91,5 +94,5 @@ function towns(ctx) {
 export function render(ctx) {
   ctx.preloadImage = 'owner-van';
   ctx.preloadSizes = '(min-width: 1440px) 640px, (min-width: 960px) 46vw, 100vw';
-  return [hero(ctx), intro(), platformsSection(), towns(ctx)].join('\n');
+  return [hero(ctx), intro(ctx), platformsSection(), towns(ctx)].join('\n');
 }

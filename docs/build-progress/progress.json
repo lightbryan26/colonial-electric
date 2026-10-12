@@ -64,10 +64,10 @@
    "shot": "shots/home-membership-r1.png"
   },
   "home-process": {
-   "status": "building",
+   "status": "critiquing",
    "round": 2,
-   "note": "Remove invented eyebrow/heading; use brief's verbatim H2 'A Booking Process That Feels Like a Breeze'",
-   "updated": "2026-10-12T08:51:09.401Z",
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T08:54:38.990Z",
    "shot": "shots/home-process-r1.png"
   },
   "block-guarantee": {
@@ -78,10 +78,10 @@
    "shot": "shots/block-guarantee-r1.png"
   },
   "block-contact-cta": {
-   "status": "building",
+   "status": "critiquing",
    "round": 2,
-   "note": "Make CTA content visible by default (JS-gated reveal), tighten height, add trust row + stronger CTAs",
-   "updated": "2026-10-12T08:51:17.055Z",
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T08:56:04.884Z",
    "shot": "shots/block-contact-cta-r1.png"
   },
   "block-contact-form": {
@@ -99,31 +99,31 @@
    "shot": "shots/footer-r1.png"
   },
   "tpl-service": {
-   "status": "lost",
-   "round": 1,
-   "note": "Won blind but failed QA: Guarantee block (~y4700-5950 at 1440) renders washed out to about 20-30% opacity: the headline, body, Scott Hays sign-off and the CALL NOW button are illegible. Either a scroll-reveal is stuck mid-animation or the card has an opacity/filter applied. Fix in src/blocks/guarant",
-   "updated": "2026-10-12T08:54:07.085Z",
+   "status": "building",
+   "round": 2,
+   "note": "Force guarantee block to full contrast on service pages via tpl-service.css override, fix pillar numbering, file request to blocks owner",
+   "updated": "2026-10-12T08:55:54.396Z",
    "shot": "shots/tpl-service-r1.png"
   },
   "tpl-town": {
-   "status": "building",
+   "status": "critiquing",
    "round": 2,
-   "note": "Fix truncated town names in Towns-we-serve grid (override in tpl-town.css), recheck 1440/375",
-   "updated": "2026-10-12T08:51:55.969Z",
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T08:55:08.750Z",
    "shot": "shots/tpl-town-r1.png"
   },
   "page-about-colonial-electric": {
-   "status": "building",
+   "status": "critiquing",
    "round": 2,
-   "note": "Add founder (Scott Hays two-col w/ photo), Mission/Vision, 5 pillars verbatim; sticky-bar workaround",
-   "updated": "2026-10-12T08:51:08.726Z",
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T08:55:37.774Z",
    "shot": "shots/page-about-colonial-electric-r1.png"
   },
   "page-services": {
-   "status": "building",
+   "status": "critiquing",
    "round": 2,
-   "note": "Fix guarantee contrast, add photos + Premium Residential + 3 category blocks, tighten intro/hero",
-   "updated": "2026-10-12T08:52:05.435Z",
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T08:56:29.548Z",
    "shot": "shots/page-services-r1.png"
   },
   "page-service-area": {
@@ -134,17 +134,18 @@
    "shot": "shots/page-service-area-r1.png"
   },
   "page-contact-us": {
-   "status": "building",
+   "status": "done",
    "round": 2,
-   "note": "Force contact form visible by default (no-JS/full-page safe), close 375 gap, file requests for block JS + blind.py",
-   "updated": "2026-10-12T08:52:19.326Z",
+   "note": "Form forced visible on page; routing request filed (pages.mjs still points to contact.mjs)",
+   "updated": "2026-10-12T08:55:55.902Z",
    "shot": "shots/page-contact-us-r1.png"
   },
   "page-premium-membership": {
-   "status": "critiquing",
+   "status": "lost",
    "round": 1,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:50:56.710Z"
+   "note": "Critic picked the reference. Biggest gap: Everything below the hero is unfinished. The guarantee section renders washed out at about 25% opacity, so it looks broken. The intro is a thin, image-free wall of tiny text. And a membership page never shows what the membership includes or costs.",
+   "updated": "2026-10-12T08:56:03.647Z",
+   "shot": "shots/page-premium-membership-r1.png"
   },
   "page-we-offer-financing": {
    "status": "won",
@@ -175,6 +176,70 @@
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T08:56:29.548Z",
+   "piece": "page-services",
+   "status": "critiquing",
+   "round": 2,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:56:04.884Z",
+   "piece": "block-contact-cta",
+   "status": "critiquing",
+   "round": 2,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:56:03.647Z",
+   "piece": "page-premium-membership",
+   "status": "lost",
+   "round": 1,
+   "note": "Critic picked the reference. Biggest gap: Everything below the hero is unfinished. The guarantee section renders washed out at about 25% opacity, so it looks broken. The intro is a thin, image-free wall of tiny text. And a membership page never shows what the membership includes or costs.",
+   "shot": "shots/page-premium-membership-r1.png"
+  },
+  {
+   "t": "2026-10-12T08:55:55.902Z",
+   "piece": "page-contact-us",
+   "status": "done",
+   "round": 2,
+   "note": "Form forced visible on page; routing request filed (pages.mjs still points to contact.mjs)"
+  },
+  {
+   "t": "2026-10-12T08:55:54.396Z",
+   "piece": "tpl-service",
+   "status": "building",
+   "round": 2,
+   "note": "Force guarantee block to full contrast on service pages via tpl-service.css override, fix pillar numbering, file request to blocks owner"
+  },
+  {
+   "t": "2026-10-12T08:55:37.774Z",
+   "piece": "page-about-colonial-electric",
+   "status": "critiquing",
+   "round": 2,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:55:16.813Z",
+   "piece": "page-services",
+   "status": "done",
+   "round": 2,
+   "note": "Photo band, rating badge, proof trust bar, guarantee anti-ghost; BLOCKED on pages.mjs routing request"
+  },
+  {
+   "t": "2026-10-12T08:55:08.750Z",
+   "piece": "tpl-town",
+   "status": "critiquing",
+   "round": 2,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:54:38.990Z",
+   "piece": "home-process",
+   "status": "critiquing",
+   "round": 2,
+   "note": "screenshots + QA"
+  },
   {
    "t": "2026-10-12T08:54:15.798Z",
    "piece": "page-leave-us-a-review",
@@ -890,5 +955,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T08:54:15.798Z"
+ "updated": "2026-10-12T08:56:29.548Z"
 }

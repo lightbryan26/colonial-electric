@@ -29,8 +29,8 @@ function seal(ctx, uid) {
 
 function photo(ctx) {
   const b = ctx.asset('img/gx-scott-van');
-  const sizes = '(min-width: 64em) 30rem, (min-width: 48em) 42vw, 100vw';
-  return `<picture class="gx__pic"><source type="image/webp" srcset="${b}-560.webp 560w, ${b}-880.webp 880w" sizes="${sizes}"><img src="${b}-880.jpg" srcset="${b}-560.jpg 560w, ${b}-880.jpg 880w" sizes="${sizes}" width="880" height="900" alt="Founder Scott Hays standing in front of the Colonial Electric van" loading="lazy" decoding="async"></picture>`;
+  const sizes = '(min-width: 56em) 28rem, 100vw';
+  return `<picture class="gx__pic"><source type="image/webp" srcset="${b}-480.webp 480w, ${b}-660.webp 660w" sizes="${sizes}"><img src="${b}-660.jpg" srcset="${b}-480.jpg 480w, ${b}-660.jpg 660w" sizes="${sizes}" width="660" height="960" alt="Founder Scott Hays standing in front of the Colonial Electric van" loading="eager" decoding="async"></picture>`;
 }
 
 export function guarantee(ctx, { id = '', cls = '' } = {}) {
