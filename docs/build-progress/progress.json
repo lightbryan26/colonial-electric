@@ -172,11 +172,25 @@
    "status": "building",
    "round": 4,
    "note": "Drop opacity on TOC numerals for AA contrast, verify body text size and contrast, keep sticky rail and CTA band, rebuild and recheck all widths",
-   "updated": "2026-10-12T10:38:30.054Z",
+   "updated": "2026-10-12T10:38:46.576Z",
    "shot": "shots/page-terms-r1.png"
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T10:38:46.576Z",
+   "piece": "page-terms",
+   "status": "building",
+   "round": 4,
+   "note": "Drop opacity on TOC numerals for AA contrast, verify body text size and contrast, keep sticky rail and CTA band, rebuild and recheck all widths"
+  },
+  {
+   "t": "2026-10-12T10:38:46.529Z",
+   "piece": "page-terms",
+   "status": "lost",
+   "round": 3,
+   "note": "Won blind but failed QA: AA contrast failure (brief section 9, ’AA contrast’ on all text) on both /terms/ and /privacy/: the inactive table-of-contents section numbers (.lg-toc__n, the ’01’-’20’ / ’01’-’14’ numerals) render at 13px/800 in --ink-3 #5F6B82 multiplied by opacity .75, which works out to rgb(135,144,161). That i"
+  },
   {
    "t": "2026-10-12T10:38:30.054Z",
    "piece": "page-terms",
@@ -1516,5 +1530,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T10:38:30.054Z"
+ "updated": "2026-10-12T10:38:46.576Z"
 }

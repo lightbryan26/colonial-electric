@@ -87,7 +87,7 @@
   padding: .3rem 0; font: 500 .9375rem/1.3 var(--f-body); color: var(--ink-2); text-decoration: none;
   transition: color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
 }
-.lg-toc__n { font: 800 .8125rem/1 var(--f-display); letter-spacing: .04em; color: var(--ink-3); opacity: .75; font-variant-numeric: tabular-nums; }
+.lg-toc__n { font: 800 .8125rem/1 var(--f-display); letter-spacing: .04em; color: var(--ink-3); font-variant-numeric: tabular-nums; }
 .lg-toc__list a:hover { color: var(--navy); }
 .lg-toc__list a.is-active { color: var(--navy); font-weight: 700; transform: translateX(3px); }
 .lg-toc__list a.is-active .lg-toc__n { color: var(--red); opacity: 1; }

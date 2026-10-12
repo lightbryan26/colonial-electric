@@ -35,27 +35,40 @@ const residential = {
 };
 
 // [[label|href]] marks a linked service name inside verbatim text.
+// Each category is the verbatim services.md copy, set for scanning without changing a word or its order:
+// lead = the opening sentence; intro + items = the next sentence, broken at its own commas into a run-in list
+// (or, for Installation, its three service sentences); note = the closing paragraph.
+// photo = the live site's own clean service photo (assets/img/home-services/, brief §8); w = its real pixel width.
 const categories = [
   {
     h2: 'Electrical Repairs', ic: 'inspect',
-    paras: [
-      'Electrical repairs involve fixing any issues or malfunctions within an existing electrical system. This could include repairing faulty wiring, addressing power outages, replacing damaged outlets or switches, troubleshooting circuit breakers, or fixing any other electrical components that are not functioning correctly.',
-      'An [[Electrical Inspection|electrical-inspections/]] is often necessary to identify these issues and ensure that all repairs are addressed properly.',
-    ],
+    photo: { key: 'inspect', w: 440, h: 275, alt: 'Electrician testing a wall control during an electrical inspection' },
+    lead: 'Electrical repairs involve fixing any issues or malfunctions within an existing electrical system.',
+    intro: 'This could include',
+    items: ['repairing faulty wiring,', 'addressing power outages,', 'replacing damaged outlets or switches,', 'troubleshooting circuit breakers,', 'or fixing any other electrical components that are not functioning correctly.'],
+    note: 'An [[Electrical Inspection|electrical-inspections/]] is often necessary to identify these issues and ensure that all repairs are addressed properly.',
   },
   {
     h2: 'Electrical Installation', ic: 'ev',
-    paras: [
-      'Our Electrical installation services cover a wide range of needs to ensure your home is fully equipped with the latest electrical solutions. We specialize in [[EV Charger Installation|ev-charger-installation/]], providing you with the convenience and efficiency of charging your electric vehicle at home. Additionally, our [[Ceiling Fan Installation|ceiling-fan-installation/]] service helps enhance your comfort and air circulation.',
+    photo: { key: 'fan', w: 440, h: 275, alt: 'Electrician on a ladder installing a ceiling fan' },
+    lead: 'Our Electrical installation services cover a wide range of needs to ensure your home is fully equipped with the latest electrical solutions.',
+    items: [
+      'We specialize in [[EV Charger Installation|ev-charger-installation/]], providing you with the convenience and efficiency of charging your electric vehicle at home.',
+      'Additionally, our [[Ceiling Fan Installation|ceiling-fan-installation/]] service helps enhance your comfort and air circulation.',
       'We also handle the installation of [[Electrical Outlets|electrical-outlets/]] to ensure you have sufficient and strategically placed access points for all your electrical devices.',
     ],
   },
   {
     h2: 'Electrical Upgrades', ic: 'panel',
-    paras: [
-      'Electrical upgrades involve enhancing or modernizing an existing electrical system to improve its performance, efficiency, or safety. This could include an [[Electrical Panel Upgrade|electrical-panel-upgrade/]] to accommodate increased power demands, [[Whole House Rewiring|whole-house-wiring-or-rewiring/]] to replace outdated wiring with newer, more energy-efficient materials, or [[Lighting Additions|lighting-additions/]] to upgrade lighting fixtures and enhance aesthetics and functionality.',
-      'When considering electrical upgrades, it’s crucial to assess the current state of the system and identify areas that need improvement.',
+    photo: { key: 'panel', w: 684, h: 428, alt: 'Open residential electrical panel with breakers and wiring' },
+    lead: 'Electrical upgrades involve enhancing or modernizing an existing electrical system to improve its performance, efficiency, or safety.',
+    intro: 'This could include',
+    items: [
+      'an [[Electrical Panel Upgrade|electrical-panel-upgrade/]] to accommodate increased power demands,',
+      '[[Whole House Rewiring|whole-house-wiring-or-rewiring/]] to replace outdated wiring with newer, more energy-efficient materials,',
+      'or [[Lighting Additions|lighting-additions/]] to upgrade lighting fixtures and enhance aesthetics and functionality.',
     ],
+    note: 'When considering electrical upgrades, it’s crucial to assess the current state of the system and identify areas that need improvement.',
   },
 ];
 
@@ -145,19 +158,38 @@ function residentialBlock(ctx) {
 </section>`;
 }
 
+function catPhoto(ctx, p) {
+  const b = ctx.asset('img/home-services/' + p.key);
+  const sizes = '(min-width: 1024px) 28rem, (min-width: 640px) 17rem, 92vw';
+  const set = ext => p.w > 480 ? `${b}-480.${ext} 480w, ${b}-800.${ext} ${p.w}w` : `${b}-480.${ext} ${p.w}w`;
+  return `<picture><source type="image/webp" srcset="${set('webp')}" sizes="${sizes}"><img src="${b}-480.jpg" srcset="${set('jpg')}" sizes="${sizes}" width="${p.w}" height="${p.h}" alt="${esc(p.alt)}" loading="lazy" decoding="async"></picture>`;
+}
+
 function categoriesBlock(ctx) {
   return `<section class="sv-cats on-dark stars-bg" aria-label="Electrical repairs, installation and upgrades">
   <div class="container">
     <ol class="sv-cats__list" role="list">
       ${categories.map((c, i) => {
-        const links = c.paras.flatMap(linksIn);
+        const links = [...c.items, c.note || ''].flatMap(linksIn);
         const id = 'sv-cat-' + (i + 1);
-        return `<li class="sv-cat" aria-labelledby="${id}">
+        return `<li class="sv-cat${i % 2 ? ' sv-cat--flip' : ''}" aria-labelledby="${id}">
+        <figure class="sv-cat__fig">
+          <div class="sv-cat__ph">${catPhoto(ctx, c.photo)}</div>
+          <span class="sv-cat__n" aria-hidden="true">${pad(i + 1)}</span>
+        </figure>
         <div class="sv-cat__head">
-          <div class="sv-cat__top"><span class="sv-cat__n" aria-hidden="true">${pad(i + 1)}</span><span class="sv-cat__ic">${icon(c.ic, { size: 26 })}</span></div>
+          <span class="sv-cat__ic">${icon(c.ic, { size: 24 })}</span>
           <h2 class="sv-cat__h" id="${id}">${esc(c.h2)}</h2>
         </div>
-        <div class="sv-cat__body">${c.paras.map(p => `<p>${linkify(ctx, p)}</p>`).join('')}</div>
+        <div class="sv-cat__body">
+          <p class="sv-cat__lead">${esc(c.lead)}</p>
+          <div class="sv-cat__inc${c.intro ? '' : ' sv-cat__inc--s'}">
+            ${c.intro ? `<p class="sv-cat__intro">${esc(c.intro)}</p>\n            ` : ''}<ul class="sv-cat__ul" role="list">
+              ${c.items.map(t => `<li>${boltSvg('sv-cat__b')} <span>${linkify(ctx, t)}</span></li>`).join('\n              ')}
+            </ul>
+          </div>
+          ${c.note ? `<p class="sv-cat__note">${linkify(ctx, c.note)}</p>` : ''}
+        </div>
         <div class="sv-cat__side">
           <p class="sv-cat__k">Explore</p>
           <ul class="sv-cat__links" role="list">${links.map(l => `<li><a href="${ctx.r(l.href)}"><span>${esc(l.label)}</span>${icon('arrow-up-right', { size: 16 })}</a></li>`).join('')}</ul>

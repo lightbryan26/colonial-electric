@@ -6,7 +6,9 @@
 // Styles: src/css/page-premium-membership.css (all classes .pm-*). Interaction: the inline script at the
 // end of the bolt section. The bolt is a numbered tab list (node + leader + title for each benefit);
 // mouse hover over the bolt, tap, click, arrow keys / Home / End, or a panel's "Next benefit" button pick
-// the benefit, charge the bolt and show its panel. No JS = all four panels shown stacked.
+// the benefit, charge the bolt and show its panel (deselected panels go inert at once, so focus never
+// lands on one that is fading out). No JS = all four panels shown stacked. Long verbatim paragraphs are
+// set one sentence per row inside the same <p> (see sentences()); the words never change.
 import { site } from '../data/site.mjs';
 import { guarantee } from '../blocks/guarantee.mjs';
 import { reviews } from '../blocks/reviews.mjs';
@@ -48,8 +50,13 @@ const benefits = [
     img: ['generator', 684, 428, 'Standby generator installed beside a white clapboard home', '50% 60%'],
     p: 'Regular inspections of a home’s electrical system is crucial for ensuring safety and efficiency. With our exclusive all-access pass, Colonial Electric goes the extra mile by offering comprehensive annual whole-home electrical safety inspections. Say goodbye to the hassle of searching for an electrician to handle these essential check-ups! We’ve got you covered.' },
 ];
-// The verbatim paragraph's first sentence is set as its lead (same <p>, same words; typographic emphasis only).
-const splitLead = p => { const i = p.indexOf('. '); return i < 0 ? [p, ''] : [p.slice(0, i + 1), p.slice(i + 2)]; };
+// A verbatim paragraph is set sentence by sentence: still ONE <p>, the sentences in order, joined by the
+// same single space, so its textContent is the live paragraph exactly (typographic layout only).
+const sentences = p => {
+  const s = p.split(/(?<=[.!?])\s+(?=[A-Z“‘"'])/);
+  if (s.join(' ') !== p) throw new Error('sentences: split does not rejoin to the verbatim paragraph: ' + p.slice(0, 60));
+  return s;
+};
 
 const saveBig = {
   h2: ['Save Big…', 'And Enjoy', 'BIGGER'],
@@ -104,13 +111,13 @@ function introSection(ctx) {
       </figure>
       <div class="pm-intro__text">
         <p class="pm-intro__lead">${esc(p1)}</p>
-        <div class="pm-intro__cols">
-          <p>${emph(p2, 'you’ll have a dedicated point of contact')}</p>
-          <p>${emph(p3, 'From priority customer support, to waived diagnostic fees')}</p>
-        </div>
-        <div class="pm-intro__cta">
-          <a class="btn btn--navy btn--lg" href="${site.tel}">${icon('phone', { size: 18 })}Call Now</a>
-          <a class="tel-lg pm-intro__tel" href="${site.tel}">${site.phone}</a>
+        <p class="pm-intro__pts">${sentences(p2).map(s => `<span class="pm-pt"><span class="pm-pt__ic" aria-hidden="true">${icon('bolt', { size: 16 })}</span><span class="pm-pt__t">${s.includes('dedicated point of contact') ? emph(s, 'you’ll have a dedicated point of contact') : esc(s)}</span></span>`).join(' ')}</p>
+        <div class="pm-intro__band">
+          <p class="pm-intro__band-p">${sentences(p3).map((s, i) => `<span class="${i ? 'pm-intro__band-s' : 'pm-intro__band-k'}">${esc(s)}</span>`).join(' ')}</p>
+          <div class="pm-intro__cta">
+            <a class="btn btn--navy btn--lg" href="${site.tel}">${icon('phone', { size: 18 })}Call Now</a>
+            <a class="tel-lg pm-intro__tel" href="${site.tel}">${site.phone}</a>
+          </div>
         </div>
       </div>
     </div>
@@ -148,14 +155,14 @@ function boltSection(ctx) {
         </button>`).join('\n        ');
   const cards = benefits.map((b, i) => {
     const [key, w, h, alt, pos] = b.img;
-    const [lead, rest] = splitLead(b.p);
+    const [lead, ...rest] = sentences(b.p);
     const nxt = (i + 1) % benefits.length;
     return `<article class="pm-card${i === 0 ? ' is-on' : ''}" id="pm-card-${i}" role="tabpanel" aria-labelledby="pm-tab-${i}" tabindex="0">
           <div class="pm-card__media"><picture><source type="image/webp" srcset="${IMG}${key}-480.webp 480w, ${IMG}${key}-800.webp ${w}w" sizes="(min-width: 1440px) 44rem, (min-width: 1024px) 56vw, 92vw"><img src="${IMG}${key}-800.jpg" srcset="${IMG}${key}-480.jpg 480w, ${IMG}${key}-800.jpg ${w}w" sizes="(min-width: 1440px) 44rem, (min-width: 1024px) 56vw, 92vw" width="${w}" height="${h}" alt="${esc(alt)}" loading="eager" fetchpriority="low" decoding="sync" style="object-position:${pos}"></picture><span class="pm-card__n" aria-hidden="true">${pad(i + 1)}</span></div>
           <div class="pm-card__body">
             <p class="pm-card__k"><span class="pm-card__ic" aria-hidden="true">${icon(b.ic, { size: 22 })}</span><span class="pm-card__count label-wide" aria-hidden="true">${pad(i + 1)} / ${pad(benefits.length)}</span></p>
             <h3 class="pm-card__h">${esc(b.t)}</h3>
-            <p class="pm-card__p"><span class="pm-card__lead">${esc(lead)}</span> ${esc(rest)}</p>
+            <p class="pm-card__p"><span class="pm-card__lead">${esc(lead)}</span> ${rest.map(t => `<span class="pm-card__pt"><span class="pm-card__tick" aria-hidden="true">${icon('check', { size: 14 })}</span><span>${esc(t)}</span></span>`).join(' ')}</p>
           </div>
           <div class="pm-card__nav"><button class="pm-card__next" type="button" data-go="${nxt}"><span class="label-wide">${i < benefits.length - 1 ? 'Next benefit' : 'Back to the first'}</span><span class="pm-card__next-t">${esc(benefits[nxt].t)}</span>${icon('arrow-right', { size: 18 })}</button></div>
         </article>`;
@@ -210,11 +217,16 @@ function boltSection(ctx) {
     var rm = matchMedia('(prefers-reduced-motion: reduce)');
     function set(i, focus) {
       cur = i;
+      // keyboard focus inside the outgoing panel (e.g. a mouse hover changes the benefit) follows to the new one
+      var a = document.activeElement, held = cards.some(function (c, k) { return k !== i && c.contains(a); });
       tabs.forEach(function (t, k) { t.setAttribute('aria-selected', k === i); t.tabIndex = k === i ? 0 : -1; t.classList.toggle('is-done', k < i); });
-      cards.forEach(function (c, k) { c.classList.toggle('is-on', k === i); });
+      // inert the moment a panel is deselected, so Tab can never land on one that is still fading out
+      cards.forEach(function (c, k) { c.classList.toggle('is-on', k === i); c.inert = k !== i; });
       stage.style.setProperty('--lvl', tabs[i].getAttribute('data-lvl'));
       if (focus) tabs[i].focus();
+      else if (held) cards[i].focus({ preventScroll: true });
     }
+    set(0);
     function reveal(i) { // on a narrow screen the panel sits under the bolt: bring its top into view
       var r = cards[i].getBoundingClientRect();
       if (r.top > innerHeight * .7 || r.top < 0) scrollBy({ top: r.top - 96, behavior: rm.matches ? 'auto' : 'smooth' });
