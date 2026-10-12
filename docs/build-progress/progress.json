@@ -22,11 +22,11 @@
    "shot": "shots/home-safety-r1.png"
   },
   "home-services": {
-   "status": "critiquing",
+   "status": "won",
    "round": 2,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:58:34.504Z",
-   "shot": "shots/home-services-r1.png"
+   "note": "Critic picked ours blind (slight). Remaining gap: The dark nav bar sits mid-viewport and covers the service card descriptions, a visible layout or sticky-header bug. It is made worse by tiny low-contrast card copy and photography with mismatched colo",
+   "updated": "2026-10-12T08:59:31.569Z",
+   "shot": "shots/home-services-r2.png"
   },
   "home-why": {
    "status": "won",
@@ -71,10 +71,10 @@
    "shot": "shots/home-process-r2.png"
   },
   "block-guarantee": {
-   "status": "critiquing",
+   "status": "won",
    "round": 2,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:58:11.963Z",
+   "note": "Critic picked ours blind (clear). Remaining gap: There is no visible conversion path in the block, and it relies on a dense, corporate-voiced body paragraph. The guarantee is sold in prose instead of being turned into a call or booking.",
+   "updated": "2026-10-12T08:59:08.195Z",
    "shot": "shots/block-guarantee-r2.png"
   },
   "block-contact-cta": {
@@ -85,11 +85,11 @@
    "shot": "shots/block-contact-cta-r2.png"
   },
   "block-contact-form": {
-   "status": "critiquing",
-   "round": 2,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:58:27.658Z",
-   "shot": "shots/block-contact-form-r1.png"
+   "status": "building",
+   "round": 3,
+   "note": "Remove Emergency support 24/7 row from info card, rebuild, verify 1440/375",
+   "updated": "2026-10-12T08:59:40.578Z",
+   "shot": "shots/block-contact-form-r2.png"
   },
   "footer": {
    "status": "won",
@@ -113,10 +113,10 @@
    "shot": "shots/tpl-town-r2.png"
   },
   "page-about-colonial-electric": {
-   "status": "building",
+   "status": "critiquing",
    "round": 3,
-   "note": "Add Scott Hays bio two-column with van photo, service-area heading, verify intro period",
-   "updated": "2026-10-12T08:58:03.636Z",
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T09:00:12.645Z",
    "shot": "shots/page-about-colonial-electric-r2.png"
   },
   "page-services": {
@@ -177,6 +177,51 @@
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T09:00:12.645Z",
+   "piece": "page-about-colonial-electric",
+   "status": "critiquing",
+   "round": 3,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:59:52.807Z",
+   "piece": "page-about-colonial-electric",
+   "status": "done",
+   "round": 3,
+   "note": "Routed slug to full page; Scott Hays bio + photo two-col; Service Area heading"
+  },
+  {
+   "t": "2026-10-12T08:59:40.578Z",
+   "piece": "block-contact-form",
+   "status": "building",
+   "round": 3,
+   "note": "Remove Emergency support 24/7 row from info card, rebuild, verify 1440/375"
+  },
+  {
+   "t": "2026-10-12T08:59:31.569Z",
+   "piece": "home-services",
+   "status": "won",
+   "round": 2,
+   "note": "Critic picked ours blind (slight). Remaining gap: The dark nav bar sits mid-viewport and covers the service card descriptions, a visible layout or sticky-header bug. It is made worse by tiny low-contrast card copy and photography with mismatched colo",
+   "shot": "shots/home-services-r2.png"
+  },
+  {
+   "t": "2026-10-12T08:59:31.552Z",
+   "piece": "block-contact-form",
+   "status": "lost",
+   "round": 2,
+   "note": "Won blind but failed QA: Brief violation: the photo panel's info card shows 'Emergency support: We provide 24/7 service.' Brief §4 item 13 says the 24/7 line may appear only inside FAQ 7 ('Do not promote 24/7 anywhere else'). Fix: delete the whole 'Emergency support' row from the contact-form block ",
+   "shot": "shots/block-contact-form-r2.png"
+  },
+  {
+   "t": "2026-10-12T08:59:08.195Z",
+   "piece": "block-guarantee",
+   "status": "won",
+   "round": 2,
+   "note": "Critic picked ours blind (clear). Remaining gap: There is no visible conversion path in the block, and it relies on a dense, corporate-voiced body paragraph. The guarantee is sold in prose instead of being turned into a call or booking.",
+   "shot": "shots/block-guarantee-r2.png"
+  },
   {
    "t": "2026-10-12T08:58:34.504Z",
    "piece": "home-services",
@@ -1128,5 +1173,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T08:58:34.504Z"
+ "updated": "2026-10-12T09:00:12.645Z"
 }

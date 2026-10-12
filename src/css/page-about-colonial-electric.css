@@ -111,7 +111,7 @@
 .ab-bio .eyebrow { color: var(--on-dark-2); }
 .ab-bio__name { margin-top: 1rem; font: 900 clamp(3rem, 1.6rem + 5vw, 6rem)/.85 var(--f-display); text-transform: uppercase; color: var(--white); }
 .ab-bio__text { margin-top: clamp(1.5rem, 1rem + 1.5vw, 2.5rem); max-width: 62ch; }
-.ab-bio__text p { color: var(--on-dark-2); text-wrap: pretty; }
+.ab-bio__text p { color: var(--on-dark-2); text-wrap: pretty; font-size: var(--fs-body, 1rem); line-height: 1.75; }
 .ab-bio__text p + p { margin-top: 1.25em; }
 .ab-bio__text .ab-bio__first { font-size: var(--fs-lead); line-height: 1.6; color: var(--white); }
 .ab-bio__first::first-letter { float: left; margin: .06em .12em 0 0; font: 900 4.1em/.78 var(--f-display); color: var(--red-flag); }
@@ -174,11 +174,13 @@
 
 /* ---------- 7. Closing blocks ---------- */
 .ab-towns { padding-block: clamp(3rem, 2rem + 3vw, 5rem); background: var(--white); }
-.ab-towns__grid { display: grid; gap: 1.25rem 3rem; }
-@media (min-width: 960px) { .ab-towns__grid { grid-template-columns: 14rem 1fr; align-items: start; } }
-.ab-towns__h { display: inline-flex; align-items: center; gap: .6rem; color: var(--navy); padding-top: .55rem; }
-.ab-towns__h .icon { color: var(--red); }
-
+.ab-towns__grid { display: grid; gap: 2rem 4rem; }
+@media (min-width: 960px) { .ab-towns__grid { grid-template-columns: minmax(16rem, 22rem) 1fr; align-items: start; } .ab-towns__head { position: sticky; top: 7rem; } }
+.ab-towns__head { display: grid; gap: .9rem; justify-items: start; }
+.ab-towns__head .ab-index { margin: 0; }
+.ab-towns__h { margin: 0; color: var(--navy); font: 900 clamp(2.75rem, 1.8rem + 3vw, 4.5rem)/.88 var(--f-display); text-transform: uppercase; letter-spacing: -.01em; }
+.ab-towns__sub { display: inline-flex; align-items: center; gap: .5rem; color: var(--navy); margin: 0; }
+.ab-towns__sub .icon { color: var(--red); }
 
 /* ---------- Small-screen refinements ---------- */
 @media (max-width: 599px) {

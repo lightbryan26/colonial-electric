@@ -10,3 +10,9 @@ Why: the full page (photo hero, portrait + lead intro, pinned-CTA platform cards
 Also (tool owner): tools/blind.py throws NameError — move `H=max(A.height,B.height)+80` onto its own line before `Image.new` (outside the elif).
 
 Client flag: the live Facebook button links to the Google review URL (live defect); the rebuild uses a Facebook search for "Colonial Electric Weymouth MA" until the client supplies the real page URL.
+
+## ROUND 3 — STILL UNAPPLIED (3rd round the critic judged the stub)
+Every round-2 critic issue (CTA overflow, h2 collision, no photography, orphaned towns) describes src/pages/review.mjs, not my page.
+Simplest fix (same as about.mjs did): replace the body of src/pages/review.mjs with
+`export { render } from './leave-us-a-review.mjs';`
+Meanwhile src/css/page-leave-us-a-review.css carries a `body.tpl-review` workaround block patching the stub (wrapping CTAs, h2 spacing, mobile call-bar padding, real photo beside intro, towns label). Delete that block after routing.

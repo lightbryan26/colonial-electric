@@ -1,6 +1,6 @@
 # Request from page-about-colonial-electric  (ROUND 2 — BLOCKING, please apply first)
 
-## 1. Route the slug to the finished page (BLOCKING — the round-1 QA failure was caused by this)
+## 1. [ROUND 3: worked around — src/pages/about.mjs now re-exports render from about-colonial-electric.mjs; switching pages.mjs template is still the cleaner fix] Route the slug to the finished page (was BLOCKING — the round-1 QA failure was caused by this)
 File: src/data/pages.mjs (line 10)
 Change: `P('about-colonial-electric/', 'About Us', 'About Us', 'about'),` → `P('about-colonial-electric/', 'About Us', 'About Us', 'about-colonial-electric'),`
 Why: the full About Us page (Founder/Scott Hays bio with photo, Mission, Vision, 5 pillars — all verbatim) is built in src/pages/about-colonial-electric.mjs, but the slug still routes to the round-1 stub src/pages/about.mjs, which is exactly what the critic saw ("goes straight from Meet the Man to Contact Us Today"). After the switch, src/pages/about.mjs is unused and can be deleted by its owner. Body class becomes tpl-about-colonial-electric (styles in src/css/page-about-colonial-electric.css are scoped to .ab-* and that class).

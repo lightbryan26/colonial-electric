@@ -154,7 +154,12 @@ function beyondSection(ctx) {
 function townsSection(ctx) {
   return `<section class="ab-towns" aria-labelledby="ab-towns-h">
   <div class="container ab-towns__grid">
-    <h2 class="ab-towns__h label-wide" id="ab-towns-h">${icon('pin', { size: 16 })}Towns We Serve</h2>
+    <header class="ab-towns__head">
+      ${index(5, 'Where We Work')}
+      <h2 class="ab-towns__h" id="ab-towns-h">Service Area</h2>
+      <p class="ab-towns__sub label-wide">${icon('pin', { size: 14 })}Towns We Serve</p>
+      <a class="ab-link" href="${ctx.r('service-area/')}">View Service Area${icon('arrow-right', { size: 16 })}</a>
+    </header>
     ${townList(ctx, { cls: 'ab-towns__list' })}
   </div>
 </section>`;

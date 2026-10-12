@@ -94,7 +94,6 @@ export function contactForm(ctx, { id = '', cls = '', heading = 'Contact Us' } =
       <div class="cf-direct">
         <p class="cf-direct__k">Call Us Today!</p>
         <a class="cf-direct__tel" href="${site.tel}">${icon('phone', { size: 22 })}<span>${site.phone}</span></a>
-        <p class="cf-direct__247">${icon('bolt', { size: 16 })}<span><strong>Emergency support:</strong> We provide 24/7 service.</span></p>
         <dl class="cf-facts">
           <div class="cf-fact"><dt>${icon('clock', { size: 16 })}Operating Hours</dt><dd>${esc(site.hours)}</dd></div>
           <div class="cf-fact"><dt>${icon('pin', { size: 16 })}Service Area</dt><dd>Weymouth &amp; the South Shore</dd></div>

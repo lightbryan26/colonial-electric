@@ -4,7 +4,8 @@
 // "Our exclusive access pass isn't just about" in Save Big. Benefit titles = captions baked into the
 // live perk images (verified live copy, brief §7); the perk cards are rebuilt in HTML, not reused images.
 // Styles: src/css/page-premium-membership.css (all classes .pm-*). Interaction: the inline script at the
-// end of the bolt section (tabs pattern: hover / tap / arrow keys; works as a plain list without JS).
+// end of the bolt section (all four cards always visible; bolt nodes are buttons — hover, tap, focus or
+// keyboard light the matching card and charge the bolt; no JS = static cards).
 import { site } from '../data/site.mjs';
 import { guarantee } from '../blocks/guarantee.mjs';
 import { reviews } from '../blocks/reviews.mjs';
@@ -77,9 +78,6 @@ function hero(ctx) {
       </figcaption>
     </figure>
   </div>
-  <div class="container"><ol class="pm-hero__index" role="list" aria-label="Membership benefits">
-    ${benefits.map((b, i) => `<li><a href="#pm-tab-${i}" data-pm-jump="${i}"><span class="pm-hero__n" aria-hidden="true">${pad(i + 1)}</span><span>${esc(b.t)}</span></a></li>`).join('')}
-  </ol></div>
 </section>`;
 }
 
@@ -110,80 +108,109 @@ function introSection(ctx) {
 </section>`;
 }
 
-function boltSection() {
-  const nodes = benefits.map((b, i) => `<button class="pm-node${i % 2 ? ' pm-node--l' : ''}" type="button" role="tab" id="pm-tab-${i}" aria-controls="pm-panel-${i}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}" data-i="${i}" data-lvl="${b.lvl}" style="--x:${b.x}%;--y:${b.y}%">
-          <span class="pm-node__dot" aria-hidden="true">${pad(i + 1)}</span><span class="pm-node__t">${esc(b.t)}</span>
-        </button>`).join('\n        ');
-  const panels = benefits.map((b, i) => `<article class="pm-panel" role="tabpanel" id="pm-panel-${i}" aria-labelledby="pm-tab-${i}" data-i="${i}"${i ? ' data-off' : ''}>
-          <p class="pm-panel__k"><span class="pm-panel__n" aria-hidden="true">${pad(i + 1)}</span><span class="pm-panel__ic">${icon(b.ic, { size: 22 })}</span><span class="label-wide">Benefit ${i + 1} of ${benefits.length}</span></p>
-          <h3 class="pm-panel__h">${esc(b.t)}</h3>
-          <p class="pm-panel__p">${esc(b.p)}</p>
-        </article>`).join('\n        ');
-  return `<section class="pm-bolt on-dark stars-bg" id="pm-benefits" aria-labelledby="pm-bolt-h">
-  <div class="container pm-bolt__grid">
-    <header class="pm-bolt__head">
-      <p class="pm-index pm-index--dark"><span class="pm-index__n">02</span><span class="pm-index__l">The Benefits</span></p>
-      <p class="eyebrow">${esc(bolt.eyebrow)}</p>
-      <h2 class="pm-bolt__h" id="pm-bolt-h">${esc(bolt.h2)}</h2>
-      <p class="pm-bolt__hint">${icon('bolt', { size: 16 })}<span>${esc(bolt.hint)}</span></p>
-    </header>
-    <div class="pm-stage" data-pm-stage style="--lvl:${benefits[0].lvl}">
-      <svg class="pm-stage__svg" viewBox="0 0 400 600" aria-hidden="true" focusable="false">
-        <defs>
-          <clipPath id="pm-bolt-clip"><polygon points="${BOLT_PTS}"/></clipPath>
-          <pattern id="pm-pin" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="1.4" fill="rgba(255,255,255,.07)"/></pattern>
-          <pattern id="pm-pin-r" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="1.4" fill="rgba(255,255,255,.14)"/></pattern>
-        </defs>
-        <polygon class="pm-stage__halo" points="${BOLT_PTS}"/>
-        <g clip-path="url(#pm-bolt-clip)">
-          <rect class="pm-stage__base" width="400" height="600"/>
-          <rect width="400" height="600" fill="url(#pm-pin)"/>
-          <g class="pm-stage__charge"><rect class="pm-stage__fill" width="400" height="600"/><rect width="400" height="600" fill="url(#pm-pin-r)"/></g>
-        </g>
-        <polygon class="pm-stage__line" points="${BOLT_PTS}" pathLength="1"/>
-      </svg>
-      <div class="pm-stage__nodes" role="tablist" aria-label="Flash Pass benefits" aria-orientation="vertical">
-        ${nodes}
+// Join panel straight under the hero: the sign-up path (by phone; NO price on this site, brief §7).
+function joinSection(ctx) {
+  return `<section class="pm-join" aria-labelledby="pm-join-h">
+  <div class="container">
+    <div class="pm-join__card">
+      <div class="pm-join__id">
+        <p class="eyebrow pm-join__eyebrow">Exclusive Access Pass</p>
+        <h2 class="pm-join__h" id="pm-join-h">Flash Pass <span>Membership</span></h2>
+        <p class="pm-join__lic label-wide">${esc(site.license)}</p>
+      </div>
+      <ul class="pm-join__list" role="list" aria-label="What membership includes">
+        ${benefits.map((b, i) => `<li><a href="#pm-card-${i}" data-pm-jump="${i}"><span class="pm-join__tick" aria-hidden="true">${icon('check', { size: 14 })}</span><span>${esc(b.t)}</span></a></li>`).join('\n        ')}
+      </ul>
+      <div class="pm-join__act">
+        <a class="btn btn--red pm-join__btn" href="${site.tel}">${icon('bolt', { size: 18 })}Join Flash Pass</a>
+        <a class="pm-join__tel" href="${site.tel}">${icon('phone', { size: 16 })}${site.phone}</a>
+        <p class="pm-join__fine">Enrollment by phone. Regular business hours 8:00 AM to 4:00 PM.</p>
       </div>
     </div>
-    <div class="pm-panels" data-pm-panels>
-        ${panels}
+  </div>
+</section>`;
+}
+
+function boltSection(ctx) {
+  const nodes = benefits.map((b, i) => `<button class="pm-node${i % 2 ? ' pm-node--l' : ''}" type="button" aria-controls="pm-card-${i}" aria-pressed="${i === 0}" data-i="${i}" data-lvl="${b.lvl}" style="--x:${b.x}%;--y:${b.y}%">
+          <span class="pm-node__dot" aria-hidden="true">${pad(i + 1)}</span><span class="pm-node__t">${esc(b.t)}</span>
+        </button>`).join('\n        ');
+  const cards = benefits.map((b, i) => `<article class="pm-card${i === 0 ? ' is-on' : ''}" id="pm-card-${i}" data-i="${i}" aria-labelledby="pm-card-${i}-h">
+          <p class="pm-card__k"><span class="pm-card__ic" aria-hidden="true">${icon(b.ic, { size: 22 })}</span><span class="pm-card__n" aria-hidden="true">${pad(i + 1)}</span></p>
+          <h3 class="pm-card__h" id="pm-card-${i}-h">${esc(b.t)}</h3>
+          <p class="pm-card__p">${esc(b.p)}</p>
+        </article>`).join('\n        ');
+  const pb = ctx.asset('img/home-services/panel');
+  return `<section class="pm-bolt on-dark stars-bg" id="pm-benefits" aria-labelledby="pm-bolt-h">
+  <div class="container">
+    <header class="pm-bolt__head">
+      <div class="pm-bolt__title">
+        <p class="pm-index pm-index--dark"><span class="pm-index__n">02</span><span class="pm-index__l">The Benefits</span></p>
+        <p class="eyebrow">${esc(bolt.eyebrow)}</p>
+        <h2 class="pm-bolt__h" id="pm-bolt-h">${esc(bolt.h2)}</h2>
+        <p class="pm-bolt__hint">${icon('bolt', { size: 16 })}<span>${esc(bolt.hint)}</span></p>
+      </div>
+      <figure class="pm-bolt__photo">
+        <picture><source type="image/webp" srcset="${pb}-480.webp 480w, ${pb}-800.webp 684w" sizes="(min-width: 1024px) 34rem, 92vw"><img src="${pb}-800.jpg" srcset="${pb}-480.jpg 480w, ${pb}-800.jpg 684w" sizes="(min-width: 1024px) 34rem, 92vw" width="684" height="428" alt="Open residential breaker panel with the wiring exposed during service" loading="lazy" decoding="async"></picture>
+        <figcaption class="label-wide">${icon('inspect', { size: 16 })}Annual whole-home safety inspections</figcaption>
+      </figure>
+    </header>
+    <div class="pm-bolt__body">
+      <div class="pm-stage" data-pm-stage style="--lvl:${benefits[0].lvl}">
+        <svg class="pm-stage__svg" viewBox="0 0 400 600" aria-hidden="true" focusable="false">
+          <defs>
+            <clipPath id="pm-bolt-clip"><polygon points="${BOLT_PTS}"/></clipPath>
+            <pattern id="pm-pin" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="1.4" fill="rgba(255,255,255,.07)"/></pattern>
+            <pattern id="pm-pin-r" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="1.4" fill="rgba(255,255,255,.14)"/></pattern>
+          </defs>
+          <polygon class="pm-stage__halo" points="${BOLT_PTS}"/>
+          <g clip-path="url(#pm-bolt-clip)">
+            <rect class="pm-stage__base" width="400" height="600"/>
+            <rect width="400" height="600" fill="url(#pm-pin)"/>
+            <g class="pm-stage__charge"><rect class="pm-stage__fill" width="400" height="600"/><rect width="400" height="600" fill="url(#pm-pin-r)"/></g>
+          </g>
+          <polygon class="pm-stage__line" points="${BOLT_PTS}" pathLength="1"/>
+        </svg>
+        <div class="pm-stage__nodes" role="group" aria-label="Flash Pass benefits on the bolt">
+        ${nodes}
+        </div>
+      </div>
+      <div class="pm-cards">
+        ${cards}
+      </div>
     </div>
   </div>
   <script>
   (function () {
     var s = document.getElementById('pm-benefits'); if (!s) return;
-    var tabs = [].slice.call(s.querySelectorAll('[role=tab]')), panels = [].slice.call(s.querySelectorAll('[role=tabpanel]'));
+    var nodes = [].slice.call(s.querySelectorAll('.pm-node')), cards = [].slice.call(s.querySelectorAll('.pm-card'));
     var stage = s.querySelector('[data-pm-stage]'), cur = 0;
-    s.classList.add('pm-js');
-    function set(i, focus) {
-      if (i < 0) i = tabs.length - 1; if (i >= tabs.length) i = 0;
+    function set(i) {
       cur = i;
-      tabs.forEach(function (t, k) { var on = k === i; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; t.classList.toggle('is-done', k < i); });
-      panels.forEach(function (p, k) { if (k === i) p.removeAttribute('data-off'); else p.setAttribute('data-off', ''); });
-      stage.style.setProperty('--lvl', tabs[i].getAttribute('data-lvl'));
-      if (focus) tabs[i].focus();
+      nodes.forEach(function (t, k) { t.setAttribute('aria-pressed', k === i); t.classList.toggle('is-done', k < i); });
+      cards.forEach(function (c, k) { c.classList.toggle('is-on', k === i); });
+      stage.style.setProperty('--lvl', nodes[i].getAttribute('data-lvl'));
     }
-    tabs.forEach(function (t, k) {
-      t.addEventListener('click', function () { set(k); });
-      t.addEventListener('keydown', function (e) {
-        var m = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
-        if (m) { e.preventDefault(); set(cur + m, true); }
-        else if (e.key === 'Home') { e.preventDefault(); set(0, true); }
-        else if (e.key === 'End') { e.preventDefault(); set(tabs.length - 1, true); }
-      });
+    nodes.forEach(function (t, k) {
+      t.addEventListener('click', function () { set(k); if (matchMedia('(max-width: 1023px)').matches) cards[k].scrollIntoView({ block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); });
+      t.addEventListener('focus', function () { set(k); });
+    });
+    cards.forEach(function (c, k) {
+      c.addEventListener('pointerenter', function () { set(k); });
+      c.addEventListener('focusin', function () { set(k); });
+      c.addEventListener('click', function () { set(k); });
     });
     // "Hover over the BOLT": with a mouse, the pointer's height over the bolt picks the benefit.
     stage.addEventListener('pointermove', function (e) {
       if (e.pointerType !== 'mouse') return;
-      var r = stage.getBoundingClientRect(), y = (e.clientY - r.top) / r.height, k = 0;
-      tabs.forEach(function (t, j) { if (y > (j ? (parseFloat(tabs[j - 1].style.getPropertyValue('--y')) + parseFloat(t.style.getPropertyValue('--y'))) / 200 : -1)) k = j; });
+      var r = stage.getBoundingClientRect(), y = (e.clientY - r.top) / r.height * 100, k = 0;
+      nodes.forEach(function (t, j) { if (j && y > (parseFloat(nodes[j - 1].style.getPropertyValue('--y')) + parseFloat(t.style.getPropertyValue('--y'))) / 2) k = j; });
       if (k !== cur) set(k);
     });
     document.querySelectorAll('[data-pm-jump]').forEach(function (a) {
       a.addEventListener('click', function () { set(+a.getAttribute('data-pm-jump')); });
     });
-    // Replay the charge when the bolt scrolls into view (the resting state is already charged, so it never hides content).
+    // Replay the charge when the bolt scrolls into view (resting state is already charged: nothing is ever hidden).
     if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
       var io = new IntersectionObserver(function (es) { es.forEach(function (en) { if (en.isIntersecting) { io.disconnect(); stage.classList.add('pm-reset'); void stage.offsetWidth; requestAnimationFrame(function () { stage.classList.remove('pm-reset'); }); } }); }, { threshold: .3 });
       io.observe(stage);
@@ -216,8 +243,9 @@ function saveBigSection() {
 export function render(ctx) {
   return [
     hero(ctx),
+    joinSection(ctx),
     introSection(ctx),
-    boltSection(),
+    boltSection(ctx),
     guarantee(ctx, { id: 'pm-guarantee' }),
     reviews(ctx, { id: 'pm-reviews' }),
     trustStrip(ctx),
