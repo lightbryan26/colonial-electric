@@ -247,7 +247,7 @@ function boltSection(ctx) {
       if (k !== cur) set(k);
     });
     document.querySelectorAll('[data-pm-jump]').forEach(function (a) {
-      a.addEventListener('click', function (e) { e.preventDefault(); set(+a.getAttribute('data-pm-jump')); s.scrollIntoView({ behavior: rm.matches ? 'auto' : 'smooth' }); });
+      a.addEventListener('click', function (e) { e.preventDefault(); var j = +a.getAttribute('data-pm-jump'); set(j); tabs[j].focus({ preventScroll: true }); s.scrollIntoView({ behavior: rm.matches ? 'auto' : 'smooth' }); });
     });
     // Replay the charge when the bolt scrolls into view (resting state is already charged: nothing is ever hidden).
     if ('IntersectionObserver' in window && !rm.matches) {

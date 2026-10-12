@@ -5,6 +5,29 @@
    Every other src/css/*.css is appended after this file (alphabetical).
    ===================================================================== */
 
+/* ---------- 0. Fonts ---------- */
+/* Google Fonts (§3) self-hosted, latin subset, so they come from this origin and the hero faces can be preloaded
+   (src/partials/head.mjs). Files: src/assets/fonts (SIL OFL). */
+@font-face { font-family: "Barlow Condensed"; font-style: normal; font-weight: 600; font-display: swap; src: url("fonts/barlow-condensed-600-latin.woff2") format("woff2"); }
+@font-face { font-family: "Barlow Condensed"; font-style: normal; font-weight: 700; font-display: swap; src: url("fonts/barlow-condensed-700-latin.woff2") format("woff2"); }
+@font-face { font-family: "Barlow Condensed"; font-style: normal; font-weight: 800; font-display: swap; src: url("fonts/barlow-condensed-800-latin.woff2") format("woff2"); }
+@font-face { font-family: "Barlow Condensed"; font-style: normal; font-weight: 900; font-display: swap; src: url("fonts/barlow-condensed-900-latin.woff2") format("woff2"); }
+@font-face { font-family: "Barlow Condensed"; font-style: italic; font-weight: 800; font-display: swap; src: url("fonts/barlow-condensed-800-italic-latin.woff2") format("woff2"); }
+@font-face { font-family: "Archivo"; font-style: normal; font-weight: 600 700; font-stretch: 125%; font-display: swap; src: url("fonts/archivo-wdth125-600-700-latin.woff2") format("woff2"); }
+@font-face { font-family: "Barlow"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/barlow-400-latin.woff2") format("woff2"); }
+@font-face { font-family: "Barlow"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/barlow-500-latin.woff2") format("woff2"); }
+@font-face { font-family: "Barlow"; font-style: normal; font-weight: 600; font-display: swap; src: url("fonts/barlow-600-latin.woff2") format("woff2"); }
+@font-face { font-family: "Barlow"; font-style: normal; font-weight: 700; font-display: swap; src: url("fonts/barlow-700-latin.woff2") format("woff2"); }
+/* Metric-matched fallbacks: Arial (or its metric twins Liberation Sans / Arimo) scaled to each face's average glyph width,
+   measured on the site's own above-the-fold text, with the web font's ascent/descent. Text set in the fallback during a
+   cold load wraps like the web font, so the swap does not reflow the hero (brief §9: no layout shift). Where no Arial is
+   installed these faces fail and the stack falls through as before. */
+@font-face { font-family: "Barlow Condensed Fallback"; font-weight: 600 700; src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"), local("LiberationSans-Bold"), local("Arimo Bold"); size-adjust: 67.8%; ascent-override: 147.49%; descent-override: 29.5%; line-gap-override: 0%; }
+@font-face { font-family: "Barlow Condensed Fallback"; font-weight: 800 900; src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"), local("LiberationSans-Bold"), local("Arimo Bold"); size-adjust: 70.3%; ascent-override: 142.25%; descent-override: 28.45%; line-gap-override: 0%; }
+@font-face { font-family: "Archivo Fallback"; font-weight: 600 700; src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"), local("LiberationSans-Bold"), local("Arimo Bold"); size-adjust: 129.1%; ascent-override: 68.01%; descent-override: 16.27%; line-gap-override: 0%; }
+@font-face { font-family: "Barlow Fallback"; font-weight: 400 500; src: local("Arial"), local("ArialMT"), local("Liberation Sans"), local("LiberationSans"), local("Arimo"); size-adjust: 97.2%; ascent-override: 102.88%; descent-override: 20.58%; line-gap-override: 0%; }
+@font-face { font-family: "Barlow Fallback"; font-weight: 600 700; src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"), local("LiberationSans-Bold"), local("Arimo Bold"); size-adjust: 91.5%; ascent-override: 109.29%; descent-override: 21.86%; line-gap-override: 0%; }
+
 /* ---------- 1. Tokens ---------- */
 :root {
   /* Brand masters (sampled from the logo; brief §3) */
@@ -43,9 +66,9 @@
   --line-dark-strong: rgba(255, 255, 255, .24);
 
   /* Type */
-  --f-display: "Barlow Condensed", "Roboto Condensed", "Arial Narrow", "Helvetica Neue Condensed", Impact, sans-serif;
-  --f-wide: "Archivo", "Helvetica Neue", Arial, sans-serif;
-  --f-body: "Barlow", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --f-display: "Barlow Condensed", "Barlow Condensed Fallback", "Roboto Condensed", "Arial Narrow", "Helvetica Neue Condensed", Impact, sans-serif;
+  --f-wide: "Archivo", "Archivo Fallback", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Barlow", "Barlow Fallback", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 
   --fs-display: clamp(2.75rem, 1.05rem + 6.3vw, 6.5rem);
   --fs-h1: clamp(2.5rem, 1.5rem + 4.2vw, 5rem);
@@ -595,12 +618,12 @@ main:focus { outline: none; }
 }
 .cf-input--area { height: auto; min-height: 7.25rem; padding-block: .8rem; resize: vertical; }
 .cf-input:hover { border-color: #6B768C; }
+/* focus = solid navy ring (15:1 on white), distinct from the red error border, so the field base.js focuses after a failed submit stands out */
 .cf-input:focus, .cf-input:focus-visible {
-  outline: none; border-color: var(--cf-red);
-  box-shadow: 0 0 0 3px rgba(191, 27, 44, .16);
+  outline: none; border-color: var(--navy);
+  box-shadow: 0 0 0 2px var(--white), 0 0 0 4px var(--navy);
 }
 .cf-input[aria-invalid="true"] { border-color: var(--cf-red); background: #FFF7F7; }
-.cf-input[aria-invalid="true"]:focus { box-shadow: 0 0 0 3px rgba(191, 27, 44, .22); }
 .cf-field:has([aria-invalid="true"]) .cf-label { color: var(--red-deep); }
 .cf-input[aria-invalid="false"] { border-color: var(--ink-3); }
 
@@ -641,7 +664,7 @@ main:focus { outline: none; }
 .cf-check:checked { background: var(--navy); }
 .cf-check:checked::after { transform: scale(1); }
 .cf-check:hover { border-color: var(--blue); }
-.cf-check:focus-visible { outline: 3px solid rgba(191, 27, 44, .35); outline-offset: 2px; border-color: var(--cf-red); }
+.cf-check:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; }
 .cf-check[aria-invalid="true"] { border-color: var(--cf-red); background: #FFF7F7; }
 .cf-consent:has(.cf-check[aria-invalid="true"]) { border-left-color: var(--cf-red); }
 .cf-consent__label { cursor: pointer; font: 400 var(--fs-small)/1.55 var(--f-body); color: var(--ink-2); text-wrap: pretty; }
@@ -1553,8 +1576,8 @@ main:focus { outline: none; }
   content: ""; position: absolute; left: .8rem; right: .8rem; bottom: .3rem; height: 2px; background: var(--red);
   transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease-out);
 }
-.nav__link:hover, .nav__link[aria-current="page"] { color: var(--white); }
-.nav__link:hover::after, .nav__link[aria-current="page"]::after { transform: scaleX(1); }
+.nav__link:hover, .nav__link[aria-current] { color: var(--white); }
+.nav__link:hover::after, .nav__link[aria-current]::after { transform: scaleX(1); }
 .nav__item--drop .nav__link { padding-right: .2rem; }
 .nav__item--drop .nav__link::after { right: .2rem; }
 .nav__caret { display: grid; place-items: center; width: 1.75rem; height: 2.5rem; color: var(--on-dark-3); transition: color var(--dur), transform var(--dur) var(--ease-out); }
@@ -1659,7 +1682,7 @@ main:focus { outline: none; }
   display: block; padding: .8rem 0; text-decoration: none;
   font: 800 clamp(1.9rem, 1.4rem + 2.6vw, 2.75rem)/1 var(--f-display); text-transform: uppercase; letter-spacing: .005em;
 }
-.mnav__link[aria-current="page"] { color: var(--white); box-shadow: inset 4px 0 0 var(--red); padding-left: .9rem; }
+.mnav__link[aria-current] { color: var(--white); box-shadow: inset 4px 0 0 var(--red); padding-left: .9rem; }
 .mnav__toggle { display: grid; place-items: center; width: 3rem; height: 3rem; color: var(--on-dark-2); transition: transform .3s var(--ease-out); }
 .mnav__toggle[aria-expanded="true"] { transform: rotate(180deg); color: var(--white); }
 .mnav__sub { display: grid; gap: .1rem; padding: 0 0 1rem .1rem; }
@@ -1876,7 +1899,7 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   .hero__eyebrow { flex-direction: column; align-items: flex-start; gap: .55rem; }
   .hero__eyebrow > span:last-child { padding-left: 0; border-left: 0; }
   .hero__ctas .btn { flex: 1 1 100%; }
-  .hero__cap { padding: .45rem .9rem .45rem .45rem; bottom: -2.5rem; } /* hangs over the photo's lower edge so Scott stays in view */
+  .hero__cap { left: var(--gutter); padding: .45rem .9rem .45rem .45rem; bottom: -2.5rem; } /* hangs over the photo's lower edge so Scott stays in view; held inside both gutters */
   .hero__copy { padding-top: 4.5rem; }
   .hero__cap-mark { width: 4.75rem; }
   .hero__cap-name { font-size: 1.05rem; }
@@ -3173,7 +3196,8 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 .ab-index__n { color: var(--red); }
 .ab-index__n::after { content: ""; display: inline-block; vertical-align: middle; width: 2.5rem; height: 1px; margin-left: .9rem; background: currentColor; opacity: .6; }
 .on-dark .ab-index { color: var(--on-dark-3); }
-.on-dark .ab-index__n { color: var(--red-on-dark); } /* 5.65:1 on navy-ink */
+.on-dark .ab-index__n { color: var(--red-on-dark); } /* 5.65:1 on navy-ink, 4.68:1 on navy */
+.ab-founder .ab-index__n { color: #EC6A77; } /* founder band is --navy with a pinstripe (24,41,67): 4.8:1 there, 5.16:1 on navy */
 
 /* ---------- 1. Hero ---------- */
 .ab-hero { position: relative; padding-top: clamp(2.5rem, 1.5rem + 3vw, 5rem); padding-bottom: 0; background: var(--navy-ink); }
@@ -4446,17 +4470,17 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 .sa-card__body { position: absolute; inset: auto 0 0 0; z-index: 1; padding: .9rem .9rem 1rem; display: grid; gap: .35rem; }
 .sa-card__name { white-space: nowrap; font: 800 clamp(1.45rem, 1.1rem + 1.1vw, 1.75rem)/.95 var(--f-display); text-transform: uppercase; letter-spacing: .01em; }
 .sa-card__ma { color: var(--red-on-dark); font-size: .62em; letter-spacing: .08em; vertical-align: .18em; margin-left: .1em; }
-.sa-card__site { font-size: var(--fs-xs); line-height: 1.3; color: rgba(255,255,255,.8); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+.sa-card__site { font-size: var(--fs-xs); line-height: 1.3; color: rgba(255,255,255,.8); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
   max-height: 0; opacity: 0; transition: max-height .4s var(--ease-out), opacity .3s; }
 .sa-card__body::before { content: ""; width: 1.5rem; height: 3px; background: var(--red); margin-bottom: .2rem; transition: width .4s var(--ease-out); }
 
 .sa-card__link:hover .sa-card__img img, .sa-card__link:focus-visible .sa-card__img img { transform: scale(1.07); filter: saturate(1.05); }
 .sa-card__link:hover .sa-card__go, .sa-card__link:focus-visible .sa-card__go { opacity: 1; transform: none; }
-.sa-card__link:hover .sa-card__site, .sa-card__link:focus-visible .sa-card__site { max-height: 2.8em; opacity: 1; }
+.sa-card__link:hover .sa-card__site, .sa-card__link:focus-visible .sa-card__site { max-height: 4.2em; opacity: 1; }
 .sa-card__link:hover .sa-card__body::before, .sa-card__link:focus-visible .sa-card__body::before { width: 3rem; }
 .sa-card__link:focus-visible { outline: none; }
 .sa-card:has(.sa-card__link:focus-visible) { outline: 3px solid var(--red); outline-offset: 3px; }
-@media (hover: none) { .sa-card__site { max-height: 2.8em; opacity: 1; } }
+@media (hover: none) { .sa-card__site { max-height: 4.2em; opacity: 1; } }
 
 /* Weymouth — home base: keyline in red */
 .sa-card.is-hq .sa-card__link { box-shadow: inset 0 0 0 3px var(--red); }

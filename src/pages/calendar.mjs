@@ -36,7 +36,7 @@ export function render(ctx) {
       <p class="cal-hero__lic">${icon('shield', { size: 16 })}${esc(site.license)}</p>
     </div>
     <figure class="cal-hero__media" aria-hidden="false">
-      <div class="cal-hero__frame">${picture(ctx, 'owner-van', { alt: 'Colonial Electric service van', sizes: '(min-width: 1440px) 720px, (min-width: 960px) 50vw, 100vw', priority: true })}</div>
+      <div class="cal-hero__frame">${picture(ctx, 'owner-van', { alt: 'Founder Scott Hays standing in front of the Colonial Electric van', sizes: '(min-width: 1440px) 720px, (min-width: 960px) 50vw, 100vw', priority: true })}</div>
     </figure>
   </div>
   <div class="sweep" aria-hidden="true"></div>

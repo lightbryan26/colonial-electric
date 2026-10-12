@@ -3,7 +3,7 @@ import { esc } from '../lib/html.mjs';
 const block = b => typeof b === 'string' ? `<p>${esc(b)}</p>`
   : b.list ? `<ul>${b.list.map(i => `<li>${i.term ? `<strong>${esc(i.term)}:</strong> ` : ''}${esc(i.text ?? i)}</li>`).join('')}</ul>`
   : `<p><strong>${esc(b.term)}:</strong> ${esc(b.text)}</p>`;
-const plain = b => typeof b === 'string' ? b : b.list ? b.list.map(i => (i.term ? i.term + ': ' : '') + (i.text ?? i)).join(' ') : `${b.term}: ${b.text}`;
+const plain = b => typeof b === 'string' ? b : b.list ? b.list.map(i => (i.term ? i.term + ': ' : '') + (i.text ?? i)).join('\n') : `${b.term}: ${b.text}`;
 export function faqJsonLd(items) {
   return { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: items.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a.map(plain).join('\n\n') } })) };
 }

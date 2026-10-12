@@ -7,20 +7,21 @@ const svcIcon = { 'permanent-outdoor-lighting': 'sparkle', 'electrical-outlets':
 export const serviceIcon = slug => svcIcon[slug] || 'bolt';
 
 export function financingBar(ctx) {
-  return `<div class="finbar">
+  return `<aside class="finbar" aria-label="Financing">
   <div class="finbar__in container">
     <p class="finbar__line"><span class="finbar__tag" aria-hidden="true">${icon('bolt', { size: 12 })}</span>${esc(site.financing.line)}</p>
     <a class="finbar__link" href="${ctx.r(site.financing.href)}">${esc(site.financing.cta)}${icon('arrow-right', { size: 14 })}</a>
   </div>
-</div>`;
+</aside>`;
 }
 
-function isCurrent(ctx, href) {
+// aria-current="page" only on the link to this very page; "true" on the parent section link of a service or town page.
+function current(ctx, href) {
   const s = ctx.page.slug;
-  if (href === '') return s === '';
-  if (href === 'services/') return s === 'services/' || services.some(x => x.slug + '/' === s);
-  if (href === 'service-area/') return s.startsWith('service-area/');
-  return s === href;
+  if (s === href) return ' aria-current="page"';
+  if (href === 'services/' && services.some(x => x.slug + '/' === s)) return ' aria-current="true"';
+  if (href === 'service-area/' && s.startsWith('service-area/')) return ' aria-current="true"';
+  return '';
 }
 
 function dropdown(ctx) {
@@ -39,7 +40,7 @@ function dropdown(ctx) {
 
 export function header(ctx) {
   const items = mainNav.map(n => {
-    const cur = isCurrent(ctx, n.href) ? ' aria-current="page"' : '';
+    const cur = current(ctx, n.href);
     if (n.dropdown) return `<li class="nav__item nav__item--drop" data-drop>
       <a class="nav__link" href="${ctx.r(n.href)}"${cur}>${n.label}</a>
       <button class="nav__caret" type="button" aria-expanded="false" aria-controls="nav-services" aria-label="Show services menu">${icon('chevron-down', { size: 16 })}</button>
@@ -49,9 +50,9 @@ export function header(ctx) {
   }).join('');
 
   const mobileItems = mainNav.map(n => n.dropdown
-    ? `<li class="mnav__item"><div class="mnav__row"><a class="mnav__link" href="${ctx.r(n.href)}"${isCurrent(ctx, n.href) ? ' aria-current="page"' : ''}>${n.label}</a><button class="mnav__toggle" type="button" aria-expanded="false" aria-controls="mnav-services" aria-label="Show services">${icon('chevron-down', { size: 22 })}</button></div>
+    ? `<li class="mnav__item"><div class="mnav__row"><a class="mnav__link" href="${ctx.r(n.href)}"${current(ctx, n.href)}>${n.label}</a><button class="mnav__toggle" type="button" aria-expanded="false" aria-controls="mnav-services" aria-label="Show services">${icon('chevron-down', { size: 22 })}</button></div>
         <ul class="mnav__sub" id="mnav-services" role="list" hidden>${services.map(s => `<li><a href="${ctx.r(s.slug + '/')}"${ctx.page.slug === s.slug + '/' ? ' aria-current="page"' : ''}>${esc(s.nav)}</a></li>`).join('')}</ul></li>`
-    : `<li class="mnav__item"><a class="mnav__link" href="${ctx.r(n.href)}"${isCurrent(ctx, n.href) ? ' aria-current="page"' : ''}>${n.label}</a></li>`).join('');
+    : `<li class="mnav__item"><a class="mnav__link" href="${ctx.r(n.href)}"${current(ctx, n.href)}>${n.label}</a></li>`).join('');
 
   return `${financingBar(ctx)}
 <header class="site-header" data-header>

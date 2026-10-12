@@ -8,7 +8,8 @@
 .ab-index__n { color: var(--red); }
 .ab-index__n::after { content: ""; display: inline-block; vertical-align: middle; width: 2.5rem; height: 1px; margin-left: .9rem; background: currentColor; opacity: .6; }
 .on-dark .ab-index { color: var(--on-dark-3); }
-.on-dark .ab-index__n { color: var(--red-on-dark); } /* 5.65:1 on navy-ink */
+.on-dark .ab-index__n { color: var(--red-on-dark); } /* 5.65:1 on navy-ink, 4.68:1 on navy */
+.ab-founder .ab-index__n { color: #EC6A77; } /* founder band is --navy with a pinstripe (24,41,67): 4.8:1 there, 5.16:1 on navy */
 
 /* ---------- 1. Hero ---------- */
 .ab-hero { position: relative; padding-top: clamp(2.5rem, 1.5rem + 3vw, 5rem); padding-bottom: 0; background: var(--navy-ink); }

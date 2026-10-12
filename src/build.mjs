@@ -121,6 +121,8 @@ for (const page of pages) {
   html = swap(html, `<link rel="canonical" href="${site.origin}/404.html">\n`, '');
   html = swap(html, `<meta property="og:url" content="${site.origin}/404.html">\n`, '');
   html = swap(html, `<link rel="stylesheet" href="${ctx.asset('site.css')}?v=${version}">\n`, '');
+  // Font preloads would hit the same pre-<base> URL problem; site.css (written after <base>) still loads the faces.
+  html = html.replace(/<link rel="preload" as="font"[^>]*>\n/g, '');
   // In-page fragment links would resolve against <base> (the home page), so point them at this URL; then load site.js.
   html = swap(html, `<script src="${ctx.asset('site.js')}?v=${version}" defer></script>`,
     `<script>(function(){var u=location.href.split('#')[0];[].forEach.call(document.querySelectorAll('a[href^="#"]'),function(a){a.href=u+a.getAttribute('href')});document.write('<script src="assets/site.js?v=${version}"><\\/script>')})()</script>`);

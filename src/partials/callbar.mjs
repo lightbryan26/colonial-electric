@@ -3,7 +3,7 @@ import { icon } from './icons.mjs';
 // Sticky mobile "Call Now" bar (brief §2.3). Visible < 768px only (header.css).
 // Starts .is-hidden; src/js/base.js reveals it once the page hero leaves the viewport (header.css shows it without JS).
 export function callbar(ctx) {
-  return `<div class="callbar is-hidden" data-callbar>
+  return `<div class="callbar is-hidden" role="region" aria-label="Call or contact" data-callbar>
   <a class="callbar__call" href="${site.tel}"><span class="callbar__ic">${icon('phone', { size: 20 })}</span><span><span class="callbar__label">Call Now</span><span class="callbar__num">${site.phone}</span></span></a>
   <a class="callbar__alt" href="${ctx.r('contact-us/')}">${icon('mail', { size: 20 })}<span>Contact</span></a>
 </div>`;

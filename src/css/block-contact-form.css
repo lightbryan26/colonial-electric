@@ -77,12 +77,12 @@
 }
 .cf-input--area { height: auto; min-height: 7.25rem; padding-block: .8rem; resize: vertical; }
 .cf-input:hover { border-color: #6B768C; }
+/* focus = solid navy ring (15:1 on white), distinct from the red error border, so the field base.js focuses after a failed submit stands out */
 .cf-input:focus, .cf-input:focus-visible {
-  outline: none; border-color: var(--cf-red);
-  box-shadow: 0 0 0 3px rgba(191, 27, 44, .16);
+  outline: none; border-color: var(--navy);
+  box-shadow: 0 0 0 2px var(--white), 0 0 0 4px var(--navy);
 }
 .cf-input[aria-invalid="true"] { border-color: var(--cf-red); background: #FFF7F7; }
-.cf-input[aria-invalid="true"]:focus { box-shadow: 0 0 0 3px rgba(191, 27, 44, .22); }
 .cf-field:has([aria-invalid="true"]) .cf-label { color: var(--red-deep); }
 .cf-input[aria-invalid="false"] { border-color: var(--ink-3); }
 
@@ -123,7 +123,7 @@
 .cf-check:checked { background: var(--navy); }
 .cf-check:checked::after { transform: scale(1); }
 .cf-check:hover { border-color: var(--blue); }
-.cf-check:focus-visible { outline: 3px solid rgba(191, 27, 44, .35); outline-offset: 2px; border-color: var(--cf-red); }
+.cf-check:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; }
 .cf-check[aria-invalid="true"] { border-color: var(--cf-red); background: #FFF7F7; }
 .cf-consent:has(.cf-check[aria-invalid="true"]) { border-left-color: var(--cf-red); }
 .cf-consent__label { cursor: pointer; font: 400 var(--fs-small)/1.55 var(--f-body); color: var(--ink-2); text-wrap: pretty; }

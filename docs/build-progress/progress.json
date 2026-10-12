@@ -177,13 +177,27 @@
   },
   "integrate": {
    "status": "done",
-   "round": 2,
-   "note": "Round 2 shared fixes: 21 of 21 fixed. Focus rings visible on clip-path controls, callbar fits 375 and no longer hides focus, mobile nav marks the current page, lighting panel close moved after services, town JSON-LD has address, calendar fallback is reliable, WebP logos, finite animations, AA input borders",
-   "updated": "2026-10-12T14:07:41.848Z",
+   "round": 3,
+   "note": "All 11 fixed: SA landmark names unclamped, FAQ list JSON-LD, og image on pitch host, bolt jump focus, navy form focus ring, aria-current true on parents, founder 02 contrast, finbar and callbar landmarks, calendar alt, self-hosted preloaded fonts with metric fallbacks (max CLS 0.039 with fonts delayed), hero caption gutter. 45/45, linkcheck clean, axe region gone",
+   "updated": "2026-10-12T17:04:16.780Z",
    "shot": "shots/integrate-r2.png"
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T17:04:16.780Z",
+   "piece": "integrate",
+   "status": "done",
+   "round": 3,
+   "note": "All 11 fixed: SA landmark names unclamped, FAQ list JSON-LD, og image on pitch host, bolt jump focus, navy form focus ring, aria-current true on parents, founder 02 contrast, finbar and callbar landmarks, calendar alt, self-hosted preloaded fonts with metric fallbacks (max CLS 0.039 with fonts delayed), hero caption gutter. 45/45, linkcheck clean, axe region gone"
+  },
+  {
+   "t": "2026-10-12T16:45:21.004Z",
+   "piece": "integrate",
+   "status": "building",
+   "round": 3,
+   "note": "Fixing 11 confirmed sitewide findings"
+  },
   {
    "t": "2026-10-12T14:07:41.848Z",
    "piece": "integrate",
@@ -1836,5 +1850,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T14:07:41.848Z"
+ "updated": "2026-10-12T17:04:16.780Z"
 }

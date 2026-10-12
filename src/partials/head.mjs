@@ -2,7 +2,9 @@ import { site } from '../data/site.mjs';
 import { towns } from '../data/towns.mjs';
 import { esc, images } from '../lib/html.mjs';
 
-export const FONTS_URL = 'https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,600;125,700&family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,800&family=Barlow:wght@400;500;600;700&display=swap';
+// Self-hosted Google Fonts (@font-face in src/css/base.css). Preload the faces of the hero H1s and eyebrows so they are
+// usually in before first paint; the rest swap in over metric-matched fallbacks (brief §9).
+export const PRELOAD_FONTS = ['barlow-condensed-900-latin.woff2', 'barlow-condensed-800-latin.woff2', 'archivo-wdth125-600-700-latin.woff2'];
 
 export function pageTitle(page) {
   return page.fullTitle ? page.title : `${page.title} | Colonial Electric`;
@@ -17,8 +19,8 @@ export function businessJsonLd() {
     url: site.origin + '/',
     telephone: site.phoneSchema,
     email: site.email,
-    image: site.origin + '/assets/img/owner-van-1280.jpg',
-    logo: site.origin + '/assets/img/logo-lockup-621.png',
+    image: site.assetOrigin + '/assets/img/owner-van-1280.jpg',
+    logo: site.assetOrigin + '/assets/img/logo-lockup-621.png',
     address: { '@type': 'PostalAddress', postOfficeBoxNumber: site.address.po, addressLocality: site.address.city, addressRegion: site.address.region, postalCode: site.address.zip, addressCountry: site.address.country },
     areaServed: towns.map(t => ({ '@type': 'City', name: `${t.name}, MA` })),
     founder: { '@type': 'Person', name: site.founder },
@@ -38,7 +40,7 @@ export function head(ctx) {
   const title = pageTitle(page);
   const canonical = site.origin + '/' + page.slug;
   const desc = page.description || site.homeDescription;
-  const ogImg = site.origin + '/assets/img/owner-van-1280.jpg';
+  const ogImg = site.assetOrigin + '/assets/img/owner-van-1280.jpg';
   let preload = '';
   if (ctx.preloadImage) {
     const im = images[ctx.preloadImage];
@@ -67,9 +69,7 @@ ${ctx.baseTag || ''}<title>${esc(title)}</title>
 <link rel="icon" type="image/png" sizes="32x32" href="${ctx.asset('img/favicon-32.png')}">
 <link rel="icon" type="image/png" sizes="192x192" href="${ctx.asset('img/favicon-192.png')}">
 <link rel="apple-touch-icon" sizes="180x180" href="${ctx.asset('img/favicon-180.png')}">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="${FONTS_URL}">
+${PRELOAD_FONTS.map(f => `<link rel="preload" as="font" type="font/woff2" href="${ctx.asset('fonts/' + f)}" crossorigin>`).join('\n')}
 ${preload}
 <link rel="stylesheet" href="${ctx.asset('site.css')}?v=${ctx.version}">
 <script>document.documentElement.classList.add('js')</script>
