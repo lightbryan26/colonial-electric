@@ -120,10 +120,10 @@
    "shot": "shots/page-about-colonial-electric-r2.png"
   },
   "page-services": {
-   "status": "critiquing",
-   "round": 5,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T10:28:52.262Z",
+   "status": "building",
+   "round": 6,
+   "note": "Fix mobile feature sweep clip; add job-site photos to the three service rows, shorten their copy to short bullets, lift body text to 17px high-contrast on navy; trim hero and guarantee density",
+   "updated": "2026-10-12T10:36:21.178Z",
    "shot": "shots/page-services-r2.png"
   },
   "page-service-area": {
@@ -141,10 +141,10 @@
    "shot": "shots/page-contact-us-r2.png"
   },
   "page-premium-membership": {
-   "status": "critiquing",
-   "round": 3,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T10:32:18.394Z",
+   "status": "building",
+   "round": 4,
+   "note": "Make outgoing bolt panels inert so focus never lands on a fading card; tighten intro and benefit copy into a short lead plus bullets at 17px; fix copy typos",
+   "updated": "2026-10-12T10:37:38.727Z",
    "shot": "shots/page-premium-membership-r1.png"
   },
   "page-we-offer-financing": {
@@ -169,14 +169,49 @@
    "shot": "shots/page-calendar-r1.png"
   },
   "page-terms": {
-   "status": "critiquing",
-   "round": 3,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T10:32:10.560Z",
+   "status": "building",
+   "round": 4,
+   "note": "Drop opacity on TOC numerals for AA contrast, verify body text size and contrast, keep sticky rail and CTA band, rebuild and recheck all widths",
+   "updated": "2026-10-12T10:38:30.054Z",
    "shot": "shots/page-terms-r1.png"
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T10:38:30.054Z",
+   "piece": "page-terms",
+   "status": "building",
+   "round": 4,
+   "note": "Drop opacity on TOC numerals for AA contrast, verify body text size and contrast, keep sticky rail and CTA band, rebuild and recheck all widths"
+  },
+  {
+   "t": "2026-10-12T10:37:38.727Z",
+   "piece": "page-premium-membership",
+   "status": "building",
+   "round": 4,
+   "note": "Make outgoing bolt panels inert so focus never lands on a fading card; tighten intro and benefit copy into a short lead plus bullets at 17px; fix copy typos"
+  },
+  {
+   "t": "2026-10-12T10:37:38.677Z",
+   "piece": "page-premium-membership",
+   "status": "lost",
+   "round": 3,
+   "note": "Won blind but failed QA: Keyboard focus is lost in the benefits bolt at desktop widths (>=1024px), against brief §9 ’keyboard-operable ... bolt’. Steps to reproduce at 1440: focus #pm-tab-0, press ArrowDown, then press Tab within about 450ms. Focus lands on the panel that is fading out (#pm-card-0, still visibility:visible )"
+  },
+  {
+   "t": "2026-10-12T10:36:21.178Z",
+   "piece": "page-services",
+   "status": "building",
+   "round": 6,
+   "note": "Fix mobile feature sweep clip; add job-site photos to the three service rows, shorten their copy to short bullets, lift body text to 17px high-contrast on navy; trim hero and guarantee density"
+  },
+  {
+   "t": "2026-10-12T10:36:21.119Z",
+   "piece": "page-services",
+   "status": "lost",
+   "round": 5,
+   "note": "Won blind but failed QA: Clipped decorative element at 719px and below: the red/white/blue sweep on the ’Also Available / Permanent Outdoor Lighting’ banner (.sv-feature::before) gets cut off. The mobile rule sets right:-1rem and width:4rem with a 100deg gradient, so the white and navy bands fall past the card’s clipped rig"
+  },
   {
    "t": "2026-10-12T10:32:18.394Z",
    "piece": "page-premium-membership",
@@ -1481,5 +1516,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T10:32:18.394Z"
+ "updated": "2026-10-12T10:38:30.054Z"
 }
