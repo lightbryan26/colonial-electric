@@ -1,5 +1,5 @@
 // Homepage §4.8 — Process: four booking steps (titles verbatim; service-template bodies verbatim) + the process quote,
-// set as a typographic navy crest band (star field, ghost bolt). No photo here: the owner-van photo is used once per
+// set as a white crest card on the navy band (pinstripe, ghost bolt). No photo here: the owner-van photo is used once per
 // page and the homepage hero has it. H2 is the brief's verbatim booking-process heading (brief §8 item 9).
 import { processSteps, quote } from '../../data/shared.mjs';
 import { esc, telHref } from '../../lib/html.mjs';
@@ -24,16 +24,19 @@ export function render(ctx) {
       </li>`).join('');
 
   const [q1, ...qRest] = quote;
-  return `<section id="s-process" class="proc" aria-labelledby="s-process-h">
+  return `<section id="s-process" class="proc on-dark stars-bg" aria-labelledby="s-process-h">
   <div class="container">
     <header class="proc__head">
-      <h2 class="h2 proc__h" id="s-process-h">A Booking Process That Feels Like a&nbsp;Breeze</h2>
+      <div class="proc__head-a">
+        <p class="eyebrow">How It Works</p>
+        <h2 class="h2 proc__h" id="s-process-h">A Booking Process That Feels Like a&nbsp;Breeze</h2>
+      </div>
       <p class="proc__count" aria-hidden="true"><span>01</span><i></i><span>04</span></p>
     </header>
     <ol class="proc__steps" role="list">${steps}
     </ol>
 
-    <figure class="proc__feature on-dark stars-bg">
+    <figure class="proc__feature">
       <span class="proc__ghost" aria-hidden="true">${icon('bolt', { size: 240 })}</span>
       <blockquote class="proc__quote">
         <span class="proc__mark" aria-hidden="true">“</span>

@@ -176,14 +176,50 @@
    "shot": "shots/page-terms-r5.jpg"
   },
   "integrate": {
-   "status": "done",
+   "status": "won",
    "round": 3,
-   "note": "All 11 fixed: SA landmark names unclamped, FAQ list JSON-LD, og image on pitch host, bolt jump focus, navy form focus ring, aria-current true on parents, founder 02 contrast, finbar and callbar landmarks, calendar alt, self-hosted preloaded fonts with metric fallbacks (max CLS 0.039 with fonts delayed), hero caption gutter. 45/45, linkcheck clean, axe region gone",
-   "updated": "2026-10-12T17:04:16.780Z",
+   "note": "Shared fixes done: 32 sitewide findings fixed over 2 audit rounds",
+   "updated": "2026-10-12T17:04:44.553Z",
    "shot": "shots/integrate-r2.png"
+  },
+  "homepage": {
+   "status": "critiquing",
+   "round": 1,
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T17:20:14.815Z",
+   "shot": "shots/homepage-r1.png"
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T17:20:14.815Z",
+   "piece": "homepage",
+   "status": "critiquing",
+   "round": 1,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T17:19:59.040Z",
+   "piece": "homepage",
+   "status": "done",
+   "round": 1,
+   "note": "One composition: grounds now alternate ink, white, paper with no matching neighbours (Why turned light as a 4-up pillar row, Process turned navy with a white quote card, Reviews and FAQs on paper); one 3-step H2 scale, one eyebrow style, lg buttons, var(--section) rhythm on every band, flag rule opening each navy chapter; call box layout fixed; scroll reveals settle by default so captures show the real layout",
+   "shot": "shots/homepage-r1.png"
+  },
+  {
+   "t": "2026-10-12T17:09:22.533Z",
+   "piece": "homepage",
+   "status": "building",
+   "round": 1,
+   "note": "Whole-page pass: alternate grounds (dark-light-paper) so no neighbours match, Why goes light with a pillar row, Process goes dark, one H2 scale, one eyebrow style, one section rhythm"
+  },
+  {
+   "t": "2026-10-12T17:04:44.553Z",
+   "piece": "integrate",
+   "status": "won",
+   "round": 3,
+   "note": "Shared fixes done: 32 sitewide findings fixed over 2 audit rounds"
+  },
   {
    "t": "2026-10-12T17:04:16.780Z",
    "piece": "integrate",
@@ -1850,5 +1886,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T17:04:16.780Z"
+ "updated": "2026-10-12T17:20:14.815Z"
 }

@@ -65,7 +65,7 @@ export function render(ctx) {
         </ul>
         <div class="hsvc__actions">
           <a class="btn btn--red hsvc__call" href="${site.tel}">${icon('phone', { size: 20 })}<span>${esc(site.phone)}</span></a>
-          <a class="btn btn--outline" href="${ctx.r('services/')}">View Our Services ${icon('arrow-right', { size: 16 })}</a>
+          <a class="btn btn--outline btn--lg" href="${ctx.r('services/')}">View Our Services ${icon('arrow-right', { size: 16 })}</a>
         </div>
       </div>
     </header>
@@ -79,7 +79,7 @@ export function render(ctx) {
         <h3 class="hsvc__feat-h" id="s-services-feat-h">${esc(outdoor.title)}</h3>
         <p class="hsvc__feat-sub">${esc(outdoor.sub)}</p>
         <p class="hsvc__feat-p">${esc(outdoor.lead)}</p>
-        <a class="btn btn--red hsvc__feat-cta" href="${ctx.r(outdoor.href)}">Explore Outdoor Lighting ${icon('arrow-right', { size: 16 })}</a>
+        <a class="btn btn--red btn--lg hsvc__feat-cta" href="${ctx.r(outdoor.href)}">Explore Outdoor Lighting ${icon('arrow-right', { size: 16 })}</a>
       </div>
       <div class="hsvc__feat-media">
         <span class="hsvc__feat-glyph" aria-hidden="true">${icon('sparkle', { size: 240 })}</span>

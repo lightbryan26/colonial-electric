@@ -9,8 +9,8 @@
 
 /* --- Copy --- */
 .mship__h {
-  margin-top: 1.25rem;
-  font: 900 clamp(2.9rem, 1.6rem + 5vw, 6rem)/.86 var(--f-display);
+  margin-top: 1rem;
+  font: 900 var(--fs-h2-lg)/.9 var(--f-display);
   text-transform: uppercase; letter-spacing: -.01em; color: var(--navy);
 }
 .mship__h span { display: block; }

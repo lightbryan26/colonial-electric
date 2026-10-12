@@ -1,38 +1,44 @@
 /* =====================================================================
    Homepage §4.8 — Process (#s-process). Owner: home-process.
-   Four oversized step rows on white, then the real van photo with the
-   process quote set in a navy crest card that overhangs its bottom edge.
+   Navy band (star field): four oversized step rows, then the process
+   quote set in a white crest card with the call CTA.
    ===================================================================== */
 
-.proc { background: var(--white); padding-block: var(--section) calc(var(--section) * 1.05); position: relative; overflow: clip; }
+.proc { background: var(--navy-ink); color: var(--on-dark); padding-block: var(--section); position: relative; overflow: clip; }
+/* fine pinstripe band behind the head (badge interior), fading down */
+.proc::after {
+  content: ""; position: absolute; inset: 0 0 auto; height: 38rem; z-index: -1; pointer-events: none;
+  background: repeating-linear-gradient(180deg, rgba(255, 255, 255, .035) 0 1px, transparent 1px 5px);
+  -webkit-mask-image: linear-gradient(180deg, #000, transparent); mask-image: linear-gradient(180deg, #000, transparent);
+}
 
 /* ---------- Head ---------- */
 .proc__head {
   display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1rem 2rem;
   padding-bottom: clamp(1.25rem, .8rem + 1.2vw, 2rem);
 }
-.proc__h { max-width: 18ch; color: var(--navy); font-size: clamp(2rem, 1.3rem + 2.6vw, 3.75rem); }
+.proc__h { margin-top: 1rem; max-width: 16ch; color: var(--white); font-size: var(--fs-h2-lg); font-weight: 900; line-height: .9; letter-spacing: -.01em; }
 .proc__count { padding-bottom: .35rem;
   display: inline-flex; align-items: center; gap: .75rem;
-  font: 700 var(--fs-eyebrow)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; color: var(--ink-3);
+  font: 700 var(--fs-eyebrow)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; color: var(--on-dark-3);
 }
-.proc__count i { display: block; width: clamp(3rem, 2rem + 4vw, 7rem); height: 2px; background: linear-gradient(90deg, var(--red) 0 25%, var(--line-strong) 25%); }
-.proc__count span:first-child { color: var(--navy); }
+.proc__count i { display: block; width: clamp(3rem, 2rem + 4vw, 7rem); height: 2px; background: linear-gradient(90deg, var(--red) 0 25%, var(--line-dark-strong) 25%); }
+.proc__count span:first-child { color: var(--white); }
 
 /* ---------- Step rows ---------- */
-.proc__steps { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--line-strong); }
+.proc__steps { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--line-dark-strong); }
 .proc__step {
   --num-col: clamp(4.25rem, 2.6rem + 6vw, 10rem);
   position: relative; isolation: isolate;
   display: grid; grid-template-columns: var(--num-col) minmax(0, 1fr); column-gap: clamp(1rem, .4rem + 2.4vw, 3rem); row-gap: .9rem;
   align-items: center;
   padding-block: clamp(1.6rem, 1rem + 2.2vw, 3rem);
-  border-top: 1px solid var(--line-strong);
+  border-top: 1px solid var(--line-dark-strong);
 }
 /* hover wash: a paper panel that slides in from the left */
 .proc__step::before {
   content: ""; position: absolute; inset: -1px calc(var(--gutter) * -1); z-index: -1;
-  background: var(--paper); transform: scaleX(0); transform-origin: left center;
+  background: rgba(255, 255, 255, .045); transform: scaleX(0); transform-origin: left center;
   transition: transform .6s var(--ease-out);
 }
 /* red rule that draws over the hairline */
@@ -46,17 +52,17 @@
   display: block;
   font: 900 clamp(3.25rem, 1.6rem + 5.6vw, 8.5rem)/.78 var(--f-display);
   letter-spacing: -.02em; font-variant-numeric: tabular-nums;
-  color: transparent; -webkit-text-stroke: 1.5px var(--navy);
+  color: transparent; -webkit-text-stroke: 1.5px rgba(255, 255, 255, .55);
   transition: color .45s var(--ease-out), -webkit-text-stroke-color .45s var(--ease-out);
 }
 
 .proc__kicker {
   display: inline-flex; align-items: center; gap: .55rem;
-  font: 700 var(--fs-eyebrow)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--red);
+  font: 700 var(--fs-eyebrow)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--red-on-dark);
 }
 .proc__ic {
   display: inline-grid; place-items: center; width: 1.9rem; height: 1.9rem;
-  background: var(--navy); color: var(--white);
+  background: var(--navy-3); color: var(--white);
   --cut: 6px; clip-path: var(--crest);
   transition: background-color .35s var(--ease-out);
 }
@@ -64,27 +70,28 @@
 .proc__title {
   margin-top: .7rem;
   font: 800 clamp(2rem, 1.15rem + 3.5vw, 4.5rem)/.92 var(--f-display);
-  text-transform: uppercase; letter-spacing: -.005em; color: var(--navy); text-wrap: balance;
+  text-transform: uppercase; letter-spacing: -.005em; color: var(--white); text-wrap: balance;
   transition: transform .5s var(--ease-out);
 }
 
 .proc__body { grid-column: 2; max-width: 40ch; }
-.proc__body p { color: var(--ink-2); font-size: var(--fs-body); line-height: 1.65; text-wrap: pretty; }
+.proc__body p { color: var(--on-dark-2); font-size: var(--fs-body); line-height: 1.65; text-wrap: pretty; }
 .proc__tel {
   display: inline-flex; align-items: center; gap: .55rem; margin-top: 1rem;
   font: 700 1.0625rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: var(--tel-track);
-  color: var(--navy); text-decoration: none; padding-bottom: .3rem;
+  color: var(--white); text-decoration: none; padding-bottom: .3rem;
   background: linear-gradient(var(--red), var(--red)) left bottom / 100% 2px no-repeat;
   transition: color var(--dur) var(--ease-out), background-size var(--dur) var(--ease-out);
 }
-.proc__tel .icon { color: var(--red); width: 1.05rem; height: 1.05rem; }
-.proc__tel:hover { color: var(--red-deep); background-size: 40% 2px; }
+.proc__tel .icon { color: var(--red-on-dark); width: 1.05rem; height: 1.05rem; }
+.proc__tel:hover { color: var(--white); background-size: 40% 2px; }
+.proc__tel:focus-visible { outline-color: var(--white); }
 
 /* Interaction (pointer devices) */
 @media (hover: hover) {
   .proc__step:hover::before { transform: scaleX(1); }
   .proc__step:hover .proc__rule { transform: scaleX(1); }
-  .proc__step:hover .proc__digits { color: var(--red); -webkit-text-stroke-color: var(--red); }
+  .proc__step:hover .proc__digits { color: var(--red-flag); -webkit-text-stroke-color: var(--red-flag); }
   .proc__step:hover .proc__ic { background: var(--red); }
   .proc__step:hover .proc__title { transform: translateX(.35rem); }
 }
@@ -97,22 +104,23 @@
   .proc__num { align-self: center; }
 }
 
-/* ---------- Feature: the process quote as a typographic navy crest band (no photo: the van is the hero's) ---------- */
+/* ---------- Feature: the process quote as a white crest card on the navy band (no photo: the van is the hero's) ---------- */
 .proc__feature {
   position: relative; overflow: hidden;
   display: grid; gap: clamp(2rem, 1.4rem + 2vw, 3rem);
   margin: clamp(3.5rem, 2rem + 5vw, 7.5rem) 0 0;
   padding: clamp(2.75rem, 1.8rem + 3.5vw, 5rem) clamp(1.5rem, 1rem + 3vw, 4.5rem) clamp(2.5rem, 1.6rem + 3vw, 4.5rem);
-  background-color: var(--navy-ink); color: var(--white);
+  background-color: var(--white); color: var(--navy); isolation: isolate;
   clip-path: var(--crest-lg);
 }
 .proc__feature::after { /* badge pinstripe over the star field */
   content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background-image: repeating-linear-gradient(180deg, rgba(255, 255, 255, .03) 0 1px, transparent 1px 4px);
+  background-image: repeating-linear-gradient(180deg, rgba(18, 35, 62, .035) 0 1px, transparent 1px 4px);
+  -webkit-mask-image: linear-gradient(90deg, transparent 35%, #000); mask-image: linear-gradient(90deg, transparent 35%, #000);
 }
 .proc__ghost {
   position: absolute; z-index: -1; right: -6%; top: 50%; width: clamp(16rem, 38vw, 34rem); aspect-ratio: 1;
-  translate: 0 -50%; color: rgba(255, 255, 255, .05); pointer-events: none;
+  translate: 0 -50%; color: rgba(18, 35, 62, .09); pointer-events: none;
 }
 .proc__ghost .icon { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: .3; }
 
@@ -127,12 +135,12 @@
 }
 .proc__q2 {
   margin-top: clamp(1rem, .7rem + 1vw, 1.5rem); max-width: 48ch;
-  font: 500 var(--fs-lead)/1.55 var(--f-body); color: var(--on-dark-2); text-wrap: pretty;
+  font: 500 var(--fs-lead)/1.55 var(--f-body); color: var(--ink-2); text-wrap: pretty;
 }
 .proc__flag {
   position: absolute; left: 0; top: 0;
   width: 4.5rem; height: 6px;
-  background: repeating-linear-gradient(180deg, var(--red) 0 2px, var(--white) 2px 4px);
+  background: linear-gradient(180deg, var(--red) 0 2px, var(--white) 2px 4px, var(--navy) 4px);
 }
 
 /* ---------- Scroll-linked motion (progressive; off for reduced motion) ---------- */
@@ -149,17 +157,19 @@
 }
 @keyframes proc-draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @keyframes proc-live {
-  0%, 100% { color: transparent; -webkit-text-stroke-color: var(--navy); }
-  30%, 70% { color: var(--red); -webkit-text-stroke-color: var(--red); }
+  0%, 100% { color: transparent; -webkit-text-stroke-color: rgba(255, 255, 255, .55); }
+  30%, 70% { color: var(--red-flag); -webkit-text-stroke-color: var(--red-flag); }
 }
 @keyframes proc-rise { from { transform: translateY(1.5rem); } to { transform: none; } } /* transform only: never hides copy (base.css §9) */
 
 /* CTA beside the quote, inside the band */
 .proc__cta { position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; }
-.proc__lic { font: 700 var(--fs-eyebrow)/1.4 var(--f-wide); font-stretch: 125%; letter-spacing: .12em; text-transform: uppercase; color: var(--on-dark-2); }
-.proc__lic span { margin-inline: .6em; color: var(--red-on-dark); }
+.proc__lic { font: 700 var(--fs-eyebrow)/1.4 var(--f-wide); font-stretch: 125%; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
+.proc__lic span { margin-inline: .6em; color: var(--red); }
 .proc__lic b { font-weight: inherit; white-space: nowrap; }
 @media (min-width: 1100px) {
   .proc__feature { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); align-items: end; column-gap: clamp(2rem, 4vw, 5rem); }
   .proc__cta { flex-direction: column; align-items: flex-start; padding: .25rem 0 .25rem clamp(1rem, 2vw, 2rem); border-left: 2px solid var(--red); }
 }
+/* the quote card is a light surface inside a dark band: focus rings go back to red there */
+#s-process .proc__feature :focus-visible { outline-color: var(--red-flag); }

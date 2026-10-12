@@ -1,106 +1,88 @@
 /* =====================================================================
    Homepage §4.6 — Why Choose Us? (owner: home-why)
-   Navy editorial index: sticky headline column + four numbered pillars.
+   Light breather between the navy founder band and the reviews:
+   split head (statement H2 | intro + call) → four-up pillar row.
    ===================================================================== */
 #s-why.why {
-  position: relative; overflow: hidden;
+  position: relative; overflow: clip;
   padding-block: var(--section);
-  background: var(--navy-ink);
-}
-/* flag-stripe accent rule along the top edge */
-#s-why.why::after {
-  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 6px; z-index: 1;
-  background: linear-gradient(180deg, var(--red) 0 2px, var(--white) 2px 4px, var(--red) 4px 6px);
-  opacity: .9;
+  background: var(--white);
 }
 
-.why__grid { display: grid; gap: clamp(2.75rem, 1.5rem + 4vw, 5rem); position: relative; }
-
-/* ---------- Head column ---------- */
-.why__head { position: relative; }
-.why__kicker { display: inline-flex; align-items: center; gap: .75rem; color: var(--on-dark-2); }
-.why__flag { width: 1.75rem; height: 2px; background: var(--red); box-shadow: 0 4px 0 var(--white); margin-top: -4px; }
+/* ---------- Head ---------- */
+.why__head { display: grid; gap: 1.5rem; margin-bottom: clamp(2.75rem, 1.5rem + 3.5vw, 5rem); }
 .why__h2 {
-  margin-top: 1.25rem;
-  font: 900 clamp(3.4rem, 1.6rem + 7.4vw, 8.25rem)/.84 var(--f-display);
-  text-transform: uppercase; letter-spacing: -.012em; color: var(--white);
+  margin-top: 1rem;
+  font: 900 var(--fs-h2-xl)/.86 var(--f-display);
+  text-transform: uppercase; letter-spacing: -.012em; color: var(--navy);
 }
-.why__h2 br { display: none; }
-.why__lead {
-  margin-top: clamp(1.25rem, 1rem + 1vw, 2rem); max-width: 34rem;
-  font-size: var(--fs-lead); line-height: 1.6; color: var(--on-dark-2); text-wrap: pretty;
+.why__h2-b { color: var(--red); }
+.why__lead { font-size: var(--fs-lead); line-height: 1.6; color: var(--ink-2); max-width: 50ch; text-wrap: pretty; }
+.why__cta { margin-top: 1.75rem; display: flex; flex-wrap: wrap; gap: .75rem; }
+@media (min-width: 960px) {
+  .why__head { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(2.5rem, 1rem + 4vw, 6rem); align-items: end; }
 }
-.why__cta { margin-top: clamp(1.75rem, 1.25rem + 1vw, 2.5rem); display: flex; flex-wrap: wrap; gap: .75rem; }
 
-/* ---------- Pillars ---------- */
-.why__list { counter-reset: why; border-top: 1px solid var(--line-dark-strong); }
+/* ---------- Pillars: a ruled spec row ---------- */
+.why__list {
+  display: grid; grid-template-columns: minmax(0, 1fr);
+  margin: 0; padding: 0; list-style: none;
+  row-gap: clamp(2rem, 1.5rem + 1.5vw, 3rem);
+}
+/* below 1100 each pillar carries its own navy rule (so the rules break with the column gap) */
 .why__item {
-  position: relative; --rule: .22;
-  display: block;
-  padding-block: clamp(1.75rem, 1.25rem + 1.6vw, 2.75rem);
-  border-bottom: 1px solid var(--line-dark-strong);
+  position: relative;
+  padding-top: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  border-top: 2px solid var(--navy);
 }
-/* red rule that draws across each row's bottom edge on hover / reveal */
-.why__item::after {
-  content: ""; position: absolute; left: 0; bottom: -1px; height: 2px; width: 100%;
-  background: var(--red); transform: scaleX(var(--rule, .14)); transform-origin: left;
-  transition: transform .9s var(--ease-out);
+/* red tab on the navy rule; runs the full column on hover */
+.why__item::before {
+  content: ""; position: absolute; left: 0; top: -2px; height: 4px; width: 3.5rem;
+  background: var(--red); transition: width .6s var(--ease-out);
 }
-.why__item:hover::after { transform: scaleX(1); }
+.why__item:hover::before { width: 100%; }
 
-.why__num {
-  position: absolute; right: 0; top: clamp(1.75rem, 1.25rem + 1.6vw, 2.75rem);
-  font: 900 2.75rem/.8 var(--f-display); color: transparent; -webkit-text-stroke: 1px var(--red-flag);
-  font-variant-numeric: tabular-nums;
-}
-.why__title-row { padding-right: 3.75rem; }
-.why__title-row { display: flex; align-items: center; gap: 1rem; }
+.why__top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .why__icon {
-  --cut: 9px; flex: none; display: grid; place-items: center;
-  width: 3rem; height: 3rem; clip-path: var(--crest);
-  background: var(--navy-3); color: var(--white);
-  transition: background var(--dur) var(--ease-out), color var(--dur) var(--ease-out);
+  --cut: 10px; flex: none; display: grid; place-items: center;
+  width: 3.5rem; height: 3.5rem; clip-path: var(--crest);
+  background: var(--navy); color: var(--white);
+  transition: background-color var(--dur) var(--ease-out);
 }
-.why__icon svg { width: 1.625rem; height: 1.625rem; }
+.why__icon svg { width: 1.75rem; height: 1.75rem; }
 .why__item:hover .why__icon { background: var(--red); }
-.why__title {
-  font: 800 clamp(1.625rem, 1.2rem + 1.6vw, 2.625rem)/1 var(--f-display);
-  text-transform: uppercase; letter-spacing: .005em; color: var(--white); text-wrap: balance;
+.why__num {
+  font: 900 clamp(2.5rem, 2rem + 1.4vw, 3.5rem)/.8 var(--f-display); font-variant-numeric: tabular-nums;
+  color: transparent; -webkit-text-stroke: 1.25px var(--red);
 }
-.why__text { margin-top: 1rem; max-width: 40rem; color: var(--on-dark-2); line-height: 1.7; text-wrap: pretty; }
+.why__title {
+  margin-top: 1.5rem;
+  font: 800 clamp(1.5rem, 1.2rem + .9vw, 2rem)/1 var(--f-display);
+  text-transform: uppercase; letter-spacing: .005em; color: var(--navy); text-wrap: balance;
+}
+.why__text { margin-top: .9rem; font-size: var(--fs-desc); line-height: 1.68; color: var(--ink-2); text-wrap: pretty; }
 
-/* ---------- Reveal: scroll-driven, CSS only (no JS; static where unsupported or reduced motion) ---------- */
+@media (min-width: 700px) {
+  .why__list { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(2rem, 1rem + 3vw, 3.5rem); }
+}
+@media (min-width: 1100px) {
+  .why__list { grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 0; border-top: 2px solid var(--navy); }
+  .why__item { padding-inline: clamp(1.5rem, .5rem + 1.6vw, 2.5rem); padding-top: 2rem; padding-bottom: .5rem; border-top: 0; }
+  .why__item:first-child { padding-left: 0; }
+  .why__item:last-child { padding-right: 0; }
+  .why__item + .why__item { border-left: 1px solid var(--line-strong); }
+  .why__item + .why__item::before { left: clamp(1.5rem, .5rem + 1.6vw, 2.5rem); }
+  .why__item:hover::before { width: calc(100% - clamp(1.5rem, .5rem + 1.6vw, 2.5rem)); }
+  .why__item:first-child:hover::before { width: calc(100% - clamp(1.5rem, .5rem + 1.6vw, 2.5rem)); }
+}
+
+/* ---------- Reveal: scroll-driven, transform only (never hides copy, base.css §9) ---------- */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
     .why__item > * { animation: why-rise linear both; animation-timeline: view(); animation-range: entry 0% entry 70%; }
-    .why__item .why__body { animation-range: entry 8% entry 80%; }
-    .why__item:not(:hover)::after { animation: why-rule linear both; animation-timeline: view(); animation-range: entry 40% entry 100%; }
+    .why__item > .why__text { animation-range: entry 8% entry 80%; }
     .why__h2 { animation: why-rise linear both; animation-timeline: view(); animation-range: entry 0% entry 60%; }
   }
 }
-@keyframes why-rise { from { transform: translateY(28px); } to { transform: none; } } /* transform only: never hides copy (base.css §9) */
-@keyframes why-rule { from { transform: scaleX(0); } to { transform: scaleX(var(--rule, .14)); } }
-
-/* ---------- ≥ 768 ---------- */
-@media (min-width: 768px) {
-  .why__item { display: grid; grid-template-columns: 5rem 1fr; gap: 1.5rem; align-items: start; --rule: .1; }
-  .why__num { position: static; font-size: 3.5rem; padding-top: .1rem; -webkit-text-stroke-width: 1.25px; }
-  .why__title-row { padding-right: 0; }
-  .why__icon { width: 3.25rem; height: 3.25rem; }
-}
-
-/* ---------- ≥ 1100: two-column, sticky head ---------- */
-@media (min-width: 1100px) {
-  .why__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(3rem, 1rem + 4vw, 7rem); align-items: start; }
-  .why__sticky { position: sticky; top: calc(var(--header-h) + 2.5rem); }
-  .why__h2 br { display: inline; }
-  .why__list { border-top: 0; }
-  .why__item:first-child { padding-top: 0; }
-  .why__item { grid-template-columns: 6rem 1fr; padding-block: 2.75rem; --rule: .136; }
-  .why__item:first-child .why__num { padding-top: .1rem; }
-  .why__num { font-size: 4.25rem; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .why__item::after, .why__icon { transition: none; }
-}
+@keyframes why-rise { from { transform: translateY(28px); } to { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .why__item::before, .why__icon { transition: none; } }

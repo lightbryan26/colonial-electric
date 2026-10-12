@@ -73,6 +73,11 @@
   --fs-h1: clamp(2.5rem, 1.5rem + 4.2vw, 5rem);
   --fs-h2: clamp(2rem, 1.35rem + 2.6vw, 3.5rem);
   --fs-h3: clamp(1.375rem, 1.2rem + .6vw, 1.75rem);
+  /* Section-heading scale (homepage composition pass): three steps, used instead of per-section clamps.
+     xl = short statement headings · lg = standard section H2 · md = H2 set inside a panel/card. */
+  --fs-h2-xl: clamp(3.25rem, 1.6rem + 5.2vw, 6.25rem);  /* 52 → 65 (768) → 100 (1440) */
+  --fs-h2-lg: clamp(2.5rem, 1.25rem + 4.2vw, 5rem);     /* 40 → 52 → 80 */
+  --fs-h2-md: clamp(2.25rem, 1.25rem + 2.8vw, 4rem);    /* 36 → 41 → 60 */
   --fs-lead: clamp(1.0625rem, 1rem + .3vw, 1.25rem);
   /* Text floors (integrator pass 1.4). Nothing that carries meaning goes below --fs-label;
      per-page CSS uses these tokens instead of hard-coded rem values so the floors hold sitewide. */

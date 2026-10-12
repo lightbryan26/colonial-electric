@@ -19,7 +19,7 @@ export function render(ctx) {
   return `<section id="s-safety" class="safety" aria-labelledby="s-safety-h">
   <div class="container safety__grid">
     <header class="safety__head">
-      <p class="safety__eyebrow">${icon('shield', { size: 16 })}<span>${esc(safety.eyebrow)}</span></p>
+      <p class="eyebrow">${esc(safety.eyebrow)}</p>
       <h2 class="safety__title" id="s-safety-h"><span class="safety__line">${esc(line1)}</span>${line2 ? ` <span class="safety__line safety__line--2">${l2 === line2 ? esc(line2) : l2}</span>` : ''}</h2>
     </header>
 

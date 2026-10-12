@@ -17,7 +17,7 @@
 }
 .hsvc__h {
   margin-top: 1rem;
-  font: 900 clamp(2.4rem, 1.25rem + 4.6vw, 5.25rem)/.9 var(--f-display);
+  font: 900 var(--fs-h2-lg)/.9 var(--f-display);
   text-transform: uppercase; letter-spacing: -.01em; color: var(--navy);
   text-wrap: balance;
 }
@@ -40,7 +40,7 @@
 .hsvc__call {
   gap: .6rem;
   font: 700 1rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: var(--tel-track); text-transform: none; /* §3 phone face */
-  min-height: 3.5rem; padding-inline: 1.6rem;
+  min-height: 3.6rem; padding-inline: 1.6rem;
 }
 .hsvc__call .icon { width: 20px; height: 20px; }
 
@@ -233,7 +233,7 @@
 }
 .hsvc__feat-h {
   margin-top: 1rem;
-  font: 900 clamp(2.25rem, 1.3rem + 3.2vw, 4rem)/.9 var(--f-display);
+  font: 900 var(--fs-h2-md)/.9 var(--f-display);
   text-transform: uppercase; letter-spacing: -.005em; text-wrap: balance;
 }
 .hsvc__feat-sub { margin-top: .9rem; font: 600 var(--fs-lead)/1.35 var(--f-body); color: var(--white); max-width: 34ch; }
