@@ -87,8 +87,8 @@ for (const page of pages) {
 
 // 4. 404 — served by GitHub Pages from any depth: detect the base path, then resolve everything from the site root.
 {
-  const page = { slug: '', title: 'Page Not Found', h1: 'Page Not Found', template: '404', description: site.homeDescription };
-  const baseTag = `<script>(function(){var p=location.pathname,b=p.indexOf('/colonial-electric/')===0?'/colonial-electric/':'/';document.write('<base href="'+b+'">')})()</script>\n`;
+  const page = { slug: '404.html', title: 'Page Not Found', h1: 'Page Not Found', template: '404', description: site.homeDescription };
+  const baseTag = `<script>(function(){var s=location.pathname.split('/')[1],b=(s==='colonial-electric'||s==='docs')?'/'+s+'/':'/';document.write('<base href="'+b+'">')})()</script>\n`;
   const ctx = makeCtx(page, { depth: 0, baseTag });
   const { icon } = await import('./partials/icons.mjs');
   const main = `<section class="page-hero page-hero--404 on-dark stars-bg"><div class="container">

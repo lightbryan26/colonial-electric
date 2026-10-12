@@ -114,7 +114,7 @@
   .nav__link::after { left: .65rem; right: .65rem; }
 }
 @media (max-width: 1179px) {
-  .nav { display: none; }
+  .nav, .hflash { display: none; }
   .burger { display: grid; }
   .site-header__actions { margin-left: auto; }
 }
