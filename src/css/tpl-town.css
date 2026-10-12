@@ -205,3 +205,18 @@
   .tw-about__h { font-size: clamp(2.6rem, 1.4rem + 6vw, 3.4rem); }
   .tw-about__sub { padding: 0; border: 0; }
 }
+
+/* Towns grid: names must always show in full (no ellipsis). Index number sits above the
+   name, arrow pinned top-right, so the whole cell width belongs to the town name. */
+.tpl-town .tw-townlist a {
+  display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto 1fr;
+  align-items: end; row-gap: .55rem; min-height: 5.25rem; padding: .9rem .25rem .85rem;
+}
+.tpl-town .tw-townlist .tl__n { grid-column: 1; grid-row: 1; align-self: start; }
+.tpl-town .tw-townlist .tl__go { grid-column: 2; grid-row: 1; align-self: start; margin-left: 0; }
+.tpl-town .tw-townlist .tl__name {
+  grid-column: 1 / -1; grid-row: 2;
+  overflow: visible; text-overflow: clip; white-space: normal; overflow-wrap: anywhere;
+  font-size: clamp(1.15rem, .85rem + .75vw, 1.5rem); line-height: 1;
+}
+@media (max-width: 599px) { .tpl-town .tw-townlist a { min-height: 4.25rem; padding-block: .75rem .7rem; } }

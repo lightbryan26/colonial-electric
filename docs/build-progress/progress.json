@@ -15,16 +15,17 @@
    "shot": "shots/foundation-hero-r1.png"
   },
   "home-safety": {
-   "status": "critiquing",
+   "status": "won",
    "round": 1,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:46:45.450Z"
+   "note": "Critic picked ours blind (clear). Remaining gap: The sticky nav covers and clips the hero H1 ('FOR A JOB DONE RIGHT' is hidden behind the header bar). That breaks the most important type moment on the page and makes the build look broken.",
+   "updated": "2026-10-12T08:50:39.527Z",
+   "shot": "shots/home-safety-r1.png"
   },
   "home-services": {
-   "status": "lost",
-   "round": 1,
-   "note": "Critic picked the reference. Biggest gap: A sticky nav bar that collides with and covers the service grid mid-viewport, a visible shipped bug. On top of that there is zero photography, so the page reads as a cold, empty template grid instead of a trusted local crew.",
-   "updated": "2026-10-12T08:50:22.916Z",
+   "status": "building",
+   "round": 2,
+   "note": "Add real job photos as 16:10 card thumbnails + photo-led lighting band, tighten card rhythm, sentence-case titles, 15px body",
+   "updated": "2026-10-12T08:51:00.102Z",
    "shot": "shots/home-services-r1.png"
   },
   "home-why": {
@@ -49,47 +50,52 @@
    "shot": "shots/home-faqs-r1.png"
   },
   "home-about": {
-   "status": "critiquing",
+   "status": "won",
    "round": 1,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:46:19.433Z"
+   "note": "Critic picked ours blind (clear). Remaining gap: The sticky header overlays the H1 and blanks out a full headline line, and a stray grey trapezoid floats above the founder photo. Both make the hero look broken, which undercuts the premium, trustwort",
+   "updated": "2026-10-12T08:50:33.609Z",
+   "shot": "shots/home-about-r1.png"
   },
   "home-membership": {
-   "status": "lost",
-   "round": 1,
-   "note": "Won blind but failed QA: The perk labels on the Flash Pass card are not verbatim copy. 'Front-of-the-Line Pass', 'After-Hours Emergency Assistance', 'Waived Diagnostic & Service Fees' and 'Annual Whole Home Electrical Safety Inspections' do not appear in source/pages/premium-membership.md or in brie",
-   "updated": "2026-10-12T08:50:27.250Z",
+   "status": "building",
+   "round": 2,
+   "note": "Strip non-verbatim perks/chip/kicker; keep Flash Pass + logo; quote source phrases only",
+   "updated": "2026-10-12T08:51:01.283Z",
    "shot": "shots/home-membership-r1.png"
   },
   "home-process": {
-   "status": "critiquing",
-   "round": 1,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:46:45.386Z"
+   "status": "building",
+   "round": 2,
+   "note": "Remove invented eyebrow/heading; use brief's verbatim H2 'A Booking Process That Feels Like a Breeze'",
+   "updated": "2026-10-12T08:51:09.401Z",
+   "shot": "shots/home-process-r1.png"
   },
   "block-guarantee": {
-   "status": "critiquing",
-   "round": 1,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:46:49.051Z"
+   "status": "building",
+   "round": 2,
+   "note": "Fix nav overlap in capture, add real crew photo split, tighten card/H1, full red call CTA, 01 marker, eager seal logo, mobile tag gap",
+   "updated": "2026-10-12T08:51:05.191Z",
+   "shot": "shots/block-guarantee-r1.png"
   },
   "block-contact-cta": {
-   "status": "critiquing",
-   "round": 1,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:47:21.205Z"
+   "status": "building",
+   "round": 2,
+   "note": "Make CTA content visible by default (JS-gated reveal), tighten height, add trust row + stronger CTAs",
+   "updated": "2026-10-12T08:51:17.055Z",
+   "shot": "shots/block-contact-cta-r1.png"
   },
   "block-contact-form": {
-   "status": "critiquing",
-   "round": 1,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:47:33.814Z"
+   "status": "building",
+   "round": 2,
+   "note": "Fix nav overlap (scroll-margin/padding), eager photo + visible-by-default reveal, contact stack in aside, bordered 48px inputs, trust strip + full-width red submit",
+   "updated": "2026-10-12T08:51:55.758Z",
+   "shot": "shots/block-contact-form-r1.png"
   },
   "footer": {
-   "status": "critiquing",
+   "status": "won",
    "round": 1,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:46:59.358Z",
+   "note": "Critic picked ours blind (clear). Remaining gap: Below the hero phone number, the footer turns into a wall of tiny, low-contrast grey link lists (30+ towns, 15+ services at ~12px, roughly 50-60% white on navy) with no secondary hierarchy. This drain",
+   "updated": "2026-10-12T08:50:52.562Z",
    "shot": "shots/footer-r1.png"
   },
   "tpl-service": {
@@ -100,67 +106,279 @@
    "shot": "shots/tpl-service-r1.png"
   },
   "tpl-town": {
-   "status": "critiquing",
-   "round": 1,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:47:38.248Z"
+   "status": "building",
+   "round": 2,
+   "note": "Fix truncated town names in Towns-we-serve grid (override in tpl-town.css), recheck 1440/375",
+   "updated": "2026-10-12T08:51:55.969Z",
+   "shot": "shots/tpl-town-r1.png"
   },
   "page-about-colonial-electric": {
-   "status": "critiquing",
-   "round": 1,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:47:01.473Z"
+   "status": "building",
+   "round": 2,
+   "note": "Add founder (Scott Hays two-col w/ photo), Mission/Vision, 5 pillars verbatim; sticky-bar workaround",
+   "updated": "2026-10-12T08:51:08.726Z",
+   "shot": "shots/page-about-colonial-electric-r1.png"
   },
   "page-services": {
-   "status": "critiquing",
-   "round": 1,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:47:34.214Z"
+   "status": "building",
+   "round": 2,
+   "note": "Fix guarantee contrast, add photos + Premium Residential + 3 category blocks, tighten intro/hero",
+   "updated": "2026-10-12T08:52:05.435Z",
+   "shot": "shots/page-services-r1.png"
   },
   "page-service-area": {
-   "status": "critiquing",
+   "status": "won",
    "round": 1,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:47:59.019Z"
+   "note": "Critic picked ours blind (clear). Remaining gap: Below the strong hero and town grid, the page loses its craft. The headline is repeated almost word for word, followed by a generic four-up icon card row with small grey text. On top of that, the town",
+   "updated": "2026-10-12T08:50:53.484Z",
+   "shot": "shots/page-service-area-r1.png"
   },
   "page-contact-us": {
-   "status": "critiquing",
-   "round": 1,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:48:08.041Z"
+   "status": "building",
+   "round": 2,
+   "note": "Force contact form visible by default (no-JS/full-page safe), close 375 gap, file requests for block JS + blind.py",
+   "updated": "2026-10-12T08:52:19.326Z",
+   "shot": "shots/page-contact-us-r1.png"
   },
   "page-premium-membership": {
-   "status": "building",
+   "status": "critiquing",
    "round": 1,
-   "note": "Flash Pass page: hero w/ real photo, benefits, how-it-works, CTA; no price",
-   "updated": "2026-10-12T08:41:41.750Z"
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T08:50:56.710Z"
   },
   "page-we-offer-financing": {
-   "status": "critiquing",
+   "status": "won",
    "round": 1,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:48:45.626Z"
+   "note": "Critic picked ours blind (clear). Remaining gap: The financing content, the reason the page exists, is a tiny, under-designed text block floating in a big white void. There's no visual hierarchy, no offer framing (3 to 120 months, no credit impact),",
+   "updated": "2026-10-12T08:51:46.890Z",
+   "shot": "shots/page-we-offer-financing-r1.png"
   },
   "page-leave-us-a-review": {
-   "status": "critiquing",
+   "status": "lost",
    "round": 1,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:49:07.656Z"
+   "note": "Won blind but failed QA: The 'RECOMMEND US ON NEXTDOOR' button overflows its card at 1440 and the text is clipped at the card edge. Fix: in the page CSS, set the platform buttons to white-space:normal and max-width:100%, or reduce their letter-spacing/padding, or use a 2-column card grid above about",
+   "updated": "2026-10-12T08:51:56.456Z",
+   "shot": "shots/page-leave-us-a-review-r1.png"
   },
   "page-calendar": {
-   "status": "critiquing",
+   "status": "won",
    "round": 1,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T08:48:31.216Z"
+   "note": "Critic picked ours blind (clear). Remaining gap: The embedded scheduler is an unstyled third-party widget that breaks the brand and shows wrong data: Asia/Manila timezone and 9–11:30 PM slots. The page's single conversion element looks broken and un",
+   "updated": "2026-10-12T08:50:59.879Z",
+   "shot": "shots/page-calendar-r1.png"
   },
   "page-terms": {
-   "status": "building",
+   "status": "done",
    "round": 1,
-   "note": "Legal pages: editorial two-column terms/privacy with sticky TOC, verbatim text, branded 404",
-   "updated": "2026-10-12T08:43:21.789Z"
+   "note": "Terms/privacy/404 built; routing request filed",
+   "updated": "2026-10-12T08:50:57.719Z"
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T08:52:19.326Z",
+   "piece": "page-contact-us",
+   "status": "building",
+   "round": 2,
+   "note": "Force contact form visible by default (no-JS/full-page safe), close 375 gap, file requests for block JS + blind.py"
+  },
+  {
+   "t": "2026-10-12T08:52:05.435Z",
+   "piece": "page-services",
+   "status": "building",
+   "round": 2,
+   "note": "Fix guarantee contrast, add photos + Premium Residential + 3 category blocks, tighten intro/hero"
+  },
+  {
+   "t": "2026-10-12T08:51:56.456Z",
+   "piece": "page-leave-us-a-review",
+   "status": "lost",
+   "round": 1,
+   "note": "Won blind but failed QA: The 'RECOMMEND US ON NEXTDOOR' button overflows its card at 1440 and the text is clipped at the card edge. Fix: in the page CSS, set the platform buttons to white-space:normal and max-width:100%, or reduce their letter-spacing/padding, or use a 2-column card grid above about",
+   "shot": "shots/page-leave-us-a-review-r1.png"
+  },
+  {
+   "t": "2026-10-12T08:51:55.969Z",
+   "piece": "tpl-town",
+   "status": "building",
+   "round": 2,
+   "note": "Fix truncated town names in Towns-we-serve grid (override in tpl-town.css), recheck 1440/375"
+  },
+  {
+   "t": "2026-10-12T08:51:55.758Z",
+   "piece": "block-contact-form",
+   "status": "building",
+   "round": 2,
+   "note": "Fix nav overlap (scroll-margin/padding), eager photo + visible-by-default reveal, contact stack in aside, bordered 48px inputs, trust strip + full-width red submit"
+  },
+  {
+   "t": "2026-10-12T08:51:46.890Z",
+   "piece": "page-we-offer-financing",
+   "status": "won",
+   "round": 1,
+   "note": "Critic picked ours blind (clear). Remaining gap: The financing content, the reason the page exists, is a tiny, under-designed text block floating in a big white void. There's no visual hierarchy, no offer framing (3 to 120 months, no credit impact),",
+   "shot": "shots/page-we-offer-financing-r1.png"
+  },
+  {
+   "t": "2026-10-12T08:51:17.055Z",
+   "piece": "block-contact-cta",
+   "status": "building",
+   "round": 2,
+   "note": "Make CTA content visible by default (JS-gated reveal), tighten height, add trust row + stronger CTAs"
+  },
+  {
+   "t": "2026-10-12T08:51:09.401Z",
+   "piece": "home-process",
+   "status": "building",
+   "round": 2,
+   "note": "Remove invented eyebrow/heading; use brief's verbatim H2 'A Booking Process That Feels Like a Breeze'"
+  },
+  {
+   "t": "2026-10-12T08:51:08.726Z",
+   "piece": "page-about-colonial-electric",
+   "status": "building",
+   "round": 2,
+   "note": "Add founder (Scott Hays two-col w/ photo), Mission/Vision, 5 pillars verbatim; sticky-bar workaround"
+  },
+  {
+   "t": "2026-10-12T08:51:06.281Z",
+   "piece": "page-contact-us",
+   "status": "lost",
+   "round": 1,
+   "note": "Won blind but failed QA: Contact form missing from both full-page screenshots (1440 and 375). Under the 'CONTACT US / Fields marked * are required' heading there is a large empty white area. The fields only show up when .cf-form is scrolled into view, and in the element shot the submit button was st",
+   "shot": "shots/page-contact-us-r1.png"
+  },
+  {
+   "t": "2026-10-12T08:51:05.191Z",
+   "piece": "block-guarantee",
+   "status": "building",
+   "round": 2,
+   "note": "Fix nav overlap in capture, add real crew photo split, tighten card/H1, full red call CTA, 01 marker, eager seal logo, mobile tag gap"
+  },
+  {
+   "t": "2026-10-12T08:51:01.283Z",
+   "piece": "home-membership",
+   "status": "building",
+   "round": 2,
+   "note": "Strip non-verbatim perks/chip/kicker; keep Flash Pass + logo; quote source phrases only"
+  },
+  {
+   "t": "2026-10-12T08:51:00.102Z",
+   "piece": "home-services",
+   "status": "building",
+   "round": 2,
+   "note": "Add real job photos as 16:10 card thumbnails + photo-led lighting band, tighten card rhythm, sentence-case titles, 15px body"
+  },
+  {
+   "t": "2026-10-12T08:50:59.879Z",
+   "piece": "page-calendar",
+   "status": "won",
+   "round": 1,
+   "note": "Critic picked ours blind (clear). Remaining gap: The embedded scheduler is an unstyled third-party widget that breaks the brand and shows wrong data: Asia/Manila timezone and 9–11:30 PM slots. The page's single conversion element looks broken and un",
+   "shot": "shots/page-calendar-r1.png"
+  },
+  {
+   "t": "2026-10-12T08:50:59.140Z",
+   "piece": "page-services",
+   "status": "lost",
+   "round": 1,
+   "note": "Critic picked the reference. Biggest gap: The Lifetime Craftsmanship Guarantee section renders washed out at roughly 20% opacity. The headline, body, signature and CALL NOW button are illegible, so half the page looks broken and the main trust and conversion block is dead. Below the hero the page al",
+   "shot": "shots/page-services-r1.png"
+  },
+  {
+   "t": "2026-10-12T08:50:57.719Z",
+   "piece": "page-terms",
+   "status": "done",
+   "round": 1,
+   "note": "Terms/privacy/404 built; routing request filed"
+  },
+  {
+   "t": "2026-10-12T08:50:56.710Z",
+   "piece": "page-premium-membership",
+   "status": "critiquing",
+   "round": 1,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T08:50:54.101Z",
+   "piece": "tpl-town",
+   "status": "lost",
+   "round": 1,
+   "note": "Won blind but failed QA: At 1440, three names in the 'Towns we serve' grid are cut off with ellipses: 'WEYMOU...', 'BRAINTR...' and 'MARSHFI...'. Town names are required content, so they must show in full. Fix in the town-list CSS: drop `text-overflow: ellipsis; white-space: nowrap` on the town name",
+   "shot": "shots/tpl-town-r1.png"
+  },
+  {
+   "t": "2026-10-12T08:50:53.484Z",
+   "piece": "page-service-area",
+   "status": "won",
+   "round": 1,
+   "note": "Critic picked ours blind (clear). Remaining gap: Below the strong hero and town grid, the page loses its craft. The headline is repeated almost word for word, followed by a generic four-up icon card row with small grey text. On top of that, the town",
+   "shot": "shots/page-service-area-r1.png"
+  },
+  {
+   "t": "2026-10-12T08:50:52.757Z",
+   "piece": "block-contact-form",
+   "status": "lost",
+   "round": 1,
+   "note": "Critic picked the reference. Biggest gap: The sticky nav covers and clips the 'CONTACT US' H1 (and pushes the red rule out of place), which looks broken and destroys trust at the exact point where you ask for contact details.",
+   "shot": "shots/block-contact-form-r1.png"
+  },
+  {
+   "t": "2026-10-12T08:50:52.562Z",
+   "piece": "footer",
+   "status": "won",
+   "round": 1,
+   "note": "Critic picked ours blind (clear). Remaining gap: Below the hero phone number, the footer turns into a wall of tiny, low-contrast grey link lists (30+ towns, 15+ services at ~12px, roughly 50-60% white on navy) with no secondary hierarchy. This drain",
+   "shot": "shots/footer-r1.png"
+  },
+  {
+   "t": "2026-10-12T08:50:47.060Z",
+   "piece": "block-contact-cta",
+   "status": "lost",
+   "round": 1,
+   "note": "Critic picked the reference. Biggest gap: The hero is empty. Below the nav there is no headline, no image and no main CTA, just a dark navy field. It reads as broken or still loading, which wipes out the trust its polished header earns.",
+   "shot": "shots/block-contact-cta-r1.png"
+  },
+  {
+   "t": "2026-10-12T08:50:46.612Z",
+   "piece": "home-process",
+   "status": "lost",
+   "round": 1,
+   "note": "Won blind but failed QA: Invented copy: the eyebrow 'HOW IT WORKS' and the heading 'How booking with Colonial Electric works' (visually hidden in the #s-process markup) are not in source/pages/home.md or the brief (§8 Process lists only the step titles and the quote). Fix in src/sections/home/proces",
+   "shot": "shots/home-process-r1.png"
+  },
+  {
+   "t": "2026-10-12T08:50:46.372Z",
+   "piece": "page-about-colonial-electric",
+   "status": "lost",
+   "round": 1,
+   "note": "Won blind but failed QA: The page is missing most of the live About content. After 'Meet the Man Behind the Magic' it goes straight to Contact Us Today. Fix: in src/pages for about-colonial-electric, add these sections with text copied word for word from source/pages/about-colonial-electric.md: (1) ",
+   "shot": "shots/page-about-colonial-electric-r1.png"
+  },
+  {
+   "t": "2026-10-12T08:50:40.839Z",
+   "piece": "block-guarantee",
+   "status": "lost",
+   "round": 1,
+   "note": "Critic picked the reference. Biggest gap: The dark nav bar sits on top of and hides the hero headline, and there's a dead empty band above the card. The most important type on the page can't be read, so the page looks broken and untrustworthy.",
+   "shot": "shots/block-guarantee-r1.png"
+  },
+  {
+   "t": "2026-10-12T08:50:39.527Z",
+   "piece": "home-safety",
+   "status": "won",
+   "round": 1,
+   "note": "Critic picked ours blind (clear). Remaining gap: The sticky nav covers and clips the hero H1 ('FOR A JOB DONE RIGHT' is hidden behind the header bar). That breaks the most important type moment on the page and makes the build look broken.",
+   "shot": "shots/home-safety-r1.png"
+  },
+  {
+   "t": "2026-10-12T08:50:33.609Z",
+   "piece": "home-about",
+   "status": "won",
+   "round": 1,
+   "note": "Critic picked ours blind (clear). Remaining gap: The sticky header overlays the H1 and blanks out a full headline line, and a stray grey trapezoid floats above the founder photo. Both make the hero look broken, which undercuts the premium, trustwort",
+   "shot": "shots/home-about-r1.png"
+  },
   {
    "t": "2026-10-12T08:50:29.130Z",
    "piece": "home-faqs",
@@ -643,5 +861,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T08:50:29.130Z"
+ "updated": "2026-10-12T08:52:19.326Z"
 }

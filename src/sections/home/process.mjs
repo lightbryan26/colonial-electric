@@ -1,5 +1,5 @@
 // Homepage §4.8 — Process: four booking steps (titles verbatim; service-template bodies verbatim) + the process quote,
-// set against a wide crop of the real Colonial van photo. No live H2 on the homepage, so the H2 is visually hidden.
+// set against a wide crop of the real Colonial van photo. H2 is the brief's verbatim booking-process heading (brief §8 item 9).
 import { processSteps, quote } from '../../data/shared.mjs';
 import { esc, picture, telHref } from '../../lib/html.mjs';
 import { icon } from '../../partials/icons.mjs';
@@ -26,8 +26,7 @@ export function render(ctx) {
   return `<section id="s-process" class="proc" aria-labelledby="s-process-h">
   <div class="container">
     <header class="proc__head">
-      <p class="eyebrow">How it works</p>
-      <h2 class="sr-only" id="s-process-h">How booking with Colonial Electric works</h2>
+      <h2 class="h2 proc__h" id="s-process-h">A Booking Process That Feels Like a&nbsp;Breeze</h2>
       <p class="proc__count" aria-hidden="true"><span>01</span><i></i><span>04</span></p>
     </header>
     <ol class="proc__steps" role="list">${steps}

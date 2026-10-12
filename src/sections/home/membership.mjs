@@ -1,15 +1,15 @@
 // Homepage §4.11 — Flash Pass membership teaser. NO price anywhere.
 // Copy: eyebrow / H2 / body / CTA from data/home.mjs (verbatim live copy).
-// Perk titles: verified live copy (captions baked into the live perk images, brief §7 /premium-membership/).
+// Perk phrases: quoted exactly from source/pages/premium-membership.md (lines 22, 24, 14, 28).
 import { membership as m } from '../../data/home.mjs';
 import { icon } from '../../partials/icons.mjs';
 import { esc } from '../../lib/html.mjs';
 
 const perks = [
-  'Front-of-the-Line Pass',
-  'After-Hours Emergency Assistance',
-  'Waived Diagnostic & Service Fees',
-  'Annual Whole Home Electrical Safety Inspections',
+  'Front of the Line Pass',
+  'after-hours assistance',
+  'waived diagnostic fees',
+  'annual whole-home electrical safety inspections',
 ];
 
 // Split the H2 so the last two words carry the accent ("Access Pass").
@@ -41,14 +41,11 @@ export function render(ctx) {
         <span class="mship__card-in">
           <span class="mship__card-top">
             <picture><source type="image/webp" srcset="${a('img/logo-badge-250.webp')}"><img class="mship__badge" src="${a('img/logo-badge-250.png')}" width="250" height="150" alt="" loading="lazy" decoding="async"></picture>
-            <span class="mship__chip label-wide">Member</span>
           </span>
           <span class="mship__name">
-            <span class="mship__name-k label-wide">Exclusive Access Pass</span>
             <span class="mship__name-v">Flash Pass${icon('bolt', { size: 40, cls: 'mship__name-bolt' })}</span>
           </span>
           <span class="mship__rule" aria-hidden="true"></span>
-          <span class="mship__perks-k label-wide">Platinum Privileges</span>
           <span class="mship__perks" role="list">
             ${perks.map((p, i) => `<span class="mship__perk" role="listitem"><span class="mship__perk-n" aria-hidden="true">0${i + 1}</span><span>${esc(p)}</span></span>`).join('\n            ')}
           </span>

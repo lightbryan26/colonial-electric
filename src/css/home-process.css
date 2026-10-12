@@ -8,10 +8,11 @@
 
 /* ---------- Head ---------- */
 .proc__head {
-  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1rem 2rem;
   padding-bottom: clamp(1.25rem, .8rem + 1.2vw, 2rem);
 }
-.proc__count {
+.proc__h { max-width: 18ch; color: var(--navy); font-size: clamp(2rem, 1.3rem + 2.6vw, 3.75rem); }
+.proc__count { padding-bottom: .35rem;
   display: inline-flex; align-items: center; gap: .75rem;
   font: 700 var(--fs-eyebrow)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; color: var(--ink-3);
 }

@@ -2171,15 +2171,10 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 
 .mship__card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
 .mship__badge { width: clamp(6.5rem, 5.5rem + 2vw, 8rem); height: auto; display: block; }
-.mship__chip {
-  padding: .45rem .7rem .4rem; font-size: .625rem; color: var(--white); background: var(--red);
-  clip-path: polygon(6px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0 calc(100% - 6px), 0 6px);
-}
 
 .mship__name { display: block; margin-top: clamp(1.4rem, 1rem + 1.5vw, 2.25rem); }
-.mship__name-k { display: block; font-size: .625rem; color: var(--ink-3); }
 .mship__name-v {
-  display: flex; align-items: center; gap: .1em; margin-top: .35rem;
+  display: flex; align-items: center; gap: .1em;
   font: 900 clamp(3rem, 2.2rem + 3vw, 4.4rem)/.85 var(--f-display); text-transform: uppercase; letter-spacing: -.01em; color: var(--navy);
 }
 .mship__name-bolt { width: .62em; height: .62em; color: var(--red); flex: none; transform: translateY(-.02em); }
@@ -2189,12 +2184,12 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   background: repeating-linear-gradient(180deg, var(--red) 0 2px, var(--white) 2px 4px);
   box-shadow: inset 0 0 0 1px var(--red);
 }
-.mship__perks-k { display: block; font-size: .625rem; color: var(--red); }
-.mship__perks { display: grid; margin-top: .6rem; }
+.mship__perks { display: grid; margin-top: .25rem; }
 .mship__perk {
   display: grid; grid-template-columns: 2rem 1fr; align-items: baseline;
-  padding-block: .62rem; border-top: 1px solid var(--line);
-  font: 600 clamp(.95rem, .9rem + .2vw, 1.05rem)/1.3 var(--f-body); color: var(--ink);
+  padding-block: .78rem; border-top: 1px solid var(--line);
+  font: 700 clamp(.72rem, .68rem + .15vw, .8rem)/1.35 var(--f-wide); font-stretch: 125%;
+  letter-spacing: .07em; text-transform: uppercase; color: var(--navy);
 }
 .mship__perk:first-child { border-top: 0; }
 .mship__perk-n { font: 700 .6875rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .06em; color: var(--red); }
@@ -2256,10 +2251,11 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 
 /* ---------- Head ---------- */
 .proc__head {
-  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1rem 2rem;
   padding-bottom: clamp(1.25rem, .8rem + 1.2vw, 2rem);
 }
-.proc__count {
+.proc__h { max-width: 18ch; color: var(--navy); font-size: clamp(2rem, 1.3rem + 2.6vw, 3.75rem); }
+.proc__count { padding-bottom: .35rem;
   display: inline-flex; align-items: center; gap: .75rem;
   font: 700 var(--fs-eyebrow)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; color: var(--ink-3);
 }
@@ -4528,6 +4524,11 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   .lg-meta { animation-delay: .28s; }
 }
 @keyframes lg-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@media (max-width: 959px) {
+  .nf__grid { gap: 1.5rem; }
+  .nf__art { order: -1; justify-items: start; }
+  .nf__num { font-size: clamp(6rem, 3rem + 14vw, 10rem); }
+}
 
 /* ===== page-we-offer-financing.css ===== */
 /* /we-offer-financing/ — owned by page-we-offer-financing. Everything scoped to .fin-* */
@@ -5289,3 +5290,18 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   .tw-about__h { font-size: clamp(2.6rem, 1.4rem + 6vw, 3.4rem); }
   .tw-about__sub { padding: 0; border: 0; }
 }
+
+/* Towns grid: names must always show in full (no ellipsis). Index number sits above the
+   name, arrow pinned top-right, so the whole cell width belongs to the town name. */
+.tpl-town .tw-townlist a {
+  display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto 1fr;
+  align-items: end; row-gap: .55rem; min-height: 5.25rem; padding: .9rem .25rem .85rem;
+}
+.tpl-town .tw-townlist .tl__n { grid-column: 1; grid-row: 1; align-self: start; }
+.tpl-town .tw-townlist .tl__go { grid-column: 2; grid-row: 1; align-self: start; margin-left: 0; }
+.tpl-town .tw-townlist .tl__name {
+  grid-column: 1 / -1; grid-row: 2;
+  overflow: visible; text-overflow: clip; white-space: normal; overflow-wrap: anywhere;
+  font-size: clamp(1.15rem, .85rem + .75vw, 1.5rem); line-height: 1;
+}
+@media (max-width: 599px) { .tpl-town .tw-townlist a { min-height: 4.25rem; padding-block: .75rem .7rem; } }
