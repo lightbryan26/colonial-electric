@@ -1888,6 +1888,33 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 @media (min-width: 1400px) and (max-width: 1540px) { /* keeps the van's web-address lettering fully out of frame, no stray fragment */
   .hero__img { object-position: 92% 50%; }
 }
+/* Desktop framing pinned to the van livery (the two object-position rules above are the fallback).
+   The photo column's width:height ratio changes with the viewport, so any fixed % lets the diagonal cut through
+   the van's web-address lettering somewhere (a stray "OM" at 1536, "ECTRIC.COM" at 1600-1920).
+   So the image is sized and placed in source pixels of its 1600 x 983 frame, via container units:
+   - at the lettering's row (~mid-height) the visible left edge sits at source x 812, just past the ".COM";
+   - the right edge never falls short of source x 1455, so the crest stays whole (wins on narrow columns);
+   - the frame zooms in only as far as needed (830 source px across) for both to hold on wide screens.
+   From 2100px the column is wide enough to show the whole "COLONIAL-ELECTRIC.COM" with no zoom, so it does. */
+@supports (width: 1cqw) {
+  @media (min-width: 1200px) {
+    .hero__photo { container-type: size; }
+    .hero__photo picture { position: relative; }
+    .hero__img {
+      --u: max(100cqh / 983, 100cqw / 830); /* CSS px per source px */
+      position: absolute; max-width: none;
+      width: calc(var(--u) * 1600); height: calc(var(--u) * 983);
+      top: calc((100% - var(--u) * 983) / 2);
+      left: min(var(--diag) * .504 - var(--u) * 812, 100% - var(--u) * 1455);
+    }
+  }
+  @media (min-width: 2100px) {
+    .hero__img {
+      --u: max(100cqh / 983, 100cqw / 1600);
+      left: max(var(--diag) * .496 - var(--u) * 528, 100% - var(--u) * 1600);
+    }
+  }
+}
 
 /* caption — crest card */
 .hero__cap {
@@ -2619,7 +2646,7 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 }
 .proc__ghost .icon { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: .3; }
 
-.proc__quote { position: relative; z-index: 1; margin: 0; padding-top: 1.75rem; }
+.proc__quote { position: relative; z-index: 1; margin: 0; }
 .proc__mark {
   display: block; height: .5em; margin-bottom: .1em;
   font: 900 clamp(5rem, 3.5rem + 5vw, 9rem)/1 var(--f-display); color: var(--red);
@@ -2631,11 +2658,6 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 .proc__q2 {
   margin-top: clamp(1rem, .7rem + 1vw, 1.5rem); max-width: 48ch;
   font: 500 var(--fs-lead)/1.55 var(--f-body); color: var(--ink-2); text-wrap: pretty;
-}
-.proc__flag {
-  position: absolute; left: 0; top: 0;
-  width: 4.5rem; height: 6px;
-  background: linear-gradient(180deg, var(--red) 0 2px, var(--white) 2px 4px, var(--navy) 4px);
 }
 
 /* ---------- Scroll-linked motion (progressive; off for reduced motion) ---------- */
@@ -2721,11 +2743,6 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 
 /* ---------- Lead ---------- */
 .safety__intro { display: grid; gap: 1.5rem; align-content: start; }
-.safety__rule {
-  display: block; width: 4.5rem; height: 6px;
-  background: linear-gradient(180deg, var(--red) 0 33.4%, var(--white) 33.4% 66.6%, var(--navy) 66.6%);
-  box-shadow: 0 0 0 1px rgba(18, 35, 62, .08);
-}
 .safety__lead {
   font: 500 clamp(1.25rem, 1.05rem + .75vw, 1.625rem)/1.45 var(--f-body);
   color: var(--ink); letter-spacing: -.005em; text-wrap: pretty; max-width: 34ch;
@@ -2836,8 +2853,7 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 @media (min-width: 48em) {
   .safety__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: clamp(1.5rem, 1rem + 2vw, 3rem); }
   .safety__head { grid-column: 1 / -1; }
-  .safety__intro { grid-column: 1 / -1; grid-template-columns: auto minmax(0, 1fr); column-gap: 2rem; align-items: start; }
-  .safety__rule { margin-top: .75em; }
+  .safety__intro { grid-column: 1 / -1; }
   .safety__lead { max-width: 40ch; }
   .safety__points { grid-column: 1 / -1; }
   .safety__call { grid-column: 2 / span 10; }
@@ -2848,7 +2864,6 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 @media (min-width: 64em) {
   .safety__line--2 { padding-left: calc((100% / 12) * 2); }
   .safety__intro { grid-column: 1 / span 5; grid-row: 2; grid-template-columns: minmax(0, 1fr); }
-  .safety__rule { margin-top: 0; }
   .safety__points { grid-column: 7 / -1; grid-row: 2; align-self: start; }
   .safety__call { grid-column: 1 / -1; grid-row: 3; }
   .safety__call-in {
@@ -4039,14 +4054,12 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 
 /* ---------- Platforms (navy index list, one row per platform) ---------- */
 .lr-platforms { padding-block: var(--section); scroll-margin-top: var(--header-h); }
-.lr-platforms__head { display: flex; align-items: flex-end; gap: 1rem 1.5rem; margin-bottom: clamp(2.25rem, 1.5rem + 2.5vw, 4rem); }
+.lr-platforms__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem 1.5rem; margin-bottom: clamp(2.25rem, 1.5rem + 2.5vw, 4rem); }
 .lr-platforms__h { max-width: 18ch; color: var(--white); }
-.lr-platforms__rule { flex: 1; height: 2px; margin-bottom: .7rem; background: var(--line-dark-strong); min-width: 2rem; }
 .lr-platforms__note { display: inline-flex; align-items: center; gap: .5rem; margin: 0 0 .35rem; color: var(--on-dark-2); white-space: nowrap; }
 .lr-platforms__note .icon { color: var(--red-flag); flex: none; }
 @media (max-width: 719px) {
   .lr-platforms__head { flex-direction: column; align-items: flex-start; }
-  .lr-platforms__rule { display: none; }
 }
 
 .lr-platforms .lr-list { counter-reset: none; border-bottom: 1px solid var(--line-dark-strong); }
@@ -4540,10 +4553,10 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 .sa-map__town.is-hq .sa-map__halo { stroke: rgba(199, 49, 54, .7); }
 .sa-map__town.is-hq text { fill: var(--white); font-size: 23px; }
 
-.sa-map__key { display: flex; flex-wrap: wrap; align-items: center; gap: .55rem; margin-top: .75rem; justify-content: center; color: var(--on-dark-3); font-size: var(--fs-xs); }
+.sa-map__key { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem 1.6rem; margin-top: .75rem; justify-content: center; color: var(--on-dark-3); font-size: var(--fs-xs); }
 .sa-map__key-hq, .sa-map__key-dot { width: .7rem; height: .7rem; border-radius: 50%; background: var(--red); box-shadow: 0 0 0 2px var(--white); }
 .sa-map__key-dot { background: var(--white); box-shadow: 0 0 0 1px rgba(255,255,255,.4); width: .55rem; height: .55rem; }
-.sa-map__key-sep { width: 1.5rem; height: 1px; background: var(--line-dark-strong); margin-inline: .35rem; }
+.sa-map__key-item { display: inline-flex; align-items: center; gap: .55rem; }
 
 /* Landmark photo peek (desktop hover) */
 .sa-map__peek { position: absolute; left: var(--x, 50%); top: var(--y, 50%); width: 11.5rem; z-index: 2; pointer-events: none;
@@ -4595,12 +4608,10 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 .sa-card__ma { color: var(--red-on-dark); font-size: .62em; letter-spacing: .08em; vertical-align: .18em; margin-left: .1em; }
 .sa-card__site { font-size: var(--fs-xs); line-height: 1.3; color: rgba(255,255,255,.8); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
   max-height: 0; opacity: 0; transition: max-height .4s var(--ease-out), opacity .3s; }
-.sa-card__body::before { content: ""; width: 1.5rem; height: 3px; background: var(--red); margin-bottom: .2rem; transition: width .4s var(--ease-out); }
 
 .sa-card__link:hover .sa-card__img img, .sa-card__link:focus-visible .sa-card__img img { transform: scale(1.07); filter: saturate(1.05); }
 .sa-card__link:hover .sa-card__go, .sa-card__link:focus-visible .sa-card__go { opacity: 1; transform: none; }
 .sa-card__link:hover .sa-card__site, .sa-card__link:focus-visible .sa-card__site { max-height: 4.2em; opacity: 1; }
-.sa-card__link:hover .sa-card__body::before, .sa-card__link:focus-visible .sa-card__body::before { width: 3rem; }
 .sa-card__link:focus-visible { outline: none; }
 .sa-card:has(.sa-card__link:focus-visible) { outline: 3px solid var(--red); outline-offset: 3px; }
 @media (hover: none) { .sa-card__site { max-height: 4.2em; opacity: 1; } }
@@ -4638,8 +4649,8 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   .sa-map__town.is-hq text { font-size: 30px; }
   .sa-map__dot { r: 8; }
   .sa-map__town.is-hq .sa-map__dot { r: 11; }
-  .sa-map__key { gap: .45rem; }
-  .sa-map__key-sep { display: none; }
+  .sa-map__key { gap: .35rem 1.1rem; }
+  .sa-map__key-item { gap: .45rem; }
   .sa-map__key > * { flex: none; }
 }
 @media (min-width: 640px) and (max-width: 959px) { .sa-map { max-width: 34rem; } }
@@ -5211,7 +5222,6 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 .lg-sec:first-child .lg-sec__h { margin-top: 0; }
 .lg-sec__h { display: grid; gap: .5rem; font: 800 clamp(1.75rem, 1.3rem + 1.6vw, 2.6rem)/.98 var(--f-display); text-transform: uppercase; letter-spacing: -.005em; color: var(--navy); text-wrap: balance; }
 .lg-sec__n { display: inline-flex; align-items: center; gap: .55rem; font: 700 .75rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; color: var(--red); }
-.lg-sec__n::after { content: ""; width: 1.5rem; height: 2px; background: var(--red); }
 @media (min-width: 1100px) {
   /* Section number hangs in the margin lane as a large chapter numeral, right-aligned to a small crest node on the spine.
      The section being read turns red (numeral + node). */
@@ -5220,7 +5230,6 @@ html.menu-open, html.menu-open body { overflow: hidden; }
     display: block; font: 900 3.75rem/.8 var(--f-display); letter-spacing: -.01em; color: var(--navy); font-variant-numeric: tabular-nums;
     transition: color var(--dur) var(--ease-out);
   }
-  .lg-sec__n::after { content: none; }
   .lg-sec::before {
     content: ""; position: absolute; top: calc(var(--sec-pt) + .55rem); left: calc(-1 * var(--lg-spine) - .5rem - 1px);
     width: 1rem; height: 1rem; background: var(--navy); clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);

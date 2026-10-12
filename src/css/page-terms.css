@@ -143,7 +143,6 @@
 .lg-sec:first-child .lg-sec__h { margin-top: 0; }
 .lg-sec__h { display: grid; gap: .5rem; font: 800 clamp(1.75rem, 1.3rem + 1.6vw, 2.6rem)/.98 var(--f-display); text-transform: uppercase; letter-spacing: -.005em; color: var(--navy); text-wrap: balance; }
 .lg-sec__n { display: inline-flex; align-items: center; gap: .55rem; font: 700 .75rem/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; color: var(--red); }
-.lg-sec__n::after { content: ""; width: 1.5rem; height: 2px; background: var(--red); }
 @media (min-width: 1100px) {
   /* Section number hangs in the margin lane as a large chapter numeral, right-aligned to a small crest node on the spine.
      The section being read turns red (numeral + node). */
@@ -152,7 +151,6 @@
     display: block; font: 900 3.75rem/.8 var(--f-display); letter-spacing: -.01em; color: var(--navy); font-variant-numeric: tabular-nums;
     transition: color var(--dur) var(--ease-out);
   }
-  .lg-sec__n::after { content: none; }
   .lg-sec::before {
     content: ""; position: absolute; top: calc(var(--sec-pt) + .55rem); left: calc(-1 * var(--lg-spine) - .5rem - 1px);
     width: 1rem; height: 1rem; background: var(--navy); clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);

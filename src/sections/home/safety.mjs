@@ -7,7 +7,7 @@ import { starRing } from '../../lib/ring.mjs';
 
 // Homepage §4.3 "Safety & Satisfaction Guaranteed". Copy verbatim from the live page.
 // Composition: oversized two-line headline → editorial split (lead + crest call card | numbered points).
-// Motifs: crest (call card, chamfered), tone-on-tone star field, bolt, flag-stripe rule. Real logo emblem only.
+// Motifs: crest (call card, chamfered), tone-on-tone star field, bolt. Real logo emblem only.
 export function render(ctx) {
   const [lead, ...points] = safetyParas;
   const h2 = safety.h2; // "For a Job Done Right, Call Colonial!"
@@ -24,7 +24,6 @@ export function render(ctx) {
     </header>
 
     <div class="safety__intro">
-      <span class="safety__rule" aria-hidden="true"></span>
       <p class="safety__lead">${esc(lead)}</p>
       ${seal(ctx)}
     </div>

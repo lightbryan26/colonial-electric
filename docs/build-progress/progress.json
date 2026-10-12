@@ -183,17 +183,17 @@
    "shot": "shots/integrate-r2.png"
   },
   "homepage": {
-   "status": "building",
+   "status": "won",
    "round": 4,
-   "note": "Remove Process fake pager (.proc__count markup+CSS), drop footer map-frame red accent ::after, add 1400-1540 hero object-position 92% to hide clipped livery lettering; rebuild and verify 1440/768/375",
-   "updated": "2026-10-12T19:54:44.881Z",
-   "shot": "shots/homepage-r2.jpg"
+   "note": "Critic picked ours blind (clear). Remaining gap: The 12-card services grid alternates real photos with empty navy tiles that hold huge outlined numbers (01, 06, 08, 09, 11). Those tiles look like missing images, and the checkerboard breaks the rhythm of the page’s main",
+   "updated": "2026-10-12T20:15:46.855Z",
+   "shot": "shots/homepage-r4.jpg"
   },
   "verify": {
    "status": "done",
    "round": 1,
-   "note": "45/45 at subpath and root, 0 broken. Fixed 404 noscript root-absolute css href. Externals unreachable from sandbox but match source and brief",
-   "updated": "2026-10-12T17:46:14.295Z",
+   "note": "Build 45/45; 45/45 slugs 200 on /colonial-electric/ and root; linkcheck 0 internal broken on both (167 external fails are all sandbox DNS). Playwright 1440/768/375 + 404 with menus and FAQs open: 0 em dashes (text, attrs, pseudo content), 0 label dashes after fixes, no Scott portrait in any of 13 service heroes, no h-scroll, one H1. Fixed: short red line before town names on service-area cards; line after section numbers on terms/privacy below 1100px; drawn dash between map-key labels (items now grouped so dot stays with label); short rule before 'Links open in a new tab' on leave-us-a-review.",
+   "updated": "2026-10-12T20:28:03.880Z",
    "shot": "shots/verify-r1.png"
   },
   "maps": {
@@ -211,6 +211,44 @@
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T20:28:03.880Z",
+   "piece": "verify",
+   "status": "done",
+   "round": 1,
+   "note": "Build 45/45; 45/45 slugs 200 on /colonial-electric/ and root; linkcheck 0 internal broken on both (167 external fails are all sandbox DNS). Playwright 1440/768/375 + 404 with menus and FAQs open: 0 em dashes (text, attrs, pseudo content), 0 label dashes after fixes, no Scott portrait in any of 13 service heroes, no h-scroll, one H1. Fixed: short red line before town names on service-area cards; line after section numbers on terms/privacy below 1100px; drawn dash between map-key labels (items now grouped so dot stays with label); short rule before 'Links open in a new tab' on leave-us-a-review.",
+   "shot": "shots/verify-r1.png"
+  },
+  {
+   "t": "2026-10-12T20:15:52.253Z",
+   "piece": "verify",
+   "status": "verifying",
+   "round": 1,
+   "note": "Crawl + em-dash scan after real photos"
+  },
+  {
+   "t": "2026-10-12T20:15:46.855Z",
+   "piece": "homepage",
+   "status": "won",
+   "round": 4,
+   "note": "Critic picked ours blind (clear). Remaining gap: The 12-card services grid alternates real photos with empty navy tiles that hold huge outlined numbers (01, 06, 08, 09, 11). Those tiles look like missing images, and the checkerboard breaks the rhythm of the page’s main",
+   "shot": "shots/homepage-r4.jpg"
+  },
+  {
+   "t": "2026-10-12T20:07:54.316Z",
+   "piece": "homepage",
+   "status": "critiquing",
+   "round": 4,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T20:07:37.888Z",
+   "piece": "homepage",
+   "status": "done",
+   "round": 4,
+   "note": "QA fixes: removed Process fake pager (.proc__count markup + 3 CSS rules) and footer map-frame red top bar (::after). Same-class cleanup: removed the two standalone 72px stripe dashes (safety__rule above the Safety lead, proc__flag above the Process quote mark). Hero: QA's 1400-1540 object-position 92% added, but verification showed it still left an 'M' at 1536x864 and cut 'ECTRIC.COM' at 1600-1920, so added a container-unit framing (@supports cqw, >=1200px) that pins the livery: left edge at source x812 past '.COM', right edge >= x1455 so the crest stays whole, zooming only as needed; >=2100px shows the whole COLONIAL-ELECTRIC.COM. The % rules stay as fallback. Probed 1200-2560 at 768/900/1080 tall: no partial lettering and crest, rider, flag, phone and Scott whole everywhere (horse nose only shaved at <=1440 wide with 1080 tall, better than before). sizes updated so 1860-2099 gets the 2048 source. Build 45/45, no h-scroll at 1440/768/375, 0 em dashes.",
+   "shot": "shots/homepage-r4.png"
+  },
   {
    "t": "2026-10-12T19:54:44.881Z",
    "piece": "homepage",
@@ -2130,5 +2168,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T19:54:44.881Z"
+ "updated": "2026-10-12T20:28:03.880Z"
 }

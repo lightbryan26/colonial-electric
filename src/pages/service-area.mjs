@@ -59,7 +59,7 @@ function heroMap(ctx) {
       }).join('')}</g>
     </svg>
     <figure class="sa-map__peek" aria-hidden="true" hidden><img alt="" width="400" height="400" decoding="async"><figcaption><span class="sa-map__peek-k"></span><span class="sa-map__peek-n"></span></figcaption></figure>
-    <p class="sa-map__key label-wide" aria-hidden="true"><span class="sa-map__key-hq"></span>Weymouth, MA<span class="sa-map__key-sep"></span><span class="sa-map__key-dot"></span>Towns we serve</p>
+    <p class="sa-map__key label-wide" aria-hidden="true"><span class="sa-map__key-item"><span class="sa-map__key-hq"></span>Weymouth, MA</span><span class="sa-map__key-item"><span class="sa-map__key-dot"></span>Towns we serve</span></p>
   </div>`;
 }
 

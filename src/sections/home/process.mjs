@@ -41,7 +41,6 @@ export function render(ctx) {
         <span class="proc__mark" aria-hidden="true">“</span>
         <p class="proc__q1">${esc(q1.replace(/^“/, ''))}</p>
         <p class="proc__q2">${qRest.map(esc).join(' ')}”</p>
-        <span class="proc__flag" aria-hidden="true"></span>
       </blockquote>
       <div class="proc__cta">
         <a class="btn btn--red btn--lg" href="${telHref}">${icon('phone', { size: 18 })}<span>Call Now</span></a>

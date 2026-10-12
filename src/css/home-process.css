@@ -118,7 +118,7 @@
 }
 .proc__ghost .icon { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: .3; }
 
-.proc__quote { position: relative; z-index: 1; margin: 0; padding-top: 1.75rem; }
+.proc__quote { position: relative; z-index: 1; margin: 0; }
 .proc__mark {
   display: block; height: .5em; margin-bottom: .1em;
   font: 900 clamp(5rem, 3.5rem + 5vw, 9rem)/1 var(--f-display); color: var(--red);
@@ -130,11 +130,6 @@
 .proc__q2 {
   margin-top: clamp(1rem, .7rem + 1vw, 1.5rem); max-width: 48ch;
   font: 500 var(--fs-lead)/1.55 var(--f-body); color: var(--ink-2); text-wrap: pretty;
-}
-.proc__flag {
-  position: absolute; left: 0; top: 0;
-  width: 4.5rem; height: 6px;
-  background: linear-gradient(180deg, var(--red) 0 2px, var(--white) 2px 4px, var(--navy) 4px);
 }
 
 /* ---------- Scroll-linked motion (progressive; off for reduced motion) ---------- */
