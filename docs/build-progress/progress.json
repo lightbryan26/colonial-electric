@@ -148,11 +148,11 @@
    "shot": "shots/page-premium-membership-r4.jpg"
   },
   "page-we-offer-financing": {
-   "status": "building",
+   "status": "critiquing",
    "round": 5,
-   "note": "Fix empty header call-link name at 599px and below, add a real Colonial photo to the hero, set the term as 3-120 with a readable dash",
-   "updated": "2026-10-12T10:52:32.170Z",
-   "shot": "shots/page-we-offer-financing-r4.jpg"
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T10:58:35.299Z",
+   "shot": "shots/page-we-offer-financing-r5.png"
   },
   "page-leave-us-a-review": {
    "status": "won",
@@ -177,6 +177,21 @@
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T10:58:35.299Z",
+   "piece": "page-we-offer-financing",
+   "status": "critiquing",
+   "round": 5,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T10:58:21.498Z",
+   "piece": "page-we-offer-financing",
+   "status": "done",
+   "round": 5,
+   "note": "Fixed empty header call-link name at 599px and below (page-scoped visually-hidden text, header.css request filed); hero now pairs a real Colonial photo of Scott and the wrapped van with an overlapping terms card; 3 to 120 set with a readable baseline word",
+   "shot": "shots/page-we-offer-financing-r5.png"
+  },
   {
    "t": "2026-10-12T10:53:36.730Z",
    "piece": "page-terms",
@@ -1710,5 +1725,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T10:53:36.730Z"
+ "updated": "2026-10-12T10:58:35.299Z"
 }
