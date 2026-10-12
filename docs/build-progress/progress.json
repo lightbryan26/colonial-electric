@@ -135,9 +135,9 @@
   },
   "page-contact-us": {
    "status": "critiquing",
-   "round": 4,
-   "note": "Won blind, but the stitched Dribbble reference had a duplicated carousel strip (now fixed). Re-judging against the corrected reference.",
-   "updated": "2026-10-12T10:44:37.741Z",
+   "round": 5,
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T10:47:32.552Z",
    "shot": "shots/page-contact-us-r4.jpg"
   },
   "page-premium-membership": {
@@ -169,14 +169,35 @@
    "shot": "shots/page-calendar-r1.png"
   },
   "page-terms": {
-   "status": "building",
+   "status": "critiquing",
    "round": 4,
-   "note": "Drop opacity on TOC numerals for AA contrast, verify body text size and contrast, keep sticky rail and CTA band, rebuild and recheck all widths",
-   "updated": "2026-10-12T10:38:46.576Z",
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T10:47:05.673Z",
    "shot": "shots/page-terms-r1.png"
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T10:47:32.552Z",
+   "piece": "page-contact-us",
+   "status": "critiquing",
+   "round": 5,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T10:47:05.673Z",
+   "piece": "page-terms",
+   "status": "critiquing",
+   "round": 4,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T10:46:49.849Z",
+   "piece": "page-terms",
+   "status": "done",
+   "round": 4,
+   "note": "TOC numerals now full-opacity ink-3 (5.0:1 on paper, 5.3:1 on white); desktop gets a paper sidebar ending in a document spine with a crest number per section (red = section being read); body copy darkened to ink"
+  },
   {
    "t": "2026-10-12T10:45:07.587Z",
    "piece": "page-premium-membership",
@@ -1612,5 +1633,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T10:45:07.587Z"
+ "updated": "2026-10-12T10:47:32.552Z"
 }
