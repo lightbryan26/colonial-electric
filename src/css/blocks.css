@@ -15,37 +15,8 @@
 .svc-extra { margin-top: 1.5rem; }
 .svc-extra a { display: inline-flex; gap: .5rem; align-items: center; font-weight: 600; color: var(--navy); }
 
-/* reviews */
-.review-list { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr)); align-items: start; }
-.review { background: var(--white); border: 1px solid var(--line); padding: 1.5rem; clip-path: var(--crest); }
-.block--reviews { background: var(--paper); }
-.review__top { display: flex; align-items: center; gap: .85rem; }
-.avatar { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: 50%; background: var(--navy); color: var(--white); font: 700 .8125rem/1 var(--f-wide); font-stretch: 125%; }
-.review:nth-child(3n+2) .avatar { background: var(--red); }
-.review:nth-child(3n+3) .avatar { background: var(--blue); }
-.review__name { font-weight: 700; color: var(--ink); }
-.review__src { font-size: var(--fs-xs); color: var(--ink-3); }
-.review__stars { display: flex; gap: 2px; color: var(--red); margin-block: 1rem .6rem; }
-.review p + p { margin-top: .6rem; }
-.review > p:not(.review__stars) { color: var(--ink-2); font-size: var(--fs-small); }
-
 /* guarantee */
 .seal { display: inline-grid; place-items: center; width: 4.5rem; height: 4.5rem; background: var(--red); color: var(--white); clip-path: var(--crest); margin-bottom: 1.5rem; }
-
-/* CTA band + town list */
-.block--cta .lead { margin-top: 1.25rem; }
-.town-list { display: flex; flex-wrap: wrap; gap: .5rem; }
-.town-list a { display: inline-block; padding: .5rem .9rem; border: 1px solid var(--line-strong); text-decoration: none; font-weight: 600; font-size: var(--fs-small); color: var(--navy); background: var(--white); clip-path: polygon(6px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0 calc(100% - 6px), 0 6px); }
-.town-list a:hover, .town-list a[aria-current] { background: var(--navy); color: var(--white); border-color: var(--navy); }
-.on-dark .town-list a { background: transparent; color: var(--white); border-color: var(--line-dark-strong); }
-.on-dark .town-list a:hover { background: var(--white); color: var(--navy); }
-.town-list--grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); }
-
-/* trust strip */
-.trust-strip { background: var(--navy); color: var(--white); }
-.trust-strip ul { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem 2rem; padding-block: 1.25rem; }
-.trust-strip li { display: flex; align-items: center; gap: .6rem; font: 700 .75rem/1.2 var(--f-wide); font-stretch: 125%; letter-spacing: .1em; text-transform: uppercase; }
-.trust-strip .icon { color: var(--red-flag); }
 
 /* call box */
 .callbox { background: var(--navy); color: var(--white); padding: 2rem; clip-path: var(--crest-lg); display: grid; gap: 1rem; }
