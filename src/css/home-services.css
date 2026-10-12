@@ -248,6 +248,6 @@
   to { transform: none; }
 }
 
-/* outline button: base chamfer clip-path slices the inset keyline at the corners (see src/requests/home-services.md) */
-.hsvc__actions .btn--outline { clip-path: none; min-height: 3.5rem; }
+/* outline button: matches the red call button's height (chamfer keyline now comes from base.css) */
+.hsvc__actions .btn--outline { min-height: 3.5rem; }
 @media (max-width: 959.98px) { .hsvc__feat-media img { object-position: 50% 30%; } }
