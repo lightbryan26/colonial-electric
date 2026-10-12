@@ -120,10 +120,10 @@
    "shot": "shots/page-about-colonial-electric-r2.png"
   },
   "page-services": {
-   "status": "building",
+   "status": "critiquing",
    "round": 4,
-   "note": "Fix orphaned step card at 768 with page-scoped 1/2/4 column steps grid; bring founder/van photo into hero and trim hero copy",
-   "updated": "2026-10-12T10:08:43.410Z",
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T10:16:42.718Z",
    "shot": "shots/page-services-r2.png"
   },
   "page-service-area": {
@@ -148,10 +148,10 @@
    "shot": "shots/page-premium-membership-r1.png"
   },
   "page-we-offer-financing": {
-   "status": "building",
+   "status": "critiquing",
    "round": 3,
-   "note": "Fix red-on-navy contrast on terms card; add real job photo, shorten prequalify headline, fill towns band",
-   "updated": "2026-10-12T10:10:23.923Z",
+   "note": "screenshots + QA",
+   "updated": "2026-10-12T10:16:24.015Z",
    "shot": "shots/page-we-offer-financing-r1.png"
   },
   "page-leave-us-a-review": {
@@ -169,14 +169,56 @@
    "shot": "shots/page-calendar-r1.png"
   },
   "page-terms": {
-   "status": "critiquing",
-   "round": 2,
-   "note": "screenshots + QA",
-   "updated": "2026-10-12T09:57:32.929Z",
+   "status": "building",
+   "round": 3,
+   "note": "Fix scroll-spy (reverse scan + click set), seal capture fade, 16px darker body copy, end-of-page branded contact band with photo, phone and Schedule Service",
+   "updated": "2026-10-12T10:16:53.118Z",
    "shot": "shots/page-terms-r1.png"
   }
  },
  "events": [
+  {
+   "t": "2026-10-12T10:16:53.118Z",
+   "piece": "page-terms",
+   "status": "building",
+   "round": 3,
+   "note": "Fix scroll-spy (reverse scan + click set), seal capture fade, 16px darker body copy, end-of-page branded contact band with photo, phone and Schedule Service"
+  },
+  {
+   "t": "2026-10-12T10:16:53.064Z",
+   "piece": "page-terms",
+   "status": "lost",
+   "round": 2,
+   "note": "Won blind but failed QA: BLOCKING: the sticky contents rail highlights the wrong section, one behind the section clicked, on both /terms/ and /privacy/ at 1440x900. I clicked all 20 Terms links and all 14 Privacy links: every link except 01 lights up the section before it. For example, clicking ’15 Limitation of Liability’ "
+  },
+  {
+   "t": "2026-10-12T10:16:42.718Z",
+   "piece": "page-services",
+   "status": "critiquing",
+   "round": 4,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T10:16:24.015Z",
+   "piece": "page-we-offer-financing",
+   "status": "critiquing",
+   "round": 3,
+   "note": "screenshots + QA"
+  },
+  {
+   "t": "2026-10-12T10:16:05.811Z",
+   "piece": "page-services",
+   "status": "done",
+   "round": 4,
+   "note": "Steps grid scoped to 1/2x2/4 columns (no orphan at 768); hero now carries the real founder-and-van photo in a crest frame in place of the 13-item directory, with the first sentence as a short white lead; duplicate photo band removed; hero image preloaded"
+  },
+  {
+   "t": "2026-10-12T10:16:02.162Z",
+   "piece": "page-we-offer-financing",
+   "status": "done",
+   "round": 3,
+   "note": "AA fix on terms card (to = on-dark-2, asterisk = white); added 2 verbatim Google reviews (hero + prequalify), 4-tile real service photo band, split prequalify H2 into headline + deck, 2-col towns band"
+  },
   {
    "t": "2026-10-12T10:13:31.344Z",
    "piece": "page-contact-us",
@@ -1369,5 +1411,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T10:13:31.344Z"
+ "updated": "2026-10-12T10:16:53.118Z"
 }
