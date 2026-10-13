@@ -15,6 +15,8 @@
 export const services = [
   {
     slug: "permanent-outdoor-lighting",
+    heroAlt: "LED step lights set into the risers of a white deck stair, a Colonial Electric job",
+    heroFocus: "50% 60%",
     nav: "Permanent Outdoor Lighting",
     title: "Permanent Outdoor Lighting",
     h1: "Permanent Outdoor Lighting",
@@ -313,6 +315,8 @@ export const services = [
   },
   {
     slug: "ceiling-fan-installation",
+    heroAlt: "Ceiling fan with a light kit and recessed lights in a freshly painted living room, installed by Colonial Electric",
+    heroFocus: "50% 62%",
     nav: "Ceiling Fan Installation",
     title: "Ceiling Fan Installation",
     h1: "Ceiling Fan Installation",
@@ -387,6 +391,8 @@ export const services = [
   },
   {
     slug: "ev-charger-installation",
+    heroAlt: "ChargePoint home EV charger mounted on a cedar post beside a house, installed by Colonial Electric",
+    heroFocus: "50% 40%",
     nav: "EV Charger Installation",
     title: "EV Charger Installation",
     h1: "EV Charger Installation",
@@ -439,6 +445,8 @@ export const services = [
   },
   {
     slug: "whole-house-wiring-or-rewiring",
+    heroAlt: "New cable runs dropped into a breaker panel on a diamond-plate backboard, a Colonial Electric job",
+    heroFocus: "50% 30%",
     nav: "Whole House Wiring or Rewiring",
     title: "Whole House Wiring or Rewiring",
     h1: "Whole House Wiring/Rewiring",

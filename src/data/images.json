@@ -979,5 +979,46 @@
    1536
   ],
   "fallback": "jpg"
+ },
+ "services/ceiling-fan-installation": {
+  "w": 1080,
+  "h": 1920,
+  "widths": [
+   640,
+   960,
+   1080
+  ],
+  "fallback": "jpg"
+ },
+ "services/ev-charger-installation": {
+  "w": 1170,
+  "h": 1551,
+  "widths": [
+   640,
+   960,
+   1170
+  ],
+  "fallback": "jpg"
+ },
+ "photos/ceiling-fan-dining-room": {
+  "w": 1080,
+  "h": 1920,
+  "widths": [
+   480,
+   800,
+   1080
+  ],
+  "fallback": "jpg"
+ },
+ "photos/ev-charger-wall-unit": {
+  "w": 1500,
+  "h": 2000,
+  "widths": [
+   480,
+   800,
+   1200,
+   1500
+  ],
+  "fallback": "jpg"
  }
 }

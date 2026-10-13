@@ -45,6 +45,16 @@ export const cardPhotos = {
     alt: 'New cable runs dropped into a breaker panel on a diamond-plate backboard',
     pos: '50% 22%', posM: '50% 25%',
   },
+  'ev-charger-installation': { // from Colonial's Facebook page (client-supplied)
+    key: 'photos/ev-charger-wall-unit',
+    alt: 'ChargePoint home EV charger mounted on house siding',
+    pos: '58% 42%', posM: '58% 40%',
+  },
+  'ceiling-fan-installation': { // from Colonial's Facebook page (client-supplied)
+    key: 'photos/ceiling-fan-dining-room',
+    alt: 'Ceiling fan with a light kit and recessed lights over a dining room',
+    pos: '40% 63%', posM: '40% 62%',
+  },
   'recessed-lighting': { // hero photo (no library shot for this service)
     key: 'services/recessed-lighting',
     alt: 'Recessed ceiling lights evenly spaced across a remodeled kitchen, a Colonial Electric job',
