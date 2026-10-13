@@ -28,6 +28,7 @@ export function robotsTxt() {
 
 User-agent: *
 Allow: /
+Disallow: /build-progress/
 
 # Search engines
 User-agent: Googlebot
@@ -35,6 +36,7 @@ User-agent: Bingbot
 User-agent: Applebot
 User-agent: DuckDuckBot
 Allow: /
+Disallow: /build-progress/
 
 # AI search and answer assistants (these decide whether the site can be cited in ChatGPT, Perplexity, Claude and others)
 User-agent: OAI-SearchBot
@@ -45,6 +47,7 @@ User-agent: Claude-SearchBot
 User-agent: Claude-User
 User-agent: DuckAssistBot
 Allow: /
+Disallow: /build-progress/
 
 # AI model training (allowed by choice; change to "Disallow: /" in this group to opt out)
 User-agent: GPTBot
@@ -53,6 +56,7 @@ User-agent: Google-Extended
 User-agent: Applebot-Extended
 User-agent: CCBot
 Allow: /
+Disallow: /build-progress/
 
 Sitemap: ${O}/sitemap.xml
 `);
@@ -135,6 +139,7 @@ function contactSection() {
     `- Service area: Weymouth and the South Shore of Massachusetts (towns listed above)`,
     `- Google Business Profile: ${site.gbp.link}`,
     `- Instagram: ${site.instagram}`,
+    `- Facebook: ${site.facebook}`,
     `- [Contact Us](${url('contact-us/')})`,
   ];
 }

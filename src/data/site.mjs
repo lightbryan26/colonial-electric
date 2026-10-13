@@ -8,6 +8,8 @@ export const site = {
   // Google Tag Manager container of the live site (analytics + conversions continue through the cut-over). It only
   // loads on these hostnames, never on the pitch hosts or a local preview (src/partials/head.mjs gtmHead()).
   gtm: 'GTM-562VCKQ5',
+  // The live WordPress site also loads Google Site Kit's Google tag; carried over for analytics parity (same host guard).
+  googleTag: 'GT-T5MFXM5H',
   gtmHosts: ['colonial-electric.com', 'www.colonial-electric.com'],
   phone: '(781) 287-8729',
   tel: 'tel:+17812878729',
@@ -17,6 +19,8 @@ export const site = {
   licenseLine: 'Licensed & Insured Massachusetts Electrician – Serving Weymouth & the South Shore. (MA Lic# 8720-A1)',
   aboutBlurb: 'At Colonial Electric, we’re committed to providing top-notch electrical services throughout the South Shore. We prioritize delivering excellent service and strive to forge lasting relationships with our customers. Count on us to meet your electrical needs with the utmost quality and care.',
   instagram: 'https://instagram.com/colonialhomeservices',
+  facebook: 'https://www.facebook.com/colonialelectric',
+  facebookReviews: 'https://www.facebook.com/colonialelectric/reviews',
   instagramHandle: '@colonialhomeservices',
   founder: 'Scott Hays',
   address: { po: 'P.O. Box 403', city: 'Weymouth', region: 'MA', zip: '02188', country: 'US' },

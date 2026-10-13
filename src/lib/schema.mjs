@@ -33,8 +33,8 @@ export const ID = {
   breadcrumb: pageSlug => `${pageUrl(pageSlug)}#breadcrumb`,
 };
 const ref = id => ({ '@id': id });
-// The business's Nextdoor page, linked from /leave-us-a-review/ (src/pages/leave-us-a-review.mjs). Yelp and Facebook are
-// left out of sameAs until the client supplies the canonical profile URLs (the site links a review form and a search).
+// The business's Nextdoor page, linked from /leave-us-a-review/ (src/pages/leave-us-a-review.mjs). Yelp is left out of
+// sameAs until the client supplies the canonical business profile URL (the site only links a write-a-review form).
 const NEXTDOOR = 'https://nextdoor.com/page/scott-hays-electrician-weymouth-ma/';
 
 /** Absolute URL of the largest published rendition of an images.json key (fallback format: jpg/png). */
@@ -91,7 +91,7 @@ function businessNode() {
       '@type': 'OfferCatalog', name: 'Electrical Services',
       itemListElement: services.map(s => ({ '@type': 'Offer', itemOffered: serviceRefNode(s) })),
     },
-    sameAs: [site.instagram, site.gbp.link, NEXTDOOR],
+    sameAs: [site.instagram, site.facebook, site.gbp.link, NEXTDOOR],
   };
 }
 

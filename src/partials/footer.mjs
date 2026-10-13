@@ -37,8 +37,8 @@ export function footer(ctx) {
         <dd>${esc(site.address.po)}, ${esc(site.address.city)} ${esc(site.address.region)} ${esc(site.address.zip)}</dd>
       </div>
       <div class="site-footer__fact">
-        <dt>${icon('instagram', { size: 16 })}Instagram</dt>
-        <dd><a href="${site.instagram}" target="_blank" rel="noopener">${esc(site.instagramHandle)}<span class="sr-only"> (opens in a new tab)</span></a></dd>
+        <dt>${icon('instagram', { size: 16 })}Follow Us</dt>
+        <dd class="site-footer__social"><a href="${site.instagram}" target="_blank" rel="noopener">${esc(site.instagramHandle)}<span class="sr-only"> on Instagram (opens in a new tab)</span></a> <span aria-hidden="true">·</span> <a href="${site.facebook}" target="_blank" rel="noopener">Facebook<span class="sr-only"> (opens in a new tab)</span></a></dd>
       </div>
     </dl>
     <div class="site-footer__map">

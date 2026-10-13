@@ -37,7 +37,7 @@ export function gtmHead() {
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer',${JSON.stringify(site.gtm)});}</script>\n`;
+})(window,document,'script','dataLayer',${JSON.stringify(site.gtm)});${site.googleTag ? `var g=document.createElement('script');g.async=true;g.src='https://www.googletagmanager.com/gtag/js?id=${site.googleTag}';document.head.appendChild(g);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config',${JSON.stringify(site.googleTag)});` : ''}}</script>\n`;
 }
 
 /**
