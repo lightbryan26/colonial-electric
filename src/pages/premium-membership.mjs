@@ -39,7 +39,7 @@ const bolt = {
 // Media = a brand plate per benefit (src/blocks/plate.mjs: crest chip + the benefit glyph on the badge-blue pinstripe).
 // No stock photos (the live ones are framed, brief §8, and none showed its benefit). plate = the photo slot id: a real
 // Colonial photo mapped to it in src/data/service-photos.mjs drops into the same panel.
-const benefits = [
+export const benefits = [
   { t: 'Front-of-the-Line Pass', ic: 'bolt', plate: 'pm-front-of-the-line', x: 59.25, y: 15, lvl: .24,
     p: 'Electrical issues are a part of the daily life, but with our Exclusive Access Pass, waiting in line becomes a thing of the past. Our “Front of the Line Pass” guarantees immediate attention from our expert technicians for all repairs, services, and upgrades. No more long waits, just efficient solutions tailored to your needs.' },
   { t: 'After-Hours Emergency Assistance', ic: 'clock', plate: 'pm-after-hours', x: 44.5, y: 35, lvl: .43,

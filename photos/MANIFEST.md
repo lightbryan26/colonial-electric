@@ -74,3 +74,14 @@ Two more real job photos come from Colonial's own Google Business Profile ("Colo
 |---|---|---|
 | services/permanent-outdoor-lighting.jpg | LED step lights set into the risers of a white deck stair | /permanent-outdoor-lighting/ hero |
 | services/whole-house-wiring-or-rewiring.jpg | New cable runs dropped into a breaker panel on a diamond-plate backboard | /whole-house-wiring-or-rewiring/ hero |
+
+## Facebook photos (supplied by the client)
+
+Four real job photos from Colonial's Facebook page (facebook.com/colonialelectric), sent directly by the client at full resolution. EXIF orientation applied, no crop at save time (framing is done with object-position in the templates).
+
+| File | Shows | Use |
+|---|---|---|
+| services/ev-charger-installation.jpg | ChargePoint EV charger on a cedar post beside a house | /ev-charger-installation/ hero |
+| services/ceiling-fan-installation.jpg | Ceiling fan with light kit and recessed lights, living room | /ceiling-fan-installation/ hero |
+| library/ev-charger-wall-unit.jpg | ChargePoint EV charger mounted on siding | EV charger service card |
+| library/ceiling-fan-dining-room.jpg | Ceiling fan with light kit and recessed lights, dining room | Ceiling fan service card |

@@ -1,9 +1,11 @@
 // The 45 pages (brief §2 table). slug '' = home. template -> src/pages/<template>.mjs
+// title = the live page title (breadcrumbs, labels); the <title> tag and meta description come from src/data/seo.mjs
+// (seoTitle, description), the client-requested search metadata.
 import { services } from './services.mjs';
 import { towns } from './towns.mjs';
-import descriptions from './descriptions.json' with { type: 'json' };
+import { seo, validateSeo } from './seo.mjs';
 
-const P = (slug, title, h1, template, extra = {}) => ({ slug, title, h1, template, description: descriptions[slug], ...extra });
+const P = (slug, title, h1, template, extra = {}) => ({ slug, title, h1, template, seoTitle: seo[slug]?.title, description: seo[slug]?.description, ...extra });
 
 export const pages = [
   P('', 'Top-notch electrical services in South Shore Massachusetts.', 'Your Trusted Local Electrician in Weymouth, MA', 'home', { fullTitle: true }),
@@ -20,3 +22,5 @@ export const pages = [
   P('terms/', 'Terms & Conditions', 'Terms & Conditions', 'terms'),
   P('privacy/', 'Privacy Policy', 'Privacy Policy', 'privacy'),
 ];
+
+validateSeo(pages.map(p => p.slug));

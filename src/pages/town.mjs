@@ -8,7 +8,8 @@ import { reviews } from '../blocks/reviews.mjs';
 import { contactCta } from '../blocks/contact-cta.mjs';
 import { icon } from '../partials/icons.mjs';
 import { esc, picture } from '../lib/html.mjs';
-import { businessJsonLd } from '../partials/head.mjs';
+import { townServiceNode } from '../lib/schema.mjs';
+import { glance } from '../blocks/glance.mjs';
 
 // Town template (brief §6) — one data-driven template for all 21 town pages.
 // Section order is fixed by the brief: hero · intro · safety · call box + form · services · town list · reviews · about/top sites · CTA.
@@ -165,21 +166,20 @@ export function render(ctx) {
   const t = ctx.page.town;
   ctx.preloadImage = 'owner-van';
   ctx.preloadSizes = '(min-width: 1200px) 640px, (min-width: 900px) 50vw, 100vw';
-  const biz = businessJsonLd();
-  ctx.jsonld = [{
-    '@context': 'https://schema.org', '@type': 'Electrician', '@id': site.origin + '/' + ctx.page.slug + '#electrician',
-    name: site.name, telephone: site.phoneSchema, url: site.origin + '/' + ctx.page.slug,
-    image: biz.image, logo: biz.logo, address: biz.address,
-    hasMap: site.gbp.link,
-    areaServed: { '@type': 'City', name: `${t.name}, MA`, hasMap: 'https://maps.google.com/maps?q=' + encodeURIComponent(`${t.name}, MA`) },
-    parentOrganization: { '@id': biz['@id'] },
-  }];
+  // One business entity sitewide (#business): the town page describes a Service offered in this City, not a branch.
+  ctx.jsonld = [townServiceNode(t)];
   return [
     hero(ctx, t),
+    glance(ctx, {
+      title: `Electrician in ${t.name}, MA`,
+      service: { html: `<a href="#tw-services">${esc('Electrical Services')}</a>` }, // the H1's "Electrical Services", linked to this page's services grid
+      area: `${t.name}, MA and the surrounding areas`, // the Safety block's "Whether you’re in {Town}, MA. or the surrounding areas"
+      id: 'tw-glance',
+    }),
     intro(t),
     safetyBlock(ctx, t),
     callAndForm(ctx, t),
-    servicesGrid(ctx, { h2: t.servicesH2, cls: 'tw-svc' }),
+    servicesGrid(ctx, { id: 'tw-services', h2: t.servicesH2, cls: 'tw-svc' }),
     townsBlock(ctx, t),
     reviews(ctx, { cls: 'tw-reviews' }),
     about(ctx, t),

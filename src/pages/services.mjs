@@ -216,15 +216,16 @@ function svCard(ctx, s, i) {
   const media = photo
     ? `<span class="sv-card__media" style="--pos:${photo.pos};--pos-m:${photo.posM}">${picture(ctx, photo.key, { alt: photo.alt, sizes: cardSizes, imgCls: 'sv-card__img' })}<span class="sv-card__tag" aria-hidden="true">${n}</span></span>`
     : `<span class="sv-card__media sv-card__media--type" aria-hidden="true"><span class="sv-card__ghost">${icon(s.icon, { size: 240 })}</span><span class="sv-card__big">${n}</span></span>`;
-  return `<li class="sv-card ${photo ? 'sv-card--photo' : 'sv-card--type'}" style="--i:${i}"><a href="${ctx.r(s.href)}">
+  // The title is the card's only link (anchor text = the service name); its stretched ::after keeps the whole card clickable.
+  return `<li class="sv-card ${photo ? 'sv-card--photo' : 'sv-card--type'}" style="--i:${i}"><div class="sv-card__in">
         ${media}
         <span class="sv-card__body">
           <span class="sv-card__ic" aria-hidden="true">${icon(s.icon, { size: 24 })}</span>
-          <h3 class="sv-card__t">${esc(s.title).replace(/\S+-\S+/g, w => `<span class="sv-nw">${w}</span>`)}</h3>
+          <h3 class="sv-card__t"><a class="sv-card__a" href="${ctx.r(s.href)}">${esc(s.title).replace(/\S+-\S+/g, w => `<span class="sv-nw">${w}</span>`)}</a></h3>
           <p class="sv-card__p">${esc(s.blurb)}</p>
-          <span class="sv-card__go"><span>Learn More</span>${icon('arrow-right', { size: 16 })}</span>
+          <span class="sv-card__go" aria-hidden="true"><span>Learn More</span>${icon('arrow-right', { size: 16 })}</span>
         </span>
-      </a></li>`;
+      </div></li>`;
 }
 
 function catalog(ctx) {
@@ -238,11 +239,11 @@ function catalog(ctx) {
     <ul class="sv-cards" role="list">
       ${serviceCards.map((s, i) => svCard(ctx, s, i)).join('\n      ')}
     </ul>
-    <a class="sv-feature" href="${ctx.r(outdoor.slug + '/')}">
+    <div class="sv-feature">
       <span class="sv-feature__ic">${icon('sparkle', { size: 28 })}</span>
-      <span class="sv-feature__txt"><span class="sv-feature__k">Also Available</span><span class="sv-feature__t">${esc(outdoor.h1)}</span><span class="sv-feature__s">${esc(outdoor.heroLine)}</span></span>
+      <span class="sv-feature__txt"><span class="sv-feature__k">Also Available</span><a class="sv-feature__t" href="${ctx.r(outdoor.slug + '/')}">${esc(outdoor.h1)}</a><span class="sv-feature__s">${esc(outdoor.heroLine)}</span></span>
       <span class="sv-feature__go" aria-hidden="true">${icon('arrow-right', { size: 22 })}</span>
-    </a>
+    </div>
   </div>
 </section>`;
 }
@@ -284,10 +285,10 @@ function townsBlock(ctx) {
 }
 
 function faqBlock(ctx) {
-  ctx.jsonld = [...(ctx.jsonld || []), faqJsonLd(faqItems)];
+  ctx.jsonld = [...(ctx.jsonld || []), faqJsonLd(faqItems, { blockTerm: '\n' })]; // defined terms render as a label above the text
   const ans = a => a.map(b => typeof b === 'string' ? `<p>${esc(b)}</p>`
     : b.list ? `<ul class="sv-faq__ul">${b.list.map(x => `<li>${boltSvg('sv-faq__b')}<span>${esc(x)}</span></li>`).join('')}</ul>`
-    : `<div class="sv-faq__term"><h3>${esc(b.term)}</h3><p>${esc(b.text)}</p></div>`).join('');
+    : `<div class="sv-faq__term"><p class="sv-faq__term-h">${esc(b.term)}</p><p>${esc(b.text)}</p></div>`).join('');
   return `<section class="block sv-faq" aria-labelledby="sv-faq-h">
   <div class="container sv-faq__grid">
     <header class="sv-faq__head">

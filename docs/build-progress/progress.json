@@ -208,9 +208,73 @@
    "round": 1,
    "note": "7 hero photos, 10 library photos processed",
    "updated": "2026-10-12T19:24:43.360Z"
+  },
+  "seo": {
+   "status": "done",
+   "round": 1,
+   "note": "SEO aeo-links: At a glance fact sheet (service, Colonial Electric, MA Lic# 8720-A1, area, phone, Mon-Fri 8:00 AM to 4:00 PM) under the hero on 13 service + 21 town pages; card links now anchor on the service name (home, /services/, town grids, service-area, generator) with whole-card click kept; town pages link all 13 services; Related Services row on every service page; 'Electrician in {Town}, MA' anchors on service pages; town-list ordinals out of link text; FAQ text == FAQPage on 55/55; build 45/45, schema 0 failures, 0 internal broken links",
+   "updated": "2026-10-13T09:06:13.106Z",
+   "shot": "shots/seo-r1.png"
   }
  },
  "events": [
+  {
+   "t": "2026-10-13T09:06:13.106Z",
+   "piece": "seo",
+   "status": "done",
+   "round": 1,
+   "note": "SEO aeo-links: At a glance fact sheet (service, Colonial Electric, MA Lic# 8720-A1, area, phone, Mon-Fri 8:00 AM to 4:00 PM) under the hero on 13 service + 21 town pages; card links now anchor on the service name (home, /services/, town grids, service-area, generator) with whole-card click kept; town pages link all 13 services; Related Services row on every service page; 'Electrician in {Town}, MA' anchors on service pages; town-list ordinals out of link text; FAQ text == FAQPage on 55/55; build 45/45, schema 0 failures, 0 internal broken links",
+   "shot": "shots/seo-r1.png"
+  },
+  {
+   "t": "2026-10-13T08:46:26.265Z",
+   "piece": "seo",
+   "status": "building",
+   "round": 1,
+   "note": "SEO: aeo-links"
+  },
+  {
+   "t": "2026-10-13T08:45:59.163Z",
+   "piece": "seo",
+   "status": "done",
+   "round": 1,
+   "note": "SEO meta: 45 unique titles (34-61 chars) + descriptions (143-158 chars) from src/data/seo.mjs, mirrored to OG/Twitter/WebPage, build-guarded, 45/45"
+  },
+  {
+   "t": "2026-10-13T08:40:39.105Z",
+   "piece": "seo",
+   "status": "building",
+   "round": 1,
+   "note": "SEO: meta"
+  },
+  {
+   "t": "2026-10-13T08:40:18.212Z",
+   "piece": "seo",
+   "status": "done",
+   "round": 1,
+   "note": "SEO schema: one connected @graph per page (45/45 + 404), single Electrician #business, WebSite, WebPage/AboutPage/ContactPage/CollectionPage(+FAQPage), Service per service+town page (per-town Electrician removed), Person #founder; check.mjs 0 failures"
+  },
+  {
+   "t": "2026-10-13T08:29:04.548Z",
+   "piece": "seo",
+   "status": "building",
+   "round": 1,
+   "note": "SEO: schema"
+  },
+  {
+   "t": "2026-10-13T08:28:32.911Z",
+   "piece": "seo",
+   "status": "done",
+   "round": 1,
+   "note": "SEO technical: robots.txt (named search+AI crawler groups), sitemap with real per-page lastmod + image entries, llms.txt + llms-full.txt from data, vercel.json noindex on *.vercel.app + security/cache headers + WP 301s, host-gated GTM-562VCKQ5, per-template minified CSS (82KB to 11-26KB gzip render-blocking, computed styles identical on 46 pages x 3 widths), Lighthouse report workflow"
+  },
+  {
+   "t": "2026-10-13T07:43:49.400Z",
+   "piece": "seo",
+   "status": "building",
+   "round": 1,
+   "note": "SEO: technical"
+  },
   {
    "t": "2026-10-12T20:28:03.880Z",
    "piece": "verify",
@@ -2168,5 +2232,5 @@
    "shot": "shots/setup-r0.png"
   }
  ],
- "updated": "2026-10-12T20:28:03.880Z"
+ "updated": "2026-10-13T09:06:13.106Z"
 }

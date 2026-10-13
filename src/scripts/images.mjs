@@ -22,7 +22,7 @@ async function job(key, src, widths, { fallback = 'jpg', quality = 78, crop } = 
   }
   man[key] = { w: meta.width, h: meta.height, widths: [...new Set(ws)].sort((a, b) => a - b), fallback };
 }
-await job('owner-van', root + 'source/images/owner-van.jpg', [640, 960, 1280, 1600, 2048], { quality: 76 });
+await job('owner-van', root + 'source/images/owner-van.jpg', [640, 768, 960, 1280, 1600, 2048], { quality: 76 }); // 768: DPR-2 phones (375px x 2 = 750) get 88KB instead of the 132KB 960w
 await job('scott-portrait', RAW + 'DSC_6221-Ev-scaled.jpg', [480, 800, 1200, 1600]);
 await job('logo-lockup', RAW + 'COLONIALELECTRIC_LogoPackageWS_Both.png', [320, 621], { fallback: 'png', quality: 90 });
 await job('logo-badge', RAW + 'COLONIALELECTRIC_Web2_Badge.png', [250], { fallback: 'png', quality: 92 });

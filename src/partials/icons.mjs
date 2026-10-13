@@ -14,6 +14,7 @@ const I = {
   pin: { d: '<path d="M12 21.5s-7-6.1-7-11.6a7 7 0 0 1 14 0c0 5.5-7 11.6-7 11.6z"/><circle cx="12" cy="9.8" r="2.6"/>' },
   clock: { d: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5.2l3.2 2"/>' },
   instagram: { d: '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r=".9" fill="currentColor" stroke="none"/>' },
+  facebook: { d: '<path d="M14.5 8.5H17V5h-2.5A3.5 3.5 0 0 0 11 8.5V11H8.5v3.5H11V21h3.5v-6.5H17l.5-3.5h-3V9a.5.5 0 0 1 .5-.5z"/>' },
   calendar: { d: '<rect x="3" y="4.5" width="18" height="16.5" rx="2"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/>' },
   quote: { fill: true, d: '<path d="M4 18.5v-5.2C4 8.7 6.3 5.8 10.2 5l.8 1.9C8.8 7.6 7.7 9 7.6 11H10v7.5zm9.5 0v-5.2c0-4.6 2.3-7.5 6.2-8.3l.8 1.9c-2.2.7-3.3 2.1-3.4 4.1H19.5v7.5z"/>' },
   // services

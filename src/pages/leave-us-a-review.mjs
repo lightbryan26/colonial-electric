@@ -16,7 +16,7 @@ const copy = {
 
 const platforms = [
   { id: 'google', name: 'Google', blurb: 'Share your experience with Colonial Electric on Google and help others find a trusted local electrician.', cta: 'Leave a Google Review', href: 'https://g.page/r/CTOOPMS8J1jqEBM/review' },
-  { id: 'facebook', name: 'Facebook', blurb: 'Tell your friends and neighbors about your experience by leaving us a recommendation on Facebook.', cta: 'Leave a Facebook Review', href: 'https://www.facebook.com/search/top?q=Colonial%20Electric%20Weymouth%20MA' },
+  { id: 'facebook', name: 'Facebook', blurb: 'Tell your friends and neighbors about your experience by leaving us a recommendation on Facebook.', cta: 'Leave a Facebook Review', href: site.facebookReviews },
   { id: 'nextdoor', name: 'Nextdoor', blurb: 'Help your local community discover reliable electrical services by recommending us on Nextdoor.', cta: 'Recommend Us on Nextdoor', href: 'https://nextdoor.com/page/scott-hays-electrician-weymouth-ma/' },
   { id: 'yelp', name: 'Yelp', blurb: 'Help others in our community find trusted electrical services by sharing your experience on Yelp.', cta: 'Leave a Yelp Review', href: 'https://www.yelp.com/writeareview/biz/nWomuLCv0oADHJr8aMAcag' },
 ];

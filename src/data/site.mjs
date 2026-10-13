@@ -5,6 +5,12 @@ export const site = {
   // Host for og:image / twitter:image / JSON-LD image+logo. Until DNS cut-over colonial-electric.com is still the WordPress
   // site (no /assets/img/), so share previews load from the deployed pitch host. Cut-over: set this back to `origin`.
   assetOrigin: 'https://lightbryan26.github.io/colonial-electric',
+  // Google Tag Manager container of the live site (analytics + conversions continue through the cut-over). It only
+  // loads on these hostnames, never on the pitch hosts or a local preview (src/partials/head.mjs gtmHead()).
+  gtm: 'GTM-562VCKQ5',
+  // The live WordPress site also loads Google Site Kit's Google tag; carried over for analytics parity (same host guard).
+  googleTag: 'GT-T5MFXM5H',
+  gtmHosts: ['colonial-electric.com', 'www.colonial-electric.com'],
   phone: '(781) 287-8729',
   tel: 'tel:+17812878729',
   phoneSchema: '+1-781-287-8729',
@@ -13,12 +19,18 @@ export const site = {
   licenseLine: 'Licensed & Insured Massachusetts Electrician – Serving Weymouth & the South Shore. (MA Lic# 8720-A1)',
   aboutBlurb: 'At Colonial Electric, we’re committed to providing top-notch electrical services throughout the South Shore. We prioritize delivering excellent service and strive to forge lasting relationships with our customers. Count on us to meet your electrical needs with the utmost quality and care.',
   instagram: 'https://instagram.com/colonialhomeservices',
+  facebook: 'https://www.facebook.com/colonialelectric',
+  facebookReviews: 'https://www.facebook.com/colonialelectric/reviews',
   instagramHandle: '@colonialhomeservices',
   founder: 'Scott Hays',
   address: { po: 'P.O. Box 403', city: 'Weymouth', region: 'MA', zip: '02188', country: 'US' },
   hours: '8:00 AM – 4:00 PM',
+  // Opening hours, one source for the visible "At a glance" line (src/blocks/glance.mjs) and the JSON-LD
+  // openingHoursSpecification (src/lib/schema.mjs): Monday to Friday per brief §9 ("Mo–Fr 08:00–16:00"), times as the
+  // contact page shows them. Confirm the days against the Google Business Profile before cut-over.
+  openHours: { days: 'Monday to Friday', from: '8:00 AM', to: '4:00 PM', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '08:00', closes: '16:00' },
   financing: { line: 'Pay over time with monthly financing', cta: 'Check Monthly Payment Options', href: 'we-offer-financing/' },
-  homeDescription: 'Colonial Electric - Top-notch electrical services in South Shore Massachusetts. Count on us to meet your electrical needs with the utmost quality and care.',
+  homeDescription: 'Colonial Electric: top-notch electrical services in South Shore Massachusetts. Count on us to meet your electrical needs with the utmost quality and care.',
   // Google Business Profile "Colonial Electric inc" (client: map embeds for local SEO in the footer + town pages).
   // link = canonical place URL (buttons + JSON-LD hasMap); embed = keyless Maps iframe (footer map).
   gbp: {

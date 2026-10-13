@@ -10,6 +10,7 @@ import { cardPhotoFor } from '../../data/card-photos.mjs';
 // media library, renamed by service). A service with no such photo gets a typographic tile instead: the whole card on
 // navy, led by its outlined index numeral and service glyph, so photo cards and type tiles alternate through the grid.
 // The outdoor feature leads with a typographic index of its four lighting services (verbatim panel titles, linked).
+// Each card's only link is its title (anchor text = the service name); a stretched ::after keeps the card clickable.
 
 const outdoor = {
   title: 'Permanent Outdoor Lighting',
@@ -46,14 +47,14 @@ export function render(ctx) {
           </span>`;
     return `
       <li class="hsvc__cell" style="--i:${i % 4}">
-        <a class="hsvc__card ${photo ? 'hsvc__card--photo' : 'hsvc__card--type'}" href="${ctx.r(s.href)}">
+        <div class="hsvc__card ${photo ? 'hsvc__card--photo' : 'hsvc__card--type'}">
           ${media}
           <span class="hsvc__body">
             ${photo ? `<span class="hsvc__ic" aria-hidden="true">${icon(s.icon, { size: 22 })}</span>` : ''}
-            <h3 class="hsvc__t"><span>${keepHyphens(s.title)}</span><span class="hsvc__arr" aria-hidden="true">${icon('arrow-right', { size: 18 })}</span></h3>
+            <h3 class="hsvc__t"><a class="hsvc__a" href="${ctx.r(s.href)}">${keepHyphens(s.title)}</a><span class="hsvc__arr" aria-hidden="true">${icon('arrow-right', { size: 18 })}</span></h3>
             <p class="hsvc__p">${esc(s.blurb)}</p>
           </span>
-        </a>
+        </div>
       </li>`;
   }).join('');
 

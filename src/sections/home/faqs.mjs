@@ -15,12 +15,12 @@ function answer(a) {
   return a.map(b => {
     if (typeof b === 'string') return `<p>${esc(b)}</p>`;
     if (b.list) return `<ol class="hfaq__steps">${b.list.map((i, n) => `<li><span class="hfaq__step-n" aria-hidden="true">${pad(n + 1)}</span><p>${i.term ? `<strong>${esc(i.term)}:</strong> ` : ''}${esc(i.text ?? i)}</p></li>`).join('')}</ol>`;
-    return `<div class="hfaq__term"><h3 class="hfaq__term-h">${bolt}${esc(b.term)}</h3><p>${esc(b.text)}</p></div>`;
+    return `<div class="hfaq__term"><p class="hfaq__term-h">${bolt}<span>${esc(b.term)}</span></p><p>${esc(b.text)}</p></div>`;
   }).join('');
 }
 
 export function render(ctx) {
-  ctx.jsonld = [...(ctx.jsonld || []), faqJsonLd(items)];
+  ctx.jsonld = [...(ctx.jsonld || []), faqJsonLd(items, { blockTerm: '\n' })]; // defined terms render as a label above the text
   return `<section class="block hfaq" id="s-faqs" aria-labelledby="s-faqs-h">
   <div class="container hfaq__grid">
     <header class="hfaq__head">

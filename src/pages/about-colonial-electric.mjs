@@ -7,6 +7,7 @@ import { townList } from '../blocks/town-list.mjs';
 import { icon } from '../partials/icons.mjs';
 import { esc, picture } from '../lib/html.mjs';
 import { plate } from '../blocks/plate.mjs';
+import { founderNode } from '../lib/schema.mjs';
 
 const intro = {
   h2: 'Colonial Electric: The Dependable Source For Premium Electrical Service',
@@ -80,7 +81,7 @@ function hero(ctx) {
       { '@type': 'ListItem', position: 1, name: 'Home', item: site.origin + '/' },
       { '@type': 'ListItem', position: 2, name: 'About Us', item: site.origin + '/' + ctx.page.slug },
     ],
-  }];
+  }, founderNode({ description: founder.bio[0].match(/^.*?\.(?=\s|$)/)[0] })]; // Person #founder: first verbatim bio sentence
   return `<section class="ab-hero on-dark stars-bg" aria-labelledby="ab-h1">
   <div class="container ab-hero__grid">
     <div class="ab-hero__copy">
