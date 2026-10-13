@@ -98,7 +98,7 @@ const serviceLine = s => {
   if (s.outdoor) return firstSentence(outdoor.lead);
   return s.heroLine;
 };
-const hours = `${site.hours.replace(/\s*\u2013\s*/, ' to ')}, Monday to Friday`;
+const hours = `${site.openHours.from} to ${site.openHours.to}, ${site.openHours.days}`; // same source as the JSON-LD hours and the pages' "At a glance" line
 
 function header() {
   return [

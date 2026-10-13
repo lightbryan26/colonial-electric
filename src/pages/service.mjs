@@ -13,6 +13,8 @@ import { reviews } from '../blocks/reviews.mjs';
 import { contactForm } from '../blocks/contact-form.mjs';
 import { servicesGrid } from '../blocks/services-grid.mjs';
 import { faqJsonLd } from '../blocks/faqs.mjs';
+import { glance } from '../blocks/glance.mjs';
+import { serviceNode } from '../lib/schema.mjs';
 import { icon } from '../partials/icons.mjs';
 import { esc, picture, images } from '../lib/html.mjs';
 
@@ -20,7 +22,7 @@ const pad = n => String(n).padStart(2, '0');
 const isLead = b => typeof b === 'string' && /:\s*$/.test(b);
 
 /* ---------- body blocks ---------- */
-function points(list, { steps = false } = {}) {
+function points(list, { steps = false, faq = false } = {}) {
   const termed = list.every(i => i.term);
   if (!termed) {
     return `<ul class="svp-signs" role="list">${list.map(i => `<li>${icon('bolt', { size: 16 })}<span>${esc(i.text ?? i)}</span></li>`).join('')}</ul>`;
@@ -28,6 +30,9 @@ function points(list, { steps = false } = {}) {
   if (steps) {
     return `<ol class="svp-steps" role="list">${list.map((i, k) => `<li class="svp-steps__i"><span class="svp-steps__n" aria-hidden="true">${pad(k + 1)}</span><div><h3 class="svp-steps__t">${esc(i.term)}</h3><p>${esc(i.text)}</p></div></li>`).join('')}</ol>`;
   }
+  // Inside an FAQ answer the term is a label, not a heading: a heading there would split the answer from its question
+  // for parsers that chunk by headings. The FAQPage text mirrors this layout (term, line break, text): see faqs() below.
+  if (faq) return `<ul class="svp-points" role="list">${list.map(i => `<li class="svp-point"><strong class="svp-point__t">${esc(i.term)}</strong><p>${esc(i.text)}</p></li>`).join('')}</ul>`;
   return `<ul class="svp-points" role="list">${list.map((i, k) => `<li class="svp-point"><span class="svp-point__n" aria-hidden="true">${pad(k + 1)}</span><h3 class="svp-point__t">${esc(i.term)}</h3><p>${esc(i.text)}</p></li>`).join('')}</ul>`;
 }
 function body(blocks, opts) {
@@ -202,6 +207,34 @@ function blockBMedia(ctx, s) {
     </div>`;
 }
 
+/* ---------- related services: links between related jobs, anchor text = the service's menu name ----------
+   Pairings by the work they share (power: panel, EV charger, generator, battery, surge; lighting: recessed, additions,
+   outdoor, ceiling fan, remodels; wiring: outlets, inspections, rewiring, remodels). Names and icons from services.mjs;
+   the label is UI microcopy. A <nav> of links, not a heading, so the page's heading outline stays the service's own. */
+const RELATED = {
+  'electrical-panel-upgrade': ['ev-charger-installation', 'generator', 'whole-home-battery-back-up', 'surge-protection'],
+  'ev-charger-installation': ['electrical-panel-upgrade', 'generator', 'whole-home-battery-back-up', 'surge-protection'],
+  'generator': ['electrical-panel-upgrade', 'whole-home-battery-back-up', 'surge-protection', 'ev-charger-installation'],
+  'whole-home-battery-back-up': ['generator', 'electrical-panel-upgrade', 'ev-charger-installation', 'surge-protection'],
+  'surge-protection': ['electrical-panel-upgrade', 'generator', 'whole-home-battery-back-up', 'ev-charger-installation'],
+  'recessed-lighting': ['lighting-additions', 'permanent-outdoor-lighting', 'ceiling-fan-installation', 'remodels'],
+  'lighting-additions': ['recessed-lighting', 'permanent-outdoor-lighting', 'ceiling-fan-installation', 'remodels'],
+  'permanent-outdoor-lighting': ['lighting-additions', 'recessed-lighting', 'remodels', 'ceiling-fan-installation'],
+  'ceiling-fan-installation': ['lighting-additions', 'recessed-lighting', 'remodels', 'electrical-outlets'],
+  'remodels': ['whole-house-wiring-or-rewiring', 'electrical-outlets', 'recessed-lighting', 'lighting-additions'],
+  'electrical-outlets': ['electrical-inspections', 'whole-house-wiring-or-rewiring', 'remodels', 'surge-protection'],
+  'electrical-inspections': ['whole-house-wiring-or-rewiring', 'electrical-outlets', 'electrical-panel-upgrade', 'remodels'],
+  'whole-house-wiring-or-rewiring': ['electrical-panel-upgrade', 'electrical-outlets', 'electrical-inspections', 'remodels'],
+};
+function related(ctx, s) {
+  const list = (RELATED[s.slug] || []).map(slug => services.find(x => x.slug === slug)).filter(Boolean);
+  if (!list.length) return '';
+  return `<nav class="svp-rel" aria-labelledby="svp-rel-k">
+      <p class="svp-rel__k" id="svp-rel-k">${icon('bolt', { size: 14 })}<span>Related Services</span></p>
+      <ul class="svp-rel__list" role="list">${list.map(r => `<li><a class="svp-rel__a" href="${ctx.r(r.slug + '/')}"><span class="svp-rel__ic">${icon(r.icon, { size: 20 })}</span><span class="svp-rel__t">${esc(r.nav)}</span>${icon('arrow-right', { size: 18, cls: 'svp-rel__go' })}</a></li>`).join('')}</ul>
+    </nav>`;
+}
+
 /* ---------- block B: the Colonial block ---------- */
 function blockB(ctx, s) {
   const b = s.b;
@@ -217,6 +250,7 @@ function blockB(ctx, s) {
       <p class="svp-b__cta"><a class="btn btn--navy" href="${site.tel}">${icon('phone', { size: 16 })}<span>Call Now</span></a><a class="svp-textlink" href="${ctx.r('contact-us/')}">Contact Us Today ${icon('arrow-right', { size: 16 })}</a></p>
     </div>
   </div>
+  <div class="container">${related(ctx, s)}</div>
 </section>`;
 }
 
@@ -265,7 +299,7 @@ const quoteTowns = ctx => `<section class="svp-qt" aria-labelledby="svp-qt-h">
     </figure>
     <div class="svp-qt__towns">
       <h2 class="svp-qt__h" id="svp-qt-h"><span class="label-wide">${icon('pin', { size: 16 })}Service Area</span></h2>
-      <ul class="svp-towns" role="list">${towns.map(t => `<li><a href="${ctx.r('service-area/' + t.slug + '/')}"><span>${esc(t.name)}</span>${icon('arrow-up-right', { size: 14 })}</a></li>`).join('')}</ul>
+      <ul class="svp-towns" role="list">${towns.map(t => `<li><a href="${ctx.r('service-area/' + t.slug + '/')}"><span class="svp-towns__t"><span class="svp-towns__k">Electrician in</span> <span class="svp-towns__n">${esc(t.name)}, MA</span></span>${icon('arrow-up-right', { size: 14 })}</a></li>`).join('')}</ul>
       <a class="svp-textlink svp-qt__all" href="${ctx.r('service-area/')}">Service Area ${icon('arrow-right', { size: 16 })}</a>
     </div>
   </div>
@@ -274,7 +308,7 @@ const quoteTowns = ctx => `<section class="svp-qt" aria-labelledby="svp-qt-h">
 /* ---------- FAQs ---------- */
 function faqs(ctx, s) {
   if (!s.faqs?.length) return '';
-  ctx.jsonld.push(faqJsonLd(s.faqs));
+  ctx.jsonld.push(faqJsonLd(s.faqs, { listTerm: '\n' })); // term lists render as a label above the text
   return `<section class="svp-faq" id="svp-faqs" aria-labelledby="svp-faq-h">
   <div class="container svp-faq__grid">
     <header class="svp-faq__head">
@@ -289,7 +323,7 @@ function faqs(ctx, s) {
     </header>
     <div class="svp-faq__list">${s.faqs.map((f, i) => `<details class="svp-q" id="svp-q-${i + 1}" name="svp-faq"${i === 0 ? ' open' : ''}>
         <summary><span class="svp-q__n" aria-hidden="true">${pad(i + 1)}</span><span class="svp-q__t">${esc(f.q)}</span><span class="svp-q__ic" aria-hidden="true"></span></summary>
-        <div class="svp-q__a svp-copy">${body(f.a, { plainLeads: true })}</div>
+        <div class="svp-q__a svp-copy">${body(f.a, { plainLeads: true, faq: true })}</div>
       </details>`).join('')}</div>
   </div>
 </section>
@@ -329,18 +363,30 @@ const outdoorFeatures = () => `<section class="svp-feat on-dark stars-bg" aria-l
 /* one-shot reveal: content is fully visible without JS or with reduced motion */
 const revealScript = `<script>(function(){var d=document;if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var els=d.querySelectorAll('.svp-reveal');d.documentElement.classList.add('svp-io');var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -6% 0px'});els.forEach(function(el){io.observe(el)})})();</script>`;
 
+/* ---------- at a glance (src/blocks/glance.mjs): the service, who, licence, where, phone, hours ----------
+   Service row = the verbatim hero line without its place ("Residential & Commercial Surge Protection"), else the H1. */
+const glanceFor = (ctx, s) => glance(ctx, {
+  title: s.h1,
+  service: / in Weymouth$/.test(s.heroLine) ? s.heroLine.replace(/ in Weymouth$/, '') : s.h1,
+  serviceIcon: s.icon,
+  area: 'Weymouth & the South Shore, MA',
+  id: 'svp-glance',
+});
+
 /* ---------- render ---------- */
 export function render(ctx) {
   const s = ctx.page.service;
   const idx = services.findIndex(x => x.slug === s.slug);
-  ctx.jsonld = [{ '@context': 'https://schema.org', '@type': 'Service', name: s.h1, serviceType: s.h1, provider: { '@id': site.origin + '/#business' }, areaServed: towns.map(t => ({ '@type': 'City', name: `${t.name}, MA` })) }];
+  ctx.jsonld = [serviceNode(s)]; // Service @id <page>#service (src/lib/schema.mjs); breadcrumb + FAQs are added by the sections
   if (heroPhotoKey(s)) { ctx.preloadImage = heroPhotoKey(s); ctx.preloadSizes = HERO_SIZES; }
 
   if (s.outdoor) {
     return [
       hero(ctx, s, idx, { lead: outdoor.lead }),
+      glanceFor(ctx, s),
       outdoorPanels(ctx),
       outdoorFeatures(),
+      `<section class="svp-relband" aria-label="Related services"><div class="container">${related(ctx, s)}</div></section>`,
       why(),
       contactCta(ctx),
       process(),
@@ -351,6 +397,7 @@ export function render(ctx) {
   }
   return [
     hero(ctx, s, idx),
+    glanceFor(ctx, s),
     overview(ctx, s),
     blockB(ctx, s),
     trust(),

@@ -1,4 +1,4 @@
-import { head } from './head.mjs';
+import { head, jsonLd } from './head.mjs';
 import { header } from './header.mjs';
 import { footer } from './footer.mjs';
 import { callbar } from './callbar.mjs';
@@ -26,6 +26,7 @@ ${main}
 ${footer(ctx)}
 ${callbar(ctx)}
 <script src="${ctx.asset('site.js')}?v=${ctx.version}" defer></script>
+${jsonLd(ctx)}
 </body>
 </html>
 `;

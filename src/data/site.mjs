@@ -21,8 +21,12 @@ export const site = {
   founder: 'Scott Hays',
   address: { po: 'P.O. Box 403', city: 'Weymouth', region: 'MA', zip: '02188', country: 'US' },
   hours: '8:00 AM – 4:00 PM',
+  // Opening hours, one source for the visible "At a glance" line (src/blocks/glance.mjs) and the JSON-LD
+  // openingHoursSpecification (src/lib/schema.mjs): Monday to Friday per brief §9 ("Mo–Fr 08:00–16:00"), times as the
+  // contact page shows them. Confirm the days against the Google Business Profile before cut-over.
+  openHours: { days: 'Monday to Friday', from: '8:00 AM', to: '4:00 PM', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '08:00', closes: '16:00' },
   financing: { line: 'Pay over time with monthly financing', cta: 'Check Monthly Payment Options', href: 'we-offer-financing/' },
-  homeDescription: 'Colonial Electric - Top-notch electrical services in South Shore Massachusetts. Count on us to meet your electrical needs with the utmost quality and care.',
+  homeDescription: 'Colonial Electric: top-notch electrical services in South Shore Massachusetts. Count on us to meet your electrical needs with the utmost quality and care.',
   // Google Business Profile "Colonial Electric inc" (client: map embeds for local SEO in the footer + town pages).
   // link = canonical place URL (buttons + JSON-LD hasMap); embed = keyless Maps iframe (footer map).
   gbp: {

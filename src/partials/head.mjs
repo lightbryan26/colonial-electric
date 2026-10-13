@@ -1,36 +1,29 @@
 import { site } from '../data/site.mjs';
-import { towns } from '../data/towns.mjs';
+import { graphFor } from '../lib/schema.mjs';
 import { esc, images } from '../lib/html.mjs';
 
 // Self-hosted Google Fonts (@font-face in src/css/base.css). Preload the faces of the hero H1s and eyebrows so they are
 // usually in before first paint; the rest swap in over metric-matched fallbacks (brief §9).
 export const PRELOAD_FONTS = ['barlow-condensed-900-latin.woff2', 'barlow-condensed-800-latin.woff2', 'archivo-wdth125-600-700-latin.woff2'];
 
+/** The <title> (also og:title, twitter:title, WebPage.name): src/data/seo.mjs, else the live title + brand. */
 export function pageTitle(page) {
-  return page.fullTitle ? page.title : `${page.title} | Colonial Electric`;
+  return page.seoTitle || (page.fullTitle ? page.title : `${page.title} | Colonial Electric`);
 }
-
-export function businessJsonLd() {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Electrician',
-    '@id': site.origin + '/#business',
-    name: site.name,
-    url: site.origin + '/',
-    telephone: site.phoneSchema,
-    email: site.email,
-    image: site.assetOrigin + '/assets/img/owner-van-1280.jpg',
-    logo: site.assetOrigin + '/assets/img/logo-lockup-621.png',
-    address: { '@type': 'PostalAddress', postOfficeBoxNumber: site.address.po, addressLocality: site.address.city, addressRegion: site.address.region, postalCode: site.address.zip, addressCountry: site.address.country },
-    areaServed: towns.map(t => ({ '@type': 'City', name: `${t.name}, MA` })),
-    founder: { '@type': 'Person', name: site.founder },
-    sameAs: [site.instagram],
-    hasMap: site.gbp.link,
-    openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '08:00', closes: '16:00' }],
-  };
-}
+/** The meta description; the JSON-LD WebPage.description reuses it, so the two can never drift. */
+export const pageDescription = page => page.description || site.homeDescription;
 
 const ld = obj => `<script type="application/ld+json">${JSON.stringify(obj).replace(/</g, '\\u003c')}</script>`;
+
+/**
+ * Structured data: ONE connected schema.org @graph per page (src/lib/schema.mjs: business, website, page, breadcrumb,
+ * service, FAQ and founder nodes linked by stable @ids). Pages add their own nodes to ctx.jsonld while rendering.
+ * layout.mjs prints it at the end of <body>: Google reads JSON-LD anywhere in the document, and there its ~15 KB never
+ * sits between the stylesheet and the hero in the first network round trips.
+ */
+export function jsonLd(ctx) {
+  return ld(graphFor(ctx, { title: pageTitle(ctx.page), description: pageDescription(ctx.page) }));
+}
 
 /**
  * Google Tag Manager (the live site's container, so analytics and conversion tracking continue through the cut-over).
@@ -49,13 +42,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 /**
  * ctx.preloadImage: image key to preload (hero); ctx.preloadSizes: its sizes attr.
- * ctx.jsonld: extra JSON-LD objects for this page.
+ * ctx.jsonld: this page's own schema.org nodes (merged into the page @graph by jsonLd(), printed by layout.mjs).
  */
 export function head(ctx) {
   const { page } = ctx;
   const title = pageTitle(page);
   const canonical = site.origin + '/' + page.slug;
-  const desc = page.description || site.homeDescription;
+  const desc = pageDescription(page);
   const ogImg = site.assetOrigin + '/assets/img/owner-van-1280.jpg';
   let preload = '';
   if (ctx.preloadImage) {
@@ -90,6 +83,5 @@ ${PRELOAD_FONTS.map(f => `<link rel="preload" as="font" type="font/woff2" href="
 ${preload}
 <link rel="stylesheet" href="${ctx.asset(ctx.css || 'site.css')}?v=${ctx.version}">
 <script>document.documentElement.classList.add('js')</script>
-${gtmHead()}${ld(businessJsonLd())}
-${(ctx.jsonld || []).map(ld).join('\n')}`;
+${gtmHead()}`;
 }

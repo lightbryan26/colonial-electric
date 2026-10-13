@@ -1,4 +1,4 @@
-/* Colonial Electric — base behaviour (header, menus, forms). No dependencies. */
+/* Colonial Electric: base behaviour (header, menus, forms). No dependencies. */
 (function () {
   'use strict';
   var doc = document, root = doc.documentElement;

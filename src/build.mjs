@@ -102,6 +102,15 @@ function makeCtx(page, { depth, baseTag = '' } = {}) {
   };
 }
 
+// <lastmod> / JSON-LD dateModified: the day a page's <main> last changed (hashes in src/data/lastmod.json, see step 5).
+// Read before rendering so each page's WebPage.dateModified (src/lib/schema.mjs) matches its sitemap <lastmod>.
+const LASTMOD = SRC + 'data/lastmod.json';
+const today = new Date().toISOString().slice(0, 10);
+let prevLastmod = {};
+try { prevLastmod = JSON.parse(fs.readFileSync(LASTMOD, 'utf8')); } catch { /* first build */ }
+const mainHash = main => crypto.createHash('md5').update(main.replace(/\?v=[0-9a-f]+/g, '')).digest('hex').slice(0, 12);
+const lastmodOf = (slug, h) => (prevLastmod[slug] && prevLastmod[slug].h === h ? prevLastmod[slug] : { h, d: today });
+
 const seen = new Set();
 const failures = [];
 const outputs = []; // { file, html, template, page?, main? }: written in step 4b, after the CSS bundles
@@ -112,6 +121,7 @@ for (const page of pages) {
   try {
     const mod = await import(`./pages/${page.template}.mjs`);
     const main = await mod.render(ctx);
+    ctx.dateModified = lastmodOf(page.slug, mainHash(main)).d;
     outputs.push({ file: OUT + page.slug + 'index.html', html: layout(ctx, main), template: page.template, page, main });
   } catch (e) {
     failures.push(page.slug || '/');
@@ -119,7 +129,7 @@ for (const page of pages) {
   }
 }
 
-// 4. 404 — served by GitHub Pages from any depth: detect the base path, then resolve everything from the site root.
+// 4. 404: served by GitHub Pages from any depth: detect the base path, then resolve everything from the site root.
 {
   // The browser's preload scanner reads the raw markup before the <base> below is written, so any static
   // relative asset (stylesheet, script, eager image) would be fetched against the bad URL first (stray 404s).
@@ -163,15 +173,12 @@ for (const page of pages) {
 // every build would teach Google to ignore the field. Delete src/data/lastmod.json before the cut-over build so every
 // URL starts at the cut-over date.
 {
-  const LASTMOD = SRC + 'data/lastmod.json';
-  const today = new Date().toISOString().slice(0, 10);
-  let prev = {};
-  try { prev = JSON.parse(fs.readFileSync(LASTMOD, 'utf8')); } catch { /* first build */ }
+  const prev = prevLastmod;
   const next = {}, entries = [];
   for (const p of pages) {
     const o = outputs.find(x => x.page === p);
-    const h = o ? crypto.createHash('md5').update(o.main.replace(/\?v=[0-9a-f]+/g, '')).digest('hex').slice(0, 12) : prev[p.slug]?.h;
-    next[p.slug] = prev[p.slug] && prev[p.slug].h === h ? prev[p.slug] : { h, d: today };
+    const h = o ? mainHash(o.main) : prev[p.slug]?.h;
+    next[p.slug] = lastmodOf(p.slug, h);
     entries.push({ slug: p.slug, lastmod: next[p.slug].d, images: o ? pagePhotos(o.main) : [] });
   }
   if (JSON.stringify(next) !== JSON.stringify(prev)) writeAtomic(LASTMOD, JSON.stringify(next, null, 1) + '\n');

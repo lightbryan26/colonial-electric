@@ -3,8 +3,13 @@ import { esc } from '../lib/html.mjs';
 const block = b => typeof b === 'string' ? `<p>${esc(b)}</p>`
   : b.list ? `<ul>${b.list.map(i => `<li>${i.term ? `<strong>${esc(i.term)}:</strong> ` : ''}${esc(i.text ?? i)}</li>`).join('')}</ul>`
   : `<p><strong>${esc(b.term)}:</strong> ${esc(b.text)}</p>`;
-const plain = b => typeof b === 'string' ? b : b.list ? b.list.map(i => (i.term ? i.term + ': ' : '') + (i.text ?? i)).join('\n') : `${b.term}: ${b.text}`;
-export function faqJsonLd(items) {
+// FAQPage answer text = the visible answer text. A term shown inline ("<strong>Term:</strong> text") keeps its colon; a
+// term shown as a label above its text (listTerm / blockTerm = '\n') is followed by a line break instead, exactly as rendered.
+const plainOf = ({ listTerm = ': ', blockTerm = ': ' } = {}) => b => typeof b === 'string' ? b
+  : b.list ? b.list.map(i => (i.term ? i.term + listTerm : '') + (i.text ?? i)).join('\n')
+  : `${b.term}${blockTerm}${b.text}`;
+export function faqJsonLd(items, layout) {
+  const plain = plainOf(layout);
   return { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: items.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a.map(plain).join('\n\n') } })) };
 }
 export function faqs(ctx, items, { id = '', cls = '', h2 = 'FAQs' } = {}) {

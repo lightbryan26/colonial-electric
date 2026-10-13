@@ -1,0 +1,20 @@
+/* ===== "At a glance" fact sheet (src/blocks/glance.mjs): service + town pages, right under the hero =====
+   A ruled spec sheet in the site's own language: red wide-caps label over a condensed title, then a navy-topped grid of
+   hairline rows (icon + wide-caps term, navy value). Desktop: the title sits in a left column the width of the service
+   page rail, so the sheet lines up with the "On this page" column below it. */
+.glance { padding-top: clamp(2.75rem, 2rem + 2.5vw, 4.5rem); background: var(--white); }
+.glance__grid { display: grid; gap: 1.5rem; }
+@media (min-width: 1024px) { .glance__grid { grid-template-columns: 17.5rem minmax(0, 1fr); gap: clamp(3rem, 1rem + 4vw, 6rem); align-items: start; } }
+.glance__h { display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: .75rem; margin: 0; }
+.glance__k { display: flex; align-items: center; gap: .6rem; font: 700 var(--fs-label)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--red); }
+.glance__k::before { content: ""; width: .5rem; height: .5rem; background: var(--red); clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%); flex: none; }
+.glance__t { font: 800 clamp(1.75rem, 1.35rem + 1.2vw, 2.5rem)/.98 var(--f-display); text-transform: uppercase; letter-spacing: -.005em; color: var(--navy); text-wrap: balance; }
+.glance__dl { display: grid; grid-template-columns: minmax(0, 1fr); margin: 0; border-top: 2px solid var(--navy); }
+@media (min-width: 640px) { .glance__dl { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(1.5rem, 1rem + 1.5vw, 2.5rem); } }
+@media (min-width: 1180px) { .glance__dl { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.glance__row { display: grid; align-content: start; gap: .45rem; padding: 1.05rem 0 1.15rem; border-bottom: 1px solid var(--line); }
+.glance__row dt { display: flex; align-items: center; gap: .6rem; font: 700 var(--fs-label)/1.2 var(--f-wide); font-stretch: 125%; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+.glance__row dt .icon { flex: none; color: var(--red); }
+.glance__row dd { margin: 0; padding-left: calc(18px + .6rem); font-weight: 600; font-size: 1.0625rem; line-height: 1.4; color: var(--navy); text-wrap: pretty; }
+.glance__row dd a { color: inherit; text-decoration: underline; text-decoration-color: var(--line-strong); text-decoration-thickness: 1px; text-underline-offset: .25em; transition: color var(--dur), text-decoration-color var(--dur); }
+.glance__row dd a:hover { color: var(--red); text-decoration-color: var(--red); }

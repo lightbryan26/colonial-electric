@@ -85,15 +85,7 @@ export function legalPage(ctx, name) {
   const other = DOCS[name === 'terms' ? 'privacy' : 'terms'];
   const sections = parse(name);
   const email = 'scott@colonial-electric.com';
-
-  // Meta description (brief §9): the page's first verbatim sentence. The shared generator (src/scripts/descriptions.mjs)
-  // drops Terms' 60-char opening line and then cuts the next sentence at the "." inside the URL, so set it here from the
-  // source itself. Privacy's generated entry is already its first sentence and is left alone.
-  if (name === 'terms') {
-    const first = sections[0]?.blocks.find(b => b.t === 'p')?.text || '';
-    const sent = (first.match(/^.+?[.!?](?=\s|$)/) || [first])[0].trim();
-    if (sent) ctx.page.description = sent;
-  }
+  // The meta description is set in src/data/seo.mjs like every other page's.
 
   ctx.jsonld = [...(ctx.jsonld || []), { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: site.origin + '/' },

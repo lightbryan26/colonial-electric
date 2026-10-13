@@ -6,15 +6,31 @@
 
 /* services grid */
 .svc-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); }
-.svc-card { display: flex; flex-direction: column; height: 100%; padding: 1.75rem; background: var(--white); border: 1px solid var(--line); text-decoration: none; clip-path: var(--crest); transition: border-color .2s, box-shadow .2s; }
-.svc-card:hover { border-color: var(--navy); box-shadow: var(--shadow); }
-.svc-card:focus-visible { clip-path: none; outline: 3px solid var(--red-flag); outline-offset: 2px; border-color: var(--navy); } /* crest would clip the ring */
+.svc-card { position: relative; display: flex; flex-direction: column; height: 100%; padding: 1.75rem; background: var(--white); border: 1px solid var(--line); text-decoration: none; clip-path: var(--crest); transition: border-color .2s, box-shadow .2s; }
+.svc-card:hover, .svc-card:focus-within { border-color: var(--navy); box-shadow: var(--shadow); }
+/* the title link is the card's only link; its ::after stretches over the card so the whole card stays clickable */
+.svc-card__a { color: inherit; text-decoration: none; }
+.svc-card__a::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.svc-card__a:focus-visible { outline: none; }
+.svc-card__a:focus-visible::after { outline: 3px solid var(--red-flag); outline-offset: 2px; }
+.svc-card:has(.svc-card__a:focus-visible) { clip-path: none; } /* crest would clip the ring */
 .svc-card__ic { display: grid; place-items: center; width: 3.25rem; height: 3.25rem; background: var(--navy); color: var(--white); clip-path: var(--crest); --cut: 9px; }
 .svc-card__t { margin-top: 1.25rem; font: 800 1.5rem/1.05 var(--f-display); text-transform: uppercase; color: var(--navy); }
 .svc-card p { margin-top: .6rem; color: var(--ink-2); font-size: var(--fs-desc); line-height: 1.6; }
 .svc-card__go { margin-top: auto; padding-top: 1.25rem; display: inline-flex; align-items: center; gap: .4rem; font: 700 var(--fs-label)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .1em; text-transform: uppercase; color: var(--red); }
-.svc-extra { margin-top: 1.5rem; }
-.svc-extra a { display: inline-flex; gap: .5rem; align-items: center; font-weight: 600; color: var(--navy); }
+/* "Also Available": Permanent Outdoor Lighting under the 12 cards (a slim navy crest bar; the title is the link) */
+.svc-extra { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 1rem 1.25rem; margin-top: 1rem; padding: 1.15rem clamp(1.15rem, 1rem + 1vw, 1.75rem); background: var(--navy); color: var(--white); clip-path: var(--crest); transition: background-color .3s var(--ease-out); }
+.svc-extra__ic { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; background: var(--red); color: var(--white); clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%); }
+.svc-extra__txt { display: flex; flex-wrap: wrap; align-items: baseline; gap: .3rem 1rem; min-width: 0; }
+.svc-extra__k { flex-basis: 100%; font: 700 var(--fs-label)/1 var(--f-wide); font-stretch: 125%; letter-spacing: .14em; text-transform: uppercase; color: var(--on-dark-2); }
+.svc-extra__a { font: 800 clamp(1.3rem, 1.15rem + .5vw, 1.6rem)/1.05 var(--f-display); text-transform: uppercase; color: var(--white); text-decoration: none; }
+.svc-extra__a::after { content: ""; position: absolute; inset: 0; }
+.svc-extra__a:focus-visible { outline: none; }
+.svc-extra__a:focus-visible::after { outline: 3px solid var(--white); outline-offset: -5px; }
+.svc-extra__s { color: var(--on-dark-2); font-size: var(--fs-meta); }
+.svc-extra__go { color: var(--white); transition: transform .3s var(--ease-out); }
+.svc-extra:hover { background: var(--navy-ink, #0B1426); }
+.svc-extra:hover .svc-extra__go { transform: translateX(4px); }
 
 /* process */
 .steps { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); counter-reset: s; }
