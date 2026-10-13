@@ -13,7 +13,7 @@ const url = slug => `${O}/${slug}`;
 
 /** Fails the build on anything these files must never contain (brief: no em dashes, no prices, no 24/7 promotion). */
 function guard(name, text) {
-  const bad = [['—', 'em dash'], ['$', 'price'], ['24/7', '24/7'], ['24-7', '24/7']].filter(([s]) => text.includes(s));
+  const bad = [['\u2014', 'em dash'], ['$', 'price'], ['24/7', '24/7'], ['24-7', '24/7']].filter(([s]) => text.includes(s));
   if (bad.length) throw new Error(`${name}: contains ${bad.map(b => b[1]).join(', ')}`);
   return text;
 }
@@ -98,7 +98,7 @@ const serviceLine = s => {
   if (s.outdoor) return firstSentence(outdoor.lead);
   return s.heroLine;
 };
-const hours = `${site.hours.replace(/\s*–\s*/, ' to ')}, Monday to Friday`;
+const hours = `${site.hours.replace(/\s*\u2013\s*/, ' to ')}, Monday to Friday`;
 
 function header() {
   return [
@@ -115,10 +115,10 @@ function aboutSection(full) {
     '## About',
     '',
     `- [About Us](${url('about-colonial-electric/')}): ${site.aboutBlurb}`,
-    `- Founder: ${site.founder}. ${full ? about.paras.join(' ') : firstSentence(about.paras[0])}`,
+    `- ${full ? about.paras.map(tidy).join(' ') : firstSentence(about.paras[0])}`,
     `- ${trustItems.join('. ')}.`,
     `- ${guarantee.h2}.`,
-    `- License: ${site.license}. ${site.licenseLine.replace(/\s*–\s*/, ': ')}`,
+    `- ${site.licenseLine.replace(/\s*\u2013\s*/, ': ')}`,
   ];
 }
 
@@ -145,19 +145,22 @@ function policiesSection() {
     '',
     `- Prices: this website does not publish prices or rates. Call ${site.phone} to discuss a job.`,
     `- Contact form: on [Contact Us](${url('contact-us/')}). Phone: ${site.phone}.`,
-    `- [We Offer Financing](${url('we-offer-financing/')}): We’ve partnered with Wisetack to offer our customers flexible financing options, so you can pay over time rather than all at once. All financing is subject to credit approval.`,
+    `- [We Offer Financing](${url('we-offer-financing/')}): We\u2019ve partnered with Wisetack to offer our customers flexible financing options, so you can pay over time rather than all at once. All financing is subject to credit approval.`,
     `- [Flash Pass Membership](${url('premium-membership/')}): ${benefits.map(b => b.t).join(', ')}.`,
     `- [Privacy Policy](${url('privacy/')})`,
     `- [Terms & Conditions](${url('terms/')})`,
   ];
 }
 
+// The town page's own verbatim line that names the town (call box, services or intro heading).
+const townLine = t => [t.callBoxLine, t.servicesH2, t.introH2].find(x => x && x.includes(t.name)) || '';
+
 function areaSection() {
   return [
     '## Service area',
     '',
     `- [Service Area](${url('service-area/')}): every town ${site.name} serves`,
-    ...towns.map(t => `- [${t.name}, MA](${url(`service-area/${t.slug}/`)}): ${t.callBoxLine}`),
+    ...towns.map(t => `- [${t.name}, MA](${url(`service-area/${t.slug}/`)})${townLine(t) ? ': ' + townLine(t) : ''}`),
   ];
 }
 
@@ -185,25 +188,28 @@ const blocks = arr => (arr || []).flatMap(b => typeof b === 'string'
   : b && b.list ? [...b.list.map(i => typeof i === 'string' ? `- ${tidy(i)}` : `- ${tidy(i.term)}: ${tidy(i.text)}`), ''] : []);
 
 function serviceFull(s) {
-  const L = [`## ${s.title}`, '', `URL: ${url(s.slug + '/')}`, '', tidy(s.heroLine), ''];
+  const L = [`### ${s.title}`, '', `URL: ${url(s.slug + '/')}`, '', tidy(s.heroLine), ''];
   if (s.outdoor) {
     L.push(tidy(outdoor.lead), '');
     for (const p of outdoor.panels) {
-      L.push(`### ${p.title}`, '', tidy(p.lead), '');
+      L.push(`#### ${p.title}`, '', tidy(p.lead), '');
       for (const g of p.groups || []) L.push(`${tidy(g.h)}:`, ...g.items.map(i => `- ${tidy(i.term)}: ${tidy(i.text)}`), '');
       if (p.close) L.push(tidy(p.close), '');
     }
-    if (outdoor.features?.length) L.push('### Features', '', ...outdoor.features.map(f => `- ${tidy(f.title)}: ${tidy(f.body)}`), '');
+    if (outdoor.features?.length) L.push('#### Features', '', ...outdoor.features.map(f => `- ${tidy(f.title)}: ${tidy(f.body)}`), '');
   }
   for (const part of [s.a, s.b]) {
     if (!part) continue;
     if (part.eyebrow) L.push(`${tidy(part.eyebrow)}`, '');
-    L.push(`### ${tidy(part.h2)}`, '', ...blocks(part.body));
+    L.push(`#### ${tidy(part.h2)}`, '', ...blocks(part.body));
   }
-  if (s.products?.length) L.push('### Products', '', ...s.products.map(p => `- ${tidy(p.title)}: ${tidy(p.body)}`), '');
+  if (s.products?.length) L.push('#### Products', '', ...s.products.map(p => `- ${tidy(p.title)}: ${tidy(p.body)}`), '');
   if (s.faqs?.length) {
-    L.push(`### ${s.title} FAQs`, '');
-    for (const f of s.faqs) L.push(`Q: ${tidy(f.q)}`, '', ...blocks(f.a).map((x, i) => i === 0 && x ? `A: ${x}` : x));
+    L.push(`#### ${s.title} FAQs`, '');
+    for (const f of s.faqs) {
+      const a = blocks(f.a);
+      L.push(`Q: ${tidy(f.q)}`, ...(a[0] && !a[0].startsWith('- ') ? [`A: ${a[0]}`, ...a.slice(1)] : ['A:', ...a]));
+    }
   }
   return L;
 }
@@ -212,7 +218,7 @@ export function llmsFullTxt() {
   const L = [
     ...header(), '',
     ...aboutSection(true), '',
-    '# Services', '',
+    '## Services', '',
     ...services.flatMap(serviceFull),
     ...areaSection(), '',
     ...contactSection(), '',

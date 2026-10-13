@@ -1,5 +1,5 @@
 // Per-template CSS bundles (src/build.mjs). The single site.css carried every page's rules, so 74-89% of the
-// render-blocking stylesheet was unused on any one page. Each template now links assets/css/<template>.css: the
+// render-blocking stylesheet was unused on any one page. Each template now links assets/site-<template>.css: the
 // src/css files that can style at least one of its pages, kept in the global cascade order (base.css, then A-Z), so
 // no rule changes position relative to any other rule it can meet.
 //

@@ -33,6 +33,21 @@ export function businessJsonLd() {
 const ld = obj => `<script type="application/ld+json">${JSON.stringify(obj).replace(/</g, '\\u003c')}</script>`;
 
 /**
+ * Google Tag Manager (the live site's container, so analytics and conversion tracking continue through the cut-over).
+ * The standard async GTM snippet, run only when the page is served from the client's own domain: the pitch hosts
+ * (github.io, vercel.app) and local previews never load GTM, so they never send data into the client's reports.
+ * It sits after the stylesheet, so it never competes with the render-critical CSS. The <noscript> half is in layout.mjs.
+ */
+export function gtmHead() {
+  if (!site.gtm) return '';
+  return `<script>if(${JSON.stringify(site.gtmHosts)}.indexOf(location.hostname)>-1){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer',${JSON.stringify(site.gtm)});}</script>\n`;
+}
+
+/**
  * ctx.preloadImage: image key to preload (hero); ctx.preloadSizes: its sizes attr.
  * ctx.jsonld: extra JSON-LD objects for this page.
  */
@@ -51,6 +66,7 @@ export function head(ctx) {
   return `<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 ${ctx.baseTag || ''}<title>${esc(title)}</title>
+<meta name="robots" content="max-image-preview:large">
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${canonical}">
 <meta name="theme-color" content="#081020">
@@ -72,8 +88,8 @@ ${ctx.baseTag || ''}<title>${esc(title)}</title>
 <link rel="apple-touch-icon" sizes="180x180" href="${ctx.asset('img/favicon-180.png')}">
 ${PRELOAD_FONTS.map(f => `<link rel="preload" as="font" type="font/woff2" href="${ctx.asset('fonts/' + f)}" crossorigin>`).join('\n')}
 ${preload}
-<link rel="stylesheet" href="${ctx.asset('site.css')}?v=${ctx.version}">
+<link rel="stylesheet" href="${ctx.asset(ctx.css || 'site.css')}?v=${ctx.version}">
 <script>document.documentElement.classList.add('js')</script>
-${ld(businessJsonLd())}
+${gtmHead()}${ld(businessJsonLd())}
 ${(ctx.jsonld || []).map(ld).join('\n')}`;
 }

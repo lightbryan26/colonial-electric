@@ -5,6 +5,10 @@ export const site = {
   // Host for og:image / twitter:image / JSON-LD image+logo. Until DNS cut-over colonial-electric.com is still the WordPress
   // site (no /assets/img/), so share previews load from the deployed pitch host. Cut-over: set this back to `origin`.
   assetOrigin: 'https://lightbryan26.github.io/colonial-electric',
+  // Google Tag Manager container of the live site (analytics + conversions continue through the cut-over). It only
+  // loads on these hostnames, never on the pitch hosts or a local preview (src/partials/head.mjs gtmHead()).
+  gtm: 'GTM-562VCKQ5',
+  gtmHosts: ['colonial-electric.com', 'www.colonial-electric.com'],
   phone: '(781) 287-8729',
   tel: 'tel:+17812878729',
   phoneSchema: '+1-781-287-8729',

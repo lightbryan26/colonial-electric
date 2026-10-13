@@ -11,16 +11,21 @@
 //   backtick is returned unchanged.
 
 export function minifyCss(src) {
-  let out = '';
-  let pendingSpace = false;
+  const out = [];
+  let last = '';            // last character emitted
+  let pendingSpace = false; // whitespace seen since `last`
+  let pendingSemi = false;  // a ';' held back: dropped if the next token is '}'
   let i = 0;
   const n = src.length;
   const NO_SPACE_AFTER = '{};,:';
   const NO_SPACE_BEFORE = '{};,';
+  const flushSemi = () => { if (pendingSemi) { out.push(';'); last = ';'; pendingSemi = false; pendingSpace = false; } };
   const emit = s => {
-    if (pendingSpace && out && !NO_SPACE_AFTER.includes(out.at(-1)) && !NO_SPACE_BEFORE.includes(s[0])) out += ' ';
+    flushSemi();
+    if (pendingSpace && last && !NO_SPACE_AFTER.includes(last) && !NO_SPACE_BEFORE.includes(s[0])) out.push(' ');
     pendingSpace = false;
-    out += s;
+    out.push(s);
+    last = s[s.length - 1];
   };
   while (i < n) {
     const c = src[i];
@@ -29,7 +34,7 @@ export function minifyCss(src) {
       i = end === -1 ? n : end + 2; // a comment is not whitespace: '.a/**/.b' is the compound '.a.b'
       continue;
     }
-    if (/\s/.test(c)) { pendingSpace = true; i++; continue; }
+    if (c === ' ' || c === '\n' || c === '\t' || c === '\r' || c === '\f') { pendingSpace = true; i++; continue; }
     if (c === '"' || c === "'") {
       let j = i + 1;
       while (j < n && src[j] !== c) { if (src[j] === '\\') j++; j++; }
@@ -44,17 +49,12 @@ export function minifyCss(src) {
       i = end + 1;
       continue;
     }
-    if (c === '}') {
-      pendingSpace = false;
-      if (out.at(-1) === ';') out = out.slice(0, -1);
-      out += '}';
-      i++;
-      continue;
-    }
+    if (c === ';') { flushSemi(); pendingSpace = false; pendingSemi = true; i++; continue; }
+    if (c === '}') { pendingSemi = false; pendingSpace = false; out.push('}'); last = '}'; i++; continue; }
     emit(c);
     i++;
   }
-  return out.trim() + '\n';
+  return out.join('').trim() + '\n';
 }
 
 export function minifyJs(src) {

@@ -18,10 +18,13 @@
   /* ---------- Below-the-fold images: native lazy for the first paint, then warm the rest ----------
      Markup keeps loading="lazy" (brief: lazy below the fold). Once the page has loaded and gone idle, the remaining
      lazy images are switched to eager so nothing below the fold is ever a blank frame (fast scroll, full-page
-     capture, print). Without JS the browser's own lazy loading still applies. */
+     capture, print). Without JS the browser's own lazy loading still applies. On Data Saver or a slow mobile
+     connection the warm-up is skipped (print still warms), so those visitors only download what they scroll to. */
   var warmed = false;
-  var warm = function () {
-    if (warmed) return; warmed = true;
+  var conn = navigator.connection;
+  var frugal = !!(conn && (conn.saveData || /(^|-)(2g|3g)$/.test(conn.effectiveType || '')));
+  var warm = function (e) {
+    if (warmed || (frugal && !(e && e.type === 'beforeprint'))) return; warmed = true;
     doc.querySelectorAll('img[loading="lazy"]').forEach(function (img) { img.loading = 'eager'; });
   };
   window.addEventListener('beforeprint', warm);

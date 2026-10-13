@@ -4,5 +4,48 @@
   "buildCommand": "",
   "installCommand": "",
   "outputDirectory": "docs",
-  "trailingSlash": true
+  "trailingSlash": true,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "(?<sub>.*)\\.vercel\\.app" }],
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), usb=()" }
+      ]
+    },
+    {
+      "source": "/assets/fonts/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/assets/(.*)",
+      "has": [{ "type": "query", "key": "v" }],
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/assets/img/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800, stale-while-revalidate=86400" }]
+    }
+  ],
+  "redirects": [
+    { "source": "/home/", "destination": "/", "statusCode": 301 },
+    { "source": "/index.php", "destination": "/", "statusCode": 301 },
+    { "source": "/feed/", "destination": "/", "statusCode": 301 },
+    { "source": "/comments/feed/", "destination": "/", "statusCode": 301 },
+    { "source": "/:path+/feed/", "destination": "/:path+/", "statusCode": 301 },
+    { "source": "/page-sitemap.xml", "destination": "/sitemap.xml", "statusCode": 301 },
+    { "source": "/sitemap_index.xml", "destination": "/sitemap.xml", "statusCode": 301 },
+    { "source": "/wp-sitemap.xml", "destination": "/sitemap.xml", "statusCode": 301 },
+    { "source": "/wp-content/uploads/2024/12/COLONIALELECTRIC_Web2_Badge.png", "destination": "/assets/img/logo-badge-250.png", "statusCode": 301 },
+    { "source": "/wp-content/uploads/2024/04/cropped-Untitled-design-5-32x32.png", "destination": "/assets/img/favicon-32.png", "statusCode": 301 },
+    { "source": "/wp-content/uploads/2024/04/cropped-Untitled-design-5-180x180.png", "destination": "/assets/img/favicon-180.png", "statusCode": 301 },
+    { "source": "/wp-content/uploads/2024/04/cropped-Untitled-design-5-192x192.png", "destination": "/assets/img/favicon-192.png", "statusCode": 301 }
+  ]
 }

@@ -1,0 +1,88 @@
+name: Lighthouse
+# Report only: after every deploy of docs/ to GitHub Pages, wait until the live site serves this commit's build, then
+# run Lighthouse 12 (mobile: Moto G Power emulation, simulated slow 4G) three times on five key pages and report the
+# median run's Performance / Accessibility / Best Practices / SEO scores plus LCP, CLS, TBT and FCP in the log and the
+# job summary. The full HTML + JSON reports are uploaded as an artifact. Scores never fail the job.
+# Note: the pitch pages canonicalise to https://colonial-electric.com, so the SEO numbers describe the markup, not the host.
+on:
+  push:
+    branches: [main]
+    paths: ['docs/**', '.github/workflows/lighthouse.yml']
+  workflow_dispatch:
+
+concurrency:
+  group: lighthouse
+  cancel-in-progress: true
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    env:
+      BASE: https://lightbryan26.github.io/colonial-electric/
+      PAGES: "/ /electrical-panel-upgrade/ /service-area/weymouth-ma/ /contact-us/ /about-colonial-electric/"
+      RUNS: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Wait for GitHub Pages to serve this build
+        run: |
+          want=$(md5sum docs/assets/site.css | cut -d' ' -f1)
+          for i in $(seq 1 60); do
+            got=$(curl -s "${BASE}assets/site.css?nocache=$RANDOM" | md5sum | cut -d' ' -f1)
+            [ "$got" = "$want" ] && { echo "live after $((i*10))s"; exit 0; }
+            sleep 10
+          done
+          echo "Pages did not serve this build within 10 minutes"; exit 1
+      - name: Run Lighthouse (mobile, ${{ env.RUNS }} runs per page)
+        run: |
+          mkdir -p lh
+          for page in $PAGES; do
+            name=$(echo "$page" | sed 's#^/##; s#/$##; s#/#_#g'); name=${name:-home}
+            for run in $(seq 1 "$RUNS"); do
+              npx -y lighthouse@12 "${BASE}${page#/}" --quiet \
+                --only-categories=performance,accessibility,best-practices,seo \
+                --chrome-flags="--headless=new --no-sandbox" \
+                --output=json --output=html --output-path="lh/${name}-run${run}" \
+                || echo "::warning::Lighthouse failed on ${page} (run ${run})"
+            done
+          done
+          ls lh
+      - name: Scores
+        if: always()
+        run: |
+          node --input-type=module <<'EOF'
+          import fs from 'fs';
+          const files = fs.existsSync('lh') ? fs.readdirSync('lh').filter(f => f.endsWith('.report.json')) : [];
+          const byPage = {};
+          for (const f of files) {
+            const r = JSON.parse(fs.readFileSync('lh/' + f, 'utf8'));
+            (byPage[f.replace(/-run\d+\.report\.json$/, '')] ||= []).push(r);
+          }
+          const score = (r, c) => r.categories[c]?.score == null ? 'n/a' : Math.round(r.categories[c].score * 100);
+          const ms = (r, a) => r.audits[a]?.numericValue == null ? 'n/a' : (r.audits[a].numericValue / 1000).toFixed(2) + ' s';
+          const rows = [];
+          const order = (process.env.PAGES || '').split(/\s+/).filter(Boolean).map(p => p.replace(/^\//, '').replace(/\/$/, '').replace(/\//g, '_') || 'home');
+          const names = Object.keys(byPage).sort((a, b) => (order.indexOf(a) + 1 || 99) - (order.indexOf(b) + 1 || 99));
+          for (const page of names) {
+            const runs = byPage[page];
+            runs.sort((a, b) => (a.categories.performance?.score ?? 0) - (b.categories.performance?.score ?? 0));
+            const r = runs[Math.floor(runs.length / 2)]; // median by performance score
+            rows.push([new URL(r.finalDisplayedUrl || r.requestedUrl).pathname, score(r, 'performance'), score(r, 'accessibility'), score(r, 'best-practices'), score(r, 'seo'),
+              ms(r, 'largest-contentful-paint'), r.audits['cumulative-layout-shift']?.numericValue?.toFixed(3) ?? 'n/a', Math.round(r.audits['total-blocking-time']?.numericValue ?? 0) + ' ms', ms(r, 'first-contentful-paint'), `${runs.length}`]);
+          }
+          const head = ['Page', 'Perf', 'A11y', 'Best Pr.', 'SEO', 'LCP', 'CLS', 'TBT', 'FCP', 'Runs'];
+          const md = [`### Lighthouse 12, mobile (median of runs by Performance)`, '', `| ${head.join(' | ')} |`, `| ${head.map(() => '---').join(' | ')} |`, ...rows.map(r => `| ${r.join(' | ')} |`)].join('\n');
+          const w = head.map((h, i) => Math.max(h.length, ...rows.map(r => String(r[i]).length)));
+          console.log([head, ...rows].map(r => r.map((c, i) => String(c).padEnd(w[i])).join('  ')).join('\n'));
+          if (!rows.length) console.log('No Lighthouse reports were produced.');
+          if (process.env.GITHUB_STEP_SUMMARY) fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, (rows.length ? md : 'No Lighthouse reports were produced.') + '\n');
+          EOF
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-reports
+          path: lh/
+          if-no-files-found: ignore

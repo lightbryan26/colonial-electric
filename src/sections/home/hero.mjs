@@ -6,6 +6,9 @@ import { esc, picture } from '../../lib/html.mjs';
 // Homepage hero (brief §4.2). Copy verbatim; photo = real owner + wrapped van.
 // Motifs: van-wrap diagonal sweep (red → white → photo), red "ELECTRIC"-style banner, tone-on-tone star field.
 // Logo: the full rider lockup (brief §3 hero/footer/about) signs the founder caption card, in true colour on its white ground.
+// Shared with the <link rel=preload> in src/pages/home.mjs: the preload only helps when its sizes match the <img> exactly.
+export const HERO_SIZES = '(min-width: 2100px) 95rem, (min-width: 1860px) 128rem, (min-width: 1200px) 95rem, 100vw';
+
 export function render(ctx) {
   const [contact, services] = hero.ctas;
   return `<section id="s-hero" class="hero on-dark" aria-labelledby="s-hero-h">
@@ -24,7 +27,7 @@ export function render(ctx) {
       <span class="hero__sweep hero__sweep--red" aria-hidden="true"></span>
       <span class="hero__sweep hero__sweep--white" aria-hidden="true"></span>
       <div class="hero__photo">
-        ${picture(ctx, 'owner-van', { alt: 'Founder Scott Hays standing in front of the red, white and blue Colonial Electric van', sizes: '(min-width: 2100px) 95rem, (min-width: 1860px) 128rem, (min-width: 1200px) 95rem, 100vw', priority: true, imgCls: 'hero__img' })}
+        ${picture(ctx, 'owner-van', { alt: 'Founder Scott Hays standing in front of the red, white and blue Colonial Electric van', sizes: HERO_SIZES, priority: true, imgCls: 'hero__img' })}
       </div>
       <figcaption class="hero__cap">
         ${picture(ctx, 'logo-lockup', { cls: 'hero__cap-mark', alt: '', sizes: '(min-width: 1200px) 7.5rem, (min-width: 640px) 6rem, 4.75rem', loading: 'eager' })}
